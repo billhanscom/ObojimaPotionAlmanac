@@ -39,8 +39,8 @@ def get_recipes():
     # Filter selected ingredient details from JSON data
     selected_ingredients = [ing for ing in ingredient_data if ing['name'] in user_ingredients]
 
-    # Calculate all possible recipes from every combination of three ingredients
-    possible_recipes = {'Combat': [], 'Utility': [], 'Whimsy': []}
+    # Dictionary to store unique potions and their permutations count
+    possible_recipes = {'Combat': {}, 'Utility': {}, 'Whimsy': {}}
     for combo in combinations(selected_ingredients, 3):
         total_combat = sum([ing['combat'] for ing in combo])
         total_utility = sum([ing['utility'] for ing in combo])
@@ -57,8 +57,7 @@ def get_recipes():
 
         # Add recipes to the result only if a valid potion type is determined
         for potion_type, potion_value in recipe_types:
-            # Fetch the appropriate potion name from the dictionary (using string for lookup)
-            potion_name = ""
+            # Fetch the appropriate potion name from the dictionary
             if potion_type == "Combat":
                 potion_name = f"{potion_value}. {combat_names.get(str(potion_value), 'No matching potion')}"
             elif potion_type == "Utility":
@@ -66,9 +65,14 @@ def get_recipes():
             elif potion_type == "Whimsy":
                 potion_name = f"{potion_value}. {whimsy_names.get(str(potion_value), 'No matching potion')}"
 
+            # Initialize potion entry if not exists
+            if potion_name not in possible_recipes[potion_type]:
+                possible_recipes[potion_type][potion_name] = {"count": 0, "recipes": []}
+
+            # Increment count and add recipe
+            possible_recipes[potion_type][potion_name]["count"] += 1
             recipe = {
-                "potion_type": potion_name,
-                "attribute_totals": f"[{total_combat}-{total_utility}-{total_whimsy}]",
+                "attribute_totals": f"[{total_combat}/{total_utility}/{total_whimsy}]",
                 "ingredients": [
                     {
                         "name": ing["name"],
@@ -79,13 +83,15 @@ def get_recipes():
                     } for ing in combo
                 ]
             }
-            possible_recipes[potion_type].append(recipe)
+            possible_recipes[potion_type][potion_name]["recipes"].append(recipe)
 
-    # Sort each potion type's recipes numerically by potion number
+    # Sort each potion type's recipes by potion number
     for potion_list in possible_recipes.values():
-        potion_list.sort(key=lambda x: extract_number(x['potion_type']))
+        sorted_potions = {k: v for k, v in sorted(potion_list.items(), key=lambda item: extract_number(item[0]))}
+        potion_list.clear()
+        potion_list.update(sorted_potions)
 
-    # Return list of possible recipes as JSON
+    # Return list of grouped recipes as JSON
     return jsonify(possible_recipes)
 
 if __name__ == '__main__':
