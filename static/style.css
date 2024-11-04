@@ -1,0 +1,183 @@
+body {
+    font-family: 'Open Sans', sans-serif;
+    margin: 0;
+    padding: 0;
+    background-color: #f4f4f9;
+    color: #2d2d2d;
+}
+
+.container {
+    width: 80%;
+    max-width: 1000px;
+    margin: 60px auto;
+    padding: 20px;
+    background-color: #ffffff;
+    border-radius: 8px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+}
+
+header {
+    text-align: center;
+    margin-bottom: 40px;
+}
+
+h1 {
+    font-family: 'Abril Fatface', serif;
+    font-size: 58px; /* Larger title size */
+    color: #333333;
+    margin-bottom: 10px;
+}
+
+h2 {
+    font-family: 'Open Sans', sans-serif;
+    font-size: 16px;
+    color: #777777;
+    font-weight: normal;
+}
+
+.recipes-title {
+    text-align: center;
+    margin-top: 40px;
+    padding-top: 20px; /* Ensure some padding to improve visibility */
+    margin-bottom: 20px;
+}
+
+.recipes-title h2 {
+    font-family: 'Abril Fatface', serif;
+    font-size: 32px; /* "Recipes" section title in Abril Fatface */
+    color: #333333;
+}
+
+h3 {
+    font-family: 'Open Sans', sans-serif;
+    font-size: 15px;
+    color: #444444;
+    font-weight: bold;
+    text-align: center;
+    border-bottom: 1px solid #e0e0e0;
+    padding-bottom: 5px;
+    margin-bottom: 15px;
+}
+
+.form-section {
+    margin-bottom: 30px;
+}
+
+.ingredient-columns {
+    display: flex;
+    justify-content: space-between;
+    gap: 10px;
+}
+
+.column {
+    width: 32%;
+    padding: 10px;
+}
+
+.ingredient-button {
+    background-color: #e0e0e0;
+    color: #333;
+    border: none;
+    border-radius: 4px;
+    padding: 8px 12px;
+    font-size: 14px;
+    margin: 0;
+    cursor: pointer;
+    transition: background-color 0.2s ease;
+}
+
+.ingredient-button.selected.common {
+    background-color: #c2e3a7; /* Common: light green */
+    color: #333;
+}
+
+.ingredient-button.selected.uncommon {
+    background-color: #fde663; /* Uncommon: yellow */
+    color: #333;
+}
+
+.ingredient-button.selected.rare {
+    background-color: #fd8966; /* Rare: coral */
+    color: #333;
+}
+
+.button-group {
+    text-align: center;
+    margin-top: 20px;
+}
+
+.button-group button {
+    background-color: #0077cc;
+    color: #ffffff;
+    border: none;
+    padding: 10px 18px;
+    font-size: 14px;
+    border-radius: 4px;
+    margin: 5px;
+    cursor: pointer;
+    transition: background-color 0.2s ease, box-shadow 0.2s ease;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.15);
+}
+
+.button-group button:hover {
+    background-color: #005fa3;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2);
+}
+
+#results {
+    display: flex;
+    justify-content: space-between;
+    margin-top: 40px;
+}
+
+.recipe-column {
+    width: 32%;
+}
+
+#results h3 {
+    color: #0077cc;
+    font-size: 16px;
+    text-align: center;
+    margin-bottom: 15px;
+}
+
+#results ul {
+    list-style-type: none;
+    padding-left: 0;
+}
+
+#results li {
+    background-color: #f9fafb;
+    padding: 10px;
+    margin: 10px 0;
+    border-radius: 5px;
+    border: 1px solid #e0e0e0;
+    box-shadow: 1px 1px 3px rgba(0, 0, 0, 0.1);
+}
+
+/* Rarity-based background colors for ingredients in recipe results */
+.ingredient.common {
+    background-color: #c2e3a7; /* Common: light green */
+}
+
+.ingredient.uncommon {
+    background-color: #fde663; /* Uncommon: yellow */
+}
+
+.ingredient.rare {
+    background-color: #fd8966; /* Rare: coral */
+}
+
+/* Print-friendly styles */
+@media print {
+    body {
+        background-color: #ffffff;
+        color: #000;
+    }
+    #ingredientForm button {
+        display: none; /* Hide buttons during print */
+    }
+    #ingredientForm, .recipe-columns {
+        page-break-inside: avoid;
+    }
+}

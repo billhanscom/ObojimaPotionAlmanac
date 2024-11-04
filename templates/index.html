@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Obojima Potion Recipe Finder</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Abril+Fatface&family=Open+Sans:wght@400;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>Obojima Potion Recipe Finder</h1>
+            <h2>Select Ingredients to Generate Potion Recipes</h2>
+        </header>
+
+        <!-- Button group at the top -->
+        <div class="button-group">
+            <button type="button" onclick="findRecipes()">Find Recipes</button>
+            <button type="button" onclick="clearSelection()">Clear Selection</button>
+        </div>
+
+        <!-- Error message display -->
+        <p id="error-message" class="error-message" style="display: none;">Oops! Please select at least three ingredients.</p>
+
+        <!-- Ingredient selection form -->
+        <form id="ingredientForm" class="form-section">
+            <div class="ingredient-columns">
+                <!-- Common Ingredients Column -->
+                <div class="column">
+                    <h3>Common Ingredients</h3>
+                    {% for ingredient in common_ingredients %}
+                        <button type="button" class="ingredient-button" data-ingredient="{{ ingredient['name'] }}" data-rarity="common">
+                            {{ ingredient['name'] }} [{{ ingredient['combat'] }}/{{ ingredient['utility'] }}/{{ ingredient['whimsy'] }}]
+                        </button><br><br>
+                    {% endfor %}
+                </div>
+
+                <!-- Uncommon Ingredients Column -->
+                <div class="column">
+                    <h3>Uncommon Ingredients</h3>
+                    {% for ingredient in uncommon_ingredients %}
+                        <button type="button" class="ingredient-button" data-ingredient="{{ ingredient['name'] }}" data-rarity="uncommon">
+                            {{ ingredient['name'] }} [{{ ingredient['combat'] }}/{{ ingredient['utility'] }}/{{ ingredient['whimsy'] }}]
+                        </button><br><br>
+                    {% endfor %}
+                </div>
+
+                <!-- Rare Ingredients Column -->
+                <div class="column">
+                    <h3>Rare Ingredients</h3>
+                    {% for ingredient in rare_ingredients %}
+                        <button type="button" class="ingredient-button" data-ingredient="{{ ingredient['name'] }}" data-rarity="rare">
+                            {{ ingredient['name'] }} [{{ ingredient['combat'] }}/{{ ingredient['utility'] }}/{{ ingredient['whimsy'] }}]
+                        </button><br><br>
+                    {% endfor %}
+                </div>
+            </div>
+
+            <!-- Button group below columns -->
+            <div class="button-group">
+                <button type="button" onclick="findRecipes()">Find Recipes</button>
+                <button type="button" onclick="clearSelection()">Clear Selection</button>
+            </div>
+        </form>
+
+        <div id="results" class="recipe-columns">
+            <!-- Results will be displayed in this section -->
+        </div>
+    </div>
+
+    <script src="{{ url_for('static', filename='script.js') }}"></script>
+</body>
+</html>
