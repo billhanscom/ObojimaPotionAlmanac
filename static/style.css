@@ -164,31 +164,3 @@ h3 {
     border: none;
     box-shadow: 1px 1px 3px rgba(0, 0, 0, 0.1);
 }
-
-/* Button-like styling for recipe names */
-.potion-header {
-    display: inline-block;
-    background-color: #005fa3;
-    color: #ffffff;
-    padding: 10px 14px;
-    font-size: 14px;
-    font-weight: bold;
-    border-radius: 4px;
-    cursor: pointer;
-    margin: 5px 0;
-    transition: background-color 0.1s ease, box-shadow 0.1s ease;
-}
-
-.potion-header:hover {
-    background-color: #65ade8;
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
-}
-
-.toggle-arrow {
-    margin-left: 8px;
-    transition: transform 0.2s ease; /* Smooth rotation on toggle */
-}
-
-.toggle-arrow.expanded {
-    transform: rotate(180deg); /* Rotate triangle when expanded */
-}
