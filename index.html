@@ -29,7 +29,7 @@
                     <h3>Common Ingredients</h3>
                     {% for ingredient in common_ingredients %}
                         <button type="button" class="ingredient-button" data-ingredient="{{ ingredient['name'] }}" data-rarity="common">
-                            {{ ingredient['name'] }} [{{ ingredient['combat'] }}/{{ ingredient['utility'] }}/{{ ingredient['whimsy'] }}]
+                            {{ ingredient['name'] }} [{{ ingredient['combat'] }}-{{ ingredient['utility'] }}-{{ ingredient['whimsy'] }}]
                         </button><br><br>
                     {% endfor %}
                 </div>
@@ -39,7 +39,7 @@
                     <h3>Uncommon Ingredients</h3>
                     {% for ingredient in uncommon_ingredients %}
                         <button type="button" class="ingredient-button" data-ingredient="{{ ingredient['name'] }}" data-rarity="uncommon">
-                            {{ ingredient['name'] }} [{{ ingredient['combat'] }}/{{ ingredient['utility'] }}/{{ ingredient['whimsy'] }}]
+                            {{ ingredient['name'] }} [{{ ingredient['combat'] }}-{{ ingredient['utility'] }}-{{ ingredient['whimsy'] }}]
                         </button><br><br>
                     {% endfor %}
                 </div>
@@ -49,7 +49,7 @@
                     <h3>Rare Ingredients</h3>
                     {% for ingredient in rare_ingredients %}
                         <button type="button" class="ingredient-button" data-ingredient="{{ ingredient['name'] }}" data-rarity="rare">
-                            {{ ingredient['name'] }} [{{ ingredient['combat'] }}/{{ ingredient['utility'] }}/{{ ingredient['whimsy'] }}]
+                            {{ ingredient['name'] }} [{{ ingredient['combat'] }}-{{ ingredient['utility'] }}-{{ ingredient['whimsy'] }}]
                         </button><br><br>
                     {% endfor %}
                 </div>
