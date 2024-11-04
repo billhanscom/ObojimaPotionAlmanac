@@ -52,7 +52,7 @@ async function findRecipes() {
             column.innerHTML += recipes[type].map(recipe => {
                 const ingredientsList = recipe.ingredients.map(ing => {
                     const rarityClass = ing.rarity.toLowerCase();  // Apply rarity class to ingredient background
-                    return `<li class="ingredient ${rarityClass}">${ing.name} [${ing.combat}/${ing.utility}/${ing.whimsy}]</li>`;
+                    return `<li class="ingredient ${rarityClass}">${ing.name} [${ing.combat}-${ing.utility}-${ing.whimsy}]</li>`;
                 }).join('');
                 return `<h4>${recipe.potion_type} ${recipe.attribute_totals}</h4><ul>${ingredientsList}</ul>`;
             }).join('');
