@@ -51,22 +51,25 @@ async function findRecipes() {
                 potionContainer.classList.add('potion-container');
 
                 const recipeLabel = potionData.count === 1 ? "1 recipe" : `${potionData.count} recipes`;
-                potionContainer.innerHTML = `<h4 class="potion-header button-like">${potionName} (${recipeLabel})</h4>`;
+                potionContainer.innerHTML = `<h4 class="potion-header">${potionName} (${recipeLabel}) <span class="toggle-arrow">▼</span></h4>`;
 
                 const recipeDetails = document.createElement('div');
                 recipeDetails.classList.add('recipe-details');
                 recipeDetails.style.display = 'none';
 
-                recipeDetails.innerHTML = potionData.recipes.map(recipe => {
+                recipeDetails.innerHTML = potionData.recipes.map((recipe, index) => {
                     const ingredientsList = recipe.ingredients.map(ing => {
                         const rarityClass = ing.rarity.toLowerCase();
                         return `<li class="ingredient ${rarityClass}">${ing.name} [${ing.combat}/${ing.utility}/${ing.whimsy}]</li>`;
                     }).join('');
-                    return `<h5>Attributes: ${recipe.attribute_totals}</h5><ul>${ingredientsList}</ul>`;
+                    return `<h5>Recipe ${index + 1} [${recipe.attribute_totals}]</h5><ul>${ingredientsList}</ul>`;
                 }).join('');
 
-                potionContainer.querySelector('.potion-header').addEventListener('click', () => {
+                const header = potionContainer.querySelector('.potion-header');
+                const toggleArrow = header.querySelector('.toggle-arrow');
+                header.addEventListener('click', () => {
                     recipeDetails.style.display = recipeDetails.style.display === 'none' ? 'block' : 'none';
+                    toggleArrow.classList.toggle('expanded');
                 });
 
                 potionContainer.appendChild(recipeDetails);

@@ -183,3 +183,12 @@ h3 {
     background-color: #65ade8;
     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
 }
+
+.toggle-arrow {
+    margin-left: 8px;
+    transition: transform 0.2s ease; /* Smooth rotation on toggle */
+}
+
+.toggle-arrow.expanded {
+    transform: rotate(180deg); /* Rotate triangle when expanded */
+}
