@@ -175,11 +175,16 @@ h3 {
     font-weight: bold;
     border-radius: 4px;
     cursor: pointer;
-    margin: 5px 0 -10px;
+    margin: 5px 0;
     transition: background-color 0.1s ease, box-shadow 0.1s ease;
 }
 
 .potion-header:hover {
+    background-color: #005fa3;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+}
+
+.potion-header:active {
     background-color: #005fa3;
     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
 }
