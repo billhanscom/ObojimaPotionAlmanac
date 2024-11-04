@@ -57,10 +57,10 @@ recipes-title {
 h3 {
     font-family: "rogliano", sans-serif;
     font-size: 18px;
-    color: #577da1;
+    color: #005fa3;
     font-weight: 700;
     text-align: center;
-    border-bottom: 1px solid #577da1;
+    border-bottom: 1px solid #005fa3;
     padding-bottom: 12px;
     margin-bottom: 30px;
 }
@@ -166,7 +166,7 @@ h5 {
 }
 
 #results li {
-    background-color: #65ade8;
+    background-color: #ede1cd;
     padding: 10px 14px;
     margin: 10px 0;
     font-size: 14px;
