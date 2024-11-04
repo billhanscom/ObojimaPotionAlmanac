@@ -168,7 +168,7 @@ h3 {
 /* Button-like styling for recipe names */
 .potion-header {
     display: inline-block;
-    background-color: #0077cc;
+    background-color: #ede1cd;
     color: #ffffff;
     padding: 8px 12px;
     font-size: 14px;
@@ -176,10 +176,10 @@ h3 {
     border-radius: 4px;
     cursor: pointer;
     margin: 5px 0;
-    transition: background-color 0.2s ease, box-shadow 0.2s ease;
+    transition: background-color 0.1s ease, box-shadow 0.1s ease;
 }
 
 .potion-header:hover {
-    background-color: #005fa3;
+    background-color: ##cec4b2;
     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
 }

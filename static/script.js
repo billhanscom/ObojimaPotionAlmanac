@@ -50,7 +50,8 @@ async function findRecipes() {
                 const potionContainer = document.createElement('div');
                 potionContainer.classList.add('potion-container');
 
-                potionContainer.innerHTML = `<h4 class="potion-header">${potionName} (${potionData.count} recipes)</h4>`;
+                const recipeLabel = potionData.count === 1 ? "1 recipe" : `${potionData.count} recipes`;
+                potionContainer.innerHTML = `<h4 class="potion-header button-like">${potionName} (${recipeLabel})</h4>`;
 
                 const recipeDetails = document.createElement('div');
                 recipeDetails.classList.add('recipe-details');
