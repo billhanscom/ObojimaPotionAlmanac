@@ -51,19 +51,11 @@ color:#577da1;
 font-family:"rogliano",sans-serif;
 font-size:1em;
 font-weight:700;
-margin-top:40px;
+margin-top:10px;
 padding-top:20px;
 text-align:center
 }
 
-/*
-.recipes-title h2 {
-color:#DCA453;
-font-family:"sneakers-pro",sans-serif;
-font-style:normal;
-font-weight:500
-}
-*/
 
 h3 {
 font-family:"rogliano",sans-serif;
@@ -254,7 +246,7 @@ margin-bottom:20px
         margin-top: -10px
     }
 
-.ingredient-button, .button-group, .potion-header, h5 {
+.ingredient-button, .button-group, .potion-header, h5, .recipe-title {
 font-size:.85em;
 }
     
@@ -264,7 +256,7 @@ margin-bottom: -7px
 
 .button-group {
 margin-top:5px;
-margin-bottom:0px
+margin-bottom:10px
 }
 
 .recipe-column {
