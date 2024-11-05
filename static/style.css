@@ -251,9 +251,11 @@ margin-top: -10px
 margin-bottom: -10px;
     font-size: .8em
     }
-
+    .button-group button {
+        font-size: .8em
+    }
+    
 .button-group {
-font-size: .8em
 margin-top:10px;
 margin-bottom:15px
 }
