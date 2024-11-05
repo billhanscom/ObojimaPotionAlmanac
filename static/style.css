@@ -178,7 +178,8 @@ width:32%
 }
 
 #results h3 {
-text-align:center
+text-align:center;
+margin-bottom: 0
 }
 
 #results ul {
