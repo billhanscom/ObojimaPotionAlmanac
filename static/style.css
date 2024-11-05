@@ -243,6 +243,10 @@ h3 {
 margin-top: -10px
 }
 
+    #results li {
+        font-size: 0.5em
+    }
+
 .recipe-title {
     font-size: .8em;
         margin-top: -10px
@@ -250,9 +254,6 @@ margin-top: -10px
   
     .potion-header {
         font-size: .8em
-    }
-    .recipe-details li {
-        font-size: .7em
     }
     
 .ingredient-button {
