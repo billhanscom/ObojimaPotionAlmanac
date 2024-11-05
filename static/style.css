@@ -12,7 +12,7 @@ border-radius:8px;
 box-shadow:0 4px 12px #0000001a;
 margin:60px auto;
 max-width:1200px;
-padding:20px;
+padding:40px;
 width:80%
 }
 
@@ -23,7 +23,7 @@ text-align:center
 h1 {
 color:#DCA453;
 font-family:"sneakers-pro",sans-serif;
-font-size:3em;
+font-size:5em;
 font-style:normal;
 font-weight:500;
 line-height: 1.5em;
@@ -40,6 +40,7 @@ font-style:normal;
 font-weight:400;
 margin-bottom:50px;
 line-height: .75em;
+text-wrap: balance;
 white-space:normal
 }
 
