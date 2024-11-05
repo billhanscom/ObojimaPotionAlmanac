@@ -234,12 +234,10 @@ padding:20px;
 width:80%
 }
 
-/* 
+ 
 h1 {
-font-size:3em;
-line-break: auto
-}
-*/
+margin-top: -10px
+    }
     
 h2 {
 font-size:1em;
