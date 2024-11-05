@@ -259,12 +259,12 @@ margin-bottom:0px
 margin-bottom:20px;
 width:100%
 }
-
+/*
 .ingredient-button,.potion-header {
 font-size:1em;
 padding:6px 10px
 }
-
+*/
 .ingredient-columns .column {
 flex:1 1 100%
 }
