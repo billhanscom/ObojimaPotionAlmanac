@@ -39,7 +39,7 @@ font-size:1.4em;
 font-style:normal;
 font-weight:400;
 margin-bottom:50px;
-line-height: 1.2em;
+line-height: 1.3em;
 text-wrap: balance;
 white-space:normal
 }
@@ -235,12 +235,13 @@ width:80%
 }
  
 h1 {
-font-size:2em
+font-size:2em;
+line-break: auto
 }
     
 h2 {
 font-size:1em;
-margin-bottom:10px
+margin-bottom:20px
 }
 
 .button-group {
