@@ -47,7 +47,7 @@ white-space:normal
 
 
 .recipe-title {
-color:#577da1;
+color:#005fa3;
 font-family:"rogliano",sans-serif;
 font-size:1em;
 font-weight:700;
@@ -242,13 +242,17 @@ font-size:1em;
 margin-bottom:20px
 }
     
-    h3 {
-        margin-top: -10px
-    }
+h3 {
+margin-top: -10px
+}
 
 .ingredient-button, .button-group, .potion-header, h5, {
 font-size:.85em;
 }
+    
+    .recipe-title {
+        margin-top: -10px
+    }
     
 .ingredient-button {
 margin-bottom: -7px        
