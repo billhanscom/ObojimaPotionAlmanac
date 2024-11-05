@@ -243,12 +243,11 @@ h3 {
 margin-top: -10px
 }
 
-    #results li {
-        font-size: 0.5em
+#results li {
+        font-size: 0.8em
     }
 
 .recipe-title {
-    font-size: .8em;
         margin-top: -10px
     }
   
