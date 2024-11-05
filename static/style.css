@@ -80,7 +80,6 @@ h4,.recipe-number {
 font-family:"rogliano",sans-serif;
 font-size:1em;
 font-weight:700;
-font-weight:bold;
 margin-bottom:5px
 }
 
@@ -214,8 +213,8 @@ box-shadow:0 2px 4px #0003
 }
 
 .recipe-details {
-    margin-top: 0; /* Removes extra space at the top */
-    padding-top: 0; /* Removes padding if any */
+    margin-top: 0;
+    padding-top: 0; 
 }
 
 .toggle-arrow {
@@ -278,6 +277,11 @@ flex:1 1 100%
 h1 {
 font-size:10vw
 }
+    
+.ingredient-button, .button-group, .potion-header, .recipe-number, h4 {
+font-size:.9em;
+}
+   
     
 /*
 .button-group button {
