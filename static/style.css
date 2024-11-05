@@ -1,5 +1,5 @@
 body {
-background-color:#65ade8;
+background: linear-gradient(0deg, #508ab9 0%, #65ade8 50%, #65ade8 100%);
 color:#2d2d2d;
 font-family:"rogliano",sans-serif;
 margin:0;
@@ -69,8 +69,8 @@ color:#005fa3;
 border-bottom:1px solid #005fa3;
 font-size:1em;
 font-weight:700;
-margin-bottom:10px;
-padding-bottom:12px;
+margin-bottom:20px;
+padding-bottom:6px;
 text-align:center
 }
 
