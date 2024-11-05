@@ -179,7 +179,7 @@ width:32%
 
 #results h3 {
 text-align:center;
-margin-bottom: 10px
+margin-bottom: 12px
 }
 
 #results ul {
@@ -206,7 +206,7 @@ cursor:pointer;
 display:inline-block;
 font-size:1em;
 font-weight:700;
-margin:5px 0;
+margin:5px 0 0;
 padding:10px 14px;
 transition:background-color .1s ease,box-shadow .1s ease
 }
