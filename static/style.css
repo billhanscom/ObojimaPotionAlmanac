@@ -239,7 +239,8 @@ font-size:2em
 }
     
 h2 {
-font-size:1em
+font-size:1em;
+margin-bottom:0px
 }
 
 .button-group {
