@@ -22,7 +22,7 @@ text-align:center
 
 h1 {
 color:#DCA453;
-    display: inline-block;
+display: inline-block;
 font-family:"sneakers-pro",sans-serif;
 font-size:5em;
 font-style:normal;
@@ -34,7 +34,7 @@ margin-bottom:0px;
 h2 {
 color:#2d2d2d;
 font-family:"rogliano",sans-serif;
-font-size:80ch;
+font-size:1.2em;
 font-style:normal;
 font-weight:400;
 margin-bottom:50px;
