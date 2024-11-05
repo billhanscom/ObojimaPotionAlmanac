@@ -246,7 +246,7 @@ margin-bottom:20px
         margin-top: -10px
     }
 
-.ingredient-button, .button-group, .potion-header, h5, .recipe-title {
+.ingredient-button, .button-group, .potion-header, h5, {
 font-size:.85em;
 }
     
@@ -255,8 +255,8 @@ margin-bottom: -7px
     }
 
 .button-group {
-margin-top:5px;
-margin-bottom:10px
+margin-top:10px;
+margin-bottom:15px
 }
 
 .recipe-column {
