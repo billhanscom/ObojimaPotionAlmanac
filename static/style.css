@@ -194,7 +194,7 @@ h5 {
 }
 	h1 {
 		margin-top: 10px;
-        margin-bottom: 10px
+        margin-bottom: 15px
 }
 	h2 {
 		font-size:1em;
@@ -208,7 +208,7 @@ h5 {
         margin-top: 12px
 }
     .recipe-title { /* Results column headers */
-        margin-top: 30px
+        margin-top: 15px
     }
 	#results li {
 		font-size: 0.85em
