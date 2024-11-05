@@ -166,7 +166,9 @@ h5 {
 }
 
 #results li {
-    display: block;
+    display: inline-block;
+    width: auto;
+    white-space: nowrap;
     background-color: #ede1cd;
     padding: 10px 14px;
     margin: 10px 0;
