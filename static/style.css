@@ -250,8 +250,12 @@ margin-bottom:20px
 }
 
 .ingredient-button, .button-group, .potion-header, h5 {
-font-size:.8em;
+font-size:.85em;
 }
+    
+.ingredient-button {
+margin-bottom: 0        
+    }
 
 .button-group {
 margin-top:5px;
