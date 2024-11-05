@@ -23,19 +23,21 @@ text-align:center
 h1 {
 color:#DCA453;
 font-family:"sneakers-pro",sans-serif;
-font-size:1em;
+font-size:3em;
 font-style:normal;
 font-weight:500;
+line-height: .75em;
 margin-bottom:-10px
 }
 
 h2 {
 color:#2d2d2d;
 font-family:"rogliano",sans-serif;
-font-size:1em;
+font-size:1.5em;
 font-style:normal;
 font-weight:400;
 margin-bottom:50px;
+line-height: .75em;
 white-space:normal
 }
 
@@ -69,7 +71,7 @@ text-align:center
 
 h4,.recipe-number {
 font-family:"rogliano",sans-serif;
-font-size:1.1em;
+font-size:1em;
 font-weight:700;
 font-weight:bold;
 margin-bottom:5px
@@ -106,7 +108,7 @@ box-shadow:1px 1px 3px #0000001a;
 color:#333;
 cursor:pointer;
 font-family:"rogliano",sans-serif;
-font-size:1em;
+font-size:.8em;
 font-style:normal;
 font-weight:400;
 margin:-5px;
@@ -183,7 +185,7 @@ border:none;
 border-radius:5px;
 box-shadow:1px 1px 3px #0000001a;
 display:block;
-font-size:1em;
+font-size:.8em;
 margin:10px 0;
 padding:10px 14px
 }
@@ -216,10 +218,14 @@ transition:transform .2s ease
 transform:rotate(180deg)
 }
 
+
+
+/* Responsive Design */
+
 @media (max-width: 768px) {
 .container {
-margin:20px auto;
-padding:10px;
+margin:20px 20px;
+padding:20px;
 width:90%
 }
 
