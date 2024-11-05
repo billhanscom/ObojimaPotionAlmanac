@@ -21,13 +21,12 @@ text-align:center
 }
 
 h1 {
-color:#DCA453;
-display: inline-block;
 font-family:"sneakers-pro",sans-serif;
-font-size:5em;
+font-size:4em;
 font-style:normal;
 font-weight:500;
-line-height: 1.5em;
+color:#DCA453;
+line-height: 1em;
 margin-bottom:0px;
 text-wrap: balance;
 white-space: normal
