@@ -216,6 +216,11 @@ background-color:#65ade8;
 box-shadow:0 2px 4px #0003
 }
 
+.recipe-details {
+    margin-top: 0; /* Removes extra space at the top */
+    padding-top: 0; /* Removes padding if any */
+}
+
 .toggle-arrow {
 font-size:.6em;
 margin-left:8px;
