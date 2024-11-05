@@ -52,7 +52,7 @@ h3 { /* Column headers */
 	padding-bottom:10px;
 	text-align:center
 }
-h4 {
+h4, .potion-header {
 	font-family:"rogliano",sans-serif;
 	font-size:1em;
 	font-weight:700;
@@ -203,12 +203,12 @@ h5 {
 }
 	h5 {
 		font-size: 0.8em; /* Numbered recipes under potions */
-        margin-top: 5px
+        margin-top: 10px
 }
 	#results li {
 		font-size: 0.8em
 }
-	h4 { 
+	.potion-header { 
 		font-size: .8em
 }
 	.ingredient-button { /* Individual ingredients */
