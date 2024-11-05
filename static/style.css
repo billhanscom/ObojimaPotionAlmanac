@@ -22,19 +22,19 @@ text-align:center
 
 h1 {
 color:#DCA453;
+    display: inline-block;
 font-family:"sneakers-pro",sans-serif;
 font-size:5em;
 font-style:normal;
 font-weight:500;
 line-height: 1.5em;
 margin-bottom:0px;
-white-space:normal
 }
 
 h2 {
 color:#2d2d2d;
 font-family:"rogliano",sans-serif;
-font-size:1.2em;
+font-size:20ch;
 font-style:normal;
 font-weight:400;
 margin-bottom:50px;
@@ -112,7 +112,7 @@ box-shadow:1px 1px 3px #0000001a;
 color:#333;
 cursor:pointer;
 font-family:"rogliano",sans-serif;
-font-size:.9em;
+font-size:1em;
 font-style:normal;
 font-weight:400;
 margin:-5px;
