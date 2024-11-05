@@ -235,7 +235,7 @@ width:80%
 }
  
 h1 {
-font-size:1.5em
+font-size:2em
 }
     
 h2 {
@@ -243,8 +243,8 @@ font-size:1em
 }
 
 .button-group {
-margin-bottom:15px;
-margin-top:10px
+margin-bottom:5px;
+margin-top:5px
 }
 
 .recipe-column {
