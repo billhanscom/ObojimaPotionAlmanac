@@ -8,12 +8,12 @@ padding:0
 
 .container {
 background-color:#fffadb;
-width: 80%; /* Percentage-based width for flexibility */
-    max-width: 1200px;
-    margin: 60px auto;
-    padding: 20px;
-    border-radius: 8px;
-    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+border-radius:8px;
+box-shadow:0 4px 12px #0000001a;
+margin:60px auto;
+max-width:1200px;
+padding:20px;
+width:80%
 }
 
 header {
@@ -35,7 +35,8 @@ font-family:"rogliano",sans-serif;
 font-size:2vw;
 font-style:normal;
 font-weight:400;
-margin-bottom:50px
+margin-bottom:50px;
+white-space:normal
 }
 
 recipes-title {
@@ -66,14 +67,13 @@ padding-bottom:12px;
 text-align:center
 }
 
-h4, .recipe-number {
+h4,.recipe-number {
 font-family:"rogliano",sans-serif;
 font-size:1.1em;
 font-weight:700;
-    font-weight: bold;
-    margin-bottom: 5px;
+font-weight:bold;
+margin-bottom:5px
 }
-
 
 h5 {
 color:#2d2d2d;
@@ -87,15 +87,15 @@ margin-bottom:30px
 }
 
 .ingredient-columns {
-    display: flex;
-    gap: 10px;
-    justify-content: space-between;
-    flex-wrap: wrap; /* Wrap ingredients on smaller screens */
+display:flex;
+flex-wrap:wrap;
+gap:10px;
+justify-content:space-between
 }
 
 .column {
-padding:10px;
-flex: 1 1 300px;
+flex:1 1 300px;
+padding:10px
 }
 
 .ingredient-button {
@@ -110,7 +110,7 @@ font-size:1em;
 font-style:normal;
 font-weight:400;
 margin:-5px;
-padding:0.5em 1em;
+padding:.5em 1em;
 transition:background-color .1s ease
 }
 
@@ -158,14 +158,14 @@ box-shadow:0 4px 6px #0003
 
 #results {
 display:flex;
+flex-wrap:wrap;
 justify-content:space-between;
-margin-top:40px;
-flex-wrap: wrap;
+margin-top:40px
 }
 
 .recipe-column {
-width:32%;
-margin-bottom: 20px;
+margin-bottom:20px;
+width:32%
 }
 
 #results h3 {
@@ -217,41 +217,42 @@ transform:rotate(180deg)
 }
 
 @media (max-width: 768px) {
-    .container {
-        width: 90%; /* Reduce container width for smaller screens */
-        margin: 20px auto; /* Set all margins to 20px on smaller screens */
-        padding: 10px;
-    }
-    .button-group {
+.container {
+margin:20px auto;
+padding:10px;
+width:90%
+}
+
+.button-group {
 margin-bottom:15px;
-margin-top:10px;
+margin-top:10px
 }
 
-    .recipe-column {
-        width: 100%; /* Make columns stack vertically */
-        margin-bottom: 20px;
-    }
-
-    .ingredient-button, .potion-header {
-        font-size: 14px; /* Adjust font size for smaller screens */
-        padding: 6px 10px;
-    }
-        .ingredient-columns .column {
-        flex: 1 1 100%; /* Each column takes up full width */
-    }
+.recipe-column {
+margin-bottom:20px;
+width:100%
 }
 
-/* Styles for very small screens, 480px or smaller (mobile) */
+.ingredient-button,.potion-header {
+font-size:14px;
+padding:6px 10px
+}
+
+.ingredient-columns .column {
+flex:1 1 100%
+}
+}
+
 @media (max-width: 480px) {
-    h1 {
-        font-size: 36px; /* Smaller font for main title */
-    }
+h1 {
+font-size:36px
+}
 
-    .button-group button {
-        padding: 8px 12px; /* Adjust button padding */
-    }
+.button-group button {
+padding:8px 12px
+}
 
-    .toggle-arrow {
-        font-size: 0.5em; /* Adjust triangle size for mobile */
-    }
+.toggle-arrow {
+font-size:.5em
+}
 }
