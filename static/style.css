@@ -32,7 +32,7 @@ margin-bottom:-10px
 h2 {
 color:#2d2d2d;
 font-family:"rogliano",sans-serif;
-font-size:1.5em;
+font-size:2vw;
 font-style:normal;
 font-weight:400;
 margin-bottom:50px
@@ -219,8 +219,13 @@ transform:rotate(180deg)
 @media (max-width: 768px) {
     .container {
         width: 90%; /* Reduce container width for smaller screens */
+        margin: 20px auto; /* Set all margins to 20px on smaller screens */
         padding: 10px;
     }
+    .button-group {
+margin-bottom:15px;
+margin-top:10px;
+}
 
     .recipe-column {
         width: 100%; /* Make columns stack vertically */
