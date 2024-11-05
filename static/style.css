@@ -166,7 +166,7 @@ h5 {
 }
 
 #results li {
-    display: inline-block;
+    display: block;
     background-color: #ede1cd;
     padding: 10px 14px;
     margin: 10px 0;
@@ -178,7 +178,7 @@ h5 {
 
 /* Button-like styling for recipe names */
 .potion-header {
-    display: block;
+    display: inline-block;
     background-color: #005fa3;
     color: #ffffff;
     padding: 10px 14px;
