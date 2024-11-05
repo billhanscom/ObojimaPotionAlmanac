@@ -248,6 +248,10 @@ margin-top: -10px
         margin-top: -10px
     }
     
+    .recipe-number {
+        font-size: .8em
+    }
+    
 .ingredient-button {
 margin-bottom: -10px;
     font-size: .8em
