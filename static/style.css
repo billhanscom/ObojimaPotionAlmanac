@@ -41,17 +41,7 @@ h2 { /* Subhead */
 	text-wrap: balance;
 	white-space:normal
 }
-/*
-.recipe-title {
-	color:#005fa3;
-	font-family:"rogliano",sans-serif;
-	font-size:1em;
-	font-weight:700;
-	margin-top:10px;
-	padding-top:20px;
-	text-align:center
-} */
-h3 {
+h3 { /* Column headers */
 	font-family:"rogliano",sans-serif;
 	color:#005fa3;
 	border-bottom:1px solid #005fa3;
@@ -62,7 +52,7 @@ h3 {
 	padding-bottom:10px;
 	text-align:center
 }
-h4,.recipe-number {
+h4 {
 	font-family:"rogliano",sans-serif;
 	font-size:1em;
 	font-weight:700;
@@ -213,19 +203,19 @@ h5 {
 }
 	h5 {
 		font-size: 0.8em; /* Numbered recipes under potions */
-        margin-top: -0px
+        margin-top: 5px
 }
 	#results li {
 		font-size: 0.8em
 }
-	.potion-header { 
+	h4 { 
 		font-size: .8em
 }
-	.ingredient-button {
-		margin-bottom: -10px;
+	.ingredient-button { /* Individual ingredients */
+		margin-bottom: -12px;
 		font-size: .8em
 }
-	.button-group button {
+	.button-group button { /* "Find" and "Clear" buttons */
 		font-size: .8em
 }
 	.button-group {
