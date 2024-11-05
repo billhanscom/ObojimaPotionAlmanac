@@ -45,7 +45,8 @@ text-wrap: balance;
 white-space:normal
 }
 
-recipes-title {
+
+.recipe-title {
 color:#577da1;
 font-family:"rogliano",sans-serif;
 font-size:1em;
