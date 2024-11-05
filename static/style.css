@@ -229,9 +229,17 @@ transform:rotate(180deg)
 
 @media (max-width: 768px) {
 .container {
-margin:20px 20px;
+margin:20px auto;
 padding:20px;
 width:80%
+}
+ 
+h1 {
+font-size:1.5em
+}
+    
+h2 {
+font-size:1em
 }
 
 .button-group {
