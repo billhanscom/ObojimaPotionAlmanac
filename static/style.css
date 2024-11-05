@@ -148,7 +148,6 @@ text-align:center
 background-color:#005fa3;
 border:none;
 border-radius:4px;
-box-shadow:0 2px 4px #00000026;
 color:#fff;
 cursor:pointer;
 font-family:"rogliano",sans-serif;
@@ -157,12 +156,11 @@ font-style:normal;
 font-weight:400;
 margin:5px;
 padding:10px 18px;
-transition:background-color .1s ease,box-shadow .1s ease
+transition:background-color .1s ease,
 }
 
 .button-group button:hover {
 background-color:#65ade8;
-box-shadow:0 4px 6px #0003
 }
 
 #results {
@@ -206,7 +204,6 @@ display:inline-block;
 font-size:1em;
 font-weight:700;
 margin:5px 0;
-margin-bottom: 0;
 box-shadow:1px 1px 3px #0000001a;
 padding:10px 14px;
 transition:background-color .1s ease,box-shadow .1s ease
