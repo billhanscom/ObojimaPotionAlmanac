@@ -55,7 +55,7 @@ h3 { /* Column headers */
 h4, .potion-header {
 	font-family:"rogliano",sans-serif;
 	font-size:1em;
-	font-weight:700;
+	font-weight:500;
 	margin-bottom:5px
 }
 h5 {
@@ -203,21 +203,21 @@ h5 {
 		margin-top: -10px
 }
 	h5 {
-		font-size: 0.8em; /* Numbered recipes under potions */
+		font-size: 0.85em; /* Numbered recipes under potions */
         margin-top: 10px
 }
 	#results li {
-		font-size: 0.8em
+		font-size: 0.85em
 }
 	.potion-header { 
-		font-size: .8em
+		font-size: .85em
 }
 	.ingredient-button { /* Individual ingredients */
 		margin-bottom: -12px;
-		font-size: .8em
+		font-size: .85em
 }
 	.button-group button { /* "Find" and "Clear" buttons */
-		font-size: .8em
+		font-size: .85em
 }
 	.button-group {
 		margin-top:10px;
