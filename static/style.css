@@ -243,22 +243,17 @@ h3 {
 margin-top: -10px
 }
 
-    /*
-.ingredient-button, .button-group, .potion-header, h5, {
-font-size:.75em;
-}
-    */
-
 .recipe-title {
         margin-top: -10px
     }
     
 .ingredient-button {
-margin-bottom: -7px;
-    font-size: .7em
+margin-bottom: -10px;
+    font-size: .8em
     }
 
 .button-group {
+font-size: .8em
 margin-top:10px;
 margin-bottom:15px
 }
