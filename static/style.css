@@ -20,7 +20,7 @@ body {
 header {
 	text-align:center
 }
-h1 {
+h1 { /* Main heading */
 	font-family:"sneakers-pro",sans-serif;
 	font-size:4em;
 	font-style:normal;
@@ -31,7 +31,7 @@ h1 {
 	text-wrap: balance;
 	white-space: normal
 }
-h2 {
+h2 { /* Subhead */
 	color:#2d2d2d;
 	font-family:"rogliano",sans-serif;
 	font-size:1.4em;
@@ -41,6 +41,7 @@ h2 {
 	text-wrap: balance;
 	white-space:normal
 }
+/*
 .recipe-title {
 	color:#005fa3;
 	font-family:"rogliano",sans-serif;
@@ -49,7 +50,7 @@ h2 {
 	margin-top:10px;
 	padding-top:20px;
 	text-align:center
-}
+} */
 h3 {
 	font-family:"rogliano",sans-serif;
 	color:#005fa3;
@@ -212,7 +213,7 @@ h5 {
 }
 	h5 {
 		font-size: 0.8em; /* Numbered recipes under potions */
-        margin-top: -10px
+        margin-top: -0px
 }
 	#results li {
 		font-size: 0.8em
