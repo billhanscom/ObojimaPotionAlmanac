@@ -251,11 +251,10 @@ margin-top: -10px
     .potion-header {
         font-size: .8em
     }
-/*    
-    #results li {
-        font-size: .8 em
+    .recipe-details li {
+        font-size: .7em
     }
-   */ 
+    
 .ingredient-button {
 margin-bottom: -10px;
     font-size: .8em
