@@ -164,7 +164,7 @@ flex-wrap: wrap;
 }
 
 .recipe-column {
-flex: 1 1 300px;
+width:32%;
 margin-bottom: 20px;
 }
 
