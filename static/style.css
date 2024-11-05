@@ -262,6 +262,9 @@ margin-bottom: -7px
 margin-top:10px;
 margin-bottom:15px
 }
+    #results li {
+        font-size: .9em
+    }
 
 .recipe-column {
 margin-bottom:20px;
