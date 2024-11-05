@@ -116,6 +116,7 @@ font-family:"rogliano",sans-serif;
 font-size:1em;
 font-style:normal;
 font-weight:400;
+text-align: left;
 margin:-5px;
 padding:.5em 1em;
 transition:background-color .1s ease
