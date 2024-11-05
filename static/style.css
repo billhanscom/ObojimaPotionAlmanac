@@ -248,6 +248,10 @@ h2 {
 font-size:1em;
 margin-bottom:20px
 }
+    
+    h3 {
+        margin-top: -10px
+    }
 
 .ingredient-button, .button-group, .potion-header, h5 {
 font-size:.85em;
