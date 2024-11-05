@@ -267,9 +267,11 @@ flex:1 1 100%
 }
 
 @media (max-width: 480px) {
+/*
 h1 {
 font-size:1em
 }
+    */
 
 .button-group button {
 padding:8px 12px
