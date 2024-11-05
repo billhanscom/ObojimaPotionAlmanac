@@ -191,7 +191,6 @@ padding-left:0
 background-color:#ede1cd;
 border:none;
 border-radius:5px;
-box-shadow:1px 1px 3px #0000001a;
 display:block;
 font-size:.9em;
 margin:10px 0;
@@ -207,6 +206,8 @@ display:inline-block;
 font-size:1em;
 font-weight:700;
 margin:5px 0;
+margin-bottom: 0;
+box-shadow:1px 1px 3px #0000001a;
 padding:10px 14px;
 transition:background-color .1s ease,box-shadow .1s ease
 }
