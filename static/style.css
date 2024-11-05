@@ -87,10 +87,10 @@ margin-bottom:30px
 }
 
 .ingredient-columns {
-display:flex;
-gap:10px;
-justify-content:space-between
-flex-wrap: wrap; /* Wrap ingredients on smaller screens */
+    display: flex;
+    gap: 10px;
+    justify-content: space-between;
+    flex-wrap: wrap; /* Wrap ingredients on smaller screens */
 }
 
 .column {
@@ -230,6 +230,9 @@ transform:rotate(180deg)
     .ingredient-button, .potion-header {
         font-size: 14px; /* Adjust font size for smaller screens */
         padding: 6px 10px;
+    }
+        .ingredient-columns .column {
+        flex: 1 1 100%; /* Each column takes up full width */
     }
 }
 
