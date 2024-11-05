@@ -225,7 +225,7 @@ transform:rotate(180deg)
 
 /* Responsive Design */
 
-@media (max-width: 768px) {
+@media (max-width: 480px) {
 .container {
 margin:20px auto;
 padding:20px;
@@ -246,11 +246,10 @@ h3 {
 margin-top: -10px
 }
 
-    /*
 .ingredient-button, .button-group, .potion-header, h5, {
 font-size:.75em;
 }
-    */
+
 
 .recipe-title {
         margin-top: -10px
@@ -273,9 +272,6 @@ width:100%
 .ingredient-columns .column {
 flex:1 1 100%
 }
-}
-
-@media (max-width: 480px) {
 
 h1 {
 font-size:10vw
