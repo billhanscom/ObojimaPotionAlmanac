@@ -8,12 +8,11 @@ padding:0
 
 .container {
 background-color:#fffadb;
-border-radius:8px;
+width: 80%; /* Percentage-based width for flexibility */
+max-width: 1100px;
+margin: 60px auto;
+padding: 20px;border-radius:8px;
 box-shadow:0 4px 12px #0000001a;
-margin:60px auto;
-max-width:1200px;
-padding:20px;
-width:80%
 }
 
 header {
