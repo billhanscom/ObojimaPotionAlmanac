@@ -240,12 +240,12 @@ font-size:2em
     
 h2 {
 font-size:1em;
-margin-bottom:0px
+margin-bottom:10px
 }
 
 .button-group {
-margin-bottom:5px;
-margin-top:5px
+margin-top:5px;
+margin-bottom:0px
 }
 
 .recipe-column {
