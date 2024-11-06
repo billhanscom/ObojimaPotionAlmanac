@@ -122,12 +122,15 @@ h5 {
 	font-size:1em;
 	font-style:normal;
 	font-weight:400;
+	box-shadow:1px 1px 3px #0000001a;
 	margin:5px;
 	padding:10px 18px;
 	transition:background-color .1s ease,
 }
 .button-group button:hover {
-	background-color:#B8C8A3;
+	background-color:#6D8351;
+	box-shadow:0 2px 4px #0003
+
 }
 #results {
 	display:flex;
@@ -170,7 +173,7 @@ h5 {
 	transition:background-color .1s ease,box-shadow .1s ease
 }
 .potion-header:hover {
-	background-color:#65ade8;
+	background-color:#974C34;
 	box-shadow:0 2px 4px #0003
 }
 .recipe-details {
