@@ -2,7 +2,7 @@ body {
 	background: linear-gradient(0deg, #508ab9 0%, #65ade8 50%, #65ade8 100%);
 	background-attachment: fixed;
 	background-size: cover;
-	color:#2d2d2d;
+	color:#453f3d;
 	font-family:"rogliano",sans-serif;
 	margin:0;
 	padding:0
@@ -34,7 +34,7 @@ h1 { /* Main heading */
 	white-space: normal
 }
 h2 { /* Subhead */
-	color:#2d2d2d;
+	color:#453f3d;
 	font-family:"rogliano",sans-serif;
 	font-size:1.3em;
 	font-style:normal;
@@ -45,8 +45,8 @@ h2 { /* Subhead */
 }
 h3 { /* Column headers */
 	font-family:"rogliano",sans-serif;
-	color:#2d2d2d;
-	border-bottom:2px solid #2d2d2d;
+	color:#453f3d;
+	border-bottom:2px solid #453f3d;
 	font-size:1.2em;
 	font-weight:700;
 	margin-top: 10px;
@@ -61,7 +61,7 @@ h4, .potion-header {
 	margin-bottom:5px
 }
 h5 {
-	color:#2d2d2d;
+	color:#453f3d;
 	font-size:1em;
 	font-weight:700;
     margin-top:10px;
@@ -97,15 +97,15 @@ h5 {
 	transition:background-color .1s ease
 }
 .ingredient-button.selected.common {
-	background-color:#b8c8a3;
+	background-color:#c6d3b5;
 	color:#333
 }
 .ingredient-button.selected.uncommon {
-	background-color:#f2d69a;
+	background-color:#f4deae;
 	color:#333
 }
 .ingredient-button.selected.rare {
-	background-color:#e39b9b;
+	background-color:#e8afaf;
 	color:#333
 }
 .button-group {
