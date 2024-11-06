@@ -227,24 +227,24 @@ h5 {
 		margin-top: -10px
 }
 	h5 {
-		font-size: 0.87em; /* Numbered recipes under potions */
+		font-size: 0.9em; /* Numbered recipes under potions */
         margin-top: 12px
 }
     .recipe-title { /* Results column headers */
         margin-top: 12px
     }
 	#results li {
-		font-size: 0.87em
+		font-size: 0.9em
 }
 	.potion-header { 
-		font-size: .87em
+		font-size: .9em
 }
 	.ingredient-button { /* Individual ingredients */
 		margin-bottom: -12px;
-		font-size: .87em
+		font-size: .9em
 }
 	.button-group button { /* "Find" and "Clear" buttons */
-		font-size: .87em
+		font-size: .9em
 }
 	.button-group {
 		margin-top:10px;
