@@ -45,8 +45,8 @@ h2 { /* Subhead */
 }
 h3 { /* Column headers */
 	font-family:"rogliano",sans-serif;
-	color:#865039;
-	border-bottom:2px solid #865039;
+	color:#84432D;
+	border-bottom:2px solid #84432D;
 	font-size:1.2em;
 	font-weight:700;
 	margin-top: 10px;
@@ -61,7 +61,7 @@ h4, .potion-header {
 	margin-bottom:5px
 }
 h5 {
-	color:#2a2727;
+	color:#84432D;
 	font-size:1em;
 	font-weight:700;
     margin-top:10px;
@@ -81,7 +81,8 @@ h5 {
 	padding:10px
 }
 .ingredient-button {
-	background-color:#f2efe8;
+	background-color:#eddbc3;
+    mix-blend-mode: multiply;
 	border:none;
 	border-radius:4px;
 	color:#333;
@@ -96,7 +97,7 @@ h5 {
 	transition:background-color .1s ease
 }
 .ingredient-button.selected.common {
-	background-color:#c2e3a7;
+	background-color:#B8C8A3;
 	color:#333
 }
 .ingredient-button.selected.uncommon {
@@ -160,7 +161,7 @@ h5 {
 	padding:10px 14px
 }
 .potion-header {
-	background-color:#120906;
+	background-color:#bd6041;
 	border-radius:4px;
 	color:#fff;
 	cursor:pointer;
