@@ -29,7 +29,7 @@ h1 { /* Main heading */
 	font-weight:500;
 	color:#DCA453;
 	line-height: .9em;
-	margin-bottom:15px;
+	margin-bottom:20px;
 	text-wrap: balance;
 	white-space: normal
 }
@@ -61,7 +61,7 @@ h4, .potion-header {
 	margin-bottom:5px
 }
 h5 {
-	color:#2d2d2d;
+	color:#2a2727;
 	font-size:1em;
 	font-weight:700;
     margin-top:10px;
@@ -81,7 +81,7 @@ h5 {
 	padding:10px
 }
 .ingredient-button {
-	background-color:#ede1cd;
+	background-color:#f2efe8;
 	border:none;
 	border-radius:4px;
 	color:#333;
@@ -151,7 +151,7 @@ h5 {
 	padding-left:0
 }
 #results li { /* Numbered recipes under potions */
-	background-color:#ede1cd;
+	background-color:#F8EFEC;
 	border:none;
 	border-radius:5px;
 	display:block;
@@ -160,7 +160,7 @@ h5 {
 	padding:10px 14px
 }
 .potion-header {
-	background-color:#bd6041;
+	background-color:#120906;
 	border-radius:4px;
 	color:#fff;
 	cursor:pointer;
