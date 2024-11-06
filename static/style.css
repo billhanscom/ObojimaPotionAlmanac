@@ -8,7 +8,7 @@ body {
 	padding:0
 }
 .container {
-    background-image: url('../images/background.jpg'); /* Replace with your image path */
+    background-image: url(../images/background.jpg); /* Replace with your image path */
     background-repeat: repeat; /* Tiles the image */
     background-size: auto; /* Allows the image to repeat at its original size */
     background-color:#fffadb;
