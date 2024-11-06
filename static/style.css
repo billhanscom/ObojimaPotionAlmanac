@@ -114,8 +114,10 @@ h5 {
 }
 .button-group button {
 	background-color:#89a466;
-	border:none;
-	border-radius:4px;
+    border-color: #89a466;
+    border-style: solid;
+    border-width:2px;	
+    border-radius:4px;
 	color:#fff;
 	cursor:pointer;
 	font-family:"rogliano",sans-serif;
