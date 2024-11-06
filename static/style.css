@@ -27,7 +27,7 @@ h1 { /* Main heading */
 	font-size:4em;
 	font-style:normal;
 	font-weight:500;
-	color:#89a466;
+	color:#DCA453;
 	line-height: .9em;
 	margin-bottom:10px;
 	text-wrap: balance;
@@ -113,7 +113,7 @@ h5 {
 	text-align:center
 }
 .button-group button {
-	background-color:#005fa3;
+	background-color:#89a466;
 	border:none;
 	border-radius:4px;
 	color:#fff;
@@ -127,7 +127,7 @@ h5 {
 	transition:background-color .1s ease,
 }
 .button-group button:hover {
-	background-color:#65ade8;
+	background-color:#89a466;
 }
 #results {
 	display:flex;
