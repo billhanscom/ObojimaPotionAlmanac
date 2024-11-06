@@ -82,7 +82,7 @@ h5 {
 }
 .ingredient-button {
 	background-color:#eddbc3;
-    mix-blend-mode: multiply;
+/*    mix-blend-mode: multiply; */
 	border:none;
 	border-radius:4px;
 	color:#333;
@@ -153,7 +153,7 @@ h5 {
 }
 #results li { /* Numbered recipes under potions */
 	background-color:#eddbc3;
-    mix-blend-mode: multiply;
+/*    mix-blend-mode: multiply; */
     border:none;
 	border-radius:5px;
 	display:block;
