@@ -129,8 +129,8 @@ h5 {
 .button-group button:hover {
 	background-color:transparent;
     border-color: #89a466;
-    border
-    border:2px;
+    border-style: solid;
+    border-width:2px;
     color:#89a466
 }
 #results {
