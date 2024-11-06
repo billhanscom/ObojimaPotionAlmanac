@@ -1,33 +1,4 @@
 let selectedIngredients = [];
-let commonIngredients = [];
-let uncommonIngredients = [];
-let rareIngredients = [];
-
-// Load ingredients from JSON file
-async function loadIngredients() {
-    try {
-        const response = await fetch('path/to/ingredients.json'); // Adjust path as needed
-        const data = await response.json();
-        
-        // Filter ingredients by rarity
-        data.forEach(ingredient => {
-            if (ingredient.rarity === 'C') {
-                commonIngredients.push(ingredient.name);
-            } else if (ingredient.rarity === 'U') {
-                uncommonIngredients.push(ingredient.name);
-            } else if (ingredient.rarity === 'R') {
-                rareIngredients.push(ingredient.name);
-            }
-        });
-        
-        console.log("Ingredients loaded successfully.");
-    } catch (error) {
-        console.error("Error loading ingredients:", error);
-    }
-}
-
-// Call the function to load ingredients when the page loads
-loadIngredients();
 
 // Toggle selection for ingredient buttons
 document.addEventListener("DOMContentLoaded", () => {
@@ -48,36 +19,14 @@ document.addEventListener("DOMContentLoaded", () => {
     });
 });
 
-// Function to generate random ingredients based on user input
-function generateIngredients() {
-    const commonCount = parseInt(document.getElementById("common-count").value, 10);
-    const uncommonCount = parseInt(document.getElementById("uncommon-count").value, 10);
-    const rareCount = parseInt(document.getElementById("rare-count").value, 10);
-
-    const selectedCommon = getRandomSelection(commonIngredients, commonCount);
-    const selectedUncommon = getRandomSelection(uncommonIngredients, uncommonCount);
-    const selectedRare = getRandomSelection(rareIngredients, rareCount);
-
-    const ingredientList = document.getElementById("ingredient-list");
-    ingredientList.innerHTML = `<h3>Generated Ingredients</h3>
-        <p><strong>Common:</strong> ${selectedCommon.map(item => `<span class="common">${item}</span>`).join(', ')}</p>
-        <p><strong>Uncommon:</strong> ${selectedUncommon.map(item => `<span class="uncommon">${item}</span>`).join(', ')}</p>
-        <p><strong>Rare:</strong> ${selectedRare.map(item => `<span class="rare">${item}</span>`).join(', ')}</p>`;
-}
-
-// Helper function to select random items from an array
-function getRandomSelection(arr, count) {
-    const shuffled = [...arr].sort(() => 0.5 - Math.random()); // Shuffle the array
-    return shuffled.slice(0, count); // Return the first 'count' elements
-}
-
-// Function to find recipes
 async function findRecipes() {
+    // Display alert if less than three ingredients are selected
     if (selectedIngredients.length < 3) {
         alert("Oops! Please select at least three ingredients.");
         return;
     }
 
+    // Send selected ingredients to the backend
     console.log("Sending ingredients:", selectedIngredients); // Debug log before request
     const response = await fetch('/get-recipes', {
         method: 'POST',
@@ -107,14 +56,13 @@ async function findRecipes() {
                 const potionContainer = document.createElement('div');
                 potionContainer.classList.add('potion-container');
 
-                const recipeLabel = potionData.count === 1 ? "1" : `${potionData.count}`;
+                const recipeLabel = potionData.count === 1 ? "1 recipe" : `${potionData.count} recipes`;
                 potionContainer.innerHTML = `<h4 class="potion-header">${potionName} (${recipeLabel}) <span class="toggle-arrow">▲</span></h4>`;
 
                 const recipeDetails = document.createElement('div');
                 recipeDetails.classList.add('recipe-details');
                 recipeDetails.style.display = 'none';
 
-                // Color-code each ingredient in the recipe by rarity
                 recipeDetails.innerHTML = potionData.recipes.map((recipe, index) => {
                     const ingredientsList = recipe.ingredients.map(ing => {
                         const rarityClass = ing.rarity.toLowerCase();
@@ -144,7 +92,6 @@ async function findRecipes() {
     document.getElementById('results').scrollIntoView({ behavior: 'smooth' });
 }
 
-// Function to clear selected ingredients
 function clearSelection() {
     selectedIngredients = [];
     document.querySelectorAll(".ingredient-button").forEach(button => {
