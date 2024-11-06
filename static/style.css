@@ -2,7 +2,7 @@ body {
 	background: linear-gradient(0deg, #508ab9 0%, #65ade8 50%, #65ade8 100%);
 	background-attachment: fixed;
 	background-size: cover;
-	color:#453f3d;
+	color:#57504d;
 	font-family:"rogliano",sans-serif;
 	margin:0;
 	padding:0
@@ -34,7 +34,8 @@ h1 { /* Main heading */
 	white-space: normal
 }
 h2 { /* Subhead */
-	color:#302D29;
+	color:#57504d;
+    mix-blend-mode: multiply;
 	font-family:"rogliano",sans-serif;
 	font-size:1.3em;
 	font-style:normal;
@@ -45,8 +46,9 @@ h2 { /* Subhead */
 }
 h3 { /* Column headers */
 	font-family:"rogliano",sans-serif;
-	color:#302D29;
-	border-bottom:2px solid #302D29;
+    mix-blend-mode: multiply;
+	color:#57504d;
+	border-bottom:1px solid #302D29;
 	font-size:1.2em;
 	font-weight:700;
 	margin-top: 10px;
@@ -61,7 +63,8 @@ h4, .potion-header {
 	margin-bottom:5px
 }
 h5 {
-	color:#302D29;
+	color:#57504d;
+    mix-blend-mode: multiply;
 	font-size:1em;
 	font-weight:700;
     margin-top:10px;
