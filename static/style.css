@@ -61,7 +61,7 @@ h4, .potion-header {
 	margin-bottom:5px
 }
 h5 {
-	color:#84432D;
+	color:#2d2d2d;
 	font-size:1em;
 	font-weight:700;
     margin-top:10px;
@@ -105,7 +105,7 @@ h5 {
 	color:#333
 }
 .ingredient-button.selected.rare {
-	background-color:#d46464;
+	background-color:#dc8383;
 	color:#333
 }
 .button-group {
@@ -152,7 +152,7 @@ h5 {
 	padding-left:0
 }
 #results li { /* Numbered recipes under potions */
-	background-color:#eddbc3;
+	background-color:#f0e2cf;
 /*    mix-blend-mode: multiply; */
     border:none;
 	border-radius:5px;
