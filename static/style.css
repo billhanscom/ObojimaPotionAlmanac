@@ -127,7 +127,7 @@ h5 {
 	transition:background-color .1s ease,
 }
 .button-group button:hover {
-	background-color:#89a466;
+	background-color:#d9de96;
 }
 #results {
 	display:flex;
