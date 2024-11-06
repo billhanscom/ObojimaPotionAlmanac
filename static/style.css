@@ -45,8 +45,8 @@ h2 { /* Subhead */
 }
 h3 { /* Column headers */
 	font-family:"rogliano",sans-serif;
-	color:#005fa3;
-	border-bottom:1px solid #005fa3;
+	color:#865039;
+	border-bottom:2px solid #865039;
 	font-size:1.2em;
 	font-weight:700;
 	margin-top: 10px;
@@ -63,7 +63,7 @@ h4, .potion-header {
 h5 {
 	color:#2d2d2d;
 	font-size:1em;
-	font-weight:500;
+	font-weight:700;
     margin-top:10px;
 	margin-bottom:0
 }
@@ -157,7 +157,7 @@ h5 {
 	padding:10px 14px
 }
 .potion-header {
-	background-color:#005fa3;
+	background-color:#bd6041;
 	border-radius:4px;
 	color:#fff;
 	cursor:pointer;
