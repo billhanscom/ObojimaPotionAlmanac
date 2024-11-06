@@ -127,8 +127,9 @@ h5 {
 	transition:background-color .1s ease,
 }
 .button-group button:hover {
-	background-color:none;
+	background-color:transparent;
     border-color: #89a466;
+    border
     border:2px;
     color:#89a466
 }
