@@ -94,3 +94,17 @@ async function findRecipes() {
 
     document.getElementById('results').scrollIntoView({ behavior: 'smooth' });
 }
+
+// Function to clear selected ingredients
+function clearSelection() {
+    selectedIngredients = [];
+    document.querySelectorAll(".ingredient-button").forEach(button => {
+        button.classList.remove("selected", "common", "uncommon", "rare");
+    });
+    document.getElementById("results").innerHTML = '';
+}
+
+// Function to toggle high-contrast mode
+function toggleHighContrast() {
+    document.body.classList.toggle("high-contrast");
+}
