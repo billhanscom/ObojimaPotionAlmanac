@@ -48,7 +48,7 @@ h3 { /* Column headers */
 	font-family:"rogliano",sans-serif;
     mix-blend-mode: multiply;
 	color:#57504d;
-	border-bottom:1px solid #302D29;
+	border-bottom:2px double #302D29;
 	font-size:1.2em;
 	font-weight:700;
 	margin-top: 10px;
@@ -101,19 +101,19 @@ h5 {
 }
 .ingredient-button.selected.common {
 	background-color:#fbf7f3;
-    border:3px solid #8aa466; 
+    border:3px solid #198bdb; 
 	padding: 7px 11px;    
 	color:#333
 }
 .ingredient-button.selected.uncommon {
 	background-color:#fbf7f3;
-    border:3px solid #dba551; 
+    border:3px solid #198bdb; 
 	padding: 7px 11px; 
     color:#333
 }
 .ingredient-button.selected.rare {
 	background-color:#fbf7f3;
-    border:3px solid #ad4639; 
+    border:3px solid #198bdb; 
 	padding: 7px 11px; 
 	color:#333
 }
