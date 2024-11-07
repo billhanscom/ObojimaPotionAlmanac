@@ -84,7 +84,7 @@ h5 {
 	padding:10px
 }
 .ingredient-button {
-	background-color:#F6EDE2;
+	background-color:#f8f2ea;
     mix-blend-mode: multiply;
 	border:none;
 	border-radius:4px;
@@ -100,7 +100,10 @@ h5 {
 	transition:background-color .1s ease
 }
 .ingredient-button.selected.common {
-	background-color:#c6d3b5;
+	background-color:#f6ede2;
+    border-color:#c6d3b5; 
+    border-width: 2px;
+	padding: 8px 12px;    
 	color:#333
 }
 .ingredient-button.selected.uncommon {
