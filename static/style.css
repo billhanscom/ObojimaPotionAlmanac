@@ -101,8 +101,7 @@ h5 {
 }
 .ingredient-button.selected.common {
 	background-color:#f6ede2;
-    border-color:#c6d3b5; 
-    border-width: 2px;
+    border:2px solid #c6d3b5; 
 	padding: 8px 12px;    
 	color:#333
 }
