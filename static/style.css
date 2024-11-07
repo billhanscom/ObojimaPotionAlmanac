@@ -96,7 +96,7 @@ h5 {
 	font-weight:400;
 	text-align: left;
 	margin:-5px;
-	padding:.5em 1em;
+	padding: 10px 14px;
 	transition:background-color .1s ease
 }
 .ingredient-button.selected.common {
@@ -206,48 +206,6 @@ h5 {
 .rare {
     background-color: #fd8966;
     color: #333;
-}
-/* Base Styles */
-/* Existing styles go here... */
-
-/* High-Contrast Mode */
-body.high-contrast {
-    background-color: #000;
-    color: #fff;
-}
-
-body.high-contrast .container {
-    background-color: #111;
-    color: #fff;
-}
-
-body.high-contrast .common {
-    background-color: #ffeb3b; /* Bright yellow */
-    color: #000;
-}
-
-body.high-contrast .uncommon {
-    background-color: #ff5722; /* Bright orange */
-    color: #000;
-}
-
-body.high-contrast .rare {
-    background-color: #9c27b0; /* Bright purple */
-    color: #fff;
-}
-
-body.high-contrast button {
-    background-color: #fff;
-    color: #000;
-    border: 2px solid #fff;
-}
-
-body.high-contrast h1,
-body.high-contrast h2,
-body.high-contrast h3,
-body.high-contrast h4,
-body.high-contrast h5 {
-    color: #fff;
 }
 
 /* Responsive Design */
