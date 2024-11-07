@@ -100,19 +100,19 @@ h5 {
 	transition:background-color .1s ease
 }
 .ingredient-button.selected.common {
-	background-color:#f6ede2;
+	background-color:#fbf7f3;
     border:3px solid #8aa466; 
 	padding: 7px 11px;    
 	color:#333
 }
 .ingredient-button.selected.uncommon {
-	background-color:#f6ede2;
+	background-color:#fbf7f3;
     border:3px solid #dba551; 
 	padding: 7px 11px; 
     color:#333
 }
 .ingredient-button.selected.rare {
-	background-color:#f6ede2;
+	background-color:#fbf7f3;
     border:3px solid #ad4639; 
 	padding: 7px 11px; 
 	color:#333
