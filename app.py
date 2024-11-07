@@ -25,9 +25,9 @@ def extract_number(potion_name):
 @app.route('/')
 def index():
     # Separate ingredients by rarity for display in columns
-    common_ingredients = [ing for ing in ingredient_data if ing['rarity'] == 'C']
-    uncommon_ingredients = [ing for ing in ingredient_data if ing['rarity'] == 'U']
-    rare_ingredients = [ing for ing in ingredient_data if ing['rarity'] == 'R']
+    common_ingredients = [ing for ing in ingredient_data if ing['rarity'] == 'common']
+    uncommon_ingredients = [ing for ing in ingredient_data if ing['rarity'] == 'uncommon']
+    rare_ingredients = [ing for ing in ingredient_data if ing['rarity'] == 'rare']
     return render_template('index.html', common_ingredients=common_ingredients,
                            uncommon_ingredients=uncommon_ingredients, rare_ingredients=rare_ingredients)
 
