@@ -20,13 +20,11 @@ document.addEventListener("DOMContentLoaded", () => {
 });
 
 async function findRecipes() {
-    // Display alert if less than three ingredients are selected
     if (selectedIngredients.length < 3) {
         alert("Oops! Please select at least three ingredients.");
         return;
     }
 
-    // Send selected ingredients to the backend
     console.log("Sending ingredients:", selectedIngredients); // Debug log before request
     const response = await fetch('/get-recipes', {
         method: 'POST',
@@ -51,18 +49,20 @@ async function findRecipes() {
         column.classList.add('recipe-column');
         column.innerHTML = `<h3 class="recipe-title">${columnHeaders[type]}</h3>`;
 
-        if (recipes[type]) {
+        // Check if there are any recipes for the current type
+        if (recipes[type] && Object.keys(recipes[type]).length > 0) {
             for (const [potionName, potionData] of Object.entries(recipes[type])) {
                 const potionContainer = document.createElement('div');
                 potionContainer.classList.add('potion-container');
 
-                const recipeLabel = potionData.count === 1 ? "1 recipe" : `${potionData.count} recipes`;
+                const recipeLabel = potionData.count === 1 ? "1" : `${potionData.count}`;
                 potionContainer.innerHTML = `<h4 class="potion-header">${potionName} (${recipeLabel}) <span class="toggle-arrow">▲</span></h4>`;
 
                 const recipeDetails = document.createElement('div');
                 recipeDetails.classList.add('recipe-details');
                 recipeDetails.style.display = 'none';
 
+                // Color-code each ingredient in the recipe by rarity
                 recipeDetails.innerHTML = potionData.recipes.map((recipe, index) => {
                     const ingredientsList = recipe.ingredients.map(ing => {
                         const rarityClass = ing.rarity.toLowerCase();
@@ -83,19 +83,14 @@ async function findRecipes() {
                 column.appendChild(potionContainer);
             }
         } else {
-            column.innerHTML += '<p>No recipes found</p>';
+            // Display "No recipes found" message if no recipes are available for the current type
+            const noPotionsMessage = document.createElement('p');
+            noPotionsMessage.textContent = "No recipes found";
+            column.appendChild(noPotionsMessage);
         }
 
         resultsDiv.appendChild(column);
     });
 
     document.getElementById('results').scrollIntoView({ behavior: 'smooth' });
-}
-
-function clearSelection() {
-    selectedIngredients = [];
-    document.querySelectorAll(".ingredient-button").forEach(button => {
-        button.classList.remove("selected", "common", "uncommon", "rare");
-    });
-    document.getElementById("results").innerHTML = '';
 }
