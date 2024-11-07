@@ -4,56 +4,65 @@
         "combat": 9,
         "utility": 5,
         "whimsy": 4,
-        "rarity": "C"
+        "rarity": "C",
+        "regions": ["Land of Hot Water", "Mount Arbora"]
     },
     {
         "name": "Apper Carrot",
         "combat": 0,
         "utility": 3,
         "whimsy": 1,
-        "rarity": "C"
+        "rarity": "C",
+        "regions": ["Gale Fields", "Gift of Shuritashi"]
     },
     {
         "name": "Bamboo",
         "combat": 3,
         "utility": 3,
         "whimsy": 3,
-        "rarity": "C"
+        "rarity": "C",
+        "regions": ["Brackwater Wetlands", "Gift of Shuritashi", "Land of Hot Water"]
+
     },
     {
         "name": "Bashu Powder",
         "combat": 2,
         "utility": 0,
         "whimsy": 0,
-        "rarity": "C"
+        "rarity": "C",
+        "regions": ["Gift of Shuritashi", "Land of Hot Water"]
     },
     {
         "name": "Blue Back Salmon",
         "combat": 3,
         "utility": 4,
         "whimsy": 7,
-        "rarity": "C"
+        "rarity": "C",
+        "regions": ["Brackwater Wetlands", "Coastal Highlands", "Gale Fields", "Gift of Shuritashi", "Land of Hot Water", "Mount Arbora", "The Shallows"]
     },
     {
         "name": "Boom Beri",
         "combat": 0,
         "utility": 3,
         "whimsy": 1,
-        "rarity": "C"
+        "rarity": "C",
+        "regions": ["Coastal Highlands", "Gift of Shuritashi", "Land of Hot Water", "Mount Arbora"]
     },
     {
         "name": "Bora Bug",
         "combat": 4,
         "utility": 8,
         "whimsy": 3,
-        "rarity": "C"
+        "rarity": "C",
+        "regions": ["Brackwater Wetlands", "Coastal Highlands", "Gale Fields", "Gift of Shuritashi", "Mount Arbora"]
     },
     {
         "name": "Brush Reed",
         "combat": 1,
         "utility": 10,
         "whimsy": 6,
-        "rarity": "C"
+        "rarity": "C",
+        "regions": ["Brackwater Wetlands", "Land of Hot Water", "The Shallows"]
     },
     {
         "name": "Bundle of Driko Twigs",
