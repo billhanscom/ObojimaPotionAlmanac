@@ -3,12 +3,6 @@
 
     function applyHighContrast(isEnabled) {
         document.body.classList.toggle("high-contrast", isEnabled);
-        document.querySelectorAll(".contrast-toggle-button").forEach(button => {
-            button.setAttribute("aria-pressed", String(isEnabled));
-            button.setAttribute("aria-label", isEnabled ? "Turn off high contrast mode" : "Turn on high contrast mode");
-            button.setAttribute("title", isEnabled ? "Turn off high contrast" : "Turn on high contrast");
-            button.textContent = "◐";
-        });
         document.querySelectorAll(".hc-on").forEach(label => label.classList.toggle("active", isEnabled));
         document.querySelectorAll(".hc-off").forEach(label => label.classList.toggle("active", !isEnabled));
     }
@@ -16,16 +10,12 @@
     document.addEventListener("DOMContentLoaded", () => {
         const isEnabled = localStorage.getItem(storageKey) === "true";
         applyHighContrast(isEnabled);
-
-        document.querySelectorAll(".contrast-toggle-button").forEach(button => {
-            button.addEventListener("click", event => {
-                event.preventDefault();
-                const nextState = !document.body.classList.contains("high-contrast");
-                localStorage.setItem(storageKey, String(nextState));
-                applyHighContrast(nextState);
-            });
-        });
     });
+
+    window.setHighContrastChoice = function (isEnabled) {
+        localStorage.setItem(storageKey, String(isEnabled));
+        applyHighContrast(isEnabled);
+    };
 })();
 
 

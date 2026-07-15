@@ -1975,3 +1975,88 @@ button.primary-action-button {
         font-size: 17px !important;
     }
 }
+
+
+/* ==========================================================
+   Requested layout refinements
+   ========================================================== */
+.container {
+    width: 86% !important;
+    max-width: 1100px !important;
+    margin: 14px auto 34px !important;
+    padding: 34px 40px 42px !important;
+    background: #ffffff !important;
+    border: 1px solid #d7d9dd !important;
+    border-radius: 8px !important;
+    box-shadow: none !important;
+}
+
+.app-utility-bar {
+    margin-bottom: 50px !important;
+}
+
+.utility-link:hover,
+.utility-link:focus-visible {
+    text-decoration: none !important;
+    outline: none !important;
+}
+
+.utility-link:not(.hc-toggle-link):hover,
+.utility-link:not(.hc-toggle-link):focus-visible {
+    border-bottom: 1px solid #000000 !important;
+}
+
+.hc-toggle-link {
+    color: #000000 !important;
+    text-decoration: none !important;
+    border-bottom: 2px solid transparent !important;
+    padding-bottom: 2px !important;
+}
+
+.hc-toggle-link:hover,
+.hc-toggle-link:focus-visible,
+.hc-toggle-link.active {
+    border-bottom-color: #000000 !important;
+    text-decoration: none !important;
+}
+
+.contrast-icon {
+    color: #000000;
+    line-height: 1;
+}
+
+.value-choice {
+    border-bottom: 2px solid transparent !important;
+    padding-bottom: 2px !important;
+}
+
+.value-choice:hover,
+.value-choice:focus-visible,
+.value-choice.active {
+    border-bottom-color: #000000 !important;
+}
+
+@media (max-width: 800px) {
+    .container {
+        width: 94% !important;
+        padding: 22px 18px 30px !important;
+    }
+}
+
+
+/* Inventory menu text-state refinement */
+.inventory-strip .utility-line {
+    gap: 12px !important;
+}
+
+.inventory-strip .save-inventory-button.backup-dirty {
+    color: #d10000 !important;
+}
+
+.inventory-strip .save-inventory-button.backup-saved {
+    color: #208a2d !important;
+}
+
+.inventory-strip .save-inventory-button.backup-empty {
+    color: #000000 !important;
+}

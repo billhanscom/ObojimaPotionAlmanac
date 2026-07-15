@@ -18,7 +18,6 @@
                 <div class="inventory-strip">
                     <div class="utility-line">
                         <span class="utility-heading">Inventory</span>
-                        <a class="utility-link" href="#" onclick="viewInventory(); return false;">View</a>
                         <a class="utility-link" href="#" onclick="clearForagingInventory(); return false;">Clear</a>
                         <a class="utility-link save-inventory-button" href="#" onclick="exportInventory(); return false;">Save</a>
                         <a class="utility-link" href="#" onclick="importInventory(); return false;">Load</a>
@@ -36,9 +35,9 @@
                         <a class="utility-link value-choice value-2014" href="#" data-year="2014" onclick="setValuesYearChoice('2014'); return false;">2014</a>
                     </div>
                     <div class="contrast-control">
-                        <a class="utility-link contrast-toggle-button" href="#" aria-pressed="false" aria-label="Turn on high contrast mode" title="Turn on high contrast">◐</a>
-                        <span class="hc-state hc-on">ON</span>
-                        <span class="hc-state hc-off">OFF</span>
+                        <span class="contrast-icon" aria-hidden="true">◐</span>
+                        <a class="utility-link hc-toggle-link hc-on" href="#" onclick="setHighContrastChoice(true); return false;">ON</a>
+                        <a class="utility-link hc-toggle-link hc-off" href="#" onclick="setHighContrastChoice(false); return false;">OFF</a>
                     </div>
                 </div>
             </div>

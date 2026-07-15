@@ -5,6 +5,7 @@ const OBOJIMA_PLAYER_NAME_KEY = "obojimaPlayerName";
 const OBOJIMA_CHARACTER_NAME_KEY = "obojimaCharacterName";
 const OBOJIMA_LAST_EXPORT_HASH_KEY = "obojimaLastExportHash";
 const OBOJIMA_VALUES_YEAR_KEY = "obojimaValuesYear";
+const OBOJIMA_INVENTORY_DISPLAY_NAME_KEY = "obojimaInventoryDisplayName";
 const OBOJIMA_INVENTORY_QUANTITIES_KEY = "obojimaInventoryQuantities";
 
 const DATASET_FILES = {
@@ -443,6 +444,25 @@ const Obojima = (() => {
         });
     }
 
+    function getInventoryDisplayNameFromFile(filename) {
+        return String(filename || "")
+            .replace(/\.json$/i, "")
+            .trim();
+    }
+
+    function loadInventoryDisplayName() {
+        return localStorage.getItem(OBOJIMA_INVENTORY_DISPLAY_NAME_KEY) || "";
+    }
+
+    function saveInventoryDisplayName(name) {
+        const cleanName = String(name || "").trim();
+        if (cleanName) {
+            localStorage.setItem(OBOJIMA_INVENTORY_DISPLAY_NAME_KEY, cleanName);
+        } else {
+            localStorage.removeItem(OBOJIMA_INVENTORY_DISPLAY_NAME_KEY);
+        }
+    }
+
     function loadInventoryProfile() {
         return {
             playerName: localStorage.getItem(OBOJIMA_PLAYER_NAME_KEY) || "",
@@ -453,6 +473,9 @@ const Obojima = (() => {
     function saveInventoryProfile(profile) {
         localStorage.setItem(OBOJIMA_PLAYER_NAME_KEY, profile.playerName || "");
         localStorage.setItem(OBOJIMA_CHARACTER_NAME_KEY, profile.characterName || "");
+        if ((profile.playerName || "").trim() || (profile.characterName || "").trim()) {
+            saveInventoryDisplayName("");
+        }
     }
 
     function clearInventoryProfile() {
@@ -496,7 +519,7 @@ const Obojima = (() => {
             const player = profile.playerName ? ` — Player: ${profile.playerName}` : "";
             display.innerHTML = `${character}${player}`;
         } else {
-            display.textContent = "No inventory loaded";
+            display.textContent = loadInventoryDisplayName() || "No inventory loaded";
         }
     }
 
@@ -515,13 +538,13 @@ const Obojima = (() => {
 
             if (!hasMeaningfulState) {
                 button.classList.add("backup-empty");
-                button.textContent = "Save Inventory";
+                button.textContent = "Save";
             } else if (lastHash && lastHash === currentHash) {
                 button.classList.add("backup-saved");
-                button.textContent = "Inventory Saved";
+                button.textContent = "Saved";
             } else {
                 button.classList.add("backup-dirty");
-                button.textContent = "Save Inventory";
+                button.textContent = "Save";
             }
         });
     }
@@ -670,7 +693,10 @@ const Obojima = (() => {
 
     function getInventoryDownloadName(profile) {
         function cleanPart(value) {
-            return String(value || "").trim().replace(/[\\/:*?"<>|]/g, "").replace(/\s+/g, "_");
+            return String(value || "")
+                .trim()
+                .replace(/[\\/:*?"<>|]/g, "")
+                .replace(/\s+/g, "_");
         }
 
         const now = new Date();
@@ -684,10 +710,10 @@ const Obojima = (() => {
         const player = cleanPart(profile.playerName);
         const character = cleanPart(profile.characterName);
 
-        if (player && character) return `${player}_${character}_${stamp}.json`;
-        if (character) return `${character}_${stamp}.json`;
-        if (player) return `${player}_${stamp}.json`;
-        return `obojima_inventory_${stamp}.json`;
+        if (player && character) return `Potion_Inventory_${player}_${character}_${stamp}.json`;
+        if (character) return `Potion_Inventory_${character}_${stamp}.json`;
+        if (player) return `Potion_Inventory_${player}_${stamp}.json`;
+        return `Potion_Inventory_${stamp}.json`;
     }
 
     async function exportInventory(items) {
@@ -704,11 +730,15 @@ const Obojima = (() => {
         if (!profile) return false;
 
         const payload = buildInventoryExportPayload(inventory);
+        const downloadName = getInventoryDownloadName(profile);
+        if (!profile.playerName && !profile.characterName) {
+            saveInventoryDisplayName(getInventoryDisplayNameFromFile(downloadName));
+        }
         const blob = new Blob([JSON.stringify(payload, null, 2)], { type: "application/json" });
         const url = URL.createObjectURL(blob);
         const link = document.createElement("a");
         link.href = url;
-        link.download = getInventoryDownloadName(profile);
+        link.download = downloadName;
         document.body.appendChild(link);
         link.click();
         link.remove();
@@ -778,6 +808,9 @@ const Obojima = (() => {
                         playerName: imported.playerName || "",
                         characterName: imported.characterName || ""
                     });
+                    if (!imported.playerName && !imported.characterName) {
+                        saveInventoryDisplayName(getInventoryDisplayNameFromFile(file.name));
+                    }
                     updateInventoryProfileDisplay();
                     if (typeof onImported === "function") onImported(imported);
                     setBackupCurrent(imported.ingredients);
@@ -825,6 +858,8 @@ const Obojima = (() => {
         getInventoryQuantity,
         setInventoryQuantity,
         incrementInventoryQuantity,
-        openInventoryView
+        openInventoryView,
+        loadInventoryDisplayName,
+        saveInventoryDisplayName
     };
 })();
