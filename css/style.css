@@ -2060,3 +2060,294 @@ button.primary-action-button {
 .inventory-strip .save-inventory-button.backup-empty {
     color: #000000 !important;
 }
+
+
+/* ==========================================================
+   Consistency pass: fixed header rhythm + no hover layout shift
+   ========================================================== */
+.container {
+    width: 86% !important;
+    max-width: 1100px !important;
+    margin: 14px auto 34px !important;
+    padding: 34px 40px 42px !important;
+    background: #ffffff !important;
+    border: 1px solid #d7d9dd !important;
+    border-radius: 8px !important;
+    box-shadow: none !important;
+}
+
+.app-header {
+    text-align: center !important;
+    margin: 0 !important;
+    padding: 0 !important;
+}
+
+.app-utility-bar {
+    display: flex !important;
+    justify-content: space-between !important;
+    align-items: flex-start !important;
+    width: 100% !important;
+    min-height: 34px !important;
+    margin: 0 0 52px 0 !important;
+    padding: 0 !important;
+    font-size: 14px !important;
+    line-height: 1.1 !important;
+}
+
+.inventory-strip,
+.preference-strip {
+    display: flex !important;
+    flex-direction: column !important;
+    gap: 8px !important;
+    min-height: 34px !important;
+}
+
+.inventory-strip {
+    align-items: flex-start !important;
+    text-align: left !important;
+}
+
+.preference-strip {
+    align-items: flex-end !important;
+    text-align: right !important;
+}
+
+.utility-line,
+.current-inventory-line,
+.values-control,
+.contrast-control {
+    display: flex !important;
+    align-items: baseline !important;
+    gap: 10px !important;
+    min-height: 16px !important;
+    margin: 0 !important;
+    padding: 0 !important;
+}
+
+.utility-heading {
+    font-weight: 700 !important;
+    color: #000000 !important;
+}
+
+.utility-heading.small,
+.inventory-profile {
+    font-size: 12px !important;
+    line-height: 1.1 !important;
+}
+
+.inventory-profile {
+    display: inline-block !important;
+    margin: 0 !important;
+    min-height: 0 !important;
+    color: #000000 !important;
+}
+
+.inventory-profile strong {
+    color: #000000 !important;
+}
+
+/* All top-bar links reserve underline space from the start. */
+.utility-link,
+a.utility-link,
+button.utility-link,
+.value-choice,
+.hc-toggle-link {
+    appearance: none !important;
+    -webkit-appearance: none !important;
+    display: inline-block !important;
+    background: transparent !important;
+    border: 0 !important;
+    border-bottom: 2px solid transparent !important;
+    box-shadow: none !important;
+    border-radius: 0 !important;
+    padding: 0 0 2px 0 !important;
+    margin: 0 !important;
+    font: inherit !important;
+    line-height: 1.1 !important;
+    color: #000000 !important;
+    text-decoration: none !important;
+    cursor: pointer !important;
+}
+
+/* Override older thin-hover underline rules. */
+.utility-link:hover,
+.utility-link:focus-visible,
+.utility-link:not(.hc-toggle-link):hover,
+.utility-link:not(.hc-toggle-link):focus-visible {
+    text-decoration: none !important;
+    outline: none !important;
+    border-bottom-width: 2px !important;
+    border-bottom-style: solid !important;
+    border-bottom-color: #000000 !important;
+}
+
+/* Save states are color-only; they still reserve underline space. */
+.save-inventory-button.backup-dirty,
+a.save-inventory-button.backup-dirty {
+    color: #d10000 !important;
+    background: transparent !important;
+}
+
+.save-inventory-button.backup-saved,
+a.save-inventory-button.backup-saved {
+    color: #208a2d !important;
+    background: transparent !important;
+}
+
+.save-inventory-button.backup-empty,
+a.save-inventory-button.backup-empty {
+    color: #000000 !important;
+    background: transparent !important;
+}
+
+/* Values and HC use the same active/hover underline, with no vertical movement. */
+.value-choice,
+.hc-toggle-link {
+    border-bottom-color: transparent !important;
+}
+
+.value-choice:hover,
+.value-choice:focus-visible,
+.value-choice.active,
+.hc-toggle-link:hover,
+.hc-toggle-link:focus-visible,
+.hc-toggle-link.active {
+    border-bottom-color: #000000 !important;
+    text-decoration: none !important;
+}
+
+.contrast-icon {
+    display: inline-block !important;
+    color: #000000 !important;
+    line-height: 1.1 !important;
+    border-bottom: 2px solid transparent !important;
+    padding-bottom: 2px !important;
+}
+
+/* Stable title/nav/description measurements across all pages. */
+h1 {
+    color: #000000 !important;
+    font-size: 42px !important;
+    line-height: 1 !important;
+    margin: 0 0 18px 0 !important;
+    letter-spacing: 0.01em !important;
+}
+
+.toolkit-nav {
+    display: flex !important;
+    justify-content: center !important;
+    gap: 24px !important;
+    flex-wrap: wrap !important;
+    margin: 0 auto 20px !important;
+    padding: 0 !important;
+    min-height: 28px !important;
+}
+
+.toolkit-nav-link {
+    display: inline-block !important;
+    background: transparent !important;
+    box-shadow: none !important;
+    border-radius: 0 !important;
+    border-bottom: 2px solid transparent !important;
+    padding: 0 0 5px 0 !important;
+    margin: 0 !important;
+    color: #000000 !important;
+    font-size: 20px !important;
+    font-weight: 700 !important;
+    line-height: 1.1 !important;
+    text-decoration: none !important;
+}
+
+.toolkit-nav-link:hover,
+.toolkit-nav-link:focus-visible {
+    background: transparent !important;
+    border-bottom-color: #777777 !important;
+    text-decoration: none !important;
+}
+
+.toolkit-nav-link.active {
+    background: transparent !important;
+    border-bottom-color: #000000 !important;
+}
+
+.tool-description {
+    color: #000000 !important;
+    font-size: 14px !important;
+    line-height: 1.35 !important;
+    min-height: 19px !important;
+    margin: 0 auto 24px !important;
+    max-width: 760px !important;
+}
+
+.primary-action-wrap {
+    text-align: center !important;
+    min-height: 42px !important;
+    margin: 0 0 28px !important;
+    padding: 0 !important;
+}
+
+.primary-action-button,
+button.primary-action-button {
+    appearance: none !important;
+    -webkit-appearance: none !important;
+    background: #ffffff !important;
+    color: #000000 !important;
+    border: 2px solid #000000 !important;
+    border-radius: 4px !important;
+    box-shadow: none !important;
+    padding: 10px 20px !important;
+    font: inherit !important;
+    font-size: 14px !important;
+    line-height: 1.2 !important;
+    cursor: pointer !important;
+}
+
+.primary-action-button:hover,
+.primary-action-button:focus-visible {
+    background: #f2f2f2 !important;
+    box-shadow: none !important;
+}
+
+@media (max-width: 800px) {
+    .container {
+        width: 94% !important;
+        padding: 22px 18px 30px !important;
+    }
+
+    .app-utility-bar {
+        display: block !important;
+        min-height: 0 !important;
+        margin-bottom: 40px !important;
+    }
+
+    .preference-strip {
+        align-items: flex-start !important;
+        text-align: left !important;
+        margin-top: 16px !important;
+    }
+
+    .utility-line,
+    .current-inventory-line,
+    .values-control,
+    .contrast-control {
+        flex-wrap: wrap !important;
+        gap: 10px !important;
+    }
+
+    h1 {
+        font-size: 34px !important;
+    }
+
+    .toolkit-nav {
+        gap: 16px !important;
+        min-height: 24px !important;
+    }
+
+    .toolkit-nav-link {
+        font-size: 17px !important;
+    }
+
+    .tool-description {
+        min-height: 0 !important;
+    }
+}
