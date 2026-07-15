@@ -31,7 +31,7 @@ function populateRegionOptions() {
         option.value = region;
         option.textContent = region;
         regionSelect.appendChild(option);
-    });
+    }, () => selectedInventory);
 }
 
 function setupCompleterIngredientButtons() {
@@ -54,7 +54,7 @@ function updateCompleterValuesToggleButton() {
         toggleButton.textContent = Obojima.getValuesYear() === "2024"
             ? "Use 2014 Values"
             : "Use 2024 Values";
-    });
+    }, () => selectedInventory);
 }
 
 async function loadCompleterIngredientButtonsForCurrentYear() {
@@ -89,7 +89,7 @@ function populatePotionOptions() {
             option.value = String(number);
             option.textContent = `${number}. ${names[String(number)]}`;
             potionSelect.appendChild(option);
-        });
+        }, () => selectedInventory);
 }
 
 function ingredientDistanceLabel(ingredient, currentRegion) {
@@ -197,7 +197,7 @@ async function completeRecipe() {
         results,
         completion_count: totalCompletingIngredients,
         message: "No single ingredient completes this potion from your current inventory. Try selecting different ingredients or adding to your inventory."
-    });
+    }, () => selectedInventory);
 }
 
 function getUniqueRegions(results) {
@@ -317,7 +317,7 @@ function renderCompleterResults(data) {
     });
 
     resultsDiv.appendChild(grid);
-    resultsDiv.scrollIntoView({ behavior: "smooth" });
+    resultsDiv.scrollIntoView({ behavior: "smooth" }, () => selectedInventory);
 }
 
 async function clearCompleterSelection() {
@@ -336,7 +336,7 @@ async function clearCompleterSelection() {
     Obojima.applyInventoryToButtons(selectedInventory);
 
     document.getElementById("completer-results").innerHTML = "";
-    window.scrollTo({ top: 0, behavior: "smooth" });
+    window.scrollTo({ top: 0, behavior: "smooth" }, () => selectedInventory);
 }
 
 async function exportInventory() {
@@ -350,5 +350,5 @@ function importInventory() {
         updateCompleterValuesToggleButton();
         loadCompleterIngredientButtonsForCurrentYear();
         document.getElementById("completer-results").innerHTML = "";
-    });
+    }, () => selectedInventory);
 }
