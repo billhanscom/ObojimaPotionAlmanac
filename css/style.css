@@ -3595,3 +3595,53 @@ body.high-contrast .foraging-debug h4,
 body.high-contrast .foraging-debug-item h5 {
     color: #000000 !important;
 }
+
+
+/* Foraging Engine 2 debug polish */
+.foraging-debug {
+    text-align: left;
+}
+
+.foraging-debug-section {
+    margin-top: 14px;
+}
+
+.foraging-debug h4 {
+    margin: 12px 0 6px;
+    color: #577da1;
+    font-size: 15px;
+}
+
+.foraging-debug-item {
+    background: rgba(255, 255, 255, 0.45);
+    border: 1px solid rgba(87, 125, 161, 0.22);
+    border-radius: 6px;
+    padding: 10px 12px;
+    margin: 8px 0;
+}
+
+.foraging-debug-item h5 {
+    margin: 0 0 6px;
+    font-size: 14px;
+    color: #2d2d2d;
+}
+
+.foraging-debug ul {
+    margin: 6px 0 0;
+    padding-left: 20px;
+}
+
+.foraging-debug li {
+    margin: 3px 0;
+    line-height: 1.35;
+}
+
+body.high-contrast .foraging-debug-item {
+    background: #ffffff !important;
+    border-color: #000000 !important;
+}
+
+body.high-contrast .foraging-debug h4,
+body.high-contrast .foraging-debug-item h5 {
+    color: #000000 !important;
+}

@@ -113,14 +113,14 @@
     ]
   },
   "yatamonTradeWeights": {
-    "local": 1.0,
+    "local": 1,
     "nearby": 0.75,
     "distant": 0.45,
     "unknown": 0.25
   },
   "yatamonAreaWeights": {
     "City Streets": {
-      "local": 1.0,
+      "local": 1,
       "nearby": 0.35,
       "distant": 0.15
     },
@@ -137,35 +137,43 @@
         "The Shallows": 1.35,
         "Coastal Highlands": 1.15,
         "Brackwater Wetlands": 1.1
-      }
+      },
+      "relatedSearchAreas": [
+        "Coast",
+        "River",
+        "Lake",
+        "Wetland"
+      ]
     },
     "Subway": {
       "local": 0.7,
       "nearby": 0.25,
       "distant": 0.1,
-      "boostSearchAreas": {
-        "Cave": 1.6,
-        "Wetland": 1.2
-      }
+      "relatedSearchAreas": [
+        "Cave",
+        "Wetland",
+        "Ruins"
+      ]
     },
     "Ruins": {
       "local": 0.75,
       "nearby": 0.35,
       "distant": 0.2,
-      "boostSearchAreas": {
-        "Ruins": 1.8,
-        "Cave": 1.15
-      }
+      "relatedSearchAreas": [
+        "Ruins",
+        "Cave",
+        "Village"
+      ]
     },
     "Shrine": {
       "local": 0.8,
       "nearby": 0.35,
       "distant": 0.2,
-      "boostSearchAreas": {
-        "Forest": 1.15,
-        "Village": 1.25,
-        "Ruins": 1.1
-      }
+      "relatedSearchAreas": [
+        "Forest",
+        "Village",
+        "Ruins"
+      ]
     }
   },
   "debugLabels": {
@@ -173,5 +181,181 @@
     "native_uncommon": "native uncommon",
     "non_native_common": "non-native common",
     "non_native_uncommon": "non-native uncommon"
+  },
+  "excludeIngredients": [
+    "Coal from the Spirit Train",
+    "Corrupted Seawater",
+    "Opu Opu Spring Water",
+    "Sea Water"
+  ],
+  "engineVersion": "2.0",
+  "findCountByDos": [
+    {
+      "min": 0,
+      "max": 4,
+      "counts": [
+        {
+          "count": 1,
+          "weight": 70
+        },
+        {
+          "count": 2,
+          "weight": 30
+        }
+      ]
+    },
+    {
+      "min": 5,
+      "max": 9,
+      "counts": [
+        {
+          "count": 2,
+          "weight": 50
+        },
+        {
+          "count": 3,
+          "weight": 50
+        }
+      ]
+    },
+    {
+      "min": 10,
+      "max": 999,
+      "counts": [
+        {
+          "count": 3,
+          "weight": 50
+        },
+        {
+          "count": 4,
+          "weight": 35
+        },
+        {
+          "count": 5,
+          "weight": 15
+        }
+      ]
+    }
+  ],
+  "rarityWeights": {
+    "common": 5,
+    "uncommon": 1
+  },
+  "regionWeights": {
+    "native": 1,
+    "nearby": 0.5,
+    "far": 0.2
+  },
+  "habitatWeights": {
+    "direct": 12,
+    "related": 5,
+    "none": 0.4
+  },
+  "dcModifiers": {
+    "15": {
+      "common": 1,
+      "uncommon": 0.55,
+      "native": 1,
+      "nearby": 0.35,
+      "far": 0.08
+    },
+    "20": {
+      "common": 1,
+      "uncommon": 0.95,
+      "native": 1,
+      "nearby": 0.65,
+      "far": 0.18
+    },
+    "25": {
+      "common": 1,
+      "uncommon": 1.25,
+      "native": 1,
+      "nearby": 0.85,
+      "far": 0.35
+    }
+  },
+  "dosModifiers": {
+    "modest": {
+      "uncommon": 0.75,
+      "nearby": 0.75,
+      "far": 0.6,
+      "nonHabitat": 0.5
+    },
+    "strong": {
+      "uncommon": 1,
+      "nearby": 1,
+      "far": 0.85,
+      "nonHabitat": 0.75
+    },
+    "exceptional": {
+      "uncommon": 1.35,
+      "nearby": 1.1,
+      "far": 1,
+      "nonHabitat": 1
+    }
+  },
+  "relatedSearchAreas": {
+    "Cave": [
+      "Mountain",
+      "Ruins",
+      "Geothermal"
+    ],
+    "Coast": [
+      "River",
+      "Wetland",
+      "Lake"
+    ],
+    "Forest": [
+      "Grassland",
+      "River",
+      "Village"
+    ],
+    "Geothermal": [
+      "Cave",
+      "Mountain"
+    ],
+    "Grassland": [
+      "Forest",
+      "Village",
+      "River"
+    ],
+    "Lake": [
+      "River",
+      "Wetland",
+      "Coast"
+    ],
+    "Mountain": [
+      "Cave",
+      "Geothermal",
+      "Forest"
+    ],
+    "River": [
+      "Wetland",
+      "Lake",
+      "Forest",
+      "Grassland"
+    ],
+    "Ruins": [
+      "Cave",
+      "Village",
+      "Forest"
+    ],
+    "Village": [
+      "Grassland",
+      "Forest",
+      "Ruins"
+    ],
+    "Wetland": [
+      "River",
+      "Lake",
+      "Coast"
+    ]
+  },
+  "habitatTargetByCount": {
+    "1": 1,
+    "2": 2,
+    "3": 2,
+    "4": 3,
+    "5": 4
   }
 }
