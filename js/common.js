@@ -515,7 +515,7 @@ const Obojima = (() => {
         if (!display) return;
 
         if (profile.playerName || profile.characterName) {
-            const character = profile.characterName ? `<strong>${profile.characterName}</strong>` : "<strong>Unnamed Character</strong>";
+            const character = profile.characterName ? `<em>${profile.characterName}</em>` : "<em>Unnamed Character</em>";
             const player = profile.playerName ? ` — Player: ${profile.playerName}` : "";
             display.innerHTML = `${character}${player}`;
         } else {

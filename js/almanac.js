@@ -89,6 +89,54 @@ async function getRecipesForSelection() {
     return possibleRecipes;
 }
 
+
+function groupRecipesByPotion(recipes) {
+    const grouped = new Map();
+    recipes.forEach(recipe => {
+        const key = recipe.potion_type;
+        if (!grouped.has(key)) {
+            grouped.set(key, []);
+        }
+        grouped.get(key).push(recipe);
+    });
+    return Array.from(grouped.entries()).map(([potionType, recipeList]) => ({
+        potionType,
+        recipes: recipeList
+    }));
+}
+
+function recipeHeading(recipe, index, siblingRecipes) {
+    const sameTotalCount = siblingRecipes.filter(item => item.attribute_totals === recipe.attribute_totals).length;
+    const totalIndex = siblingRecipes
+        .slice(0, index + 1)
+        .filter(item => item.attribute_totals === recipe.attribute_totals).length;
+    return sameTotalCount > 1
+        ? `${recipe.attribute_totals} Recipe ${totalIndex}`
+        : `${recipe.attribute_totals} Recipe`;
+}
+
+function renderGroupedPotionResults(type, recipes) {
+    if (!recipes || recipes.length === 0) return "<p>No recipes found</p>";
+
+    return groupRecipesByPotion(recipes).map(group => {
+        const recipeWord = group.recipes.length === 1 ? "recipe" : "recipes";
+        const recipesHtml = group.recipes.map((recipe, index) => {
+            const ingredientsList = recipe.ingredients.map(ing => {
+                const rarityClass = ing.rarity.toLowerCase();
+                return `<li class="ingredient ${rarityClass}">${Obojima.formatIngredientName(ing)}</li>`;
+            }).join("");
+
+            return `<div class="recipe-subcard"><h5>${recipeHeading(recipe, index, group.recipes)}</h5><ul>${ingredientsList}</ul></div>`;
+        }).join("");
+
+        return `<details class="potion-group-card">
+            <summary><span class="potion-group-title">${group.potionType}</span><span class="potion-group-count">${group.recipes.length} ${recipeWord}</span></summary>
+            <div class="potion-group-recipes">${recipesHtml}</div>
+        </details>`;
+    }).join("");
+}
+
+
 async function findRecipes() {
     if (selectedIngredients.length < 3) {
         alert("Oops! Please select at least three ingredients.");
@@ -125,18 +173,7 @@ async function findRecipes() {
         column.classList.add("recipe-column");
         column.innerHTML = `<h3>${columnHeaders[type]}</h3>`;
 
-        if (recipes[type] && recipes[type].length > 0) {
-            column.innerHTML += recipes[type].map(recipe => {
-                const ingredientsList = recipe.ingredients.map(ing => {
-                    const rarityClass = ing.rarity.toLowerCase();
-                    return `<li class="ingredient ${rarityClass}">${Obojima.formatIngredientName(ing)}</li>`;
-                }).join("");
-
-                return `<div class="recipe-card completion-card"><h4>${recipe.potion_type} ${recipe.attribute_totals}</h4><ul class="completion-recipe-list">${ingredientsList}</ul></div>`;
-            }).join("");
-        } else {
-            column.innerHTML += "<p>No recipes found</p>";
-        }
+        column.innerHTML += renderGroupedPotionResults(type, recipes[type]);
 
         resultsDiv.appendChild(column);
     });

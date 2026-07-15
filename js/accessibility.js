@@ -30,3 +30,35 @@ document.addEventListener("DOMContentLoaded",()=>{
    s.setAttribute('aria-label', s.previousElementSibling? s.previousElementSibling.textContent.trim():s.id);
  });
 });
+
+
+function syncBinaryHoverUnderline(groupSelector, optionSelector) {
+    document.querySelectorAll(groupSelector).forEach(group => {
+        const options = Array.from(group.querySelectorAll(optionSelector));
+        options.forEach(option => {
+            option.addEventListener("mouseenter", () => {
+                options.forEach(item => item.classList.toggle("hover-active", item === option));
+                group.classList.add("has-hover");
+            });
+            option.addEventListener("focus", () => {
+                options.forEach(item => item.classList.toggle("hover-active", item === option));
+                group.classList.add("has-hover");
+            });
+        });
+        group.addEventListener("mouseleave", () => {
+            options.forEach(item => item.classList.remove("hover-active"));
+            group.classList.remove("has-hover");
+        });
+        group.addEventListener("focusout", event => {
+            if (!group.contains(event.relatedTarget)) {
+                options.forEach(item => item.classList.remove("hover-active"));
+                group.classList.remove("has-hover");
+            }
+        });
+    });
+}
+
+document.addEventListener("DOMContentLoaded", () => {
+    syncBinaryHoverUnderline(".values-control", ".value-choice");
+    syncBinaryHoverUnderline(".contrast-control", ".hc-toggle-link");
+});

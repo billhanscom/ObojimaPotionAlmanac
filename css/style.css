@@ -2351,3 +2351,172 @@ button.primary-action-button {
         min-height: 0 !important;
     }
 }
+
+
+/* ==========================================================
+   Final polish: stable header, binary hover, renamed app, recipe collapse
+   ========================================================== */
+
+/* Keep top bar spacing identical while links change text/color. */
+.utility-line,
+.current-inventory-line,
+.values-control,
+.contrast-control {
+    min-height: 18px !important;
+    align-items: baseline !important;
+}
+
+.utility-link,
+.value-choice,
+.hc-toggle-link {
+    border-bottom: 2px solid transparent !important;
+    padding-bottom: 2px !important;
+    line-height: 1.1 !important;
+    text-decoration: none !important;
+}
+
+.utility-link:hover,
+.utility-link:focus-visible,
+.utility-link:not(.hc-toggle-link):hover,
+.utility-link:not(.hc-toggle-link):focus-visible {
+    text-decoration: none !important;
+    border-bottom-color: #000000 !important;
+}
+
+/* Binary controls: when hovering one option, temporarily suppress the active underline on the other. */
+.values-control.has-hover .value-choice.active,
+.contrast-control.has-hover .hc-toggle-link.active {
+    border-bottom-color: transparent !important;
+}
+
+.values-control.has-hover .value-choice.hover-active,
+.contrast-control.has-hover .hc-toggle-link.hover-active {
+    border-bottom-color: #000000 !important;
+}
+
+.value-choice.active,
+.hc-toggle-link.active {
+    border-bottom-color: #000000 !important;
+}
+
+.hc-off.active {
+    border-bottom-color: #000000 !important;
+}
+
+/* Current inventory line should match the inventory nav size. */
+.utility-heading.small,
+.inventory-profile {
+    font-size: 14px !important;
+}
+
+.inventory-profile em {
+    font-style: italic !important;
+    font-weight: 400 !important;
+}
+
+/* Bigger site title. */
+h1 {
+    font-size: 52px !important;
+    margin-bottom: 18px !important;
+}
+
+/* Better fixed widths so Save/Saved does not cause the inventory links to twitch. */
+.inventory-strip .save-inventory-button {
+    min-width: 42px !important;
+    text-align: left !important;
+}
+
+/* Collapsible Recipe Generator results */
+.potion-group-card {
+    background: #fff3c7;
+    border: 1px solid #dddddd;
+    border-radius: 8px;
+    margin: 0;
+    padding: 0;
+    overflow: hidden;
+}
+
+.potion-group-card summary {
+    cursor: pointer;
+    list-style: none;
+    padding: 12px 14px;
+    color: #000000;
+}
+
+.potion-group-card summary::-webkit-details-marker {
+    display: none;
+}
+
+.potion-group-card summary::before {
+    content: "+";
+    display: inline-block;
+    width: 1.1em;
+    margin-right: 4px;
+    font-weight: 700;
+}
+
+.potion-group-card[open] summary::before {
+    content: "–";
+}
+
+.potion-group-title {
+    display: block;
+    color: #577da1;
+    font-size: 15px;
+    font-weight: 700;
+    line-height: 1.25;
+}
+
+.potion-group-count {
+    display: block;
+    margin-top: 3px;
+    color: #555555;
+    font-size: 12px;
+    font-weight: 400;
+}
+
+.potion-group-recipes {
+    padding: 0 14px 12px;
+}
+
+.recipe-subcard {
+    border-top: 1px solid rgba(87, 125, 161, 0.25);
+    padding-top: 10px;
+    margin-top: 10px;
+}
+
+.recipe-subcard h5 {
+    margin: 0 0 8px 0;
+    color: #000000;
+    font-size: 13px;
+    font-weight: 700;
+}
+
+.recipe-subcard ul {
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+}
+
+.recipe-subcard .ingredient {
+    display: block;
+    width: 100%;
+    padding: 7px 9px;
+    margin: 5px 0;
+    font-size: 14px;
+    line-height: 1.25;
+    border-radius: 5px;
+    border: none;
+    box-shadow: none;
+}
+
+.copyright-disclaimer {
+    max-width: 760px;
+    margin: 8px auto 0;
+}
+
+@media (max-width: 800px) {
+    h1 {
+        font-size: 40px !important;
+    }
+}
