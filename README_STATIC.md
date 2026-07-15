@@ -1,0 +1,19 @@
+# Obojima Potion Toolkit - Static Build
+
+This version removes the Flask/Python backend. It is designed for static hosting
+(Cloudflare Pages, GitHub Pages, Netlify, Vercel static hosting, etc.).
+
+Pages:
+- index.html
+- ingredient-finder.html
+
+Data files:
+- data/ingredients_2014.json
+- data/ingredients_2024.json
+- data/potion_names.json
+
+Notes:
+- The browser fetches JSON files directly.
+- Inventory remains local to the browser via localStorage.
+- Save/Load Inventory is handled entirely in JavaScript.
+- Opening the files directly from disk may block fetch() in some browsers; run from a static server or host.
