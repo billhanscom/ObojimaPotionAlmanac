@@ -3,19 +3,26 @@
 
     function applyHighContrast(isEnabled) {
         document.body.classList.toggle("high-contrast", isEnabled);
-        document.querySelectorAll(".hc-on").forEach(label => label.classList.toggle("active", isEnabled));
-        document.querySelectorAll(".hc-off").forEach(label => label.classList.toggle("active", !isEnabled));
+        document.querySelectorAll(".contrast-toggle-button").forEach(button => {
+            button.setAttribute("aria-pressed", String(isEnabled));
+            button.setAttribute("aria-label", isEnabled ? "Turn off high contrast mode" : "Turn on high contrast mode");
+            button.setAttribute("title", isEnabled ? "Turn off high contrast" : "Turn on high contrast");
+            button.textContent = "◐ HC";
+        });
     }
 
     document.addEventListener("DOMContentLoaded", () => {
         const isEnabled = localStorage.getItem(storageKey) === "true";
         applyHighContrast(isEnabled);
-    });
 
-    window.setHighContrastChoice = function (isEnabled) {
-        localStorage.setItem(storageKey, String(isEnabled));
-        applyHighContrast(isEnabled);
-    };
+        document.querySelectorAll(".contrast-toggle-button").forEach(button => {
+            button.addEventListener("click", () => {
+                const nextState = !document.body.classList.contains("high-contrast");
+                localStorage.setItem(storageKey, String(nextState));
+                applyHighContrast(nextState);
+            });
+        });
+    });
 })();
 
 
@@ -39,7 +46,6 @@ function syncBinaryHoverUnderline(groupSelector, optionSelector) {
         function setHover(option) {
             const activeOption = options.find(item => item.classList.contains("active"));
             const isAlternate = activeOption && option !== activeOption;
-
             options.forEach(item => item.classList.toggle("hover-active", item === option && isAlternate));
             group.classList.toggle("has-hover", Boolean(isAlternate));
         }
@@ -63,7 +69,7 @@ function syncBinaryHoverUnderline(groupSelector, optionSelector) {
 
 document.addEventListener("DOMContentLoaded", () => {
     syncBinaryHoverUnderline(".values-control", ".value-choice");
-    syncBinaryHoverUnderline(".contrast-control", ".hc-toggle-link");
+    syncBinaryHoverUnderline(".toolkit-nav", ".toolkit-nav-link");
 });
 
 

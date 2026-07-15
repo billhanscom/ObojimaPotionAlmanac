@@ -3087,3 +3087,230 @@ body.high-contrast .contrast-control.has-hover .hc-toggle-link.hover-active,
 body.high-contrast .toolkit-nav.has-hover .toolkit-nav-link.hover-active {
     border-bottom-color: #000000 !important;
 }
+
+
+/* ==========================================================
+   Restore HC toggle + fix Settings/Values hover behavior
+   ========================================================== */
+
+/* HC is a single understated text control again. */
+.contrast-control {
+    min-height: 18px !important;
+}
+
+.contrast-toggle-button,
+button.contrast-toggle-button,
+.utility-link.contrast-toggle-button {
+    appearance: none !important;
+    -webkit-appearance: none !important;
+    display: inline-block !important;
+    background: transparent !important;
+    border: 0 !important;
+    border-bottom: 2px solid transparent !important;
+    box-shadow: none !important;
+    border-radius: 0 !important;
+    padding: 0 0 2px 0 !important;
+    margin: 0 !important;
+    font: inherit !important;
+    line-height: 1.1 !important;
+    color: #2d2d2d !important;
+    text-decoration: none !important;
+    cursor: pointer !important;
+}
+
+.contrast-toggle-button:hover,
+.contrast-toggle-button:focus-visible {
+    border-bottom-color: #DCA453 !important;
+    text-decoration: none !important;
+    outline: none !important;
+}
+
+body.high-contrast .contrast-toggle-button,
+body.high-contrast button.contrast-toggle-button,
+body.high-contrast .utility-link.contrast-toggle-button {
+    color: #000000 !important;
+    border-bottom-color: #000000 !important;
+}
+
+/* Values/settings underline should move only when hovering a different option. */
+.values-control .value-choice {
+    border-bottom: 2px solid transparent !important;
+    padding-bottom: 2px !important;
+}
+
+.values-control .value-choice.active {
+    border-bottom-color: #DCA453 !important;
+}
+
+.values-control.has-hover .value-choice.active:not(.hover-active) {
+    border-bottom-color: transparent !important;
+}
+
+.values-control.has-hover .value-choice.hover-active {
+    border-bottom-color: #DCA453 !important;
+}
+
+body.high-contrast .values-control .value-choice.active,
+body.high-contrast .values-control.has-hover .value-choice.hover-active {
+    border-bottom-color: #000000 !important;
+}
+
+/* Remove stale ON/OFF rules from affecting anything if cached markup exists. */
+.hc-on,
+.hc-off,
+.hc-state,
+.hc-toggle-link {
+    text-decoration: none !important;
+}
+
+/* Make the HC mode unmistakable and keep it higher priority than colorful overrides. */
+body.high-contrast {
+    background-color: #111111 !important;
+    color: #000000 !important;
+}
+
+body.high-contrast .container {
+    background-color: #ffffff !important;
+    border-color: #000000 !important;
+    box-shadow: 0 0 0 3px #000000 !important;
+}
+
+body.high-contrast .utility-heading,
+body.high-contrast .utility-link,
+body.high-contrast a.utility-link,
+body.high-contrast button.utility-link,
+body.high-contrast .value-choice,
+body.high-contrast .inventory-profile,
+body.high-contrast .inventory-profile em,
+body.high-contrast .toolkit-nav-link,
+body.high-contrast .tool-description,
+body.high-contrast .site-footer,
+body.high-contrast .site-footer a {
+    color: #000000 !important;
+}
+
+body.high-contrast h1 {
+    color: #8a4b00 !important;
+}
+
+body.high-contrast .recipe-card,
+body.high-contrast .completion-card,
+body.high-contrast .potion-group-card,
+body.high-contrast .ingredient-button,
+body.high-contrast .control-group select,
+body.high-contrast .foraging-controls input {
+    background-color: #ffffff !important;
+    color: #000000 !important;
+    border-color: #000000 !important;
+    box-shadow: inset 0 0 0 2px #000000 !important;
+}
+
+body.high-contrast .ingredient-button.selected.common,
+body.high-contrast .ingredient.common,
+body.high-contrast .recipe-subcard .ingredient.common {
+    background-color: #2f6f22 !important;
+    color: #ffffff !important;
+}
+
+body.high-contrast .ingredient-button.selected.uncommon,
+body.high-contrast .ingredient.uncommon,
+body.high-contrast .recipe-subcard .ingredient.uncommon {
+    background-color: #ffe45c !important;
+    color: #111111 !important;
+}
+
+body.high-contrast .ingredient-button.selected.rare,
+body.high-contrast .ingredient.rare,
+body.high-contrast .recipe-subcard .ingredient.rare {
+    background-color: #a8321f !important;
+    color: #ffffff !important;
+}
+
+
+/* ==========================================================
+   Recipe dropdown alignment fix
+   ========================================================== */
+
+/* Make the summary a true two-column row:
+   left = potion title/count, right = +/-. */
+.potion-group-card summary {
+    display: grid !important;
+    grid-template-columns: minmax(0, 1fr) auto !important;
+    align-items: center !important;
+    column-gap: 16px !important;
+    padding: 12px 14px !important;
+}
+
+.potion-group-card summary::before {
+    content: "+" !important;
+    grid-column: 2 !important;
+    grid-row: 1 !important;
+    justify-self: end !important;
+    align-self: center !important;
+    order: initial !important;
+    width: auto !important;
+    min-width: 18px !important;
+    margin: 0 !important;
+    padding: 0 !important;
+    font-size: 22px !important;
+    font-weight: 700 !important;
+    line-height: 1 !important;
+    text-align: center !important;
+}
+
+.potion-group-card[open] summary::before {
+    content: "–" !important;
+}
+
+.potion-group-summary-text {
+    grid-column: 1 !important;
+    grid-row: 1 !important;
+    min-width: 0 !important;
+    display: block !important;
+}
+
+.potion-group-title {
+    display: block !important;
+}
+
+.potion-group-count {
+    display: block !important;
+    margin-top: 5px !important;
+    font-size: 15px !important;
+    line-height: 1.25 !important;
+    color: #555555 !important;
+}
+
+body.high-contrast .potion-group-count {
+    color: #000000 !important;
+}
+
+
+/* Restore blue framing around the application */
+html,
+body{
+    min-height:100%;
+}
+
+body{
+    background:#65ADE8 !important;
+    padding:18px 0 26px !important;
+}
+
+.container{
+    width:86% !important;
+    max-width:1100px !important;
+    margin:18px auto 26px !important;
+    border-radius:10px !important;
+}
+
+@media (max-width:800px){
+    body{
+        padding:12px 0 18px !important;
+    }
+
+    .container{
+        width:94% !important;
+        margin:12px auto 18px !important;
+    }
+}
