@@ -21,13 +21,13 @@
                 <a class="toolkit-nav-link active" href="foraging-aid.html">Forager's Aid</a>
             </nav>
             <h2>Forager's Aid</h2>
-            <p class="tool-description">Generate plausible ingredient finds after a foraging check.</p>
+            <p class="tool-description">Generate plausible ingredient finds after a foraging check. Prototype coming next.</p>
             <div id="inventory-profile" class="inventory-profile" aria-live="polite"></div>
         </header>
 
         <div class="button-group top-button-group">
             <div class="primary-button-row">
-                <button type="button" onclick="generateForagingFinds()">Generate Finds</button>
+                <button type="button" disabled title="Coming soon">Generate Finds</button>
                 <button type="button" class="values-toggle-button" onclick="toggleForagingValuesYear()">Use 2014 Values</button>
                 <button type="button" id="high-contrast-toggle" class="contrast-toggle-button" aria-pressed="false" aria-label="Turn on high contrast mode" title="Turn on high contrast">◐ HC</button>
             </div>
@@ -38,38 +38,10 @@
             </div>
         </div>
 
-        <section class="foraging-controls" aria-label="Foraging inputs">
-            <div class="control-group">
-                <label for="foraging-region">Region</label>
-                <select id="foraging-region"></select>
-            </div>
-            <div class="control-group">
-                <label for="foraging-search-area">Where are they searching?</label>
-                <select id="foraging-search-area"></select>
-            </div>
-            <div class="control-group">
-                <label for="foraging-dc">DC</label>
-                <input id="foraging-dc" type="number" min="1" max="30" value="15">
-            </div>
-            <div class="control-group">
-                <label for="foraging-roll">Roll Total</label>
-                <input id="foraging-roll" type="number" min="1" max="40" value="15">
-            </div>
+        <section class="coming-soon-card" id="foraging-results" aria-live="polite">
+            <h3>Forager's Aid</h3>
+            <p>This page is reserved for the foraging generator. It already shares the toolkit navigation, inventory profile, high-contrast mode, and inventory save/load behavior.</p>
         </section>
-
-        <section class="foraging-options" aria-label="Foraging options">
-            <label class="checkbox-option">
-                <input id="foraging-prioritize-new" type="checkbox" checked>
-                Prioritize undiscovered ingredients
-            </label>
-            <label class="checkbox-option">
-                <input id="foraging-debug" type="checkbox">
-                Show generation details
-            </label>
-        </section>
-
-        <h2 class="sr-only">Foraging Results</h2>
-        <section id="foraging-results" aria-live="polite" role="region" aria-label="Foraging results"></section>
 
         <footer class="site-footer">
             <p>Created by Urameshiya</p>
@@ -79,6 +51,55 @@
 
     <script src="js/common.js"></script>
     <script src="js/accessibility.js"></script>
-    <script src="js/foraging-aid.js"></script>
+    <script>
+        let foragingInventory = Obojima.loadStoredInventory();
+
+        document.addEventListener("DOMContentLoaded", () => {
+            updateForagingValuesToggleButton();
+            Obojima.updateInventoryProfileDisplay();
+            Obojima.updateSaveInventoryButtons(foragingInventory);
+        });
+
+        function toggleForagingValuesYear() {
+            Obojima.toggleValuesYear();
+            updateForagingValuesToggleButton();
+            Obojima.updateSaveInventoryButtons(foragingInventory);
+        }
+
+        function updateForagingValuesToggleButton() {
+            document.querySelectorAll(".values-toggle-button").forEach(toggleButton => {
+                toggleButton.textContent = Obojima.getValuesYear() === "2024"
+                    ? "Use 2014 Values"
+                    : "Use 2024 Values";
+            });
+        }
+
+        async function clearForagingInventory() {
+            const result = await Obojima.showClearInventoryDialog();
+            if (result.action === "cancel") return;
+            if (result.action === "save") {
+                await Obojima.exportInventory(foragingInventory);
+                return;
+            }
+
+            foragingInventory = [];
+            Obojima.saveStoredInventory(foragingInventory);
+            Obojima.clearInventoryProfile();
+            Obojima.updateInventoryProfileDisplay();
+            Obojima.updateSaveInventoryButtons(foragingInventory);
+        }
+
+        async function exportInventory() {
+            await Obojima.exportInventory(foragingInventory);
+        }
+
+        function importInventory() {
+            Obojima.importInventoryFile(imported => {
+                foragingInventory = imported.ingredients;
+                Obojima.saveStoredInventory(foragingInventory);
+                updateForagingValuesToggleButton();
+            });
+        }
+    </script>
 </body>
 </html>

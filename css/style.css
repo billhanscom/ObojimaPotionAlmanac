@@ -1248,97 +1248,133 @@ body.high-contrast .coming-soon-card {
     background-color: #5f9f5b !important;
 }
 
-/* Forager's Aid test */
-.foraging-controls {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 16px;
-    justify-content: center;
-    margin: 18px 0 12px 0;
+
+/* ==========================================================
+   Minimal UI Prototype
+   ========================================================== */
+
+:root{
+  --bg:#f3f4f6;
+  --panel:#ffffff;
+  --line:#d7d9dd;
+  --text:#222;
+  --muted:#666;
+  --accent:#2f6ea5;
 }
 
-.foraging-controls .control-group {
-    width: 190px;
+body{
+  background:var(--bg);
+  color:var(--text);
 }
 
-.foraging-controls input {
-    width: 100%;
-    border: 1px solid #b7b7b7;
-    border-radius: 4px;
-    padding: 10px 12px;
-    font-size: 15px;
-    background: #ffffff;
-    color: #2d2d2d;
+.container{
+  background:var(--panel);
+  box-shadow:none;
+  border:1px solid var(--line);
+  border-radius:10px;
+  max-width:1100px;
 }
 
-.foraging-options {
-    text-align: center;
-    margin: 8px 0 20px 0;
+h1{
+  font-size:42px;
+  color:var(--text);
+  margin-bottom:6px;
 }
 
-.checkbox-option {
-    display: inline-flex;
-    align-items: center;
-    gap: 6px;
-    margin: 4px 10px;
-    color: #577da1;
-    font-size: 14px;
+h2{
+  color:var(--muted);
+  margin-bottom:20px;
 }
 
-.foraging-result-card {
-    text-align: center;
+h3{
+  color:var(--text);
+  border-bottom:1px solid var(--line);
 }
 
-.foraging-result-card .completion-recipe-list {
-    max-width: 520px;
-    margin: 10px auto;
+.tool-description{
+  color:var(--muted);
 }
 
-.foraging-result-actions {
-    margin-top: 14px;
-    margin-bottom: 0;
+.toolkit-nav{
+  border-bottom:1px solid var(--line);
+  padding-bottom:10px;
+  margin-bottom:18px;
 }
 
-.foraging-debug {
-    background-color: #fffadb;
-    border-radius: 8px;
-    padding: 12px 14px;
-    margin: 12px 0;
-    color: #2d2d2d;
-    box-shadow: inset 0 0 0 1px rgba(87, 125, 161, 0.35);
+.toolkit-nav-link{
+  background:none;
+  box-shadow:none;
+  border-radius:0;
+  border-bottom:2px solid transparent;
+  padding:4px 8px;
+  color:var(--muted);
 }
 
-.foraging-debug summary {
-    cursor: pointer;
-    color: #577da1;
-    font-weight: 700;
+.toolkit-nav-link:hover{
+  background:none;
+  color:var(--text);
 }
 
-body.high-contrast .foraging-controls input,
-body.high-contrast .foraging-debug {
-    background-color: #ffffff;
-    color: #000000;
-    box-shadow: inset 0 0 0 2px #000000;
+.toolkit-nav-link.active{
+  background:none;
+  color:var(--text);
+  border-bottom-color:var(--accent);
 }
 
-body.high-contrast .checkbox-option,
-body.high-contrast .foraging-debug summary {
-    color: #000000;
+.ingredient-button,
+.recipe-card,
+.completion-card,
+#results li,
+#completer-results .ingredient{
+  background:#fafafa;
+  box-shadow:none;
+  border:1px solid var(--line);
 }
 
-@media (max-width: 800px) {
-    .foraging-controls {
-        display: block;
-    }
+.button-group button{
+  box-shadow:none;
+}
 
-    .foraging-controls .control-group {
-        width: 100%;
-        box-sizing: border-box;
-        margin-bottom: 14px;
-    }
+.primary-button-row button:first-child{
+  font-size:15px;
+  padding:11px 22px;
+}
 
-    .checkbox-option {
-        display: flex;
-        justify-content: center;
-    }
+.values-toggle-button,
+.contrast-toggle-button{
+  background:none !important;
+  color:var(--muted) !important;
+  border:1px solid var(--line) !important;
+}
+
+.inventory-button-row{
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+  border-top:1px solid var(--line);
+  padding-top:12px;
+}
+
+.inventory-button{
+  background:none !important;
+  border:none !important;
+  box-shadow:none !important;
+  padding:2px 6px !important;
+  color:var(--muted) !important;
+}
+
+.inventory-button:hover{
+  color:var(--text) !important;
+  background:none !important;
+}
+
+.inventory-profile{
+  margin:0;
+  color:var(--text);
+  font-size:15px;
+}
+
+.site-footer{
+  border-top:1px solid var(--line);
+  padding-top:18px;
 }
