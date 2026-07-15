@@ -1,0 +1,1336 @@
+{
+  "Amber": [
+    {
+      "searchArea": "Mountain",
+      "strength": "Primary",
+      "confidence": "High"
+    },
+    {
+      "searchArea": "Coast",
+      "strength": "Secondary",
+      "confidence": "Medium"
+    }
+  ],
+  "Apper Carrot": [
+    {
+      "searchArea": "Grassland",
+      "strength": "Primary",
+      "confidence": "High"
+    },
+    {
+      "searchArea": "Settlement",
+      "strength": "Secondary",
+      "confidence": "Medium"
+    }
+  ],
+  "Bamboo": [
+    {
+      "searchArea": "Forest",
+      "strength": "Primary",
+      "confidence": "High"
+    },
+    {
+      "searchArea": "Mountain",
+      "strength": "Secondary",
+      "confidence": "Medium"
+    }
+  ],
+  "Bashu Powder": [
+    {
+      "searchArea": "Geothermal",
+      "strength": "Primary",
+      "confidence": "Medium"
+    },
+    {
+      "searchArea": "Settlement",
+      "strength": "Secondary",
+      "confidence": "Medium"
+    }
+  ],
+  "Blue Back Salmon": [
+    {
+      "searchArea": "River",
+      "strength": "Primary",
+      "confidence": "High"
+    },
+    {
+      "searchArea": "Ocean",
+      "strength": "Secondary",
+      "confidence": "Medium"
+    }
+  ],
+  "Boom Beri": [
+    {
+      "searchArea": "Mountain",
+      "strength": "Primary",
+      "confidence": "High"
+    },
+    {
+      "searchArea": "Coast",
+      "strength": "Secondary",
+      "confidence": "Medium"
+    }
+  ],
+  "Bora Bug": [
+    {
+      "searchArea": "Forest",
+      "strength": "Primary",
+      "confidence": "High"
+    },
+    {
+      "searchArea": "Settlement",
+      "strength": "Secondary",
+      "confidence": "Medium"
+    }
+  ],
+  "Brush Reed": [
+    {
+      "searchArea": "Lake",
+      "strength": "Primary",
+      "confidence": "High"
+    },
+    {
+      "searchArea": "Wetland",
+      "strength": "Secondary",
+      "confidence": "Medium"
+    }
+  ],
+  "Bundle of Driko Twigs": [
+    {
+      "searchArea": "Forest",
+      "strength": "Primary",
+      "confidence": "High"
+    },
+    {
+      "searchArea": "Settlement",
+      "strength": "Secondary",
+      "confidence": "Medium"
+    }
+  ],
+  "Camp Mite": [
+    {
+      "searchArea": "Settlement",
+      "strength": "Primary",
+      "confidence": "High"
+    },
+    {
+      "searchArea": "Grassland",
+      "strength": "Secondary",
+      "confidence": "Medium"
+    },
+    {
+      "searchArea": "Forest",
+      "strength": "Secondary",
+      "confidence": "Medium"
+    }
+  ],
+  "Chicken Egg": [
+    {
+      "searchArea": "Settlement",
+      "strength": "Primary",
+      "confidence": "High"
+    },
+    {
+      "searchArea": "Grassland",
+      "strength": "Secondary",
+      "confidence": "Medium"
+    }
+  ],
+  "Clay Snake Tail": [
+    {
+      "searchArea": "River",
+      "strength": "Primary",
+      "confidence": "High"
+    },
+    {
+      "searchArea": "Lake",
+      "strength": "Secondary",
+      "confidence": "Medium"
+    }
+  ],
+  "Cloud Horn": [
+    {
+      "searchArea": "Grassland",
+      "strength": "Primary",
+      "confidence": "High"
+    }
+  ],
+  "Creeping Bolete": [
+    {
+      "searchArea": "Forest",
+      "strength": "Primary",
+      "confidence": "High"
+    }
+  ],
+  "Dorrin Plate": [
+    {
+      "searchArea": "Mountain",
+      "strength": "Primary",
+      "confidence": "High"
+    }
+  ],
+  "Dried Fruit": [
+    {
+      "searchArea": "Mountain",
+      "strength": "Primary",
+      "confidence": "High"
+    },
+    {
+      "searchArea": "Settlement",
+      "strength": "Secondary",
+      "confidence": "Medium"
+    }
+  ],
+  "Earwax": [
+    {
+      "searchArea": "Settlement",
+      "strength": "Primary",
+      "confidence": "Medium"
+    }
+  ],
+  "Fish Folk Tooth": [
+    {
+      "searchArea": "Coast",
+      "strength": "Primary",
+      "confidence": "High"
+    },
+    {
+      "searchArea": "Ocean",
+      "strength": "Secondary",
+      "confidence": "Medium"
+    },
+    {
+      "searchArea": "Cave",
+      "strength": "Secondary",
+      "confidence": "Medium"
+    }
+  ],
+  "Fish Head": [
+    {
+      "searchArea": "Coast",
+      "strength": "Primary",
+      "confidence": "Medium"
+    },
+    {
+      "searchArea": "River",
+      "strength": "Secondary",
+      "confidence": "Medium"
+    },
+    {
+      "searchArea": "Ocean",
+      "strength": "Secondary",
+      "confidence": "Medium"
+    }
+  ],
+  "Flash Paper": [
+    {
+      "searchArea": "Settlement",
+      "strength": "Primary",
+      "confidence": "High"
+    }
+  ],
+  "Gohaku Rice": [
+    {
+      "searchArea": "Wetland",
+      "strength": "Primary",
+      "confidence": "High"
+    },
+    {
+      "searchArea": "Settlement",
+      "strength": "Secondary",
+      "confidence": "Medium"
+    }
+  ],
+  "Green Slime": [
+    {
+      "searchArea": "Forest",
+      "strength": "Primary",
+      "confidence": "Medium"
+    },
+    {
+      "searchArea": "Cave",
+      "strength": "Secondary",
+      "confidence": "Medium"
+    },
+    {
+      "searchArea": "Settlement",
+      "strength": "Secondary",
+      "confidence": "Medium"
+    }
+  ],
+  "Hakuma Sapwood": [
+    {
+      "searchArea": "Forest",
+      "strength": "Primary",
+      "confidence": "High"
+    },
+    {
+      "searchArea": "Settlement",
+      "strength": "Secondary",
+      "confidence": "Medium"
+    }
+  ],
+  "Hill Dragon Egg": [
+    {
+      "searchArea": "Grassland",
+      "strength": "Primary",
+      "confidence": "High"
+    }
+  ],
+  "Howler Fur": [
+    {
+      "searchArea": "Forest",
+      "strength": "Primary",
+      "confidence": "High"
+    },
+    {
+      "searchArea": "Cave",
+      "strength": "Secondary",
+      "confidence": "Medium"
+    }
+  ],
+  "Itchi Beri": [
+    {
+      "searchArea": "River",
+      "strength": "Primary",
+      "confidence": "High"
+    }
+  ],
+  "Jack-o'-Lantern Bits": [
+    {
+      "searchArea": "Settlement",
+      "strength": "Primary",
+      "confidence": "High"
+    },
+    {
+      "searchArea": "Grassland",
+      "strength": "Secondary",
+      "confidence": "Medium"
+    }
+  ],
+  "Jumping Bonfire": [
+    {
+      "searchArea": "Settlement",
+      "strength": "Primary",
+      "confidence": "High"
+    },
+    {
+      "searchArea": "Grassland",
+      "strength": "Secondary",
+      "confidence": "Medium"
+    }
+  ],
+  "Kloth Leech": [
+    {
+      "searchArea": "Wetland",
+      "strength": "Primary",
+      "confidence": "Medium"
+    },
+    {
+      "searchArea": "Grassland",
+      "strength": "Secondary",
+      "confidence": "Medium"
+    }
+  ],
+  "Knobble Leaf Seaweed": [
+    {
+      "searchArea": "Ocean",
+      "strength": "Primary",
+      "confidence": "High"
+    },
+    {
+      "searchArea": "Coast",
+      "strength": "Secondary",
+      "confidence": "Medium"
+    }
+  ],
+  "Kojo Root": [
+    {
+      "searchArea": "Settlement",
+      "strength": "Primary",
+      "confidence": "Medium"
+    }
+  ],
+  "Lovers Vine": [
+    {
+      "searchArea": "Forest",
+      "strength": "Primary",
+      "confidence": "High"
+    },
+    {
+      "searchArea": "Wetland",
+      "strength": "Secondary",
+      "confidence": "Medium"
+    }
+  ],
+  "Mandrake Root": [
+    {
+      "searchArea": "Forest",
+      "strength": "Primary",
+      "confidence": "High"
+    }
+  ],
+  "Mellowort": [
+    {
+      "searchArea": "Grassland",
+      "strength": "Primary",
+      "confidence": "High"
+    },
+    {
+      "searchArea": "Settlement",
+      "strength": "Secondary",
+      "confidence": "Medium"
+    }
+  ],
+  "Monkey's Coil": [
+    {
+      "searchArea": "Grassland",
+      "strength": "Primary",
+      "confidence": "High"
+    },
+    {
+      "searchArea": "Settlement",
+      "strength": "Secondary",
+      "confidence": "Medium"
+    }
+  ],
+  "Mountain Ox Dung": [
+    {
+      "searchArea": "Mountain",
+      "strength": "Primary",
+      "confidence": "High"
+    },
+    {
+      "searchArea": "Grassland",
+      "strength": "Secondary",
+      "confidence": "Medium"
+    }
+  ],
+  "Mouse Tree": [
+    {
+      "searchArea": "Mountain",
+      "strength": "Primary",
+      "confidence": "High"
+    },
+    {
+      "searchArea": "Ruins",
+      "strength": "Secondary",
+      "confidence": "Medium"
+    }
+  ],
+  "Narutomaki": [
+    {
+      "searchArea": "Settlement",
+      "strength": "Primary",
+      "confidence": "High"
+    }
+  ],
+  "Nobblewort": [
+    {
+      "searchArea": "Forest",
+      "strength": "Primary",
+      "confidence": "High"
+    },
+    {
+      "searchArea": "Settlement",
+      "strength": "Secondary",
+      "confidence": "Medium"
+    }
+  ],
+  "Oporion Glass": [
+    {
+      "searchArea": "Cave",
+      "strength": "Primary",
+      "confidence": "High"
+    },
+    {
+      "searchArea": "Ocean",
+      "strength": "Secondary",
+      "confidence": "Medium"
+    }
+  ],
+  "Origami Crane": [
+    {
+      "searchArea": "Settlement",
+      "strength": "Primary",
+      "confidence": "High"
+    }
+  ],
+  "Peeping Willow": [
+    {
+      "searchArea": "Mountain",
+      "strength": "Primary",
+      "confidence": "Medium"
+    }
+  ],
+  "Pink Candle Wax": [
+    {
+      "searchArea": "Settlement",
+      "strength": "Primary",
+      "confidence": "High"
+    }
+  ],
+  "Poison": [
+    {
+      "searchArea": "Forest",
+      "strength": "Primary",
+      "confidence": "Medium"
+    },
+    {
+      "searchArea": "Wetland",
+      "strength": "Secondary",
+      "confidence": "Medium"
+    },
+    {
+      "searchArea": "Cave",
+      "strength": "Secondary",
+      "confidence": "Medium"
+    }
+  ],
+  "Pungent Sea Foam": [
+    {
+      "searchArea": "Coast",
+      "strength": "Primary",
+      "confidence": "High"
+    },
+    {
+      "searchArea": "Ocean",
+      "strength": "Secondary",
+      "confidence": "Medium"
+    }
+  ],
+  "Pyramid Melon": [
+    {
+      "searchArea": "Grassland",
+      "strength": "Primary",
+      "confidence": "Medium"
+    },
+    {
+      "searchArea": "Settlement",
+      "strength": "Secondary",
+      "confidence": "Medium"
+    }
+  ],
+  "Queen's Dilemma": [
+    {
+      "searchArea": "Forest",
+      "strength": "Primary",
+      "confidence": "Medium"
+    },
+    {
+      "searchArea": "Wetland",
+      "strength": "Secondary",
+      "confidence": "Medium"
+    }
+  ],
+  "Raka Paste": [
+    {
+      "searchArea": "Settlement",
+      "strength": "Primary",
+      "confidence": "High"
+    }
+  ],
+  "Rattle Shoot": [
+    {
+      "searchArea": "Grassland",
+      "strength": "Primary",
+      "confidence": "High"
+    }
+  ],
+  "Ribbon Rot": [
+    {
+      "searchArea": "Forest",
+      "strength": "Primary",
+      "confidence": "High"
+    },
+    {
+      "searchArea": "Ruins",
+      "strength": "Secondary",
+      "confidence": "Medium"
+    },
+    {
+      "searchArea": "Settlement",
+      "strength": "Secondary",
+      "confidence": "Medium"
+    }
+  ],
+  "Rust Crab": [
+    {
+      "searchArea": "Ocean",
+      "strength": "Primary",
+      "confidence": "High"
+    },
+    {
+      "searchArea": "Coast",
+      "strength": "Secondary",
+      "confidence": "Medium"
+    }
+  ],
+  "Scalefruit Rind": [
+    {
+      "searchArea": "Coast",
+      "strength": "Primary",
+      "confidence": "High"
+    }
+  ],
+  "Sea Water": [
+    {
+      "searchArea": "Ocean",
+      "strength": "Primary",
+      "confidence": "High"
+    },
+    {
+      "searchArea": "Coast",
+      "strength": "Secondary",
+      "confidence": "Medium"
+    }
+  ],
+  "Seashell": [
+    {
+      "searchArea": "Coast",
+      "strength": "Primary",
+      "confidence": "High"
+    },
+    {
+      "searchArea": "Ocean",
+      "strength": "Secondary",
+      "confidence": "Medium"
+    }
+  ],
+  "Sheep Dragon Wool": [
+    {
+      "searchArea": "Grassland",
+      "strength": "Primary",
+      "confidence": "High"
+    },
+    {
+      "searchArea": "Settlement",
+      "strength": "Secondary",
+      "confidence": "Medium"
+    }
+  ],
+  "Snap Vine Sap": [
+    {
+      "searchArea": "Forest",
+      "strength": "Primary",
+      "confidence": "Medium"
+    }
+  ],
+  "Spindle-Leg Spider Webs": [
+    {
+      "searchArea": "Forest",
+      "strength": "Primary",
+      "confidence": "High"
+    },
+    {
+      "searchArea": "Grassland",
+      "strength": "Secondary",
+      "confidence": "Medium"
+    }
+  ],
+  "Spirit Root": [
+    {
+      "searchArea": "Mountain",
+      "strength": "Primary",
+      "confidence": "High"
+    }
+  ],
+  "Squid Ink": [
+    {
+      "searchArea": "Ocean",
+      "strength": "Primary",
+      "confidence": "High"
+    }
+  ],
+  "Tangle Weed": [
+    {
+      "searchArea": "Ocean",
+      "strength": "Primary",
+      "confidence": "High"
+    }
+  ],
+  "Ube": [
+    {
+      "searchArea": "Grassland",
+      "strength": "Primary",
+      "confidence": "High"
+    },
+    {
+      "searchArea": "Mountain",
+      "strength": "Secondary",
+      "confidence": "Medium"
+    },
+    {
+      "searchArea": "Settlement",
+      "strength": "Secondary",
+      "confidence": "Medium"
+    }
+  ],
+  "Varrow": [
+    {
+      "searchArea": "Coast",
+      "strength": "Primary",
+      "confidence": "High"
+    },
+    {
+      "searchArea": "Grassland",
+      "strength": "Secondary",
+      "confidence": "Medium"
+    },
+    {
+      "searchArea": "Settlement",
+      "strength": "Secondary",
+      "confidence": "Medium"
+    }
+  ],
+  "Venus Fly Rat": [
+    {
+      "searchArea": "Cave",
+      "strength": "Primary",
+      "confidence": "High"
+    }
+  ],
+  "Windbloom": [
+    {
+      "searchArea": "Grassland",
+      "strength": "Primary",
+      "confidence": "High"
+    },
+    {
+      "searchArea": "Mountain",
+      "strength": "Secondary",
+      "confidence": "Medium"
+    },
+    {
+      "searchArea": "Geothermal",
+      "strength": "Secondary",
+      "confidence": "Medium"
+    }
+  ],
+  "Witch's Broom": [
+    {
+      "searchArea": "Grassland",
+      "strength": "Primary",
+      "confidence": "High"
+    },
+    {
+      "searchArea": "Settlement",
+      "strength": "Secondary",
+      "confidence": "Medium"
+    }
+  ],
+  "Witch's Eye Coral": [
+    {
+      "searchArea": "Ocean",
+      "strength": "Primary",
+      "confidence": "High"
+    }
+  ],
+  "Yugi Sap": [
+    {
+      "searchArea": "Forest",
+      "strength": "Primary",
+      "confidence": "High"
+    },
+    {
+      "searchArea": "Spirit Realm",
+      "strength": "Secondary",
+      "confidence": "Medium"
+    }
+  ],
+  "Yuma Shrub": [
+    {
+      "searchArea": "Forest",
+      "strength": "Primary",
+      "confidence": "Medium"
+    },
+    {
+      "searchArea": "Grassland",
+      "strength": "Secondary",
+      "confidence": "Medium"
+    }
+  ],
+  "Black Cinnamon": [
+    {
+      "searchArea": "Mountain",
+      "strength": "Primary",
+      "confidence": "High"
+    },
+    {
+      "searchArea": "Forest",
+      "strength": "Secondary",
+      "confidence": "Medium"
+    }
+  ],
+  "Black Pearl": [
+    {
+      "searchArea": "Ocean",
+      "strength": "Primary",
+      "confidence": "High"
+    }
+  ],
+  "Bottle Cap": [
+    {
+      "searchArea": "Settlement",
+      "strength": "Primary",
+      "confidence": "High"
+    },
+    {
+      "searchArea": "Ruins",
+      "strength": "Secondary",
+      "confidence": "Medium"
+    }
+  ],
+  "Corrupted Seawater": [
+    {
+      "searchArea": "Ocean",
+      "strength": "Primary",
+      "confidence": "High"
+    },
+    {
+      "searchArea": "Coast",
+      "strength": "Secondary",
+      "confidence": "Medium"
+    }
+  ],
+  "Corrupted Slime": [
+    {
+      "searchArea": "Wetland",
+      "strength": "Primary",
+      "confidence": "Medium"
+    },
+    {
+      "searchArea": "Ruins",
+      "strength": "Secondary",
+      "confidence": "Medium"
+    }
+  ],
+  "Crackling Jasper": [
+    {
+      "searchArea": "Geothermal",
+      "strength": "Primary",
+      "confidence": "High"
+    },
+    {
+      "searchArea": "Mountain",
+      "strength": "Secondary",
+      "confidence": "Medium"
+    }
+  ],
+  "Dawn Petal": [
+    {
+      "searchArea": "Forest",
+      "strength": "Primary",
+      "confidence": "High"
+    },
+    {
+      "searchArea": "Spirit Realm",
+      "strength": "Secondary",
+      "confidence": "Medium"
+    },
+    {
+      "searchArea": "Settlement",
+      "strength": "Secondary",
+      "confidence": "Medium"
+    }
+  ],
+  "Dragon Root": [
+    {
+      "searchArea": "Grassland",
+      "strength": "Primary",
+      "confidence": "Medium"
+    },
+    {
+      "searchArea": "Mountain",
+      "strength": "Secondary",
+      "confidence": "Medium"
+    },
+    {
+      "searchArea": "Forest",
+      "strength": "Secondary",
+      "confidence": "Medium"
+    }
+  ],
+  "Essence of Glumbug": [
+    {
+      "searchArea": "Cave",
+      "strength": "Primary",
+      "confidence": "High"
+    },
+    {
+      "searchArea": "Mountain",
+      "strength": "Secondary",
+      "confidence": "Medium"
+    }
+  ],
+  "Essence of Ill Omen": [
+    {
+      "searchArea": "Spirit Realm",
+      "strength": "Primary",
+      "confidence": "Medium"
+    },
+    {
+      "searchArea": "Settlement",
+      "strength": "Secondary",
+      "confidence": "Medium"
+    }
+  ],
+  "Feather Rock": [
+    {
+      "searchArea": "Grassland",
+      "strength": "Primary",
+      "confidence": "High"
+    },
+    {
+      "searchArea": "Mountain",
+      "strength": "Secondary",
+      "confidence": "Medium"
+    }
+  ],
+  "Fizzing Green": [
+    {
+      "searchArea": "Forest",
+      "strength": "Primary",
+      "confidence": "High"
+    }
+  ],
+  "Forge Slag": [
+    {
+      "searchArea": "Settlement",
+      "strength": "Primary",
+      "confidence": "High"
+    },
+    {
+      "searchArea": "Mountain",
+      "strength": "Secondary",
+      "confidence": "Medium"
+    }
+  ],
+  "Gargoyle Powder": [
+    {
+      "searchArea": "Mountain",
+      "strength": "Primary",
+      "confidence": "High"
+    },
+    {
+      "searchArea": "Geothermal",
+      "strength": "Secondary",
+      "confidence": "Medium"
+    }
+  ],
+  "Glow Worms of the Vale": [
+    {
+      "searchArea": "Cave",
+      "strength": "Primary",
+      "confidence": "High"
+    },
+    {
+      "searchArea": "Wetland",
+      "strength": "Secondary",
+      "confidence": "Medium"
+    }
+  ],
+  "Happy Joy Cake": [
+    {
+      "searchArea": "Settlement",
+      "strength": "Primary",
+      "confidence": "High"
+    }
+  ],
+  "Kojobi Fruit": [
+    {
+      "searchArea": "Settlement",
+      "strength": "Primary",
+      "confidence": "High"
+    },
+    {
+      "searchArea": "Grassland",
+      "strength": "Secondary",
+      "confidence": "Medium"
+    }
+  ],
+  "Laughing Moss": [
+    {
+      "searchArea": "Forest",
+      "strength": "Primary",
+      "confidence": "High"
+    },
+    {
+      "searchArea": "Settlement",
+      "strength": "Secondary",
+      "confidence": "Medium"
+    }
+  ],
+  "Lion's Blume": [
+    {
+      "searchArea": "Grassland",
+      "strength": "Primary",
+      "confidence": "High"
+    },
+    {
+      "searchArea": "Mountain",
+      "strength": "Secondary",
+      "confidence": "Medium"
+    }
+  ],
+  "Living Spud": [
+    {
+      "searchArea": "Grassland",
+      "strength": "Primary",
+      "confidence": "High"
+    },
+    {
+      "searchArea": "Settlement",
+      "strength": "Secondary",
+      "confidence": "Medium"
+    }
+  ],
+  "Magic Monk's Rice Wine": [
+    {
+      "searchArea": "Spirit Realm",
+      "strength": "Primary",
+      "confidence": "High"
+    },
+    {
+      "searchArea": "Settlement",
+      "strength": "Secondary",
+      "confidence": "Medium"
+    }
+  ],
+  "Molted Lizard Skin": [
+    {
+      "searchArea": "Geothermal",
+      "strength": "Primary",
+      "confidence": "Medium"
+    },
+    {
+      "searchArea": "Mountain",
+      "strength": "Secondary",
+      "confidence": "Medium"
+    }
+  ],
+  "Mountain Snail": [
+    {
+      "searchArea": "Cave",
+      "strength": "Primary",
+      "confidence": "High"
+    },
+    {
+      "searchArea": "Mountain",
+      "strength": "Secondary",
+      "confidence": "Medium"
+    }
+  ],
+  "Mournshade": [
+    {
+      "searchArea": "Wetland",
+      "strength": "Primary",
+      "confidence": "High"
+    }
+  ],
+  "Munchanka Root": [
+    {
+      "searchArea": "Geothermal",
+      "strength": "Primary",
+      "confidence": "Medium"
+    },
+    {
+      "searchArea": "Grassland",
+      "strength": "Secondary",
+      "confidence": "Medium"
+    }
+  ],
+  "Nakudama Spice": [
+    {
+      "searchArea": "Lake",
+      "strength": "Primary",
+      "confidence": "High"
+    },
+    {
+      "searchArea": "Wetland",
+      "strength": "Secondary",
+      "confidence": "Medium"
+    },
+    {
+      "searchArea": "Settlement",
+      "strength": "Secondary",
+      "confidence": "Medium"
+    }
+  ],
+  "Night Thistle": [
+    {
+      "searchArea": "Wetland",
+      "strength": "Primary",
+      "confidence": "High"
+    },
+    {
+      "searchArea": "Coast",
+      "strength": "Secondary",
+      "confidence": "Medium"
+    }
+  ],
+  "Noodle Eel": [
+    {
+      "searchArea": "Settlement",
+      "strength": "Primary",
+      "confidence": "High"
+    }
+  ],
+  "Opu Opu Spring Water": [
+    {
+      "searchArea": "Mountain",
+      "strength": "Primary",
+      "confidence": "High"
+    },
+    {
+      "searchArea": "River",
+      "strength": "Secondary",
+      "confidence": "Medium"
+    }
+  ],
+  "Petrified Alligator": [
+    {
+      "searchArea": "Ruins",
+      "strength": "Primary",
+      "confidence": "Medium"
+    },
+    {
+      "searchArea": "Wetland",
+      "strength": "Secondary",
+      "confidence": "Medium"
+    }
+  ],
+  "Pok Pok Flakes": [
+    {
+      "searchArea": "Ocean",
+      "strength": "Primary",
+      "confidence": "High"
+    },
+    {
+      "searchArea": "Settlement",
+      "strength": "Secondary",
+      "confidence": "Medium"
+    }
+  ],
+  "Rubble Golem Rubble": [
+    {
+      "searchArea": "Ruins",
+      "strength": "Primary",
+      "confidence": "Medium"
+    },
+    {
+      "searchArea": "Mountain",
+      "strength": "Secondary",
+      "confidence": "Medium"
+    }
+  ],
+  "Shadowroot": [
+    {
+      "searchArea": "Forest",
+      "strength": "Primary",
+      "confidence": "High"
+    },
+    {
+      "searchArea": "Cave",
+      "strength": "Secondary",
+      "confidence": "Medium"
+    },
+    {
+      "searchArea": "Ruins",
+      "strength": "Secondary",
+      "confidence": "Medium"
+    }
+  ],
+  "Scumweed": [
+    {
+      "searchArea": "Coast",
+      "strength": "Primary",
+      "confidence": "High"
+    },
+    {
+      "searchArea": "Wetland",
+      "strength": "Secondary",
+      "confidence": "Medium"
+    }
+  ],
+  "Sleeping Merchant": [
+    {
+      "searchArea": "Lake",
+      "strength": "Primary",
+      "confidence": "High"
+    },
+    {
+      "searchArea": "Wetland",
+      "strength": "Secondary",
+      "confidence": "Medium"
+    }
+  ],
+  "Spark Plug": [
+    {
+      "searchArea": "Ruins",
+      "strength": "Primary",
+      "confidence": "High"
+    },
+    {
+      "searchArea": "Settlement",
+      "strength": "Secondary",
+      "confidence": "Medium"
+    }
+  ],
+  "Spring": [
+    {
+      "searchArea": "Ruins",
+      "strength": "Primary",
+      "confidence": "High"
+    },
+    {
+      "searchArea": "Settlement",
+      "strength": "Secondary",
+      "confidence": "Medium"
+    }
+  ],
+  "Spirit Tea": [
+    {
+      "searchArea": "Spirit Realm",
+      "strength": "Primary",
+      "confidence": "High"
+    },
+    {
+      "searchArea": "Settlement",
+      "strength": "Secondary",
+      "confidence": "Medium"
+    }
+  ],
+  "Sun Shroom": [
+    {
+      "searchArea": "Forest",
+      "strength": "Primary",
+      "confidence": "High"
+    },
+    {
+      "searchArea": "Spirit Realm",
+      "strength": "Secondary",
+      "confidence": "Medium"
+    }
+  ],
+  "Toka Truffle": [
+    {
+      "searchArea": "Forest",
+      "strength": "Primary",
+      "confidence": "High"
+    }
+  ],
+  "Vinyl Record": [
+    {
+      "searchArea": "Ruins",
+      "strength": "Primary",
+      "confidence": "High"
+    },
+    {
+      "searchArea": "Settlement",
+      "strength": "Secondary",
+      "confidence": "Medium"
+    }
+  ],
+  "Wolfenite": [
+    {
+      "searchArea": "Mountain",
+      "strength": "Primary",
+      "confidence": "High"
+    },
+    {
+      "searchArea": "Cave",
+      "strength": "Secondary",
+      "confidence": "Medium"
+    }
+  ],
+  "Wychwood": [
+    {
+      "searchArea": "Forest",
+      "strength": "Primary",
+      "confidence": "High"
+    },
+    {
+      "searchArea": "Spirit Realm",
+      "strength": "Secondary",
+      "confidence": "Medium"
+    }
+  ],
+  "Yellow Slime": [
+    {
+      "searchArea": "Geothermal",
+      "strength": "Primary",
+      "confidence": "Medium"
+    },
+    {
+      "searchArea": "Cave",
+      "strength": "Secondary",
+      "confidence": "Medium"
+    }
+  ],
+  "Canned Cat": [
+    {
+      "searchArea": "Ruins",
+      "strength": "Primary",
+      "confidence": "High"
+    },
+    {
+      "searchArea": "Settlement",
+      "strength": "Secondary",
+      "confidence": "Medium"
+    }
+  ],
+  "Slice of Melon Bird": [
+    {
+      "searchArea": "Settlement",
+      "strength": "Primary",
+      "confidence": "High"
+    },
+    {
+      "searchArea": "Grassland",
+      "strength": "Secondary",
+      "confidence": "Medium"
+    },
+    {
+      "searchArea": "Forest",
+      "strength": "Secondary",
+      "confidence": "Medium"
+    }
+  ],
+  "Dried Pilot Leech": [
+    {
+      "searchArea": "Spirit Realm",
+      "strength": "Primary",
+      "confidence": "Medium"
+    },
+    {
+      "searchArea": "Wetland",
+      "strength": "Secondary",
+      "confidence": "Medium"
+    }
+  ],
+  "Tamh Gon's Confetti": [
+    {
+      "searchArea": "Settlement",
+      "strength": "Primary",
+      "confidence": "High"
+    },
+    {
+      "searchArea": "Spirit Realm",
+      "strength": "Secondary",
+      "confidence": "Medium"
+    }
+  ],
+  "Hair from a Yanari": [
+    {
+      "searchArea": "Settlement",
+      "strength": "Primary",
+      "confidence": "High"
+    },
+    {
+      "searchArea": "Spirit Realm",
+      "strength": "Secondary",
+      "confidence": "Medium"
+    }
+  ]
+}

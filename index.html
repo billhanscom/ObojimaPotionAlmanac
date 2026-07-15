@@ -13,9 +13,15 @@
 <body>
     <a class="skip-link" href="#results">Skip to results</a>
     <div class="container">
-        <header>
-            <h1>Obojima Potion Almanac</h1>
-            <h2>Select Three or More Ingredients to Discover Potion Recipes</h2>
+        <header class="toolkit-header">
+            <h1>Obojima Potion Toolkit</h1>
+            <nav class="toolkit-nav" aria-label="Toolkit navigation">
+                <a class="toolkit-nav-link active" href="index.html">Potion Almanac</a>
+                <a class="toolkit-nav-link" href="ingredient-finder.html">Ingredient Finder</a>
+                <a class="toolkit-nav-link" href="foraging-aid.html">Forager's Aid</a>
+            </nav>
+            <h2>Potion Almanac</h2>
+            <p class="tool-description">Select three or more ingredients to discover potion recipes.</p>
             <div id="inventory-profile" class="inventory-profile" aria-live="polite"></div>
         </header>
 
@@ -24,7 +30,6 @@
             <div class="primary-button-row">
                 <button type="button" onclick="findRecipes()">Find Recipes</button>
                 <button type="button" id="values-toggle-button" class="values-toggle-button" onclick="toggleValuesYear()">Use 2014 Values</button>
-                <a class="nav-button" href="ingredient-finder.html">Ingredient Finder</a>
                 <button type="button" id="high-contrast-toggle" class="contrast-toggle-button" aria-pressed="false" aria-label="Turn on high contrast mode" title="Turn on high contrast">◐ HC</button>
             </div>
             <div class="inventory-button-row">

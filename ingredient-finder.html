@@ -13,9 +13,15 @@
 <body>
     <a class="skip-link" href="#completer-results">Skip to results</a>
     <div class="container">
-        <header>
-            <h1>Obojima Ingredient Finder</h1>
-            <h2>Select Your Inventory, Location, and Desired Potion</h2>
+        <header class="toolkit-header">
+            <h1>Obojima Potion Toolkit</h1>
+            <nav class="toolkit-nav" aria-label="Toolkit navigation">
+                <a class="toolkit-nav-link" href="index.html">Potion Almanac</a>
+                <a class="toolkit-nav-link active" href="ingredient-finder.html">Ingredient Finder</a>
+                <a class="toolkit-nav-link" href="foraging-aid.html">Forager's Aid</a>
+            </nav>
+            <h2>Ingredient Finder</h2>
+            <p class="tool-description">Choose your inventory, location, and desired potion to find useful missing ingredients.</p>
             <div id="inventory-profile" class="inventory-profile" aria-live="polite"></div>
         </header>
 
@@ -23,7 +29,6 @@
             <div class="primary-button-row">
                 <button type="button" onclick="completeRecipe()">Find Missing Ingredients</button>
                 <button type="button" class="values-toggle-button" onclick="toggleCompleterValuesYear()">Use 2014 Values</button>
-                <a class="nav-button" href="index.html">Potion Almanac</a>
                 <button type="button" id="high-contrast-toggle" class="contrast-toggle-button" aria-pressed="false" aria-label="Turn on high contrast mode" title="Turn on high contrast">◐ HC</button>
             </div>
             <div class="inventory-button-row">
