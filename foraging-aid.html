@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Obojima Forager's Aid</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link rel="stylesheet" href="https://use.typekit.net/rke0sfx.css">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Atkinson+Hyperlegible:ital,wght@0,400;0,700;1,400;1,700&display=swap">
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+    <a class="skip-link" href="#foraging-results">Skip to results</a>
+    <div class="container">
+        <header class="toolkit-header">
+            <h1>Obojima Potion Toolkit</h1>
+            <nav class="toolkit-nav" aria-label="Toolkit navigation">
+                <a class="toolkit-nav-link" href="index.html">Potion Almanac</a>
+                <a class="toolkit-nav-link" href="ingredient-finder.html">Ingredient Finder</a>
+                <a class="toolkit-nav-link active" href="foraging-aid.html">Forager's Aid</a>
+            </nav>
+            <h2>Forager's Aid</h2>
+            <p class="tool-description">Generate plausible ingredient finds after a foraging check. Prototype coming next.</p>
+            <div id="inventory-profile" class="inventory-profile" aria-live="polite"></div>
+        </header>
+
+        <div class="button-group top-button-group">
+            <div class="primary-button-row">
+                <button type="button" disabled title="Coming soon">Generate Finds</button>
+                <button type="button" class="values-toggle-button" onclick="toggleForagingValuesYear()">Use 2014 Values</button>
+                <button type="button" id="high-contrast-toggle" class="contrast-toggle-button" aria-pressed="false" aria-label="Turn on high contrast mode" title="Turn on high contrast">◐ HC</button>
+            </div>
+            <div class="inventory-button-row">
+                <button type="button" class="inventory-button" onclick="clearForagingInventory()">Clear Inventory</button>
+                <button type="button" class="inventory-button save-inventory-button" onclick="exportInventory()">Save Inventory</button>
+                <button type="button" class="inventory-button" onclick="importInventory()">Load Inventory</button>
+            </div>
+        </div>
+
+        <section class="coming-soon-card" id="foraging-results" aria-live="polite">
+            <h3>Forager's Aid</h3>
+            <p>This page is reserved for the foraging generator. It already shares the toolkit navigation, inventory profile, high-contrast mode, and inventory save/load behavior.</p>
+        </section>
+
+        <footer class="site-footer">
+            <p>Created by Urameshiya</p>
+            <p><a href="https://discord.gg/ZfdtQeAqV" target="_blank" rel="noopener noreferrer">Report any errors on the Obojima Discord server.</a></p>
+        </footer>
+    </div>
+
+    <script src="js/common.js"></script>
+    <script src="js/accessibility.js"></script>
+    <script>
+        let foragingInventory = Obojima.loadStoredInventory();
+
+        document.addEventListener("DOMContentLoaded", () => {
+            updateForagingValuesToggleButton();
+            Obojima.updateInventoryProfileDisplay();
+            Obojima.updateSaveInventoryButtons(foragingInventory);
+        });
+
+        function toggleForagingValuesYear() {
+            Obojima.toggleValuesYear();
+            updateForagingValuesToggleButton();
+            Obojima.updateSaveInventoryButtons(foragingInventory);
+        }
+
+        function updateForagingValuesToggleButton() {
+            document.querySelectorAll(".values-toggle-button").forEach(toggleButton => {
+                toggleButton.textContent = Obojima.getValuesYear() === "2024"
+                    ? "Use 2014 Values"
+                    : "Use 2024 Values";
+            });
+        }
+
+        async function clearForagingInventory() {
+            const result = await Obojima.showClearInventoryDialog();
+            if (result.action === "cancel") return;
+            if (result.action === "save") {
+                await Obojima.exportInventory(foragingInventory);
+                return;
+            }
+
+            foragingInventory = [];
+            Obojima.saveStoredInventory(foragingInventory);
+            Obojima.clearInventoryProfile();
+            Obojima.updateInventoryProfileDisplay();
+            Obojima.updateSaveInventoryButtons(foragingInventory);
+        }
+
+        async function exportInventory() {
+            await Obojima.exportInventory(foragingInventory);
+        }
+
+        function importInventory() {
+            Obojima.importInventoryFile(imported => {
+                foragingInventory = imported.ingredients;
+                Obojima.saveStoredInventory(foragingInventory);
+                updateForagingValuesToggleButton();
+            });
+        }
+    </script>
+</body>
+</html>
