@@ -112,27 +112,146 @@ function updateSaveInventoryButtons() {
     });
 }
 
-function ensureInventoryProfileBeforeExport() {
+
+function closeInventoryModal(backdrop) {
+    if (backdrop && backdrop.parentNode) {
+        backdrop.parentNode.removeChild(backdrop);
+    }
+}
+
+function showInventoryModal({ title, message, fields = [], actions = [] }) {
+    return new Promise(resolve => {
+        const backdrop = document.createElement("div");
+        backdrop.className = "inventory-modal-backdrop";
+        backdrop.setAttribute("role", "dialog");
+        backdrop.setAttribute("aria-modal", "true");
+
+        const modal = document.createElement("div");
+        modal.className = "inventory-modal";
+
+        const heading = document.createElement("h3");
+        heading.textContent = title;
+        modal.appendChild(heading);
+
+        if (message) {
+            const body = document.createElement("p");
+            body.textContent = message;
+            modal.appendChild(body);
+        }
+
+        const fieldInputs = {};
+        fields.forEach(field => {
+            const label = document.createElement("label");
+            label.setAttribute("for", field.id);
+            label.textContent = field.label;
+
+            const input = document.createElement("input");
+            input.id = field.id;
+            input.type = "text";
+            input.value = field.value || "";
+            input.placeholder = field.placeholder || "";
+
+            fieldInputs[field.name] = input;
+            modal.appendChild(label);
+            modal.appendChild(input);
+        });
+
+        const actionRow = document.createElement("div");
+        actionRow.className = "inventory-modal-actions";
+
+        actions.forEach(action => {
+            const button = document.createElement("button");
+            button.type = "button";
+            button.className = action.className || "modal-secondary";
+            button.textContent = action.label;
+            button.addEventListener("click", () => {
+                const values = {};
+                Object.entries(fieldInputs).forEach(([name, input]) => {
+                    values[name] = input.value.trim();
+                });
+                closeInventoryModal(backdrop);
+                resolve({ action: action.value, values });
+            });
+            actionRow.appendChild(button);
+        });
+
+        modal.appendChild(actionRow);
+        backdrop.appendChild(modal);
+        document.body.appendChild(backdrop);
+
+        const firstInput = modal.querySelector("input");
+        const firstButton = modal.querySelector("button");
+        if (firstInput) firstInput.focus();
+        else if (firstButton) firstButton.focus();
+
+        backdrop.addEventListener("click", event => {
+            if (event.target === backdrop) {
+                closeInventoryModal(backdrop);
+                resolve({ action: "cancel", values: {} });
+            }
+        });
+
+        modal.addEventListener("keydown", event => {
+            if (event.key === "Escape") {
+                closeInventoryModal(backdrop);
+                resolve({ action: "cancel", values: {} });
+            }
+        });
+    });
+}
+
+async function showInventoryProfileDialog() {
     const current = loadInventoryProfile();
-    let playerName = current.playerName;
-    let characterName = current.characterName;
+    const result = await showInventoryModal({
+        title: "Save Inventory",
+        message: "Add names to this inventory file. Both fields are optional.",
+        fields: [
+            {
+                id: "inventory-player-name",
+                name: "playerName",
+                label: "Player name",
+                value: current.playerName,
+                placeholder: "Optional"
+            },
+            {
+                id: "inventory-character-name",
+                name: "characterName",
+                label: "Character name",
+                value: current.characterName,
+                placeholder: "Optional"
+            }
+        ],
+        actions: [
+            { label: "Cancel", value: "cancel", className: "modal-secondary" },
+            { label: "Save Inventory", value: "save", className: "modal-primary" }
+        ]
+    });
 
-    if (!playerName) {
-        const entered = window.prompt("Player name for this inventory:", playerName);
-        if (entered === null) return null;
-        playerName = entered.trim();
-    }
+    if (result.action !== "save") return null;
 
-    if (!characterName) {
-        const entered = window.prompt("Character name for this inventory:", characterName);
-        if (entered === null) return null;
-        characterName = entered.trim();
-    }
-
-    const profile = { playerName, characterName };
+    const profile = {
+        playerName: result.values.playerName || "",
+        characterName: result.values.characterName || ""
+    };
     saveInventoryProfile(profile);
     updateInventoryProfileDisplay();
     return profile;
+}
+
+async function showClearInventoryDialog() {
+    return await showInventoryModal({
+        title: "Clear Inventory?",
+        message: "Clear this inventory, character name, and player name from this browser? Saved JSON files will not be affected.",
+        actions: [
+            { label: "Cancel", value: "cancel", className: "modal-secondary" },
+            { label: "Save Inventory First", value: "save", className: "modal-primary" },
+            { label: "Clear Inventory", value: "clear", className: "modal-danger" }
+        ]
+    });
+}
+
+async function ensureInventoryProfileBeforeExport() {
+    return await showInventoryProfileDialog();
 }
 
 function buildInventoryExportPayload() {
@@ -150,14 +269,27 @@ function buildInventoryExportPayload() {
 
 function getInventoryDownloadName(profile) {
     function cleanPart(value) {
-        return String(value || "").trim().replace(/[\\/:*?"<>|]/g, "").replace(/\s+/g, " ");
+        return String(value || "")
+            .trim()
+            .replace(/[\\/:*?"<>|]/g, "")
+            .replace(/\s+/g, "_");
     }
+
+    const now = new Date();
+    const yyyy = now.getFullYear();
+    const mm = String(now.getMonth()+1).padStart(2,"0");
+    const dd = String(now.getDate()).padStart(2,"0");
+    const hh = String(now.getHours()).padStart(2,"0");
+    const min = String(now.getMinutes()).padStart(2,"0");
+    const stamp = `${yyyy}-${mm}-${dd}_${hh}${min}`;
+
     const player = cleanPart(profile.playerName);
     const character = cleanPart(profile.characterName);
-    if (player && character) return `${player} - ${character}.json`;
-    if (character) return `${character}.json`;
-    if (player) return `${player} - Potion Inventory.json`;
-    return "obojima-inventory.json";
+
+    if (player && character) return `${player}_${character}_${stamp}.json`;
+    if (character) return `${character}_${stamp}.json`;
+    if (player) return `${player}_${stamp}.json`;
+    return `obojima_inventory_${stamp}.json`;
 }
 
 function parseImportedInventory(parsed) {
@@ -170,7 +302,7 @@ function parseImportedInventory(parsed) {
     };
 }
 
-function handleInventoryExport() {
+async function handleInventoryExport() {
     const currentInventory = getActiveInventoryList();
     const currentProfile = loadInventoryProfile();
     if (currentInventory.length === 0 && !currentProfile.playerName && !currentProfile.characterName) {
@@ -178,7 +310,7 @@ function handleInventoryExport() {
         updateSaveInventoryButtons();
         return;
     }
-    const profile = ensureInventoryProfileBeforeExport();
+    const profile = await ensureInventoryProfileBeforeExport();
     if (!profile) return;
     const payload = buildInventoryExportPayload();
     const blob = new Blob([JSON.stringify(payload, null, 2)], { type: "application/json" });
@@ -540,9 +672,13 @@ async function findRecipes() {
     document.getElementById('results').scrollIntoView({ behavior: 'smooth' });
 }
 
-function clearSelection() {
-    const confirmed = window.confirm("Clear this inventory, character name, and player name from this browser? Saved JSON files will not be affected.");
-    if (!confirmed) return;
+async function clearSelection() {
+    const result = await showClearInventoryDialog();
+    if (result.action === "cancel") return;
+    if (result.action === "save") {
+        await handleInventoryExport();
+        return;
+    }
 
     selectedIngredients = [];
     saveStoredInventory();
@@ -554,12 +690,12 @@ function clearSelection() {
         button.classList.remove("selected", "common", "uncommon", "rare");
     });
 
-    document.getElementById("results").innerHTML = '';
+    document.getElementById("results").innerHTML = "";
     window.scrollTo({ top: 0, behavior: "smooth" });
 }
 
-function exportInventory() {
-    handleInventoryExport();
+async function exportInventory() {
+    await handleInventoryExport();
 }
 
 function importInventory() {

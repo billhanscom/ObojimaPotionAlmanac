@@ -973,3 +973,108 @@ body.high-contrast .inventory-profile,
 body.high-contrast .inventory-profile strong {
     color: #111111;
 }
+
+/* Inventory modal dialogs */
+.inventory-modal-backdrop {
+    position: fixed;
+    inset: 0;
+    z-index: 2000;
+    background: rgba(0, 0, 0, 0.45);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 18px;
+}
+
+.inventory-modal {
+    width: min(440px, 100%);
+    background: #fffadb;
+    color: #2d2d2d;
+    border-radius: 8px;
+    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.28);
+    padding: 24px;
+}
+
+.inventory-modal h3 {
+    margin-top: 0;
+    margin-bottom: 14px;
+    border-bottom: none;
+    padding-bottom: 0;
+}
+
+.inventory-modal p {
+    margin: 0 0 16px 0;
+    line-height: 1.45;
+}
+
+.inventory-modal label {
+    display: block;
+    margin: 12px 0 6px 0;
+    color: #577da1;
+    font-size: 14px;
+}
+
+.inventory-modal input {
+    width: 100%;
+    border: 1px solid #b7b7b7;
+    border-radius: 4px;
+    padding: 10px 12px;
+    font-size: 15px;
+    background: #ffffff;
+    color: #2d2d2d;
+}
+
+.inventory-modal-actions {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 8px;
+    margin-top: 18px;
+}
+
+.inventory-modal-actions button {
+    border: none;
+    border-radius: 4px;
+    padding: 9px 14px;
+    font-size: 14px;
+    cursor: pointer;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.15);
+}
+
+.inventory-modal-actions .modal-primary {
+    background: #65ade8;
+    color: #ffffff;
+}
+
+.inventory-modal-actions .modal-secondary {
+    background: #dedede;
+    color: #333333;
+}
+
+.inventory-modal-actions .modal-danger {
+    background: #c95d4f;
+    color: #ffffff;
+}
+
+.inventory-modal-actions .modal-primary:hover {
+    background: #005fa3;
+}
+
+.inventory-modal-actions .modal-secondary:hover {
+    background: #cfcfcf;
+}
+
+.inventory-modal-actions .modal-danger:hover {
+    background: #a94438;
+}
+
+body.high-contrast .inventory-modal {
+    background: #ffffff;
+    color: #000000;
+    box-shadow: inset 0 0 0 3px #000000;
+}
+
+body.high-contrast .inventory-modal h3,
+body.high-contrast .inventory-modal label {
+    color: #000000;
+}
