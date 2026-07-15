@@ -13,7 +13,7 @@ body {
     font-family: var(--body-font);
     margin: 0;
     padding: 0;
-    background-color: #c94545;
+    background-color: #65ade8;
     color: #2d2d2d;
 }
 
@@ -140,7 +140,7 @@ h3 {
 }
 
 .button-group button {
-    background-color: #c94545;
+    background-color: #65ade8;
     color: #ffffff;
     border: none;
     padding: 10px 18px;
@@ -153,7 +153,7 @@ h3 {
 }
 
 .button-group button:hover {
-    background-color: #a52d2d;
+    background-color: #005fa3;
     box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2);
 }
 
@@ -213,7 +213,7 @@ h3 {
 }
 
 .ruleset-button.selected {
-    background-color: #c94545;
+    background-color: #65ade8;
     color: #ffffff;
 }
 
@@ -953,7 +953,7 @@ body.high-contrast .button-group button.inventory-button:hover {
     color: #333333;
 }
 .button-group button.save-inventory-button.backup-dirty {
-    background-color: #c94545;
+    background-color: #65ade8;
     color: #ffffff;
 }
 .button-group button.save-inventory-button.backup-saved {
@@ -964,7 +964,7 @@ body.high-contrast .button-group button.inventory-button:hover {
     background-color: #cfcfcf;
 }
 .button-group button.save-inventory-button.backup-dirty:hover {
-    background-color: #a52d2d;
+    background-color: #005fa3;
 }
 .button-group button.save-inventory-button.backup-saved:hover {
     background-color: #5f9f5b;
@@ -1077,117 +1077,4 @@ body.high-contrast .inventory-modal {
 body.high-contrast .inventory-modal h3,
 body.high-contrast .inventory-modal label {
     color: #000000;
-}
-
-/* Toolkit navigation revamp */
-.toolkit-header {
-    text-align: center;
-}
-
-.toolkit-header h1 {
-    margin-bottom: 12px;
-}
-
-.toolkit-header h2 {
-    margin-top: 14px;
-    margin-bottom: 6px;
-    border-bottom: none;
-    padding-bottom: 0;
-}
-
-.tool-description {
-    color: #577da1;
-    font-size: 16px;
-    line-height: 1.35;
-    margin: 0 auto 18px auto;
-    max-width: 720px;
-}
-
-.toolkit-nav {
-    display: flex;
-    justify-content: center;
-    gap: 8px;
-    flex-wrap: wrap;
-    margin: 8px auto 8px auto;
-}
-
-.toolkit-nav-link {
-    display: inline-block;
-    background-color: #ede1cd;
-    color: #333333;
-    text-decoration: none;
-    border-radius: 999px;
-    padding: 8px 14px;
-    font-size: 14px;
-    box-shadow: 1px 1px 3px rgba(0, 0, 0, 0.16);
-}
-
-.toolkit-nav-link:hover {
-    background-color: #d9c7aa;
-    color: #333333;
-}
-
-.toolkit-nav-link.active {
-    background-color: #f6c65b;
-    color: #2d2d2d;
-}
-
-.top-button-group {
-    margin-top: 10px;
-}
-
-.primary-button-row {
-    margin-bottom: 12px;
-}
-
-.coming-soon-card {
-    background-color: #fff3c7;
-    border-radius: 8px;
-    padding: 18px 20px;
-    margin: 18px 0 24px 0;
-    text-align: center;
-    box-shadow: 1px 1px 4px rgba(0, 0, 0, 0.16);
-}
-
-.coming-soon-card h3 {
-    margin-top: 0;
-}
-
-body.high-contrast .tool-description,
-body.high-contrast .toolkit-nav-link,
-body.high-contrast .toolkit-nav-link.active {
-    color: #000000;
-}
-
-body.high-contrast .toolkit-nav-link {
-    background-color: #ffffff;
-    box-shadow: inset 0 0 0 2px #000000;
-}
-
-body.high-contrast .toolkit-nav-link.active {
-    background-color: #ffff00;
-}
-
-body.high-contrast .coming-soon-card {
-    background-color: #ffffff;
-    box-shadow: inset 0 0 0 2px #000000;
-}
-
-@media (max-width: 800px) {
-    .toolkit-nav {
-        gap: 6px;
-    }
-
-    .toolkit-nav-link {
-        font-size: 13px;
-        padding: 7px 10px;
-    }
-
-    .tool-description {
-        font-size: 15px;
-    }
-
-    .primary-button-row {
-        margin-bottom: 14px;
-    }
 }
