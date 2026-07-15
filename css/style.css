@@ -3314,3 +3314,215 @@ body{
         margin:12px auto 18px !important;
     }
 }
+
+
+/* ==========================================================
+   FINAL HARD FIX: blue frame + ON/OFF high contrast
+   ========================================================== */
+
+/* Blue frame around the cream app panel. */
+html {
+    min-height: 100% !important;
+    background: #65ADE8 !important;
+}
+
+body {
+    min-height: 100vh !important;
+    margin: 0 !important;
+    padding: 60px 0 60px !important;
+    background: #65ADE8 !important;
+}
+
+body:not(.high-contrast) .container {
+    width: 86% !important;
+    max-width: 1100px !important;
+    margin: 0 auto !important;
+    padding: 34px 40px 42px !important;
+    background: #fffadb !important;
+    border: 1px solid rgba(87, 125, 161, 0.35) !important;
+    border-radius: 10px !important;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.10) !important;
+}
+
+/* ON/OFF HC control. */
+.contrast-control {
+    display: flex !important;
+    align-items: baseline !important;
+    gap: 10px !important;
+}
+
+.contrast-icon {
+    display: inline-block !important;
+    color: #2d2d2d !important;
+    border-bottom: 2px solid transparent !important;
+    padding-bottom: 2px !important;
+    line-height: 1.1 !important;
+}
+
+.hc-toggle-link {
+    display: inline-block !important;
+    color: #2d2d2d !important;
+    background: transparent !important;
+    border: 0 !important;
+    border-bottom: 2px solid transparent !important;
+    padding: 0 0 2px 0 !important;
+    margin: 0 !important;
+    box-shadow: none !important;
+    text-decoration: none !important;
+    line-height: 1.1 !important;
+}
+
+.hc-toggle-link.active,
+.hc-toggle-link:hover,
+.hc-toggle-link:focus-visible,
+.contrast-control.has-hover .hc-toggle-link.hover-active {
+    border-bottom-color: #DCA453 !important;
+    text-decoration: none !important;
+}
+
+.contrast-control.has-hover .hc-toggle-link.active:not(.hover-active) {
+    border-bottom-color: transparent !important;
+}
+
+/* Actual high contrast state. This must override all colorful rules. */
+html:has(body.high-contrast) {
+    background: #111111 !important;
+}
+
+body.high-contrast {
+    background: #111111 !important;
+    color: #000000 !important;
+}
+
+body.high-contrast .container {
+    width: 86% !important;
+    max-width: 1100px !important;
+    margin: 0 auto !important;
+    padding: 34px 40px 42px !important;
+    background: #ffffff !important;
+    border: 3px solid #000000 !important;
+    border-radius: 10px !important;
+    box-shadow: none !important;
+}
+
+body.high-contrast h1 {
+    color: #000000 !important;
+}
+
+body.high-contrast .utility-heading,
+body.high-contrast .utility-link,
+body.high-contrast a.utility-link,
+body.high-contrast button.utility-link,
+body.high-contrast .value-choice,
+body.high-contrast .hc-toggle-link,
+body.high-contrast .contrast-icon,
+body.high-contrast .inventory-profile,
+body.high-contrast .inventory-profile em,
+body.high-contrast .toolkit-nav-link,
+body.high-contrast .tool-description,
+body.high-contrast .site-footer,
+body.high-contrast .site-footer a,
+body.high-contrast .completer-intro,
+body.high-contrast .completer-empty,
+body.high-contrast .checkbox-option,
+body.high-contrast .potion-group-count {
+    color: #000000 !important;
+}
+
+body.high-contrast .toolkit-nav-link.active,
+body.high-contrast .toolkit-nav-link:hover,
+body.high-contrast .toolkit-nav-link:focus-visible,
+body.high-contrast .toolkit-nav.has-hover .toolkit-nav-link.hover-active,
+body.high-contrast .value-choice.active,
+body.high-contrast .value-choice:hover,
+body.high-contrast .value-choice:focus-visible,
+body.high-contrast .values-control.has-hover .value-choice.hover-active,
+body.high-contrast .hc-toggle-link.active,
+body.high-contrast .hc-toggle-link:hover,
+body.high-contrast .hc-toggle-link:focus-visible,
+body.high-contrast .contrast-control.has-hover .hc-toggle-link.hover-active {
+    border-bottom-color: #000000 !important;
+}
+
+body.high-contrast .toolkit-nav.has-hover .toolkit-nav-link.active:not(.hover-active),
+body.high-contrast .values-control.has-hover .value-choice.active:not(.hover-active),
+body.high-contrast .contrast-control.has-hover .hc-toggle-link.active:not(.hover-active) {
+    border-bottom-color: transparent !important;
+}
+
+body.high-contrast h3,
+body.high-contrast .completion-card h4,
+body.high-contrast .recipe-card h4,
+body.high-contrast .potion-group-title,
+body.high-contrast .completion-region-footer,
+body.high-contrast .completer-tally,
+body.high-contrast .control-group label {
+    color: #000000 !important;
+    border-color: #000000 !important;
+}
+
+body.high-contrast .primary-action-button,
+body.high-contrast button.primary-action-button {
+    background: #ffffff !important;
+    color: #000000 !important;
+    border: 2px solid #000000 !important;
+}
+
+body.high-contrast .primary-action-button:hover,
+body.high-contrast .primary-action-button:focus-visible {
+    background: #eeeeee !important;
+}
+
+body.high-contrast .ingredient-button,
+body.high-contrast .control-group select,
+body.high-contrast .foraging-controls input,
+body.high-contrast .recipe-card,
+body.high-contrast .completion-card,
+body.high-contrast .potion-group-card,
+body.high-contrast .foraging-debug {
+    background: #ffffff !important;
+    color: #000000 !important;
+    border-color: #000000 !important;
+    box-shadow: inset 0 0 0 2px #000000 !important;
+}
+
+body.high-contrast .ingredient-button.selected.common,
+body.high-contrast .ingredient.common,
+body.high-contrast .recipe-subcard .ingredient.common {
+    background: #2f6f22 !important;
+    color: #ffffff !important;
+}
+
+body.high-contrast .ingredient-button.selected.uncommon,
+body.high-contrast .ingredient.uncommon,
+body.high-contrast .recipe-subcard .ingredient.uncommon {
+    background: #ffe45c !important;
+    color: #000000 !important;
+}
+
+body.high-contrast .ingredient-button.selected.rare,
+body.high-contrast .ingredient.rare,
+body.high-contrast .recipe-subcard .ingredient.rare {
+    background: #a8321f !important;
+    color: #ffffff !important;
+}
+
+@media (max-width: 800px) {
+    body {
+        padding: 24px 0 30px !important;
+    }
+
+    body:not(.high-contrast) .container,
+    body.high-contrast .container {
+        width: 94% !important;
+        padding: 22px 18px 30px !important;
+    }
+}
+
+
+/* Final viewport background fix */
+html,
+body{
+    background:#65ADE8 !important;
+    min-height:100vh !important;
+}

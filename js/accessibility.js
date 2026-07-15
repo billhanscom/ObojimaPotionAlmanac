@@ -3,27 +3,21 @@
 
     function applyHighContrast(isEnabled) {
         document.body.classList.toggle("high-contrast", isEnabled);
-        document.querySelectorAll(".contrast-toggle-button").forEach(button => {
-            button.setAttribute("aria-pressed", String(isEnabled));
-            button.setAttribute("aria-label", isEnabled ? "Turn off high contrast mode" : "Turn on high contrast mode");
-            button.setAttribute("title", isEnabled ? "Turn off high contrast" : "Turn on high contrast");
-            button.textContent = "◐ HC";
-        });
+        document.querySelectorAll(".hc-on").forEach(link => link.classList.toggle("active", isEnabled));
+        document.querySelectorAll(".hc-off").forEach(link => link.classList.toggle("active", !isEnabled));
     }
 
     document.addEventListener("DOMContentLoaded", () => {
         const isEnabled = localStorage.getItem(storageKey) === "true";
         applyHighContrast(isEnabled);
-
-        document.querySelectorAll(".contrast-toggle-button").forEach(button => {
-            button.addEventListener("click", () => {
-                const nextState = !document.body.classList.contains("high-contrast");
-                localStorage.setItem(storageKey, String(nextState));
-                applyHighContrast(nextState);
-            });
-        });
     });
+
+    window.setHighContrastChoice = function (isEnabled) {
+        localStorage.setItem(storageKey, String(isEnabled));
+        applyHighContrast(isEnabled);
+    };
 })();
+
 
 
 document.addEventListener("DOMContentLoaded",()=>{
@@ -69,6 +63,7 @@ function syncBinaryHoverUnderline(groupSelector, optionSelector) {
 
 document.addEventListener("DOMContentLoaded", () => {
     syncBinaryHoverUnderline(".values-control", ".value-choice");
+    syncBinaryHoverUnderline(".contrast-control", ".hc-toggle-link");
     syncBinaryHoverUnderline(".toolkit-nav", ".toolkit-nav-link");
 });
 
