@@ -2691,3 +2691,399 @@ h3 {
         font-size: 15px !important;
     }
 }
+
+
+/* Recipe group summary layout tweak */
+.potion-group-card summary{
+    display:flex;
+    align-items:flex-start;
+    justify-content:space-between;
+    gap:16px;
+}
+
+.potion-group-card summary::before{
+    order:2;
+    width:auto;
+    margin-right:0;
+    margin-left:12px;
+    font-size:20px;
+    line-height:1;
+    flex:0 0 auto;
+}
+
+.potion-group-title{
+    flex:1 1 auto;
+}
+
+.potion-group-count{
+    display:inline-block;
+    margin-top:4px;
+    font-size:14px;
+    color:#555555;
+}
+
+
+/* ==========================================================
+   FINAL COLOR + SPACING FIX
+   This block intentionally comes last.
+   ========================================================== */
+
+/* Bring the colorful site palette back. */
+html body {
+    background-color: #65ade8 !important;
+    color: #2d2d2d !important;
+}
+
+body:not(.high-contrast) .container {
+    background-color: #fffadb !important;
+    border: 1px solid rgba(87, 125, 161, 0.35) !important;
+    border-radius: 8px !important;
+    box-shadow: none !important;
+}
+
+body:not(.high-contrast) h1 {
+    color: #DCA453 !important;
+}
+
+body:not(.high-contrast) .utility-heading,
+body:not(.high-contrast) .utility-link,
+body:not(.high-contrast) a.utility-link,
+body:not(.high-contrast) .value-choice,
+body:not(.high-contrast) .hc-toggle-link,
+body:not(.high-contrast) .hc-state,
+body:not(.high-contrast) .contrast-icon,
+body:not(.high-contrast) .inventory-profile,
+body:not(.high-contrast) .inventory-profile em,
+body:not(.high-contrast) .toolkit-nav-link,
+body:not(.high-contrast) .tool-description {
+    color: #2d2d2d !important;
+}
+
+/* Save/Saved should size naturally. Load may shift when Save becomes Saved. */
+body:not(.high-contrast) .inventory-strip .save-inventory-button,
+body:not(.high-contrast) .inventory-strip a.save-inventory-button,
+body:not(.high-contrast) .inventory-strip button.save-inventory-button {
+    min-width: 0 !important;
+    width: auto !important;
+    display: inline-block !important;
+    text-align: left !important;
+    letter-spacing: normal !important;
+    word-spacing: normal !important;
+}
+
+/* Functional Save colors. */
+body:not(.high-contrast) .save-inventory-button.backup-dirty,
+body:not(.high-contrast) a.save-inventory-button.backup-dirty {
+    color: #c94545 !important;
+}
+
+body:not(.high-contrast) .save-inventory-button.backup-saved,
+body:not(.high-contrast) a.save-inventory-button.backup-saved {
+    color: #5f9f5b !important;
+}
+
+/* Main navigation hover underline should match the active underline. */
+body:not(.high-contrast) .toolkit-nav-link.active,
+body:not(.high-contrast) .toolkit-nav-link:hover,
+body:not(.high-contrast) .toolkit-nav-link:focus-visible {
+    border-bottom-color: #DCA453 !important;
+}
+
+/* Binary option underline color should match the palette too. */
+body:not(.high-contrast) .value-choice.active,
+body:not(.high-contrast) .value-choice:hover,
+body:not(.high-contrast) .value-choice:focus-visible,
+body:not(.high-contrast) .hc-toggle-link.active,
+body:not(.high-contrast) .hc-toggle-link:hover,
+body:not(.high-contrast) .hc-toggle-link:focus-visible,
+body:not(.high-contrast) .values-control.has-hover .value-choice.hover-active,
+body:not(.high-contrast) .contrast-control.has-hover .hc-toggle-link.hover-active {
+    border-bottom-color: #DCA453 !important;
+}
+
+/* Keep hover behavior clean for binary controls. */
+body:not(.high-contrast) .values-control.has-hover .value-choice.active:not(.hover-active),
+body:not(.high-contrast) .contrast-control.has-hover .hc-toggle-link.active:not(.hover-active) {
+    border-bottom-color: transparent !important;
+}
+
+/* Make the description text a bit larger. */
+body:not(.high-contrast) .tool-description {
+    font-size: 16px !important;
+    line-height: 1.4 !important;
+}
+
+/* Reintroduce the warm palette to content areas. */
+body:not(.high-contrast) .primary-action-button,
+body:not(.high-contrast) button.primary-action-button {
+    border-color: #577da1 !important;
+    color: #2d2d2d !important;
+    background-color: #ffffff !important;
+}
+
+body:not(.high-contrast) .primary-action-button:hover,
+body:not(.high-contrast) .primary-action-button:focus-visible {
+    background-color: #ede1cd !important;
+}
+
+body:not(.high-contrast) .ingredient-button {
+    background-color: #ede1cd !important;
+    color: #333333 !important;
+    border: none !important;
+}
+
+body:not(.high-contrast) .ingredient-button.selected.common,
+body:not(.high-contrast) .ingredient.common,
+body:not(.high-contrast) .recipe-subcard .ingredient.common {
+    background-color: #c2e3a7 !important;
+    color: #333333 !important;
+}
+
+body:not(.high-contrast) .ingredient-button.selected.uncommon,
+body:not(.high-contrast) .ingredient.uncommon,
+body:not(.high-contrast) .recipe-subcard .ingredient.uncommon {
+    background-color: #fde663 !important;
+    color: #333333 !important;
+}
+
+body:not(.high-contrast) .ingredient-button.selected.rare,
+body:not(.high-contrast) .ingredient.rare,
+body:not(.high-contrast) .recipe-subcard .ingredient.rare {
+    background-color: #fd8966 !important;
+    color: #ffffff !important;
+}
+
+body:not(.high-contrast) .recipe-card,
+body:not(.high-contrast) .completion-card,
+body:not(.high-contrast) .potion-group-card {
+    background-color: #fff3c7 !important;
+    border-color: rgba(87, 125, 161, 0.28) !important;
+}
+
+body:not(.high-contrast) .potion-group-title,
+body:not(.high-contrast) .recipe-card h4,
+body:not(.high-contrast) .completion-card h4,
+body:not(.high-contrast) h3,
+body:not(.high-contrast) .control-group label,
+body:not(.high-contrast) .completion-region-footer,
+body:not(.high-contrast) .completer-tally {
+    color: #577da1 !important;
+}
+
+body:not(.high-contrast) h3 {
+    border-bottom-color: #577da1 !important;
+}
+
+body:not(.high-contrast) .recipe-summary {
+    color: #DCA453 !important;
+    border-bottom-color: #DCA453 !important;
+}
+
+/* Footer: larger and centered. */
+body:not(.high-contrast) .site-footer {
+    text-align: center !important;
+    font-size: 13px !important;
+    line-height: 1.45 !important;
+    color: #555555 !important;
+}
+
+body:not(.high-contrast) .site-footer p,
+body:not(.high-contrast) .copyright-disclaimer {
+    text-align: center !important;
+    margin-left: auto !important;
+    margin-right: auto !important;
+}
+
+body:not(.high-contrast) .site-footer a {
+    color: #577da1 !important;
+}
+
+@media (max-width: 800px) {
+    body:not(.high-contrast) .tool-description {
+        font-size: 15px !important;
+    }
+}
+
+
+/* ==========================================================
+   FINAL FIX: HC mode, Recipe Generator label support, nav hover shift
+   ========================================================== */
+
+/* Restore a clear HC effect, overriding normal-palette final blocks. */
+body.high-contrast {
+    background-color: #111111 !important;
+    color: #000000 !important;
+}
+
+body.high-contrast .container {
+    background-color: #ffffff !important;
+    border-color: #000000 !important;
+    box-shadow: 0 0 0 3px #000000 !important;
+}
+
+body.high-contrast h1 {
+    color: #8a4b00 !important;
+}
+
+body.high-contrast .utility-heading,
+body.high-contrast .utility-link,
+body.high-contrast a.utility-link,
+body.high-contrast .value-choice,
+body.high-contrast .hc-toggle-link,
+body.high-contrast .hc-state,
+body.high-contrast .contrast-icon,
+body.high-contrast .inventory-profile,
+body.high-contrast .inventory-profile em,
+body.high-contrast .toolkit-nav-link,
+body.high-contrast .tool-description,
+body.high-contrast .completer-intro,
+body.high-contrast .completer-empty,
+body.high-contrast .checkbox-option {
+    color: #000000 !important;
+}
+
+body.high-contrast .toolkit-nav-link.active,
+body.high-contrast .toolkit-nav-link:hover,
+body.high-contrast .toolkit-nav-link:focus-visible,
+body.high-contrast .value-choice.active,
+body.high-contrast .value-choice:hover,
+body.high-contrast .value-choice:focus-visible,
+body.high-contrast .hc-toggle-link.active,
+body.high-contrast .hc-toggle-link:hover,
+body.high-contrast .hc-toggle-link:focus-visible {
+    border-bottom-color: #000000 !important;
+}
+
+body.high-contrast h3,
+body.high-contrast .completion-card h4,
+body.high-contrast .recipe-card h4,
+body.high-contrast .potion-group-title,
+body.high-contrast .completion-region-footer,
+body.high-contrast .completer-tally,
+body.high-contrast .control-group label {
+    color: #003f73 !important;
+    border-color: #003f73 !important;
+}
+
+body.high-contrast .primary-action-button,
+body.high-contrast button.primary-action-button {
+    background-color: #ffffff !important;
+    color: #000000 !important;
+    border-color: #000000 !important;
+}
+
+body.high-contrast .primary-action-button:hover,
+body.high-contrast .primary-action-button:focus-visible {
+    background-color: #eeeeee !important;
+}
+
+body.high-contrast .ingredient-button,
+body.high-contrast .control-group select,
+body.high-contrast .foraging-controls input,
+body.high-contrast .recipe-card,
+body.high-contrast .completion-card,
+body.high-contrast .potion-group-card,
+body.high-contrast .foraging-debug {
+    background-color: #ffffff !important;
+    color: #000000 !important;
+    box-shadow: inset 0 0 0 2px #000000 !important;
+    border-color: #000000 !important;
+}
+
+body.high-contrast .ingredient-button.selected.common,
+body.high-contrast .ingredient.common,
+body.high-contrast .recipe-subcard .ingredient.common {
+    background-color: #2f6f22 !important;
+    color: #ffffff !important;
+}
+
+body.high-contrast .ingredient-button.selected.uncommon,
+body.high-contrast .ingredient.uncommon,
+body.high-contrast .recipe-subcard .ingredient.uncommon {
+    background-color: #ffe45c !important;
+    color: #111111 !important;
+}
+
+body.high-contrast .ingredient-button.selected.rare,
+body.high-contrast .ingredient.rare,
+body.high-contrast .recipe-subcard .ingredient.rare {
+    background-color: #a8321f !important;
+    color: #ffffff !important;
+}
+
+/* Main nav: when hovering a tab, move the underline there rather than showing two. */
+.toolkit-nav.has-hover .toolkit-nav-link.active {
+    border-bottom-color: transparent !important;
+}
+
+.toolkit-nav.has-hover .toolkit-nav-link.hover-active {
+    border-bottom-color: #DCA453 !important;
+}
+
+body.high-contrast .toolkit-nav.has-hover .toolkit-nav-link.hover-active {
+    border-bottom-color: #000000 !important;
+}
+
+/* Recipe dropdown summary: text left, +/- at far right. */
+.potion-group-card summary {
+    display: flex !important;
+    align-items: center !important;
+    justify-content: space-between !important;
+    gap: 16px !important;
+}
+
+.potion-group-card summary::before {
+    order: 2 !important;
+    width: auto !important;
+    margin: 0 0 0 12px !important;
+    font-size: 20px !important;
+    line-height: 1 !important;
+    flex: 0 0 auto !important;
+}
+
+.potion-group-summary-text {
+    flex: 1 1 auto !important;
+    min-width: 0 !important;
+}
+
+.potion-group-count {
+    font-size: 14px !important;
+}
+
+
+/* ==========================================================
+   Active underline hover correction
+   ========================================================== */
+
+/* Default active states stay underlined. */
+.value-choice.active,
+.hc-toggle-link.active,
+.toolkit-nav-link.active {
+    border-bottom-color: #DCA453 !important;
+}
+
+body.high-contrast .value-choice.active,
+body.high-contrast .hc-toggle-link.active,
+body.high-contrast .toolkit-nav-link.active {
+    border-bottom-color: #000000 !important;
+}
+
+/* Suppress the active underline only when a different option is being hovered/focused. */
+.values-control.has-hover .value-choice.active:not(.hover-active),
+.contrast-control.has-hover .hc-toggle-link.active:not(.hover-active),
+.toolkit-nav.has-hover .toolkit-nav-link.active:not(.hover-active) {
+    border-bottom-color: transparent !important;
+}
+
+/* The alternate hovered/focused option gets the underline. */
+.values-control.has-hover .value-choice.hover-active,
+.contrast-control.has-hover .hc-toggle-link.hover-active,
+.toolkit-nav.has-hover .toolkit-nav-link.hover-active {
+    border-bottom-color: #DCA453 !important;
+}
+
+body.high-contrast .values-control.has-hover .value-choice.hover-active,
+body.high-contrast .contrast-control.has-hover .hc-toggle-link.hover-active,
+body.high-contrast .toolkit-nav.has-hover .toolkit-nav-link.hover-active {
+    border-bottom-color: #000000 !important;
+}

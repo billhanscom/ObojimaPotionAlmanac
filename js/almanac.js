@@ -115,27 +115,40 @@ function recipeHeading(recipe, index, siblingRecipes) {
         : `${recipe.attribute_totals} Recipe`;
 }
 
+function randomSampleRecipes(recipes, maxShown = 12) {
+    const copy = recipes.slice();
+    for (let i = copy.length - 1; i > 0; i--) {
+        const j = Math.floor(Math.random() * (i + 1));
+        [copy[i], copy[j]] = [copy[j], copy[i]];
+    }
+    return copy.slice(0, maxShown);
+}
+
 function renderGroupedPotionResults(type, recipes) {
     if (!recipes || recipes.length === 0) return "<p>No recipes found</p>";
 
     return groupRecipesByPotion(recipes).map(group => {
+        const shownRecipes = group.recipes.length > 12 ? randomSampleRecipes(group.recipes, 12) : group.recipes.slice();
         const recipeWord = group.recipes.length === 1 ? "recipe" : "recipes";
-        const recipesHtml = group.recipes.map((recipe, index) => {
+        const countLabel = group.recipes.length > shownRecipes.length
+            ? `${group.recipes.length} ${recipeWord} (${shownRecipes.length} shown)`
+            : `${group.recipes.length} ${recipeWord}`;
+
+        const recipesHtml = shownRecipes.map((recipe, index) => {
             const ingredientsList = recipe.ingredients.map(ing => {
                 const rarityClass = ing.rarity.toLowerCase();
                 return `<li class="ingredient ${rarityClass}">${Obojima.formatIngredientName(ing)}</li>`;
             }).join("");
 
-            return `<div class="recipe-subcard"><h5>${recipeHeading(recipe, index, group.recipes)}</h5><ul>${ingredientsList}</ul></div>`;
+            return `<div class="recipe-subcard"><h5>${recipeHeading(recipe, index, shownRecipes)}</h5><ul>${ingredientsList}</ul></div>`;
         }).join("");
 
         return `<details class="potion-group-card">
-            <summary><span class="potion-group-title">${group.potionType}</span><span class="potion-group-count">${group.recipes.length} ${recipeWord}</span></summary>
+            <summary><span class="potion-group-summary-text"><span class="potion-group-title">${group.potionType}</span><span class="potion-group-count">${countLabel}</span></span></summary>
             <div class="potion-group-recipes">${recipesHtml}</div>
         </details>`;
     }).join("");
 }
-
 
 async function findRecipes() {
     if (selectedIngredients.length < 3) {

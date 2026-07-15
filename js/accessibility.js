@@ -35,25 +35,28 @@ document.addEventListener("DOMContentLoaded",()=>{
 function syncBinaryHoverUnderline(groupSelector, optionSelector) {
     document.querySelectorAll(groupSelector).forEach(group => {
         const options = Array.from(group.querySelectorAll(optionSelector));
-        options.forEach(option => {
-            option.addEventListener("mouseenter", () => {
-                options.forEach(item => item.classList.toggle("hover-active", item === option));
-                group.classList.add("has-hover");
-            });
-            option.addEventListener("focus", () => {
-                options.forEach(item => item.classList.toggle("hover-active", item === option));
-                group.classList.add("has-hover");
-            });
-        });
-        group.addEventListener("mouseleave", () => {
+
+        function setHover(option) {
+            const activeOption = options.find(item => item.classList.contains("active"));
+            const isAlternate = activeOption && option !== activeOption;
+
+            options.forEach(item => item.classList.toggle("hover-active", item === option && isAlternate));
+            group.classList.toggle("has-hover", Boolean(isAlternate));
+        }
+
+        function clearHover() {
             options.forEach(item => item.classList.remove("hover-active"));
             group.classList.remove("has-hover");
+        }
+
+        options.forEach(option => {
+            option.addEventListener("mouseenter", () => setHover(option));
+            option.addEventListener("focus", () => setHover(option));
         });
+
+        group.addEventListener("mouseleave", clearHover);
         group.addEventListener("focusout", event => {
-            if (!group.contains(event.relatedTarget)) {
-                options.forEach(item => item.classList.remove("hover-active"));
-                group.classList.remove("has-hover");
-            }
+            if (!group.contains(event.relatedTarget)) clearHover();
         });
     });
 }
@@ -61,4 +64,9 @@ function syncBinaryHoverUnderline(groupSelector, optionSelector) {
 document.addEventListener("DOMContentLoaded", () => {
     syncBinaryHoverUnderline(".values-control", ".value-choice");
     syncBinaryHoverUnderline(".contrast-control", ".hc-toggle-link");
+});
+
+
+document.addEventListener("DOMContentLoaded", () => {
+    syncBinaryHoverUnderline(".toolkit-nav", ".toolkit-nav-link");
 });
