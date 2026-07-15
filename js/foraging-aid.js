@@ -72,49 +72,124 @@ function populateForagingRegionOptions() {
 function populateSearchAreaOptions() {
     const selectedRegion = document.getElementById("foraging-region").value || Obojima.REGION_LIST[0];
     const areaSelect = document.getElementById("foraging-search-area");
-    const areas = new Set();
-
-    foragingLocations
-        .filter(location => location.Region === selectedRegion)
-        .forEach(location => {
-            if (location["Primary Habitat"]) areas.add(location["Primary Habitat"]);
-            String(location["Secondary Habitats"] || "")
-                .split(",")
-                .map(item => item.trim())
-                .filter(Boolean)
-                .forEach(item => areas.add(item));
-        });
-
-    if (areas.size === 0) {
-        (foragingConfig.searchAreas || []).forEach(area => areas.add(area));
-    }
+    const areas = selectedRegion === "Yatamon"
+        ? (foragingConfig.yatamonSearchAreas || [])
+        : (foragingConfig.searchAreas || []);
 
     areaSelect.innerHTML = "";
 
-    Array.from(areas)
-        .filter(area => (foragingConfig.searchAreas || []).includes(area))
-        .sort((a, b) => a.localeCompare(b))
-        .forEach(area => {
-            const option = document.createElement("option");
-            option.value = area;
-            option.textContent = area;
-            areaSelect.appendChild(option);
-        });
+    areas.slice().sort((a, b) => a.localeCompare(b)).forEach(area => {
+        const option = document.createElement("option");
+        option.value = area;
+        option.textContent = area;
+        areaSelect.appendChild(option);
+    });
 }
 
 function getUnlockedBuckets(dc) {
-    if (dc <= 15) return ["native_common"];
-    if (dc <= 20) return ["native_common", "native_uncommon", "non_native_common"];
+    if (dc <= 15) return ["native_common", "native_uncommon", "non_native_common"];
+    if (dc <= 20) return ["native_common", "native_uncommon", "non_native_common", "non_native_uncommon"];
     return ["native_common", "native_uncommon", "non_native_common", "non_native_uncommon"];
 }
 
+function getDcTier(dc) {
+    if (dc <= 15) return "15";
+    if (dc <= 20) return "20";
+    return "25";
+}
+
 function getDiscoveryBudget(degreeOfSuccess) {
-    const match = (foragingConfig.degreeOfSuccessBudgets || []).find(entry => degreeOfSuccess >= entry.min && degreeOfSuccess <= entry.max);
+    const ladder = foragingConfig.degreeOfSuccessBudgets || [];
+    const match = ladder.find(entry => degreeOfSuccess >= entry.min && degreeOfSuccess <= entry.max);
     return match ? match.budget : 0;
+}
+
+function getFindRange(degreeOfSuccess) {
+    const ladder = foragingConfig.degreeOfSuccessFinds || [];
+    const match = ladder.find(entry => degreeOfSuccess >= entry.min && degreeOfSuccess <= entry.max);
+    if (!match) return { minFinds: 1, maxFinds: 1 };
+    return {
+        minFinds: Number(match.minFinds) || 1,
+        maxFinds: Number(match.maxFinds) || Number(match.minFinds) || 1
+    };
+}
+
+function randomIntInclusive(min, max) {
+    const low = Math.ceil(min);
+    const high = Math.floor(max);
+    if (high <= low) return low;
+    return Math.floor(Math.random() * (high - low + 1)) + low;
+}
+
+function getBucketWeight(bucket, dc) {
+    const tierWeights = (foragingConfig.bucketWeightsByDc || {})[getDcTier(dc)] || {};
+    const weight = Number(tierWeights[bucket]);
+    return Number.isFinite(weight) ? weight : 1;
+}
+
+function getYatamonTradeTier(ingredient) {
+    const regions = ingredient.regions || [];
+    const tiers = foragingConfig.yatamonTradeTiers || {};
+
+    if (regions.some(region => (tiers.local || []).includes(region))) return "local";
+    if (regions.some(region => (tiers.nearby || []).includes(region))) return "nearby";
+    if (regions.some(region => (tiers.distant || []).includes(region))) return "distant";
+    return "unknown";
+}
+
+function getYatamonTradeWeight(ingredient, searchArea) {
+    const tier = getYatamonTradeTier(ingredient);
+    const tradeWeights = foragingConfig.yatamonTradeWeights || {};
+    const areaWeights = (foragingConfig.yatamonAreaWeights || {})[searchArea] || {};
+    const baseTradeWeight = Number(tradeWeights[tier]) || Number(tradeWeights.unknown) || 0.25;
+    const areaTierWeight = Number(areaWeights[tier]);
+    let weight = Number.isFinite(areaTierWeight) ? areaTierWeight : baseTradeWeight;
+
+    const boostRegions = areaWeights.boostRegions || {};
+    (ingredient.regions || []).forEach(region => {
+        if (Number(boostRegions[region])) weight *= Number(boostRegions[region]);
+    });
+
+    return {
+        tier,
+        weight,
+        areaRule: areaWeights
+    };
+}
+
+function getRelatedSearchAreasForYatamon(searchArea) {
+    const areaRule = (foragingConfig.yatamonAreaWeights || {})[searchArea] || {};
+    const boostSearchAreas = areaRule.boostSearchAreas || {};
+    return Object.keys(boostSearchAreas);
+}
+
+function getHabitatAffinity(ingredientName, searchArea, bucket) {
+    const entries = foragingAffinity[ingredientName] || [];
+    const matched = entries.filter(entry => entry.searchArea === searchArea);
+
+    if (matched.length > 0) {
+        const weight = Math.max(...matched.map(entry => {
+            const strength = entry.strength || "Secondary";
+            return (foragingConfig.strengthWeights || {})[strength] || 1;
+        }));
+        return { weight, matchType: matched.some(entry => entry.strength === "Primary") ? "primary habitat" : "secondary habitat" };
+    }
+
+    return {
+        weight: (foragingConfig.fallbackWeights || {})[bucket] || 0,
+        matchType: "no direct habitat match"
+    };
 }
 
 function getBucket(ingredient, selectedRegion) {
     const rarity = Obojima.normalizeRarity(ingredient.rarity);
+
+    if (selectedRegion === "Yatamon") {
+        if (rarity === "common") return "non_native_common";
+        if (rarity === "uncommon") return "non_native_uncommon";
+        return null;
+    }
+
     const native = (ingredient.regions || []).includes(selectedRegion);
 
     if (native && rarity === "common") return "native_common";
@@ -124,18 +199,52 @@ function getBucket(ingredient, selectedRegion) {
     return null;
 }
 
-function getAffinityWeight(ingredientName, searchArea, bucket) {
-    const entries = foragingAffinity[ingredientName] || [];
-    const matched = entries.filter(entry => entry.searchArea === searchArea);
+function getAffinityWeight(ingredient, searchArea, bucket, dc, selectedRegion) {
+    const bucketWeight = getBucketWeight(bucket, dc);
+    if (bucketWeight <= 0) return { weight: 0, debug: ["bucket unavailable at this DC"] };
 
-    if (matched.length > 0) {
-        return Math.max(...matched.map(entry => {
-            const strength = entry.strength || "Secondary";
-            return (foragingConfig.strengthWeights || {})[strength] || 1;
-        }));
+    const ingredientName = ingredient.name;
+    let habitat = getHabitatAffinity(ingredientName, searchArea, bucket);
+    const debug = [];
+
+    debug.push((foragingConfig.debugLabels || {})[bucket] || bucket);
+    debug.push(`bucket weight ${bucketWeight}`);
+
+    if (selectedRegion === "Yatamon") {
+        const trade = getYatamonTradeWeight(ingredient, searchArea);
+        const relatedAreas = getRelatedSearchAreasForYatamon(searchArea);
+        let relatedHabitatBoost = 1;
+
+        relatedAreas.forEach(area => {
+            const related = getHabitatAffinity(ingredientName, area, bucket);
+            const areaRule = (foragingConfig.yatamonAreaWeights || {})[searchArea] || {};
+            const boost = Number((areaRule.boostSearchAreas || {})[area]) || 1;
+            if (related.matchType !== "no direct habitat match") {
+                relatedHabitatBoost = Math.max(relatedHabitatBoost, boost);
+                debug.push(`${related.matchType} via ${area} relevance`);
+            }
+        });
+
+        debug.push(`Yatamon trade tier: ${trade.tier}`);
+        debug.push(`${searchArea} availability weight ${trade.weight}`);
+
+        const habitatWeight = Math.max(habitat.weight, habitat.weight * relatedHabitatBoost);
+        if (habitat.matchType !== "no direct habitat match") debug.push(habitat.matchType);
+        if (relatedHabitatBoost > 1) debug.push(`urban habitat boost x${relatedHabitatBoost}`);
+
+        return {
+            weight: bucketWeight * trade.weight * habitatWeight,
+            debug
+        };
     }
 
-    return (foragingConfig.fallbackWeights || {})[bucket] || 1;
+    debug.push(habitat.matchType);
+    debug.push(`habitat weight ${habitat.weight}`);
+
+    return {
+        weight: bucketWeight * habitat.weight,
+        debug
+    };
 }
 
 function weightedChoice(candidates) {
@@ -151,14 +260,16 @@ function weightedChoice(candidates) {
     return candidates[candidates.length - 1] || null;
 }
 
-function generateSpendPlan(candidates, budget, prioritizeNew) {
+function generateSpendPlan(candidates, budget, prioritizeNew, targetFindCount) {
     const selected = [];
     const used = new Set();
     let remaining = budget;
     const inventorySet = new Set(foragingInventory);
 
-    while (remaining > 0 && selected.length < (foragingConfig.maxResults || 5)) {
-        let affordable = candidates.filter(candidate => !used.has(candidate.name) && candidate.cost <= remaining);
+    while (remaining > 0 && selected.length < targetFindCount) {
+        let affordable = candidates.filter(candidate =>
+            !used.has(candidate.name) && candidate.cost <= remaining
+        );
 
         if (prioritizeNew) {
             const newFinds = affordable.filter(candidate => !inventorySet.has(candidate.name));
@@ -177,6 +288,182 @@ function generateSpendPlan(candidates, budget, prioritizeNew) {
 
     return { selected, remaining };
 }
+
+
+function getSuccessTierLabel(degreeOfSuccess) {
+    if (degreeOfSuccess >= 10) return "Exceptional success";
+    if (degreeOfSuccess >= 5) return "Strong success";
+    if (degreeOfSuccess >= 0) return "Modest success";
+    return "Failure";
+}
+
+function getDcEffectLines(dc, selectedRegion) {
+    if (selectedRegion === "Yatamon") {
+        if (dc <= 15) {
+            return [
+                "Common ingredients were favored.",
+                "Local and nearby trade sources were favored."
+            ];
+        }
+        if (dc <= 20) {
+            return [
+                "Common and Uncommon ingredients were eligible.",
+                "Nearby trade sources were more competitive."
+            ];
+        }
+        return [
+            "Common and Uncommon ingredients were eligible.",
+            "Distant trade sources were more competitive."
+        ];
+    }
+
+    if (dc <= 15) {
+        return [
+            "Common ingredients were favored.",
+            "Native ingredients were favored."
+        ];
+    }
+    if (dc <= 20) {
+        return [
+            "Common and Uncommon ingredients were eligible.",
+            "Nearby-region ingredients were more competitive."
+        ];
+    }
+    return [
+        "Common and Uncommon ingredients were eligible.",
+        "Nearby and far-region ingredients were more competitive."
+    ];
+}
+
+function getDosEffectLines(degreeOfSuccess, generatedCount) {
+    const tier = getSuccessTierLabel(degreeOfSuccess);
+    if (degreeOfSuccess >= 10) {
+        return [
+            `${tier}: generated ${generatedCount} ingredients.`,
+            "Less common results had a better chance to appear."
+        ];
+    }
+    if (degreeOfSuccess >= 5) {
+        return [
+            `${tier}: generated ${generatedCount} ingredients.`,
+            "Less common results had a moderate chance to appear."
+        ];
+    }
+    return [
+        `${tier}: generated ${generatedCount} ingredient${generatedCount === 1 ? "" : "s"}.`,
+        "Common and expected results were favored."
+    ];
+}
+
+function getRegionStoryLabel(ingredient, selectedRegion) {
+    if (selectedRegion === "Yatamon") {
+        const tier = getYatamonTradeTier(ingredient);
+        if (tier === "local") return "Local trade source";
+        if (tier === "nearby") return "Nearby trade source";
+        if (tier === "distant") return "Distant trade source";
+        return "Unclear trade source";
+    }
+
+    const regions = ingredient.regions || [];
+    if (regions.includes(selectedRegion)) return "Native to this region";
+
+    const adjacent = Obojima.REGION_ADJACENCIES[selectedRegion] || [];
+    if (regions.some(region => adjacent.includes(region))) return "Native to a nearby region";
+
+    return "Native to a farther region";
+}
+
+function getIngredientHabitats(ingredientName) {
+    const entries = foragingAffinity[ingredientName] || [];
+    const habitats = entries
+        .map(entry => entry.searchArea)
+        .filter(Boolean);
+    return Array.from(new Set(habitats)).sort((a, b) => a.localeCompare(b));
+}
+
+function getHabitatStoryLabel(ingredientName, searchArea, selectedRegion) {
+    if (selectedRegion === "Yatamon") {
+        const relatedAreas = getRelatedSearchAreasForYatamon(searchArea);
+        const habitats = getIngredientHabitats(ingredientName);
+
+        if (habitats.includes(searchArea)) return `Associated with ${searchArea}`;
+        const relatedMatch = relatedAreas.find(area => habitats.includes(area));
+        if (relatedMatch) return `Associated with ${relatedMatch}, which matters in ${searchArea}`;
+        if (habitats.length > 0) return `Usually associated with ${habitats.join(", ")}`;
+        return "No listed search-area association";
+    }
+
+    const habitats = getIngredientHabitats(ingredientName);
+    if (habitats.includes(searchArea)) return `Associated with ${searchArea}`;
+    if (habitats.length > 0) return `Usually associated with ${habitats.join(", ")}`;
+    return "No listed search-area association";
+}
+
+function getRarityStoryLabel(ingredient) {
+    const rarity = Obojima.normalizeRarity(ingredient.rarity);
+    if (rarity === "common") return "Common ingredient";
+    if (rarity === "uncommon") return "Uncommon ingredient";
+    return `${rarity} ingredient`;
+}
+
+function renderPlainDebug({
+    selectedRegion,
+    searchArea,
+    dc,
+    rollTotal,
+    degreeOfSuccess,
+    selected,
+    targetFindCount
+}) {
+    const dcLines = getDcEffectLines(dc, selectedRegion).map(line => `<li>${line}</li>`).join("");
+    const dosLines = getDosEffectLines(degreeOfSuccess, selected.length).map(line => `<li>${line}</li>`).join("");
+
+    const ingredientCards = selected.map(item => {
+        const regionLine = getRegionStoryLabel(item.ingredient, selectedRegion);
+        const habitatLine = getHabitatStoryLabel(item.name, searchArea, selectedRegion);
+        const rarityLine = getRarityStoryLabel(item.ingredient);
+
+        return `<div class="foraging-debug-item">
+            <h5>${item.name}</h5>
+            <ul>
+                <li>${regionLine}</li>
+                <li>${habitatLine}</li>
+                <li>${rarityLine}</li>
+            </ul>
+        </div>`;
+    }).join("");
+
+    return `<details class="foraging-debug" open>
+        <summary>Generation Details</summary>
+
+        <div class="foraging-debug-section">
+            <h4>Result</h4>
+            <ul>
+                <li>Region: ${selectedRegion}</li>
+                <li>Search Area: ${searchArea}</li>
+                <li>DC: ${dc}</li>
+                <li>Roll: ${rollTotal}</li>
+                <li>Degree of Success: +${degreeOfSuccess}</li>
+            </ul>
+        </div>
+
+        <div class="foraging-debug-section">
+            <h4>How DC affected this result</h4>
+            <ul>${dcLines}</ul>
+        </div>
+
+        <div class="foraging-debug-section">
+            <h4>How Degree of Success affected this result</h4>
+            <ul>${dosLines}</ul>
+        </div>
+
+        <div class="foraging-debug-section">
+            <h4>Why these ingredients appeared</h4>
+            ${ingredientCards}
+        </div>
+    </details>`;
+}
+
 
 async function generateForagingFinds() {
     const selectedRegion = document.getElementById("foraging-region").value;
@@ -204,6 +491,11 @@ async function generateForagingFinds() {
     const ingredients = await Obojima.loadIngredientData(Obojima.getValuesYear());
     const unlockedBuckets = getUnlockedBuckets(dc);
     const budget = getDiscoveryBudget(degreeOfSuccess);
+    const findRange = getFindRange(degreeOfSuccess);
+    const targetFindCount = Math.min(
+        foragingConfig.maxResults || 5,
+        randomIntInclusive(findRange.minFinds, findRange.maxFinds)
+    );
     const excludedRarity = new Set(foragingConfig.excludeRarity || []);
     const costs = foragingConfig.discoveryCosts || {};
 
@@ -215,13 +507,13 @@ async function generateForagingFinds() {
         if (!bucket || !unlockedBuckets.includes(bucket)) return null;
 
         const cost = costs[bucket] || 1;
-        const weight = getAffinityWeight(ingredient.name, searchArea, bucket);
-        if (weight <= 0) return null;
+        const weightInfo = getAffinityWeight(ingredient, searchArea, bucket, dc, selectedRegion);
+        if (weightInfo.weight <= 0) return null;
 
-        return { name: ingredient.name, ingredient, rarity, bucket, cost, weight };
+        return { name: ingredient.name, ingredient, rarity, bucket, cost, weight: weightInfo.weight, debug: weightInfo.debug || [] };
     }).filter(Boolean);
 
-    const { selected, remaining } = generateSpendPlan(candidates, budget, prioritizeNew);
+    const { selected, remaining } = generateSpendPlan(candidates, budget, prioritizeNew, targetFindCount);
 
     if (selected.length === 0) {
         resultsDiv.innerHTML = `<div class="completion-card foraging-result-card"><h3>After an hour of foraging...</h3><p>The party does not return with any potion ingredients.</p></div>`;
@@ -236,26 +528,15 @@ async function generateForagingFinds() {
 
     let debug = "";
     if (showDebug) {
-        const bucketLabels = {
-            native_common: "Native Common",
-            native_uncommon: "Native Uncommon",
-            non_native_common: "Common Non-native",
-            non_native_uncommon: "Uncommon Non-native"
-        };
-
-        const bucketCounts = candidates.reduce((acc, candidate) => {
-            acc[candidate.bucket] = (acc[candidate.bucket] || 0) + 1;
-            return acc;
-        }, {});
-
-        debug = `<details class="foraging-debug" open>
-            <summary>Generation Details</summary>
-            <p><strong>Degree of Success:</strong> +${degreeOfSuccess}</p>
-            <p><strong>Discovery Budget:</strong> ${budget}</p>
-            <p><strong>Remaining Budget:</strong> ${remaining}</p>
-            <p><strong>Unlocked Buckets:</strong> ${unlockedBuckets.map(bucket => bucketLabels[bucket]).join(", ")}</p>
-            <p><strong>Candidate Counts:</strong> ${Object.entries(bucketCounts).map(([bucket, count]) => `${bucketLabels[bucket]}: ${count}`).join(" • ")}</p>
-        </details>`;
+        debug = renderPlainDebug({
+            selectedRegion,
+            searchArea,
+            dc,
+            rollTotal,
+            degreeOfSuccess,
+            selected,
+            targetFindCount
+        });
     }
 
     resultsDiv.innerHTML = `<div class="completion-card foraging-result-card">

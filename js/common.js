@@ -14,13 +14,14 @@ const DATASET_FILES = {
 };
 
 const REGION_LIST = [
+    "Brackwater Wetlands",
+    "Coastal Highlands",
+    "Gale Fields",
     "Gift of Shuritashi",
     "Land of Hot Water",
     "Mount Arbora",
-    "Gale Fields",
-    "Coastal Highlands",
-    "Brackwater Wetlands",
-    "The Shallows"
+    "The Shallows",
+    "Yatamon"
 ];
 
 const REGION_ADJACENCIES = {

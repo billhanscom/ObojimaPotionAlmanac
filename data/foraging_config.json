@@ -1,29 +1,27 @@
 {
   "searchAreas": [
-    "Forest",
-    "Grassland",
-    "Wetland",
-    "River",
-    "Lake",
-    "Coast",
-    "Ocean",
-    "Mountain",
     "Cave",
+    "Coast",
+    "Forest",
     "Geothermal",
-    "Settlement",
+    "Grassland",
+    "Lake",
+    "Mountain",
+    "River",
     "Ruins",
-    "Spirit Realm"
+    "Village",
+    "Wetland"
   ],
   "degreeOfSuccessBudgets": [
     {
       "min": 0,
       "max": 4,
-      "budget": 3
+      "budget": 2
     },
     {
       "min": 5,
       "max": 9,
-      "budget": 5
+      "budget": 4
     },
     {
       "min": 10,
@@ -38,17 +36,142 @@
     "non_native_uncommon": 5
   },
   "strengthWeights": {
-    "Primary": 5,
-    "Secondary": 3
+    "Primary": 8,
+    "Secondary": 4
   },
   "fallbackWeights": {
-    "native_common": 2,
-    "native_uncommon": 1,
-    "non_native_common": 1,
-    "non_native_uncommon": 1
+    "native_common": 1,
+    "native_uncommon": 0.35,
+    "non_native_common": 0.25,
+    "non_native_uncommon": 0.1
   },
   "excludeRarity": [
     "rare"
   ],
-  "maxResults": 5
+  "maxResults": 5,
+  "degreeOfSuccessFinds": [
+    {
+      "min": 0,
+      "max": 4,
+      "minFinds": 1,
+      "maxFinds": 2
+    },
+    {
+      "min": 5,
+      "max": 9,
+      "minFinds": 2,
+      "maxFinds": 3
+    },
+    {
+      "min": 10,
+      "max": 999,
+      "minFinds": 3,
+      "maxFinds": 5
+    }
+  ],
+  "bucketWeightsByDc": {
+    "15": {
+      "native_common": 10,
+      "native_uncommon": 1,
+      "non_native_common": 1,
+      "non_native_uncommon": 0
+    },
+    "20": {
+      "native_common": 8,
+      "native_uncommon": 4,
+      "non_native_common": 2,
+      "non_native_uncommon": 1
+    },
+    "25": {
+      "native_common": 6,
+      "native_uncommon": 5,
+      "non_native_common": 2,
+      "non_native_uncommon": 2
+    }
+  },
+  "yatamonSearchAreas": [
+    "City Streets",
+    "Market",
+    "Ruins",
+    "Shrine",
+    "Subway",
+    "Waterfront"
+  ],
+  "yatamonTradeTiers": {
+    "local": [
+      "Gift of Shuritashi"
+    ],
+    "nearby": [
+      "Brackwater Wetlands",
+      "Coastal Highlands",
+      "Gale Fields",
+      "The Shallows"
+    ],
+    "distant": [
+      "Land of Hot Water",
+      "Mount Arbora"
+    ]
+  },
+  "yatamonTradeWeights": {
+    "local": 1.0,
+    "nearby": 0.75,
+    "distant": 0.45,
+    "unknown": 0.25
+  },
+  "yatamonAreaWeights": {
+    "City Streets": {
+      "local": 1.0,
+      "nearby": 0.35,
+      "distant": 0.15
+    },
+    "Market": {
+      "local": 0.9,
+      "nearby": 0.85,
+      "distant": 0.65
+    },
+    "Waterfront": {
+      "local": 0.85,
+      "nearby": 0.8,
+      "distant": 0.35,
+      "boostRegions": {
+        "The Shallows": 1.35,
+        "Coastal Highlands": 1.15,
+        "Brackwater Wetlands": 1.1
+      }
+    },
+    "Subway": {
+      "local": 0.7,
+      "nearby": 0.25,
+      "distant": 0.1,
+      "boostSearchAreas": {
+        "Cave": 1.6,
+        "Wetland": 1.2
+      }
+    },
+    "Ruins": {
+      "local": 0.75,
+      "nearby": 0.35,
+      "distant": 0.2,
+      "boostSearchAreas": {
+        "Ruins": 1.8,
+        "Cave": 1.15
+      }
+    },
+    "Shrine": {
+      "local": 0.8,
+      "nearby": 0.35,
+      "distant": 0.2,
+      "boostSearchAreas": {
+        "Forest": 1.15,
+        "Village": 1.25,
+        "Ruins": 1.1
+      }
+    }
+  },
+  "debugLabels": {
+    "native_common": "native common",
+    "native_uncommon": "native uncommon",
+    "non_native_common": "non-native common",
+    "non_native_uncommon": "non-native uncommon"
+  }
 }
