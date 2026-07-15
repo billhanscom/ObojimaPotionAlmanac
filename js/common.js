@@ -5,6 +5,7 @@ const OBOJIMA_PLAYER_NAME_KEY = "obojimaPlayerName";
 const OBOJIMA_CHARACTER_NAME_KEY = "obojimaCharacterName";
 const OBOJIMA_LAST_EXPORT_HASH_KEY = "obojimaLastExportHash";
 const OBOJIMA_VALUES_YEAR_KEY = "obojimaValuesYear";
+const OBOJIMA_INVENTORY_QUANTITIES_KEY = "obojimaInventoryQuantities";
 
 const DATASET_FILES = {
     "2014": "data/ingredients_2014.json",
@@ -175,7 +176,7 @@ const Obojima = (() => {
     function loadStoredInventory() {
         try {
             const stored = JSON.parse(localStorage.getItem(OBOJIMA_INVENTORY_STORAGE_KEY) || "[]");
-            return Array.isArray(stored) ? stored : [];
+            return normalizeInventoryList(stored);
         } catch (error) {
             console.warn("Unable to load stored inventory.", error);
             return [];
@@ -183,12 +184,87 @@ const Obojima = (() => {
     }
 
     function saveStoredInventory(items) {
-        localStorage.setItem(OBOJIMA_INVENTORY_STORAGE_KEY, JSON.stringify(normalizeInventoryList(items)));
+        const normalized = normalizeInventoryList(items);
+        localStorage.setItem(OBOJIMA_INVENTORY_STORAGE_KEY, JSON.stringify(normalized));
+        reconcileInventoryQuantities(normalized);
     }
 
     function normalizeInventoryList(items) {
         if (!Array.isArray(items)) return [];
-        return Array.from(new Set(items.filter(item => typeof item === "string" && item.trim()).map(item => item.trim())));
+        return Array.from(new Set(
+            items
+                .map(item => typeof item === "string" ? item : (item && item.name))
+                .filter(item => typeof item === "string" && item.trim())
+                .map(item => item.trim())
+        ));
+    }
+
+    function loadInventoryQuantities() {
+        try {
+            const stored = JSON.parse(localStorage.getItem(OBOJIMA_INVENTORY_QUANTITIES_KEY) || "{}");
+            return stored && typeof stored === "object" && !Array.isArray(stored) ? stored : {};
+        } catch (error) {
+            console.warn("Unable to load inventory quantities.", error);
+            return {};
+        }
+    }
+
+    function saveInventoryQuantities(quantities) {
+        localStorage.setItem(OBOJIMA_INVENTORY_QUANTITIES_KEY, JSON.stringify(quantities || {}));
+    }
+
+    function reconcileInventoryQuantities(items) {
+        const inventory = normalizeInventoryList(items);
+        const inventorySet = new Set(inventory);
+        const quantities = loadInventoryQuantities();
+        const nextQuantities = {};
+
+        inventory.forEach(name => {
+            const value = Number(quantities[name]);
+            nextQuantities[name] = Number.isFinite(value) && value > 0 ? Math.floor(value) : 1;
+        });
+
+        Object.keys(quantities).forEach(name => {
+            if (!inventorySet.has(name)) return;
+            const value = Number(quantities[name]);
+            nextQuantities[name] = Number.isFinite(value) && value > 0 ? Math.floor(value) : 1;
+        });
+
+        saveInventoryQuantities(nextQuantities);
+        return nextQuantities;
+    }
+
+    function getInventoryQuantity(name) {
+        const quantities = loadInventoryQuantities();
+        const value = Number(quantities[name]);
+        return Number.isFinite(value) && value > 0 ? Math.floor(value) : 1;
+    }
+
+    function setInventoryQuantity(name, quantity, getInventory, setInventory, onChange) {
+        const inventory = normalizeInventoryList(typeof getInventory === "function" ? getInventory() : loadStoredInventory());
+        const quantities = reconcileInventoryQuantities(inventory);
+        const nextQuantity = Math.max(0, Math.floor(Number(quantity) || 0));
+
+        if (nextQuantity <= 0) {
+            const nextInventory = inventory.filter(item => item !== name);
+            delete quantities[name];
+            saveInventoryQuantities(quantities);
+            if (typeof setInventory === "function") setInventory(nextInventory);
+            applyInventoryToButtons(nextInventory);
+        } else {
+            if (!inventory.includes(name) && typeof setInventory === "function") {
+                setInventory(inventory.concat([name]));
+            }
+            quantities[name] = nextQuantity;
+            saveInventoryQuantities(quantities);
+        }
+
+        if (typeof onChange === "function") onChange();
+    }
+
+    function incrementInventoryQuantity(name, delta, getInventory, setInventory, onChange) {
+        const current = getInventoryQuantity(name);
+        setInventoryQuantity(name, current + delta, getInventory, setInventory, onChange);
     }
 
     function applyInventoryToButtons(items) {
@@ -210,14 +286,160 @@ const Obojima = (() => {
             button.addEventListener("click", () => {
                 const ingredient = button.getAttribute("data-ingredient");
                 const current = normalizeInventoryList(getInventory());
+                const quantities = reconcileInventoryQuantities(current);
                 const next = current.includes(ingredient)
                     ? current.filter(item => item !== ingredient)
                     : current.concat([ingredient]);
+
+                if (current.includes(ingredient)) {
+                    delete quantities[ingredient];
+                    saveInventoryQuantities(quantities);
+                } else if (!quantities[ingredient]) {
+                    quantities[ingredient] = 1;
+                    saveInventoryQuantities(quantities);
+                }
 
                 setInventory(normalizeInventoryList(next));
                 applyInventoryToButtons(next);
                 if (typeof onChange === "function") onChange();
             });
+        });
+    }
+
+    async function showInventoryView(getInventory, setInventory, onChange) {
+        const inventory = normalizeInventoryList(typeof getInventory === "function" ? getInventory() : loadStoredInventory());
+        reconcileInventoryQuantities(inventory);
+
+        const result = await showInventoryModal({
+            title: "Current Inventory",
+            message: inventory.length ? "" : "No ingredients are currently in this inventory.",
+            actions: [
+                { label: "Done", value: "done", className: "modal-primary" }
+            ]
+        });
+
+        // showInventoryModal is used for its dialog shell elsewhere. This custom view
+        // replaces the standard dialog contents after creation, so this fallback is
+        // intentionally unused.
+        return result;
+    }
+
+    async function openInventoryView(getInventory, setInventory, onChange) {
+        const inventory = normalizeInventoryList(typeof getInventory === "function" ? getInventory() : loadStoredInventory());
+        reconcileInventoryQuantities(inventory);
+
+        const backdrop = document.createElement("div");
+        backdrop.className = "inventory-modal-backdrop";
+        backdrop.setAttribute("role", "dialog");
+        backdrop.setAttribute("aria-modal", "true");
+
+        const modal = document.createElement("div");
+        modal.className = "inventory-modal inventory-view-modal";
+
+        const heading = document.createElement("h3");
+        heading.textContent = "Current Inventory";
+        modal.appendChild(heading);
+
+        const profile = loadInventoryProfile();
+        const subtitle = document.createElement("p");
+        subtitle.className = "inventory-view-subtitle";
+        if (profile.characterName || profile.playerName) {
+            subtitle.textContent = `${profile.characterName || "Unnamed Character"}${profile.playerName ? ` (Player: ${profile.playerName})` : ""}`;
+        } else {
+            subtitle.textContent = "No inventory loaded";
+        }
+        modal.appendChild(subtitle);
+
+        const list = document.createElement("div");
+        list.className = "inventory-view-list";
+
+        if (inventory.length === 0) {
+            const empty = document.createElement("p");
+            empty.className = "inventory-view-empty";
+            empty.textContent = "No ingredients are currently in this inventory.";
+            list.appendChild(empty);
+        } else {
+            inventory.slice().sort((a, b) => a.localeCompare(b)).forEach(name => {
+                const row = document.createElement("div");
+                row.className = "inventory-view-row";
+
+                const itemName = document.createElement("span");
+                itemName.className = "inventory-view-name";
+                itemName.textContent = name;
+
+                const controls = document.createElement("div");
+                controls.className = "inventory-quantity-controls";
+
+                const minus = document.createElement("button");
+                minus.type = "button";
+                minus.className = "inventory-quantity-button";
+                minus.textContent = "-";
+                minus.setAttribute("aria-label", `Decrease ${name}`);
+
+                const count = document.createElement("span");
+                count.className = "inventory-quantity-count";
+                count.textContent = String(getInventoryQuantity(name));
+
+                const plus = document.createElement("button");
+                plus.type = "button";
+                plus.className = "inventory-quantity-button";
+                plus.textContent = "+";
+                plus.setAttribute("aria-label", `Increase ${name}`);
+
+                minus.addEventListener("click", () => {
+                    incrementInventoryQuantity(name, -1, getInventory, setInventory, onChange);
+                    const updatedInventory = normalizeInventoryList(typeof getInventory === "function" ? getInventory() : loadStoredInventory());
+                    if (!updatedInventory.includes(name)) {
+                        row.remove();
+                        if (updatedInventory.length === 0 && !list.querySelector(".inventory-view-empty")) {
+                            const empty = document.createElement("p");
+                            empty.className = "inventory-view-empty";
+                            empty.textContent = "No ingredients are currently in this inventory.";
+                            list.appendChild(empty);
+                        }
+                    } else {
+                        count.textContent = String(getInventoryQuantity(name));
+                    }
+                    updateSaveInventoryButtons(updatedInventory);
+                });
+
+                plus.addEventListener("click", () => {
+                    incrementInventoryQuantity(name, 1, getInventory, setInventory, onChange);
+                    count.textContent = String(getInventoryQuantity(name));
+                    updateSaveInventoryButtons(typeof getInventory === "function" ? getInventory() : loadStoredInventory());
+                });
+
+                controls.appendChild(minus);
+                controls.appendChild(count);
+                controls.appendChild(plus);
+                row.appendChild(itemName);
+                row.appendChild(controls);
+                list.appendChild(row);
+            });
+        }
+
+        const actionRow = document.createElement("div");
+        actionRow.className = "inventory-modal-actions";
+        const done = document.createElement("button");
+        done.type = "button";
+        done.className = "modal-primary";
+        done.textContent = "Done";
+        done.addEventListener("click", () => closeInventoryModal(backdrop));
+        actionRow.appendChild(done);
+
+        modal.appendChild(list);
+        modal.appendChild(actionRow);
+        backdrop.appendChild(modal);
+        document.body.appendChild(backdrop);
+
+        done.focus();
+
+        backdrop.addEventListener("click", event => {
+            if (event.target === backdrop) closeInventoryModal(backdrop);
+        });
+
+        modal.addEventListener("keydown", event => {
+            if (event.key === "Escape") closeInventoryModal(backdrop);
         });
     }
 
@@ -237,6 +459,7 @@ const Obojima = (() => {
         localStorage.removeItem(OBOJIMA_PLAYER_NAME_KEY);
         localStorage.removeItem(OBOJIMA_CHARACTER_NAME_KEY);
         localStorage.removeItem(OBOJIMA_LAST_EXPORT_HASH_KEY);
+        localStorage.removeItem(OBOJIMA_INVENTORY_QUANTITIES_KEY);
     }
 
     function getCanonicalInventoryState(items) {
@@ -246,7 +469,8 @@ const Obojima = (() => {
             playerName: profile.playerName || "",
             characterName: profile.characterName || "",
             dataset: getValuesYear(),
-            ingredients: normalizeInventoryList(items).slice().sort((a, b) => a.localeCompare(b))
+            ingredients: normalizeInventoryList(items).slice().sort((a, b) => a.localeCompare(b)),
+            quantities: reconcileInventoryQuantities(items)
         };
     }
 
@@ -439,7 +663,8 @@ const Obojima = (() => {
             characterName: profile.characterName || "",
             dataset: getValuesYear(),
             exportedAt: new Date().toISOString(),
-            ingredients: normalizeInventoryList(items)
+            ingredients: normalizeInventoryList(items),
+            quantities: reconcileInventoryQuantities(items)
         };
     }
 
@@ -496,11 +721,15 @@ const Obojima = (() => {
 
     function parseImportedInventory(parsed) {
         const ingredients = Array.isArray(parsed) ? parsed : (parsed.ingredients || []);
+        const quantities = parsed && !Array.isArray(parsed) && parsed.quantities && typeof parsed.quantities === "object"
+            ? parsed.quantities
+            : {};
         return {
             playerName: parsed && !Array.isArray(parsed) ? (parsed.playerName || "") : "",
             characterName: parsed && !Array.isArray(parsed) ? (parsed.characterName || "") : "",
             dataset: parsed && !Array.isArray(parsed) ? parsed.dataset : null,
-            ingredients: normalizeInventoryList(ingredients)
+            ingredients: normalizeInventoryList(ingredients),
+            quantities
         };
     }
 
@@ -543,6 +772,8 @@ const Obojima = (() => {
                     const parsed = JSON.parse(reader.result);
                     const imported = parseImportedInventory(parsed);
                     if (imported.dataset === "2014" || imported.dataset === "2024") setValuesYear(imported.dataset);
+                    saveInventoryQuantities(imported.quantities || {});
+                    reconcileInventoryQuantities(imported.ingredients);
                     saveInventoryProfile({
                         playerName: imported.playerName || "",
                         characterName: imported.characterName || ""
@@ -588,6 +819,12 @@ const Obojima = (() => {
         clearInventoryProfile,
         showClearInventoryDialog,
         exportInventory,
-        importInventoryFile
+        importInventoryFile,
+        loadInventoryQuantities,
+        saveInventoryQuantities,
+        getInventoryQuantity,
+        setInventoryQuantity,
+        incrementInventoryQuantity,
+        openInventoryView
     };
 })();

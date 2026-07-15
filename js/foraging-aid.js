@@ -48,10 +48,10 @@ function setValuesYearChoice(year) {
 
 function updateForagingValuesToggleButton() {
     const currentYear = Obojima.getValuesYear();
-    document.querySelectorAll(".value-choice").forEach(button => {
-        const isActive = button.dataset.year === currentYear;
-        button.classList.toggle("active", isActive);
-        button.setAttribute("aria-pressed", String(isActive));
+    document.querySelectorAll(".value-choice").forEach(choice => {
+        const isActive = choice.dataset.year === currentYear;
+        choice.classList.toggle("active", isActive);
+        choice.setAttribute("aria-current", isActive ? "true" : "false");
     });
 }
 
@@ -309,4 +309,21 @@ function importInventory() {
         Obojima.saveStoredInventory(foragingInventory);
         updateForagingValuesToggleButton();
     });
+}
+
+
+function viewInventory() {
+    Obojima.openInventoryView(
+        () => foragingInventory,
+        items => {
+            foragingInventory = Obojima.normalizeInventoryList(items);
+            Obojima.saveStoredInventory(foragingInventory);
+            if (typeof Obojima.applyInventoryToButtons === "function") {
+                Obojima.applyInventoryToButtons(foragingInventory);
+            }
+        },
+        () => {
+            Obojima.updateSaveInventoryButtons(foragingInventory);
+        }
+    );
 }

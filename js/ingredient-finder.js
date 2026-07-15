@@ -58,10 +58,10 @@ function setValuesYearChoice(year) {
 
 function updateCompleterValuesToggleButton() {
     const currentYear = Obojima.getValuesYear();
-    document.querySelectorAll(".value-choice").forEach(button => {
-        const isActive = button.dataset.year === currentYear;
-        button.classList.toggle("active", isActive);
-        button.setAttribute("aria-pressed", String(isActive));
+    document.querySelectorAll(".value-choice").forEach(choice => {
+        const isActive = choice.dataset.year === currentYear;
+        choice.classList.toggle("active", isActive);
+        choice.setAttribute("aria-current", isActive ? "true" : "false");
     });
 }
 
@@ -359,4 +359,21 @@ function importInventory() {
         loadCompleterIngredientButtonsForCurrentYear();
         document.getElementById("completer-results").innerHTML = "";
     }, () => selectedInventory);
+}
+
+
+function viewInventory() {
+    Obojima.openInventoryView(
+        () => selectedInventory,
+        items => {
+            selectedInventory = Obojima.normalizeInventoryList(items);
+            Obojima.saveStoredInventory(selectedInventory);
+            if (typeof Obojima.applyInventoryToButtons === "function") {
+                Obojima.applyInventoryToButtons(selectedInventory);
+            }
+        },
+        () => {
+            Obojima.updateSaveInventoryButtons(selectedInventory);
+        }
+    );
 }

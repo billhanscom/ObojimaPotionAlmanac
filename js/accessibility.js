@@ -18,7 +18,8 @@
         applyHighContrast(isEnabled);
 
         document.querySelectorAll(".contrast-toggle-button").forEach(button => {
-            button.addEventListener("click", () => {
+            button.addEventListener("click", event => {
+                event.preventDefault();
                 const nextState = !document.body.classList.contains("high-contrast");
                 localStorage.setItem(storageKey, String(nextState));
                 applyHighContrast(nextState);

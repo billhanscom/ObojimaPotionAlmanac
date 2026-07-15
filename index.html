@@ -18,10 +18,10 @@
                 <div class="inventory-strip">
                     <div class="utility-line">
                         <span class="utility-heading">Inventory</span>
-                        <a class="utility-link" href="#ingredientForm">View</a>
-                        <button type="button" class="utility-link" onclick="clearSelection()">Clear</button>
-                        <button type="button" class="utility-link save-inventory-button" onclick="exportInventory()">Save</button>
-                        <button type="button" class="utility-link" onclick="importInventory()">Load</button>
+                        <a class="utility-link" href="#" onclick="viewInventory(); return false;">View</a>
+                        <a class="utility-link" href="#" onclick="clearSelection(); return false;">Clear</a>
+                        <a class="utility-link save-inventory-button" href="#" onclick="exportInventory(); return false;">Save</a>
+                        <a class="utility-link" href="#" onclick="importInventory(); return false;">Load</a>
                     </div>
                     <div class="current-inventory-line">
                         <span class="utility-heading small">Current</span>
@@ -32,11 +32,11 @@
                 <div class="preference-strip">
                     <div class="values-control">
                         <span class="utility-heading">Values</span>
-                        <button type="button" class="utility-link values-toggle-button value-choice value-2024" data-year="2024" onclick="setValuesYearChoice('2024')">2024</button>
-                        <button type="button" class="utility-link values-toggle-button value-choice value-2014" data-year="2014" onclick="setValuesYearChoice('2014')">2014</button>
+                        <a class="utility-link value-choice value-2024" href="#" data-year="2024" onclick="setValuesYearChoice('2024'); return false;">2024</a>
+                        <a class="utility-link value-choice value-2014" href="#" data-year="2014" onclick="setValuesYearChoice('2014'); return false;">2014</a>
                     </div>
                     <div class="contrast-control">
-                        <button type="button" id="high-contrast-toggle" class="utility-link contrast-toggle-button" aria-pressed="false" aria-label="Turn on high contrast mode" title="Turn on high contrast">◐</button>
+                        <a class="utility-link contrast-toggle-button" href="#" aria-pressed="false" aria-label="Turn on high contrast mode" title="Turn on high contrast">◐</a>
                         <span class="hc-state hc-on">ON</span>
                         <span class="hc-state hc-off">OFF</span>
                     </div>
@@ -52,10 +52,8 @@
             <p class="tool-description">Select three or more ingredients to discover potion recipes.</p>
         </header>
 
-        <div class="button-group top-button-group">
-            <div class="primary-button-row">
-                <button type="button" class="primary-action-button" onclick="findRecipes()">Find Recipes</button>
-            </div>
+        <div class="primary-action-wrap">
+            <button type="button" class="primary-action-button" onclick="findRecipes()">Find Recipes</button>
         </div>
 
         <!-- Ingredient selection form -->

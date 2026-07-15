@@ -1613,3 +1613,365 @@ h1 {
         font-size: 17px;
     }
 }
+
+
+/* Inventory quantity view */
+.inventory-view-modal {
+    width: min(620px, 100%);
+}
+
+.inventory-view-subtitle {
+    margin-top: -6px !important;
+    color: var(--ui-muted, #555555);
+    font-size: 14px;
+}
+
+.inventory-view-list {
+    max-height: min(60vh, 520px);
+    overflow: auto;
+    border-top: 1px solid #dddddd;
+    border-bottom: 1px solid #dddddd;
+    margin: 14px 0 18px;
+}
+
+.inventory-view-row {
+    display: grid;
+    grid-template-columns: 1fr auto;
+    align-items: center;
+    gap: 16px;
+    padding: 10px 0;
+    border-bottom: 1px solid #eeeeee;
+}
+
+.inventory-view-row:last-child {
+    border-bottom: none;
+}
+
+.inventory-view-name {
+    font-size: 14px;
+    line-height: 1.25;
+}
+
+.inventory-quantity-controls {
+    display: inline-grid;
+    grid-template-columns: 32px 38px 32px;
+    align-items: center;
+    gap: 4px;
+}
+
+.inventory-quantity-button {
+    appearance: none;
+    background: #ffffff;
+    border: 1px solid #111111;
+    border-radius: 4px;
+    color: #111111;
+    cursor: pointer;
+    font: inherit;
+    line-height: 1;
+    padding: 7px 0;
+    text-align: center;
+}
+
+.inventory-quantity-button:hover,
+.inventory-quantity-button:focus-visible {
+    background: #f2f2f2;
+}
+
+.inventory-quantity-count {
+    text-align: center;
+    font-size: 14px;
+    color: #111111;
+}
+
+.inventory-view-empty {
+    text-align: center;
+    color: var(--ui-muted, #555555);
+    margin: 18px 0;
+}
+
+body.high-contrast .inventory-view-list,
+body.high-contrast .inventory-view-row {
+    border-color: #000000;
+}
+
+body.high-contrast .inventory-quantity-button {
+    background: #ffffff;
+    border-color: #000000;
+    color: #000000;
+}
+
+@media (max-width: 520px) {
+    .inventory-view-row {
+        grid-template-columns: 1fr;
+        gap: 8px;
+    }
+
+    .inventory-quantity-controls {
+        justify-self: start;
+    }
+}
+
+
+/* ==========================================================
+   Final mockup layout alignment
+   ========================================================== */
+html,
+body {
+    background: #ffffff !important;
+}
+
+body {
+    color: #000000 !important;
+}
+
+.container {
+    width: 100% !important;
+    max-width: none !important;
+    margin: 0 auto !important;
+    padding: 26px 28px 30px !important;
+    background: #ffffff !important;
+    border: none !important;
+    border-radius: 0 !important;
+    box-shadow: none !important;
+}
+
+.app-header {
+    text-align: center !important;
+}
+
+.app-utility-bar {
+    display: flex !important;
+    justify-content: space-between !important;
+    align-items: flex-start !important;
+    gap: 24px !important;
+    width: 100% !important;
+    margin: 0 0 54px 0 !important;
+    font-size: 14px !important;
+    line-height: 1.1 !important;
+}
+
+.inventory-strip,
+.preference-strip {
+    display: flex !important;
+    flex-direction: column !important;
+    gap: 8px !important;
+}
+
+.inventory-strip {
+    align-items: flex-start !important;
+    text-align: left !important;
+}
+
+.preference-strip {
+    align-items: flex-end !important;
+    text-align: right !important;
+}
+
+.utility-line,
+.current-inventory-line,
+.values-control,
+.contrast-control {
+    display: flex !important;
+    align-items: baseline !important;
+    gap: 10px !important;
+}
+
+.utility-heading {
+    font-weight: 700 !important;
+    color: #000000 !important;
+}
+
+.utility-heading.small {
+    font-size: 12px !important;
+}
+
+.utility-link,
+a.utility-link,
+button.utility-link,
+.value-choice,
+.contrast-toggle-button {
+    appearance: none !important;
+    -webkit-appearance: none !important;
+    background: transparent !important;
+    border: 0 !important;
+    box-shadow: none !important;
+    border-radius: 0 !important;
+    padding: 0 !important;
+    margin: 0 !important;
+    font: inherit !important;
+    line-height: inherit !important;
+    color: #000000 !important;
+    text-decoration: none !important;
+    cursor: pointer !important;
+}
+
+.utility-link:hover,
+.utility-link:focus-visible {
+    text-decoration: underline !important;
+    outline: none !important;
+}
+
+.save-inventory-button.backup-dirty,
+a.save-inventory-button.backup-dirty {
+    color: #d10000 !important;
+}
+
+.save-inventory-button.backup-saved,
+a.save-inventory-button.backup-saved {
+    color: #208a2d !important;
+}
+
+.inventory-profile {
+    margin: 0 !important;
+    min-height: 0 !important;
+    color: #000000 !important;
+    font-size: 12px !important;
+    line-height: 1.1 !important;
+}
+
+.inventory-profile strong {
+    color: #000000 !important;
+}
+
+.value-choice.active,
+.hc-state.active {
+    border-bottom: 2px solid #000000 !important;
+    padding-bottom: 2px !important;
+}
+
+.hc-state {
+    color: #000000 !important;
+}
+
+h1 {
+    color: #000000 !important;
+    font-size: 42px !important;
+    line-height: 1 !important;
+    margin: 0 0 18px 0 !important;
+    letter-spacing: 0.01em !important;
+}
+
+.toolkit-nav {
+    display: flex !important;
+    justify-content: center !important;
+    gap: 24px !important;
+    flex-wrap: wrap !important;
+    margin: 0 auto 24px !important;
+}
+
+.toolkit-nav-link {
+    background: transparent !important;
+    box-shadow: none !important;
+    border-radius: 0 !important;
+    padding: 0 0 5px 0 !important;
+    margin: 0 !important;
+    color: #000000 !important;
+    font-size: 20px !important;
+    font-weight: 700 !important;
+    line-height: 1.1 !important;
+    text-decoration: none !important;
+    border-bottom: 2px solid transparent !important;
+}
+
+.toolkit-nav-link:hover {
+    background: transparent !important;
+    border-bottom-color: #777777 !important;
+}
+
+.toolkit-nav-link.active {
+    background: transparent !important;
+    border-bottom-color: #000000 !important;
+}
+
+.tool-description {
+    color: #000000 !important;
+    font-size: 14px !important;
+    margin: 0 auto 24px !important;
+    max-width: 720px !important;
+    line-height: 1.35 !important;
+}
+
+.primary-action-wrap {
+    text-align: center !important;
+    margin: 0 0 28px !important;
+}
+
+.primary-action-button,
+button.primary-action-button {
+    appearance: none !important;
+    -webkit-appearance: none !important;
+    background: #ffffff !important;
+    color: #000000 !important;
+    border: 2px solid #000000 !important;
+    border-radius: 4px !important;
+    box-shadow: none !important;
+    padding: 10px 20px !important;
+    font: inherit !important;
+    font-size: 14px !important;
+    line-height: 1.2 !important;
+    cursor: pointer !important;
+}
+
+.primary-action-button:hover,
+.primary-action-button:focus-visible {
+    background: #f2f2f2 !important;
+    box-shadow: none !important;
+}
+
+/* Keep form/result UI quiet but usable. */
+.recipe-card,
+.completion-card,
+.ingredient-button,
+#results li {
+    box-shadow: none !important;
+}
+
+.recipe-card,
+.completion-card {
+    border: 1px solid #dddddd !important;
+}
+
+/* Inventory modal controls should remain real controls. */
+.inventory-modal .inventory-modal-actions button,
+.inventory-modal .inventory-quantity-button {
+    appearance: auto !important;
+    -webkit-appearance: auto !important;
+    font: inherit !important;
+}
+
+@media (max-width: 800px) {
+    .container {
+        padding: 20px 18px 28px !important;
+    }
+
+    .app-utility-bar {
+        display: block !important;
+        margin-bottom: 40px !important;
+    }
+
+    .preference-strip {
+        align-items: flex-start !important;
+        text-align: left !important;
+        margin-top: 16px !important;
+    }
+
+    .utility-line,
+    .current-inventory-line,
+    .values-control,
+    .contrast-control {
+        flex-wrap: wrap !important;
+        gap: 10px !important;
+    }
+
+    h1 {
+        font-size: 34px !important;
+    }
+
+    .toolkit-nav {
+        gap: 16px !important;
+    }
+
+    .toolkit-nav-link {
+        font-size: 17px !important;
+    }
+}
