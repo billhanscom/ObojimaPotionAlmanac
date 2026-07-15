@@ -40,11 +40,18 @@ function toggleForagingValuesYear() {
     Obojima.updateSaveInventoryButtons(foragingInventory);
 }
 
+function setValuesYearChoice(year) {
+    Obojima.setValuesYear(year);
+    updateForagingValuesToggleButton();
+    Obojima.updateSaveInventoryButtons(foragingInventory);
+}
+
 function updateForagingValuesToggleButton() {
-    document.querySelectorAll(".values-toggle-button").forEach(toggleButton => {
-        toggleButton.textContent = Obojima.getValuesYear() === "2024"
-            ? "Use 2014 Values"
-            : "Use 2024 Values";
+    const currentYear = Obojima.getValuesYear();
+    document.querySelectorAll(".value-choice").forEach(button => {
+        const isActive = button.dataset.year === currentYear;
+        button.classList.toggle("active", isActive);
+        button.setAttribute("aria-pressed", String(isActive));
     });
 }
 

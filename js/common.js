@@ -272,7 +272,7 @@ const Obojima = (() => {
             const player = profile.playerName ? ` — Player: ${profile.playerName}` : "";
             display.innerHTML = `${character}${player}`;
         } else {
-            display.textContent = "";
+            display.textContent = "No inventory loaded";
         }
     }
 

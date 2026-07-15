@@ -13,29 +13,48 @@
 <body>
     <a class="skip-link" href="#results">Skip to results</a>
     <div class="container">
-        <header class="toolkit-header">
-            <h1>Obojima Potion Toolkit</h1>
+        <header class="app-header">
+            <div class="app-utility-bar" aria-label="Application utilities">
+                <div class="inventory-strip">
+                    <div class="utility-line">
+                        <span class="utility-heading">Inventory</span>
+                        <a class="utility-link" href="#ingredientForm">View</a>
+                        <button type="button" class="utility-link" onclick="clearSelection()">Clear</button>
+                        <button type="button" class="utility-link save-inventory-button" onclick="exportInventory()">Save</button>
+                        <button type="button" class="utility-link" onclick="importInventory()">Load</button>
+                    </div>
+                    <div class="current-inventory-line">
+                        <span class="utility-heading small">Current</span>
+                        <span id="inventory-profile" class="inventory-profile" aria-live="polite"></span>
+                    </div>
+                </div>
+
+                <div class="preference-strip">
+                    <div class="values-control">
+                        <span class="utility-heading">Values</span>
+                        <button type="button" class="utility-link values-toggle-button value-choice value-2024" data-year="2024" onclick="setValuesYearChoice('2024')">2024</button>
+                        <button type="button" class="utility-link values-toggle-button value-choice value-2014" data-year="2014" onclick="setValuesYearChoice('2014')">2014</button>
+                    </div>
+                    <div class="contrast-control">
+                        <button type="button" id="high-contrast-toggle" class="utility-link contrast-toggle-button" aria-pressed="false" aria-label="Turn on high contrast mode" title="Turn on high contrast">◐</button>
+                        <span class="hc-state hc-on">ON</span>
+                        <span class="hc-state hc-off">OFF</span>
+                    </div>
+                </div>
+            </div>
+
+            <h1>Obojima Potions Toolkit</h1>
             <nav class="toolkit-nav" aria-label="Toolkit navigation">
                 <a class="toolkit-nav-link active" href="index.html">Potion Almanac</a>
                 <a class="toolkit-nav-link" href="ingredient-finder.html">Ingredient Finder</a>
-                <a class="toolkit-nav-link" href="foraging-aid.html">Forager's Aid</a>
+                <a class="toolkit-nav-link" href="foraging-aid.html">Forager’s Aid</a>
             </nav>
-            <h2>Potion Almanac</h2>
             <p class="tool-description">Select three or more ingredients to discover potion recipes.</p>
-            <div id="inventory-profile" class="inventory-profile" aria-live="polite"></div>
         </header>
 
-        <!-- Button group at the top -->
         <div class="button-group top-button-group">
             <div class="primary-button-row">
-                <button type="button" onclick="findRecipes()">Find Recipes</button>
-                <button type="button" id="values-toggle-button" class="values-toggle-button" onclick="toggleValuesYear()">Use 2014 Values</button>
-                <button type="button" id="high-contrast-toggle" class="contrast-toggle-button" aria-pressed="false" aria-label="Turn on high contrast mode" title="Turn on high contrast">◐ HC</button>
-            </div>
-            <div class="inventory-button-row">
-                <button type="button" class="inventory-button" onclick="clearSelection()">Clear Inventory</button>
-                <button type="button" class="inventory-button save-inventory-button" onclick="exportInventory()">Save Inventory</button>
-                <button type="button" class="inventory-button" onclick="importInventory()">Load Inventory</button>
+                <button type="button" class="primary-action-button" onclick="findRecipes()">Find Recipes</button>
             </div>
         </div>
 

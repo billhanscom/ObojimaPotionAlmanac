@@ -7,8 +7,10 @@
             button.setAttribute("aria-pressed", String(isEnabled));
             button.setAttribute("aria-label", isEnabled ? "Turn off high contrast mode" : "Turn on high contrast mode");
             button.setAttribute("title", isEnabled ? "Turn off high contrast" : "Turn on high contrast");
-            button.textContent = "◐ HC";
+            button.textContent = "◐";
         });
+        document.querySelectorAll(".hc-on").forEach(label => label.classList.toggle("active", isEnabled));
+        document.querySelectorAll(".hc-off").forEach(label => label.classList.toggle("active", !isEnabled));
     }
 
     document.addEventListener("DOMContentLoaded", () => {

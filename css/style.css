@@ -1248,133 +1248,368 @@ body.high-contrast .coming-soon-card {
     background-color: #5f9f5b !important;
 }
 
+/* Forager's Aid test */
+.foraging-controls {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 16px;
+    justify-content: center;
+    margin: 18px 0 12px 0;
+}
+
+.foraging-controls .control-group {
+    width: 190px;
+}
+
+.foraging-controls input {
+    width: 100%;
+    border: 1px solid #b7b7b7;
+    border-radius: 4px;
+    padding: 10px 12px;
+    font-size: 15px;
+    background: #ffffff;
+    color: #2d2d2d;
+}
+
+.foraging-options {
+    text-align: center;
+    margin: 8px 0 20px 0;
+}
+
+.checkbox-option {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    margin: 4px 10px;
+    color: #577da1;
+    font-size: 14px;
+}
+
+.foraging-result-card {
+    text-align: center;
+}
+
+.foraging-result-card .completion-recipe-list {
+    max-width: 520px;
+    margin: 10px auto;
+}
+
+.foraging-result-actions {
+    margin-top: 14px;
+    margin-bottom: 0;
+}
+
+.foraging-debug {
+    background-color: #fffadb;
+    border-radius: 8px;
+    padding: 12px 14px;
+    margin: 12px 0;
+    color: #2d2d2d;
+    box-shadow: inset 0 0 0 1px rgba(87, 125, 161, 0.35);
+}
+
+.foraging-debug summary {
+    cursor: pointer;
+    color: #577da1;
+    font-weight: 700;
+}
+
+body.high-contrast .foraging-controls input,
+body.high-contrast .foraging-debug {
+    background-color: #ffffff;
+    color: #000000;
+    box-shadow: inset 0 0 0 2px #000000;
+}
+
+body.high-contrast .checkbox-option,
+body.high-contrast .foraging-debug summary {
+    color: #000000;
+}
+
+@media (max-width: 800px) {
+    .foraging-controls {
+        display: block;
+    }
+
+    .foraging-controls .control-group {
+        width: 100%;
+        box-sizing: border-box;
+        margin-bottom: 14px;
+    }
+
+    .checkbox-option {
+        display: flex;
+        justify-content: center;
+    }
+}
+
 
 /* ==========================================================
-   Minimal UI Prototype
+   Mockup-inspired application shell
    ========================================================== */
-
-:root{
-  --bg:#f3f4f6;
-  --panel:#ffffff;
-  --line:#d7d9dd;
-  --text:#222;
-  --muted:#666;
-  --accent:#2f6ea5;
+:root {
+    --ui-bg: #ffffff;
+    --ui-text: #050505;
+    --ui-muted: #555555;
+    --ui-line: #111111;
+    --ui-red: #d10000;
+    --ui-green: #208a2d;
 }
 
-body{
-  background:var(--bg);
-  color:var(--text);
+body {
+    background: var(--ui-bg);
+    color: var(--ui-text);
 }
 
-.container{
-  background:var(--panel);
-  box-shadow:none;
-  border:1px solid var(--line);
-  border-radius:10px;
-  max-width:1100px;
+.container {
+    width: 94%;
+    max-width: 1100px;
+    margin: 22px auto;
+    padding: 0 28px 28px;
+    background: transparent;
+    border-radius: 0;
+    box-shadow: none;
 }
 
-h1{
-  font-size:42px;
-  color:var(--text);
-  margin-bottom:6px;
+.app-header {
+    text-align: center;
 }
 
-h2{
-  color:var(--muted);
-  margin-bottom:20px;
+.app-utility-bar {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    gap: 24px;
+    margin-bottom: 48px;
+    font-size: 14px;
+    line-height: 1.2;
 }
 
-h3{
-  color:var(--text);
-  border-bottom:1px solid var(--line);
+.inventory-strip,
+.preference-strip {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
 }
 
-.tool-description{
-  color:var(--muted);
+.inventory-strip {
+    text-align: left;
 }
 
-.toolkit-nav{
-  border-bottom:1px solid var(--line);
-  padding-bottom:10px;
-  margin-bottom:18px;
+.preference-strip {
+    text-align: right;
+    align-items: flex-end;
 }
 
-.toolkit-nav-link{
-  background:none;
-  box-shadow:none;
-  border-radius:0;
-  border-bottom:2px solid transparent;
-  padding:4px 8px;
-  color:var(--muted);
+.utility-line,
+.current-inventory-line,
+.values-control,
+.contrast-control {
+    display: flex;
+    align-items: center;
+    gap: 12px;
 }
 
-.toolkit-nav-link:hover{
-  background:none;
-  color:var(--text);
+.utility-heading {
+    font-weight: 700;
+    color: var(--ui-text);
 }
 
-.toolkit-nav-link.active{
-  background:none;
-  color:var(--text);
-  border-bottom-color:var(--accent);
+.utility-heading.small {
+    font-size: 12px;
 }
 
-.ingredient-button,
+.utility-link {
+    appearance: none;
+    background: none !important;
+    border: none !important;
+    box-shadow: none !important;
+    border-radius: 0 !important;
+    padding: 0 !important;
+    margin: 0 !important;
+    font: inherit;
+    color: var(--ui-text) !important;
+    text-decoration: none;
+    cursor: pointer;
+}
+
+.utility-link:hover,
+.utility-link:focus-visible {
+    text-decoration: underline;
+    background: none !important;
+    box-shadow: none !important;
+}
+
+.save-inventory-button.backup-dirty {
+    color: var(--ui-red) !important;
+}
+
+.save-inventory-button.backup-saved {
+    color: var(--ui-green) !important;
+}
+
+.inventory-profile {
+    margin: 0;
+    min-height: 0;
+    color: var(--ui-text);
+    font-size: 12px;
+}
+
+.inventory-profile strong {
+    color: var(--ui-text);
+}
+
+.value-choice,
+.hc-state {
+    color: var(--ui-text);
+}
+
+.value-choice.active,
+.hc-state.active {
+    border-bottom: 2px solid var(--ui-line) !important;
+    text-decoration: none !important;
+}
+
+.contrast-toggle-button {
+    font-size: 13px;
+}
+
+h1 {
+    color: var(--ui-text);
+    font-size: 44px;
+    line-height: 1;
+    margin: 0 0 18px;
+    letter-spacing: 0.01em;
+}
+
+.toolkit-nav {
+    display: flex;
+    justify-content: center;
+    gap: 24px;
+    flex-wrap: wrap;
+    margin: 0 auto 20px;
+}
+
+.toolkit-nav-link {
+    background: none;
+    box-shadow: none;
+    border-radius: 0;
+    padding: 0 0 5px;
+    color: var(--ui-text);
+    font-size: 20px;
+    font-weight: 700;
+    text-decoration: none;
+    border-bottom: 2px solid transparent;
+}
+
+.toolkit-nav-link:hover {
+    background: none;
+    color: var(--ui-text);
+    border-bottom-color: var(--ui-muted);
+}
+
+.toolkit-nav-link.active {
+    background: none;
+    color: var(--ui-text);
+    border-bottom-color: var(--ui-line);
+}
+
+.tool-description {
+    color: var(--ui-text);
+    font-size: 14px;
+    margin: 0 auto 24px;
+}
+
+.top-button-group {
+    margin: 0 0 30px;
+}
+
+.primary-button-row {
+    margin: 0;
+}
+
+.button-group .primary-action-button {
+    background: #ffffff;
+    color: var(--ui-text);
+    border: 2px solid var(--ui-line);
+    border-radius: 4px;
+    box-shadow: none;
+    padding: 10px 20px;
+    font-size: 14px;
+    margin: 0;
+}
+
+.button-group .primary-action-button:hover,
+.button-group .primary-action-button:focus-visible {
+    background: #f2f2f2;
+    box-shadow: none;
+}
+
+.button-group button:not(.primary-action-button) {
+    box-shadow: none;
+}
+
+/* Keep functional alert colors limited to their roles. */
+.button-group .inventory-button.save-inventory-button.backup-dirty,
+.button-group .utility-link.save-inventory-button.backup-dirty {
+    color: var(--ui-red) !important;
+    background: none !important;
+}
+
+.button-group .inventory-button.save-inventory-button.backup-saved,
+.button-group .utility-link.save-inventory-button.backup-saved {
+    color: var(--ui-green) !important;
+    background: none !important;
+}
+
+/* Reduce decorative weight while preserving content structure. */
 .recipe-card,
 .completion-card,
-#results li,
-#completer-results .ingredient{
-  background:#fafafa;
-  box-shadow:none;
-  border:1px solid var(--line);
+.ingredient-button,
+#results li {
+    box-shadow: none;
 }
 
-.button-group button{
-  box-shadow:none;
+.recipe-card,
+.completion-card {
+    border: 1px solid #dddddd;
 }
 
-.primary-button-row button:first-child{
-  font-size:15px;
-  padding:11px 22px;
-}
+@media (max-width: 800px) {
+    .container {
+        width: 94%;
+        padding: 0 16px 24px;
+        margin-top: 18px;
+    }
 
-.values-toggle-button,
-.contrast-toggle-button{
-  background:none !important;
-  color:var(--muted) !important;
-  border:1px solid var(--line) !important;
-}
+    .app-utility-bar {
+        display: block;
+        margin-bottom: 36px;
+    }
 
-.inventory-button-row{
-  display:flex;
-  justify-content:space-between;
-  align-items:center;
-  border-top:1px solid var(--line);
-  padding-top:12px;
-}
+    .preference-strip {
+        align-items: flex-start;
+        text-align: left;
+        margin-top: 16px;
+    }
 
-.inventory-button{
-  background:none !important;
-  border:none !important;
-  box-shadow:none !important;
-  padding:2px 6px !important;
-  color:var(--muted) !important;
-}
+    .utility-line,
+    .current-inventory-line,
+    .values-control,
+    .contrast-control {
+        flex-wrap: wrap;
+        gap: 10px;
+    }
 
-.inventory-button:hover{
-  color:var(--text) !important;
-  background:none !important;
-}
+    h1 {
+        font-size: 34px;
+    }
 
-.inventory-profile{
-  margin:0;
-  color:var(--text);
-  font-size:15px;
-}
+    .toolkit-nav {
+        gap: 14px;
+    }
 
-.site-footer{
-  border-top:1px solid var(--line);
-  padding-top:18px;
+    .toolkit-nav-link {
+        font-size: 17px;
+    }
 }
