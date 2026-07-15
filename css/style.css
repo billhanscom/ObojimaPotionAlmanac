@@ -13,7 +13,7 @@ body {
     font-family: var(--body-font);
     margin: 0;
     padding: 0;
-    background-color: #c94545;
+    background-color: #65ade8;
     color: #2d2d2d;
 }
 
@@ -140,7 +140,7 @@ h3 {
 }
 
 .button-group button {
-    background-color: #c94545;
+    background-color: #65ade8;
     color: #ffffff;
     border: none;
     padding: 10px 18px;
@@ -213,7 +213,7 @@ h3 {
 }
 
 .ruleset-button.selected {
-    background-color: #c94545;
+    background-color: #fffadb;
     color: #ffffff;
 }
 
@@ -1190,4 +1190,32 @@ body.high-contrast .coming-soon-card {
     .primary-button-row {
         margin-bottom: 14px;
     }
+}
+
+/* Save/backup state overrides - patched */
+.button-group .inventory-button.save-inventory-button.backup-empty {
+    background-color: #dedede !important;
+    color: #333333 !important;
+}
+
+.button-group .inventory-button.save-inventory-button.backup-dirty {
+    background-color: #c94545 !important;
+    color: #ffffff !important;
+}
+
+.button-group .inventory-button.save-inventory-button.backup-saved {
+    background-color: #7fbf7a !important;
+    color: #ffffff !important;
+}
+
+.button-group .inventory-button.save-inventory-button.backup-empty:hover {
+    background-color: #cfcfcf !important;
+}
+
+.button-group .inventory-button.save-inventory-button.backup-dirty:hover {
+    background-color: #a52d2d !important;
+}
+
+.button-group .inventory-button.save-inventory-button.backup-saved:hover {
+    background-color: #5f9f5b !important;
 }
