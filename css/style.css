@@ -1079,224 +1079,41 @@ body.high-contrast .inventory-modal label {
     color: #000000;
 }
 
+/* Compact toolkit navigation */
+.toolkit-header { text-align: center; margin-bottom: 12px; }
+.toolkit-header h1 { margin-bottom: 8px; }
+.toolkit-header h2 { margin-top: 10px; margin-bottom: 4px; border-bottom: none; padding-bottom: 0; }
+.tool-description { color: #577da1; font-size: 15px; line-height: 1.35; margin: 0 auto 10px auto; max-width: 720px; }
+.toolkit-nav { display: flex; justify-content: center; gap: 6px; flex-wrap: wrap; margin: 4px auto 8px auto; }
+.toolkit-nav-link { display: inline-block; background-color: #ede1cd; color: #333333; text-decoration: none; border-radius: 999px; padding: 7px 12px; font-size: 14px; line-height: 1.1; box-shadow: 1px 1px 3px rgba(0,0,0,.16); }
+.toolkit-nav-link:hover { background-color: #d9c7aa; color: #333333; }
+.toolkit-nav-link.active { background-color: #f6c65b; color: #2d2d2d; }
+.inventory-profile { margin-top: 0; margin-bottom: 12px; }
+.primary-button-row { margin-bottom: 12px; }
+
+.button-group .inventory-button.save-inventory-button.backup-empty { background-color: #dedede !important; color: #333333 !important; }
+.button-group .inventory-button.save-inventory-button.backup-dirty { background-color: #c94545 !important; color: #ffffff !important; }
+.button-group .inventory-button.save-inventory-button.backup-saved { background-color: #7fbf7a !important; color: #ffffff !important; }
+.button-group .inventory-button.save-inventory-button.backup-empty:hover { background-color: #cfcfcf !important; }
+.button-group .inventory-button.save-inventory-button.backup-dirty:hover { background-color: #a52d2d !important; }
+.button-group .inventory-button.save-inventory-button.backup-saved:hover { background-color: #5f9f5b !important; }
+
 /* Forager's Aid */
-.foraging-controls {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 16px;
-    justify-content: center;
-    margin: 18px 0 12px 0;
-}
-
-.foraging-controls .control-group {
-    width: 190px;
-}
-
-.foraging-controls input {
-    width: 100%;
-    border: 1px solid #b7b7b7;
-    border-radius: 4px;
-    padding: 10px 12px;
-    font-size: 15px;
-    background: #ffffff;
-    color: #2d2d2d;
-}
-
-.foraging-options {
-    text-align: center;
-    margin: 8px 0 20px 0;
-}
-
-.checkbox-option {
-    display: inline-flex;
-    align-items: center;
-    gap: 6px;
-    margin: 4px 10px;
-    color: #577da1;
-    font-size: 14px;
-}
-
-.checkbox-option input {
-    transform: translateY(1px);
-}
-
-.foraging-result-card {
-    text-align: center;
-}
-
-.foraging-result-card .completion-recipe-list {
-    max-width: 520px;
-    margin: 10px auto;
-}
-
-.foraging-result-actions {
-    margin-top: 14px;
-    margin-bottom: 0;
-}
-
-.foraging-debug {
-    background-color: #fffadb;
-    border-radius: 8px;
-    padding: 12px 14px;
-    margin: 12px 0;
-    color: #2d2d2d;
-    box-shadow: inset 0 0 0 1px rgba(87, 125, 161, 0.35);
-}
-
-.foraging-debug summary {
-    cursor: pointer;
-    color: #577da1;
-    font-weight: 700;
-}
-
-body.high-contrast .foraging-controls input,
-body.high-contrast .foraging-debug {
-    background-color: #ffffff;
-    color: #000000;
-    box-shadow: inset 0 0 0 2px #000000;
-}
-
-body.high-contrast .checkbox-option,
-body.high-contrast .foraging-debug summary {
-    color: #000000;
-}
+.foraging-controls { display: flex; flex-wrap: wrap; gap: 16px; justify-content: center; margin: 18px 0 12px 0; }
+.foraging-controls .control-group { width: 190px; }
+.foraging-controls input { width: 100%; border: 1px solid #b7b7b7; border-radius: 4px; padding: 10px 12px; font-size: 15px; background: #ffffff; color: #2d2d2d; }
+.foraging-options { text-align: center; margin: 8px 0 20px 0; }
+.checkbox-option { display: inline-flex; align-items: center; gap: 6px; margin: 4px 10px; color: #577da1; font-size: 14px; }
+.foraging-result-card { text-align: center; }
+.foraging-result-actions { margin-top: 14px; margin-bottom: 0; }
+.foraging-debug { background-color: #fffadb; border-radius: 8px; padding: 12px 14px; margin: 12px 0; color: #2d2d2d; box-shadow: inset 0 0 0 1px rgba(87,125,161,.35); }
+.foraging-debug summary { cursor: pointer; color: #577da1; font-weight: 700; }
 
 @media (max-width: 800px) {
-    .foraging-controls {
-        display: block;
-    }
-
-    .foraging-controls .control-group {
-        width: 100%;
-        box-sizing: border-box;
-        margin-bottom: 14px;
-    }
-
-    .checkbox-option {
-        display: flex;
-        justify-content: center;
-    }
-}
-
-
-/* Layout repair pass */
-.toolkit-header {
-    text-align: center;
-    margin-bottom: 14px;
-}
-
-.toolkit-header h1 {
-    margin-bottom: 8px;
-}
-
-.toolkit-header h2 {
-    margin-top: 12px;
-    margin-bottom: 4px;
-    border-bottom: none;
-    padding-bottom: 0;
-}
-
-.tool-description {
-    color: #577da1;
-    font-size: 15px;
-    line-height: 1.35;
-    margin: 0 auto 12px auto;
-    max-width: 720px;
-}
-
-.toolkit-nav {
-    display: flex;
-    justify-content: center;
-    gap: 6px;
-    flex-wrap: wrap;
-    margin: 6px auto 10px auto;
-}
-
-.toolkit-nav-link {
-    display: inline-block;
-    background-color: #ede1cd;
-    color: #333333;
-    text-decoration: none;
-    border-radius: 999px;
-    padding: 7px 12px;
-    font-size: 14px;
-    line-height: 1.1;
-    box-shadow: 1px 1px 3px rgba(0, 0, 0, 0.16);
-}
-
-.toolkit-nav-link:hover {
-    background-color: #d9c7aa;
-    color: #333333;
-}
-
-.toolkit-nav-link.active {
-    background-color: #f6c65b;
-    color: #2d2d2d;
-}
-
-.inventory-profile {
-    margin-top: 0;
-    margin-bottom: 14px;
-}
-
-.top-button-group {
-    margin-top: 6px;
-}
-
-.primary-button-row {
-    margin-bottom: 12px;
-}
-
-@media (max-width: 800px) {
-    .toolkit-nav {
-        gap: 5px;
-        margin-bottom: 8px;
-    }
-
-    .toolkit-nav-link {
-        font-size: 12px;
-        padding: 7px 9px;
-    }
-
-    .tool-description {
-        font-size: 14px;
-        margin-bottom: 10px;
-    }
-
-    .inventory-profile {
-        margin-bottom: 12px;
-    }
-
-    .primary-button-row {
-        margin-bottom: 12px;
-    }
-}
-
-
-/* Save/backup state overrides */
-.button-group .inventory-button.save-inventory-button.backup-empty {
-    background-color: #dedede !important;
-    color: #333333 !important;
-}
-
-.button-group .inventory-button.save-inventory-button.backup-dirty {
-    background-color: #c94545 !important;
-    color: #ffffff !important;
-}
-
-.button-group .inventory-button.save-inventory-button.backup-saved {
-    background-color: #7fbf7a !important;
-    color: #ffffff !important;
-}
-
-.button-group .inventory-button.save-inventory-button.backup-empty:hover {
-    background-color: #cfcfcf !important;
-}
-
-.button-group .inventory-button.save-inventory-button.backup-dirty:hover {
-    background-color: #a52d2d !important;
-}
-
-.button-group .inventory-button.save-inventory-button.backup-saved:hover {
-    background-color: #5f9f5b !important;
+    .toolkit-nav { gap: 5px; margin-bottom: 8px; }
+    .toolkit-nav-link { font-size: 12px; padding: 7px 9px; }
+    .tool-description { font-size: 14px; margin-bottom: 10px; }
+    .foraging-controls { display: block; }
+    .foraging-controls .control-group { width: 100%; box-sizing: border-box; margin-bottom: 14px; }
+    .checkbox-option { display: flex; justify-content: center; }
 }

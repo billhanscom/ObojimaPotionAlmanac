@@ -37,7 +37,7 @@ function updateValuesToggleButton() {
         toggleButton.textContent = Obojima.getValuesYear() === "2024"
             ? "Use 2014 Values"
             : "Use 2024 Values";
-    }, () => selectedIngredients);
+    });
 }
 
 async function loadIngredientButtonsForCurrentYear() {
@@ -133,7 +133,7 @@ async function findRecipes() {
         resultsDiv.appendChild(column);
     });
 
-    resultsDiv.scrollIntoView({ behavior: "smooth" }, () => selectedIngredients);
+    resultsDiv.scrollIntoView({ behavior: "smooth" });
 }
 
 async function clearSelection() {
@@ -152,7 +152,7 @@ async function clearSelection() {
     Obojima.applyInventoryToButtons(selectedIngredients);
 
     document.getElementById("results").innerHTML = "";
-    window.scrollTo({ top: 0, behavior: "smooth" }, () => selectedIngredients);
+    window.scrollTo({ top: 0, behavior: "smooth" });
 }
 
 async function exportInventory() {
@@ -166,5 +166,5 @@ function importInventory() {
         updateValuesToggleButton();
         loadIngredientButtonsForCurrentYear();
         document.getElementById("results").innerHTML = "";
-    }, () => selectedIngredients);
+    });
 }

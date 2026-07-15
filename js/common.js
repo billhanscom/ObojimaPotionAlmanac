@@ -84,8 +84,7 @@ const Obojima = (() => {
     }
 
     function splitIngredientsByRarity(ingredients) {
-    
-    const jsonCache = {};
+        const jsonCache = {};
 
     async function loadJson(path) {
         if (!jsonCache[path]) {
@@ -95,7 +94,6 @@ const Obojima = (() => {
         }
         return jsonCache[path];
     }
-
 
     return {
             common: ingredients.filter(ing => normalizeRarity(ing.rarity) === "common").sort((a, b) => ingredientSortKey(a).localeCompare(ingredientSortKey(b))),
@@ -517,31 +515,7 @@ const Obojima = (() => {
         };
     }
 
-    async function importInventoryFile(onImported, getCurrentInventory = null) {
-        const currentItems = typeof getCurrentInventory === "function" ? getCurrentInventory() : [];
-        const lastHash = localStorage.getItem(OBOJIMA_LAST_EXPORT_HASH_KEY);
-        const currentHash = currentInventoryHash(currentItems);
-        const profile = loadInventoryProfile();
-        const dirty = (currentItems.length > 0 || profile.playerName || profile.characterName) && (!lastHash || lastHash !== currentHash);
-
-        if (dirty) {
-            const result = await showInventoryModal({
-                title: "Load Inventory?",
-                message: "Loading an inventory will overwrite your current inventory, player name, and character name.",
-                actions: [
-                    { label: "Cancel", value: "cancel", className: "modal-secondary" },
-                    { label: "Save Inventory First", value: "save", className: "modal-primary" },
-                    { label: "Load Inventory", value: "load", className: "modal-danger" }
-                ]
-            });
-
-            if (result.action === "cancel") return;
-            if (result.action === "save") {
-                const exported = await exportInventory(currentItems);
-                if (!exported) return;
-            }
-        }
-
+    function importInventoryFile(onImported) {
         const input = document.createElement("input");
         input.type = "file";
         input.accept = "application/json,.json";

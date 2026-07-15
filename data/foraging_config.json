@@ -14,34 +14,6 @@
     "Ruins",
     "Spirit Realm"
   ],
-  "dcBands": [
-    {
-      "min": 10,
-      "max": 15,
-      "buckets": [
-        "native_common"
-      ]
-    },
-    {
-      "min": 16,
-      "max": 20,
-      "buckets": [
-        "native_common",
-        "native_uncommon",
-        "non_native_common"
-      ]
-    },
-    {
-      "min": 21,
-      "max": 25,
-      "buckets": [
-        "native_common",
-        "native_uncommon",
-        "non_native_common",
-        "non_native_uncommon"
-      ]
-    }
-  ],
   "degreeOfSuccessBudgets": [
     {
       "min": 0,
