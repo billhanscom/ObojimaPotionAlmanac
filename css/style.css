@@ -2520,3 +2520,174 @@ h1 {
         font-size: 40px !important;
     }
 }
+
+
+/* ==========================================================
+   Color scheme return + final spacing refinements
+   ========================================================== */
+body {
+    background-color: #65ade8 !important;
+    color: #2d2d2d !important;
+}
+
+.container {
+    background-color: #fffadb !important;
+    border-color: rgba(87, 125, 161, 0.35) !important;
+}
+
+.utility-heading,
+.utility-link,
+a.utility-link,
+.value-choice,
+.hc-toggle-link,
+.hc-state,
+.contrast-icon,
+.inventory-profile,
+.inventory-profile em,
+.toolkit-nav-link,
+h1,
+.tool-description {
+    color: #2d2d2d !important;
+}
+
+h1 {
+    color: #DCA453 !important;
+}
+
+.toolkit-nav-link.active,
+.toolkit-nav-link:hover,
+.toolkit-nav-link:focus-visible {
+    border-bottom-color: #DCA453 !important;
+}
+
+.value-choice.active,
+.value-choice:hover,
+.value-choice:focus-visible,
+.hc-toggle-link.active,
+.hc-toggle-link:hover,
+.hc-toggle-link:focus-visible,
+.values-control.has-hover .value-choice.hover-active,
+.contrast-control.has-hover .hc-toggle-link.hover-active {
+    border-bottom-color: #DCA453 !important;
+}
+
+.values-control.has-hover .value-choice.active,
+.contrast-control.has-hover .hc-toggle-link.active {
+    border-bottom-color: transparent !important;
+}
+
+.utility-link:not(.hc-toggle-link):hover,
+.utility-link:not(.hc-toggle-link):focus-visible {
+    border-bottom-color: #DCA453 !important;
+}
+
+/* Save/Saved should size naturally; Load may shift when text changes. */
+.inventory-strip .save-inventory-button {
+    min-width: 0 !important;
+    width: auto !important;
+}
+
+.save-inventory-button.backup-dirty,
+a.save-inventory-button.backup-dirty {
+    color: #c94545 !important;
+}
+
+.save-inventory-button.backup-saved,
+a.save-inventory-button.backup-saved {
+    color: #5f9f5b !important;
+}
+
+/* Slightly larger description text. */
+.tool-description {
+    font-size: 16px !important;
+}
+
+/* Bring warmth back to controls and cards without making them heavy. */
+.primary-action-button,
+button.primary-action-button {
+    border-color: #577da1 !important;
+    color: #2d2d2d !important;
+    background-color: #ffffff !important;
+}
+
+.primary-action-button:hover,
+.primary-action-button:focus-visible {
+    background-color: #ede1cd !important;
+}
+
+.ingredient-button {
+    background-color: #ede1cd !important;
+    border: none !important;
+}
+
+.ingredient-button.selected.common,
+.ingredient.common,
+.recipe-subcard .ingredient.common {
+    background-color: #c2e3a7 !important;
+    color: #333333 !important;
+}
+
+.ingredient-button.selected.uncommon,
+.ingredient.uncommon,
+.recipe-subcard .ingredient.uncommon {
+    background-color: #fde663 !important;
+    color: #333333 !important;
+}
+
+.ingredient-button.selected.rare,
+.ingredient.rare,
+.recipe-subcard .ingredient.rare {
+    background-color: #fd8966 !important;
+    color: #ffffff !important;
+}
+
+.recipe-card,
+.completion-card,
+.potion-group-card {
+    background-color: #fff3c7 !important;
+    border-color: rgba(87, 125, 161, 0.28) !important;
+}
+
+.potion-group-title,
+.recipe-card h4,
+.completion-card h4,
+h3,
+.control-group label,
+.completion-region-footer,
+.completer-tally {
+    color: #577da1 !important;
+}
+
+h3 {
+    border-bottom-color: #577da1 !important;
+}
+
+.recipe-summary {
+    color: #DCA453 !important;
+    border-bottom-color: #DCA453 !important;
+}
+
+/* Footer should be larger and centered. */
+.site-footer {
+    text-align: center !important;
+    font-size: 13px !important;
+    line-height: 1.45 !important;
+    color: #555555 !important;
+}
+
+.site-footer p,
+.copyright-disclaimer {
+    text-align: center !important;
+    margin-left: auto !important;
+    margin-right: auto !important;
+}
+
+.site-footer a {
+    color: #577da1 !important;
+}
+
+@media (max-width: 800px) {
+    .tool-description {
+        font-size: 15px !important;
+    }
+}
