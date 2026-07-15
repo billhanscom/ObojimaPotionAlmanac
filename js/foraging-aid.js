@@ -2,6 +2,16 @@ let foragingInventory = Obojima.loadStoredInventory();
 let foragingConfig = null;
 let foragingAffinity = {};
 let foragingLocations = [];
+const foragingJsonCache = {};
+
+async function loadForagingJson(path) {
+    if (!foragingJsonCache[path]) {
+        const response = await fetch(path);
+        if (!response.ok) throw new Error(`Failed to load ${path}: ${response.status}`);
+        foragingJsonCache[path] = await response.json();
+    }
+    return foragingJsonCache[path];
+}
 
 document.addEventListener("DOMContentLoaded", async () => {
     updateForagingValuesToggleButton();
@@ -19,9 +29,9 @@ document.addEventListener("DOMContentLoaded", async () => {
 });
 
 async function loadForagingData() {
-    foragingConfig = await Obojima.loadJson("data/foraging_config.json");
-    foragingAffinity = await Obojima.loadJson("data/foraging_affinity.json");
-    foragingLocations = await Obojima.loadJson("data/locations.json");
+    foragingConfig = await loadForagingJson("data/foraging_config.json");
+    foragingAffinity = await loadForagingJson("data/foraging_affinity.json");
+    foragingLocations = await loadForagingJson("data/locations.json");
 }
 
 function toggleForagingValuesYear() {
@@ -92,8 +102,7 @@ function getUnlockedBuckets(dc) {
 }
 
 function getDiscoveryBudget(degreeOfSuccess) {
-    const ladder = foragingConfig.degreeOfSuccessBudgets || [];
-    const match = ladder.find(entry => degreeOfSuccess >= entry.min && degreeOfSuccess <= entry.max);
+    const match = (foragingConfig.degreeOfSuccessBudgets || []).find(entry => degreeOfSuccess >= entry.min && degreeOfSuccess <= entry.max);
     return match ? match.budget : 0;
 }
 

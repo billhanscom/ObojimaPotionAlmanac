@@ -27,14 +27,3 @@ Notes:
 - `js/accessibility.js` contains high-contrast and accessibility behavior.
 
 This structure is intended to support the future Forager's Aid and inventory-centered rebuild without duplicating shared logic across tools.
-
-
-## Forager's Aid test build
-
-This version adds a first-pass Forager's Aid prototype using:
-- `data/foraging_config.json`
-- `data/foraging_affinity.json`
-- `data/locations.json`
-- `js/foraging-aid.js`
-
-The prototype is meant for testing the generation logic and tuning the data. Rare ingredients are excluded for now.
