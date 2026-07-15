@@ -934,3 +934,42 @@ body.high-contrast .button-group button.inventory-button:hover {
         margin-bottom: 4px !important;
     }
 }
+
+/* Inventory profile and backup state */
+.inventory-profile {
+    text-align: center;
+    font-size: 14px;
+    color: #577da1;
+    margin-top: -24px;
+    margin-bottom: 22px;
+    min-height: 20px;
+}
+.inventory-profile strong {
+    color: #2d2d2d;
+    font-weight: 700;
+}
+.button-group button.save-inventory-button.backup-empty {
+    background-color: #dedede;
+    color: #333333;
+}
+.button-group button.save-inventory-button.backup-dirty {
+    background-color: #65ade8;
+    color: #ffffff;
+}
+.button-group button.save-inventory-button.backup-saved {
+    background-color: #7fbf7a;
+    color: #ffffff;
+}
+.button-group button.save-inventory-button.backup-empty:hover {
+    background-color: #cfcfcf;
+}
+.button-group button.save-inventory-button.backup-dirty:hover {
+    background-color: #005fa3;
+}
+.button-group button.save-inventory-button.backup-saved:hover {
+    background-color: #5f9f5b;
+}
+body.high-contrast .inventory-profile,
+body.high-contrast .inventory-profile strong {
+    color: #111111;
+}

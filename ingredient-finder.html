@@ -16,6 +16,7 @@
         <header>
             <h1>Obojima Ingredient Finder</h1>
             <h2>Select Your Inventory, Location, and Desired Potion</h2>
+            <div id="inventory-profile" class="inventory-profile" aria-live="polite"></div>
         </header>
 
         <div class="button-group top-button-group">
@@ -27,7 +28,7 @@
             </div>
             <div class="inventory-button-row">
                 <button type="button" class="inventory-button" onclick="clearCompleterSelection()">Clear Inventory</button>
-                <button type="button" class="inventory-button" onclick="exportInventory()">Save Inventory</button>
+                <button type="button" class="inventory-button save-inventory-button" onclick="exportInventory()">Save Inventory</button>
                 <button type="button" class="inventory-button" onclick="importInventory()">Load Inventory</button>
             </div>
         </div>

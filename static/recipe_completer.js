@@ -1,6 +1,218 @@
 const OBOJIMA_INVENTORY_STORAGE_KEY = "obojimaIngredientInventory";
 let selectedInventory = loadStoredInventory();
 let currentValuesYear = localStorage.getItem("obojimaValuesYear") || "2024";
+
+
+const OBOJIMA_PLAYER_NAME_KEY = "obojimaPlayerName";
+const OBOJIMA_CHARACTER_NAME_KEY = "obojimaCharacterName";
+const OBOJIMA_LAST_EXPORT_HASH_KEY = "obojimaLastExportHash";
+
+function loadInventoryProfile() {
+    return {
+        playerName: localStorage.getItem(OBOJIMA_PLAYER_NAME_KEY) || "",
+        characterName: localStorage.getItem(OBOJIMA_CHARACTER_NAME_KEY) || ""
+    };
+}
+
+function saveInventoryProfile(profile) {
+    localStorage.setItem(OBOJIMA_PLAYER_NAME_KEY, profile.playerName || "");
+    localStorage.setItem(OBOJIMA_CHARACTER_NAME_KEY, profile.characterName || "");
+}
+
+function clearInventoryProfile() {
+    localStorage.removeItem(OBOJIMA_PLAYER_NAME_KEY);
+    localStorage.removeItem(OBOJIMA_CHARACTER_NAME_KEY);
+    localStorage.removeItem(OBOJIMA_LAST_EXPORT_HASH_KEY);
+}
+
+function getActiveInventoryList() {
+    if (typeof selectedIngredients !== "undefined") return normalizeInventoryList(selectedIngredients);
+    if (typeof selectedInventory !== "undefined") return normalizeInventoryList(selectedInventory);
+    return [];
+}
+
+function setActiveInventoryList(ingredients) {
+    if (typeof selectedIngredients !== "undefined") {
+        selectedIngredients = normalizeInventoryList(ingredients);
+        saveStoredInventory();
+    }
+    if (typeof selectedInventory !== "undefined") {
+        selectedInventory = normalizeInventoryList(ingredients);
+        saveStoredInventory();
+    }
+}
+
+function getCanonicalInventoryState() {
+    const profile = loadInventoryProfile();
+    return {
+        version: 2,
+        playerName: profile.playerName || "",
+        characterName: profile.characterName || "",
+        dataset: currentValuesYear || "2024",
+        ingredients: getActiveInventoryList().slice().sort((a, b) => a.localeCompare(b))
+    };
+}
+
+function canonicalStringify(value) {
+    if (Array.isArray(value)) return "[" + value.map(canonicalStringify).join(",") + "]";
+    if (value && typeof value === "object") {
+        return "{" + Object.keys(value).sort().map(key => JSON.stringify(key) + ":" + canonicalStringify(value[key])).join(",") + "}";
+    }
+    return JSON.stringify(value);
+}
+
+function currentInventoryHash() {
+    return canonicalStringify(getCanonicalInventoryState());
+}
+
+function markInventoryChanged() {
+    updateInventoryProfileDisplay();
+    updateSaveInventoryButtons();
+}
+
+function setBackupCurrent() {
+    localStorage.setItem(OBOJIMA_LAST_EXPORT_HASH_KEY, currentInventoryHash());
+    updateSaveInventoryButtons();
+}
+
+function updateInventoryProfileDisplay() {
+    const profile = loadInventoryProfile();
+    const display = document.getElementById("inventory-profile");
+    if (!display) return;
+    if (profile.playerName || profile.characterName) {
+        const character = profile.characterName ? `<strong>${profile.characterName}</strong>` : "<strong>Unnamed Character</strong>";
+        const player = profile.playerName ? ` — Player: ${profile.playerName}` : "";
+        display.innerHTML = `${character}${player}`;
+    } else {
+        display.textContent = "";
+    }
+}
+
+function updateSaveInventoryButtons() {
+    const buttons = document.querySelectorAll(".save-inventory-button");
+    if (!buttons.length) return;
+    const ingredients = getActiveInventoryList();
+    const profile = loadInventoryProfile();
+    const hasMeaningfulState = ingredients.length > 0 || profile.playerName || profile.characterName;
+    const lastHash = localStorage.getItem(OBOJIMA_LAST_EXPORT_HASH_KEY);
+    const currentHash = currentInventoryHash();
+
+    buttons.forEach(button => {
+        button.classList.remove("backup-empty", "backup-dirty", "backup-saved");
+        if (!hasMeaningfulState) {
+            button.classList.add("backup-empty");
+            button.textContent = "Save Inventory";
+        } else if (lastHash && lastHash === currentHash) {
+            button.classList.add("backup-saved");
+            button.textContent = "Inventory Saved";
+        } else {
+            button.classList.add("backup-dirty");
+            button.textContent = "Save Inventory";
+        }
+    });
+}
+
+function ensureInventoryProfileBeforeExport() {
+    const current = loadInventoryProfile();
+    let playerName = current.playerName;
+    let characterName = current.characterName;
+
+    if (!playerName) {
+        const entered = window.prompt("Player name for this inventory:", playerName);
+        if (entered === null) return null;
+        playerName = entered.trim();
+    }
+
+    if (!characterName) {
+        const entered = window.prompt("Character name for this inventory:", characterName);
+        if (entered === null) return null;
+        characterName = entered.trim();
+    }
+
+    const profile = { playerName, characterName };
+    saveInventoryProfile(profile);
+    updateInventoryProfileDisplay();
+    return profile;
+}
+
+function buildInventoryExportPayload() {
+    const profile = loadInventoryProfile();
+    return {
+        app: "Obojima Potion Toolkit",
+        version: 2,
+        playerName: profile.playerName || "",
+        characterName: profile.characterName || "",
+        dataset: currentValuesYear || "2024",
+        exportedAt: new Date().toISOString(),
+        ingredients: getActiveInventoryList()
+    };
+}
+
+function getInventoryDownloadName(profile) {
+    function cleanPart(value) {
+        return String(value || "").trim().replace(/[\\/:*?"<>|]/g, "").replace(/\s+/g, " ");
+    }
+    const player = cleanPart(profile.playerName);
+    const character = cleanPart(profile.characterName);
+    if (player && character) return `${player} - ${character}.json`;
+    if (character) return `${character}.json`;
+    if (player) return `${player} - Potion Inventory.json`;
+    return "obojima-inventory.json";
+}
+
+function parseImportedInventory(parsed) {
+    const ingredients = Array.isArray(parsed) ? parsed : (parsed.ingredients || []);
+    return {
+        playerName: parsed && !Array.isArray(parsed) ? (parsed.playerName || "") : "",
+        characterName: parsed && !Array.isArray(parsed) ? (parsed.characterName || "") : "",
+        dataset: parsed && !Array.isArray(parsed) ? parsed.dataset : null,
+        ingredients: normalizeInventoryList(ingredients)
+    };
+}
+
+function handleInventoryExport() {
+    const currentInventory = getActiveInventoryList();
+    const currentProfile = loadInventoryProfile();
+    if (currentInventory.length === 0 && !currentProfile.playerName && !currentProfile.characterName) {
+        alert("There is no inventory to save yet.");
+        updateSaveInventoryButtons();
+        return;
+    }
+    const profile = ensureInventoryProfileBeforeExport();
+    if (!profile) return;
+    const payload = buildInventoryExportPayload();
+    const blob = new Blob([JSON.stringify(payload, null, 2)], { type: "application/json" });
+    const url = URL.createObjectURL(blob);
+    const link = document.createElement("a");
+    link.href = url;
+    link.download = getInventoryDownloadName(profile);
+    document.body.appendChild(link);
+    link.click();
+    link.remove();
+    URL.revokeObjectURL(url);
+    setBackupCurrent();
+    updateInventoryProfileDisplay();
+}
+
+function applyImportedInventory(parsed, clearResultsCallback) {
+    const imported = parseImportedInventory(parsed);
+    setActiveInventoryList(imported.ingredients);
+    saveInventoryProfile({
+        playerName: imported.playerName || "",
+        characterName: imported.characterName || ""
+    });
+    if (imported.dataset === "2014" || imported.dataset === "2024") {
+        currentValuesYear = imported.dataset;
+        localStorage.setItem("obojimaValuesYear", currentValuesYear);
+        if (typeof updateValuesToggleButton === "function") updateValuesToggleButton();
+        if (typeof updateCompleterValuesToggleButton === "function") updateCompleterValuesToggleButton();
+    }
+    applyStoredInventoryToButtons();
+    updateInventoryProfileDisplay();
+    setBackupCurrent();
+    if (typeof clearResultsCallback === "function") clearResultsCallback();
+}
+
 window.POTION_NAMES = {};
 
 
@@ -188,6 +400,8 @@ document.addEventListener("DOMContentLoaded", async () => {
     window.POTION_NAMES = await loadPotionNames();
     populatePotionOptions();
     await loadCompleterIngredientButtonsForCurrentYear();
+    updateInventoryProfileDisplay();
+    updateSaveInventoryButtons();
 });
 
 function populateRegionOptions() {
@@ -219,6 +433,7 @@ function setupCompleterIngredientButtons() {
 
             selectedInventory = normalizeInventoryList(selectedInventory);
             saveStoredInventory();
+            markInventoryChanged();
         });
     });
 }
@@ -229,6 +444,7 @@ function toggleCompleterValuesYear() {
 
     updateCompleterValuesToggleButton();
     loadCompleterIngredientButtonsForCurrentYear();
+    markInventoryChanged();
 }
 
 function updateCompleterValuesToggleButton() {
@@ -520,11 +736,14 @@ function renderCompleterResults(data) {
 }
 
 function clearCompleterSelection() {
-    const confirmed = window.confirm("Clear your entire saved inventory? This cannot be undone.");
+    const confirmed = window.confirm("Clear this inventory, character name, and player name from this browser? Saved JSON files will not be affected.");
     if (!confirmed) return;
 
     selectedInventory = [];
     saveStoredInventory();
+    clearInventoryProfile();
+    updateInventoryProfileDisplay();
+    updateSaveInventoryButtons();
     document.querySelectorAll(".ingredient-button").forEach(button => {
         button.classList.remove("selected", "common", "uncommon", "rare");
     });
@@ -533,23 +752,7 @@ function clearCompleterSelection() {
 }
 
 function exportInventory() {
-    const payload = {
-        app: "Obojima Potion Almanac",
-        version: 1,
-        dataset: currentValuesYear,
-        exportedAt: new Date().toISOString(),
-        ingredients: normalizeInventoryList(selectedInventory)
-    };
-
-    const blob = new Blob([JSON.stringify(payload, null, 2)], { type: "application/json" });
-    const url = URL.createObjectURL(blob);
-    const link = document.createElement("a");
-    link.href = url;
-    link.download = "obojima-inventory.json";
-    document.body.appendChild(link);
-    link.click();
-    link.remove();
-    URL.revokeObjectURL(url);
+    handleInventoryExport();
 }
 
 function importInventory() {
@@ -565,11 +768,9 @@ function importInventory() {
         reader.onload = () => {
             try {
                 const parsed = JSON.parse(reader.result);
-                const ingredients = Array.isArray(parsed) ? parsed : parsed.ingredients;
-                selectedInventory = normalizeInventoryList(ingredients);
-                saveStoredInventory();
-                applyStoredInventoryToButtons();
-                document.getElementById("completer-results").innerHTML = "";
+                applyImportedInventory(parsed, () => {
+                    document.getElementById("completer-results").innerHTML = "";
+                });
             } catch (error) {
                 alert("Sorry, that inventory file could not be loaded.");
                 console.error("Unable to import inventory.", error);
