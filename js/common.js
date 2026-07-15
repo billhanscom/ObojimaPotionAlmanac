@@ -84,7 +84,18 @@ const Obojima = (() => {
     }
 
     function splitIngredientsByRarity(ingredients) {
-        return {
+        const jsonCache = {};
+
+    async function loadJson(path) {
+        if (!jsonCache[path]) {
+            const response = await fetch(path);
+            if (!response.ok) throw new Error(`Failed to load ${path}: ${response.status}`);
+            jsonCache[path] = await response.json();
+        }
+        return jsonCache[path];
+    }
+
+    return {
             common: ingredients.filter(ing => normalizeRarity(ing.rarity) === "common").sort((a, b) => ingredientSortKey(a).localeCompare(ingredientSortKey(b))),
             uncommon: ingredients.filter(ing => normalizeRarity(ing.rarity) === "uncommon").sort((a, b) => ingredientSortKey(a).localeCompare(ingredientSortKey(b))),
             rare: ingredients.filter(ing => normalizeRarity(ing.rarity) === "rare").sort((a, b) => ingredientSortKey(a).localeCompare(ingredientSortKey(b)))
@@ -588,6 +599,7 @@ const Obojima = (() => {
         clearInventoryProfile,
         showClearInventoryDialog,
         exportInventory,
-        importInventoryFile
+        importInventoryFile,
+        loadJson
     };
 })();
