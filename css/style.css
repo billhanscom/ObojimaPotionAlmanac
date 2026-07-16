@@ -3674,33 +3674,6 @@ body.high-contrast .foraging-debug-plain pre {
 }
 
 
-/* Foraging Aid result and debug refinements */
-.foraging-result-card h3 {
-    margin-bottom: 12px !important;
-}
-
-.foraging-result-list {
-    display: flex !important;
-    flex-wrap: wrap !important;
-    justify-content: center !important;
-    gap: 8px !important;
-    list-style: none !important;
-    padding: 0 !important;
-    margin: 12px auto 18px !important;
-}
-
-.foraging-result-list .ingredient {
-    display: inline-flex !important;
-    align-items: center !important;
-    min-height: 34px !important;
-    padding: 8px 12px !important;
-    margin: 0 !important;
-    border-radius: 6px !important;
-    font-size: 14px !important;
-    line-height: 1.2 !important;
-    box-sizing: border-box !important;
-}
-
 /* Plain-text Foraging Aid debug output */
 .foraging-debug-plain {
     text-align: left !important;
@@ -3728,13 +3701,6 @@ body.high-contrast .foraging-debug-plain pre {
 }
 
 
-/* Foraging surprise/default update */
-.foraging-result-list .ingredient {
-    min-height: 34px !important;
-    padding: 8px 12px !important;
-}
-
-
 /* Prevent high-contrast container border from changing layout */
 .container {
     box-sizing: border-box !important;
@@ -3747,43 +3713,6 @@ body.high-contrast .container {
 }
 
 
-/* Foraging result ingredient chips: match ingredient buttons */
-.foraging-result-list {
-    display: flex !important;
-    flex-wrap: wrap !important;
-    justify-content: center !important;
-    gap: 20px !important;
-    list-style: none !important;
-    padding: 0 !important;
-    margin: 22px auto 28px !important;
-}
-
-.foraging-result-list .ingredient {
-    display: inline-flex !important;
-    align-items: center !important;
-    justify-content: center !important;
-    width: auto !important;
-    min-width: 260px !important;
-    max-width: 100% !important;
-    min-height: 56px !important;
-    padding: 16px 28px !important;
-    margin: 0 !important;
-    border-radius: 8px !important;
-    font-size: 22px !important;
-    font-weight: 600 !important;
-    line-height: 1.2 !important;
-    text-align: center !important;
-    box-sizing: border-box !important;
-}
-
-.foraging-result-card {
-    text-align: center !important;
-}
-
-.foraging-result-card .foraging-result-actions {
-    margin-top: 18px !important;
-}
-
 /* Persistent plain-text debug details */
 .foraging-debug-plain {
     margin-top: 16px !important;
@@ -3795,8 +3724,38 @@ body.high-contrast .container {
 }
 
 
-/* Foraging result chips text-size refinement */
+
+
+/* Unified ingredient cards */
+.ingredient,
 .foraging-result-list .ingredient {
-    font-size: 16px !important;
-    font-weight: 600 !important;
+    display: block !important;
+    width: 100% !important;
+    min-height: 0 !important;
+    padding: 12px 14px !important;
+    margin: 0 !important;
+    border-radius: 6px !important;
+    font-size: 14px !important;
+    font-weight: 400 !important;
+    line-height: 1.25 !important;
+    text-align: center !important;
+    box-sizing: border-box !important;
+}
+
+.foraging-result-list {
+    display: grid !important;
+    grid-template-columns: minmax(0, 272px) !important;
+    justify-content: center !important;
+    gap: 12px !important;
+    list-style: none !important;
+    padding: 0 !important;
+    margin: 22px auto 24px !important;
+}
+
+.foraging-result-card {
+    text-align: center !important;
+}
+
+.foraging-result-card .foraging-result-actions {
+    margin-top: 18px !important;
 }
