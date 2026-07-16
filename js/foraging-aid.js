@@ -6,6 +6,7 @@ const foragingJsonCache = {};
 const OBOJIMA_FORAGING_DEBUG_OPEN_KEY = "obojimaForagingDebugOpen";
 const OBOJIMA_FORAGING_RESULTS_KEY = "obojimaForagingLastResultsHtml";
 const OBOJIMA_FORAGING_RESULTS_ITEMS_KEY = "obojimaForagingLastResultItems";
+const OBOJIMA_FORAGING_PARAMS_KEY = "obojimaForagingSearchParams";
 
 async function loadForagingJson(path) {
     if (!foragingJsonCache[path]) {
@@ -25,7 +26,9 @@ document.addEventListener("DOMContentLoaded", async () => {
         await loadForagingData();
         populateForagingRegionOptions();
         populateSearchAreaOptions();
+        restoreForagingSearchParams();
         setupForagingKeyboardShortcuts();
+        bindForagingParamPersistence();
         restoreForagingResults();
     } catch (error) {
         console.error(error);
@@ -60,6 +63,63 @@ function clearStoredForagingResults() {
 function saveForagingResults(html, items) {
     sessionStorage.setItem(OBOJIMA_FORAGING_RESULTS_KEY, html);
     sessionStorage.setItem(OBOJIMA_FORAGING_RESULTS_ITEMS_KEY, JSON.stringify(items || []));
+}
+
+function saveForagingSearchParams() {
+    const params = {
+        region: document.getElementById("foraging-region")?.value || "",
+        searchArea: document.getElementById("foraging-search-area")?.value || "",
+        dc: document.getElementById("foraging-dc")?.value || "",
+        roll: document.getElementById("foraging-roll")?.value || "",
+        prioritizeNew: Boolean(document.getElementById("foraging-prioritize-new")?.checked)
+    };
+    sessionStorage.setItem(OBOJIMA_FORAGING_PARAMS_KEY, JSON.stringify(params));
+}
+
+function restoreForagingSearchParams() {
+    if (wasPageReloaded()) {
+        sessionStorage.removeItem(OBOJIMA_FORAGING_PARAMS_KEY);
+        return;
+    }
+
+    let params = null;
+    try {
+        params = JSON.parse(sessionStorage.getItem(OBOJIMA_FORAGING_PARAMS_KEY) || "null");
+    } catch {
+        params = null;
+    }
+    if (!params) return;
+
+    const regionSelect = document.getElementById("foraging-region");
+    const areaSelect = document.getElementById("foraging-search-area");
+    const dcInput = document.getElementById("foraging-dc");
+    const rollInput = document.getElementById("foraging-roll");
+    const prioritizeInput = document.getElementById("foraging-prioritize-new");
+
+    if (regionSelect && params.region) {
+        regionSelect.value = params.region;
+        populateSearchAreaOptions();
+    }
+
+    if (areaSelect && params.searchArea) areaSelect.value = params.searchArea;
+    if (dcInput && params.dc !== undefined) dcInput.value = params.dc;
+    if (rollInput && params.roll !== undefined) rollInput.value = params.roll;
+    if (prioritizeInput) prioritizeInput.checked = Boolean(params.prioritizeNew);
+}
+
+function bindForagingParamPersistence() {
+    [
+        "foraging-region",
+        "foraging-search-area",
+        "foraging-dc",
+        "foraging-roll",
+        "foraging-prioritize-new"
+    ].forEach(id => {
+        const el = document.getElementById(id);
+        if (!el) return;
+        el.addEventListener("change", saveForagingSearchParams);
+        el.addEventListener("input", saveForagingSearchParams);
+    });
 }
 
 function restoreForagingResults() {
@@ -685,6 +745,8 @@ async function generateForagingFinds() {
         alert("Please enter both the DC and the roll total.");
         return;
     }
+
+    saveForagingSearchParams();
 
     const degreeOfSuccess = rollTotal - dc;
     resultsDiv.innerHTML = "";
