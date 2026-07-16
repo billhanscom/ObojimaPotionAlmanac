@@ -3793,3 +3793,10 @@ body.high-contrast .container {
     cursor: pointer !important;
     user-select: none !important;
 }
+
+
+/* Foraging result chips text-size refinement */
+.foraging-result-list .ingredient {
+    font-size: 16px !important;
+    font-weight: 600 !important;
+}

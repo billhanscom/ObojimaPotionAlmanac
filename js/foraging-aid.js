@@ -4,6 +4,8 @@ let foragingRegions = [];
 let foragingSearchAreas = [];
 const foragingJsonCache = {};
 const OBOJIMA_FORAGING_DEBUG_OPEN_KEY = "obojimaForagingDebugOpen";
+const OBOJIMA_FORAGING_RESULTS_KEY = "obojimaForagingLastResultsHtml";
+const OBOJIMA_FORAGING_RESULTS_ITEMS_KEY = "obojimaForagingLastResultItems";
 
 async function loadForagingJson(path) {
     if (!foragingJsonCache[path]) {
@@ -24,6 +26,7 @@ document.addEventListener("DOMContentLoaded", async () => {
         populateForagingRegionOptions();
         populateSearchAreaOptions();
         setupForagingKeyboardShortcuts();
+        restoreForagingResults();
     } catch (error) {
         console.error(error);
         document.getElementById("foraging-results").innerHTML = `<p class="completer-empty">Foraging data could not be loaded.</p>`;
@@ -41,6 +44,45 @@ function bindForagingDebugDetails() {
     details.addEventListener("toggle", () => {
         localStorage.setItem(OBOJIMA_FORAGING_DEBUG_OPEN_KEY, details.open ? "true" : "false");
     });
+}
+
+function wasPageReloaded() {
+    const navEntry = performance.getEntriesByType && performance.getEntriesByType("navigation")[0];
+    if (navEntry) return navEntry.type === "reload";
+    return performance.navigation && performance.navigation.type === performance.navigation.TYPE_RELOAD;
+}
+
+function clearStoredForagingResults() {
+    sessionStorage.removeItem(OBOJIMA_FORAGING_RESULTS_KEY);
+    sessionStorage.removeItem(OBOJIMA_FORAGING_RESULTS_ITEMS_KEY);
+}
+
+function saveForagingResults(html, items) {
+    sessionStorage.setItem(OBOJIMA_FORAGING_RESULTS_KEY, html);
+    sessionStorage.setItem(OBOJIMA_FORAGING_RESULTS_ITEMS_KEY, JSON.stringify(items || []));
+}
+
+function restoreForagingResults() {
+    if (wasPageReloaded()) {
+        clearStoredForagingResults();
+        return;
+    }
+
+    const html = sessionStorage.getItem(OBOJIMA_FORAGING_RESULTS_KEY);
+    if (!html) return;
+
+    const resultsDiv = document.getElementById("foraging-results");
+    if (!resultsDiv) return;
+
+    resultsDiv.innerHTML = html;
+
+    try {
+        window.latestForagingResults = JSON.parse(sessionStorage.getItem(OBOJIMA_FORAGING_RESULTS_ITEMS_KEY) || "[]");
+    } catch {
+        window.latestForagingResults = [];
+    }
+
+    bindForagingDebugDetails();
 }
 
 function setupForagingKeyboardShortcuts() {
@@ -649,6 +691,7 @@ async function generateForagingFinds() {
 
     if (degreeOfSuccess < 0) {
         resultsDiv.innerHTML = `<div class="completion-card foraging-result-card"><h3>Results</h3><p>No potion ingredients found.</p></div>`;
+        saveForagingResults(resultsDiv.innerHTML, []);
         resultsDiv.scrollIntoView({ behavior: "smooth" });
         return;
     }
@@ -664,6 +707,7 @@ async function generateForagingFinds() {
 
     if (selected.length === 0) {
         resultsDiv.innerHTML = `<div class="completion-card foraging-result-card"><h3>Results</h3><p>No potion ingredients found.</p></div>`;
+        saveForagingResults(resultsDiv.innerHTML, []);
         resultsDiv.scrollIntoView({ behavior: "smooth" });
         return;
     }
@@ -692,6 +736,7 @@ async function generateForagingFinds() {
     </div>${debug}`;
 
     window.latestForagingResults = selected.map(item => item.name);
+    saveForagingResults(resultsDiv.innerHTML, window.latestForagingResults);
     bindForagingDebugDetails();
     resultsDiv.scrollIntoView({ behavior: "smooth" });
 }
@@ -706,6 +751,8 @@ function addForagingResultsToInventory() {
 
     const button = document.querySelector(".foraging-result-actions button");
     if (button) button.textContent = "Added to Inventory";
+    const resultsDiv = document.getElementById("foraging-results");
+    if (resultsDiv) saveForagingResults(resultsDiv.innerHTML, window.latestForagingResults || []);
 }
 
 async function clearForagingInventory() {
