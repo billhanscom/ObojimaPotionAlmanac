@@ -370,9 +370,9 @@ Rare ingredients are currently excluded.
 
 DC affects what kinds of ingredients are more likely within the selected environment.
 
-- DC 15 favors common, expected, local results.
-- DC 20 increases the chance of less commonly encountered ingredients.
-- DC 25 increases that chance further.
+- DC 10-15 favors Common ingredients native to the selected area.
+- DC 16-20 increases the chance of native Uncommon ingredients and non-native Common ingredients.
+- DC 21-25 increases the chance of non-native Uncommon ingredients.
 
 DC does not override the Search Area. A high-DC River search should still feel like a River search.
 

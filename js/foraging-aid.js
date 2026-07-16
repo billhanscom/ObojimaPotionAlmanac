@@ -94,9 +94,13 @@ function escapeHtml(value) {
 }
 
 function getDcTier(dc) {
-    if (dc <= 15) return "15";
-    if (dc <= 20) return "20";
-    return "25";
+    const tiers = foragingConfig.dcTiers || [];
+    const match = tiers.find(tier => dc >= tier.min && dc <= tier.max);
+    if (match) return match.key;
+
+    if (dc <= 15) return "10-15";
+    if (dc <= 20) return "16-20";
+    return "21-25";
 }
 
 function getSuccessTierKey(degreeOfSuccess) {
@@ -410,40 +414,41 @@ function selectForagingResults(candidates, targetFindCount, searchArea, selected
 }
 
 function getDcEffectLines(dc, selectedRegion) {
+    const tier = getDcTier(dc);
+
     if (selectedRegion === "Yatamon") {
-        if (dc <= 15) {
+        if (tier === "10-15") {
             return [
-                "Common ingredients were favored.",
-                "Local and nearby trade sources were favored."
+                "Local Common ingredients were likely.",
+                "Nearby Common ingredients were possible."
             ];
         }
-        if (dc <= 20) {
+        if (tier === "16-20") {
             return [
-                "Uncommon ingredients became more competitive.",
-                "Nearby trade sources became more competitive."
+                "Local Uncommon ingredients were possible.",
+                "Nearby Common ingredients were possible."
             ];
         }
         return [
-            "Uncommon ingredients became more competitive.",
-            "Distant trade sources became more competitive."
+            "Nearby Uncommon ingredients were possible.",
+            "Distant ingredients were possible."
         ];
     }
 
-    if (dc <= 15) {
+    if (tier === "10-15") {
         return [
-            "Common ingredients were favored.",
-            "Native ingredients were favored."
+            "Native Common ingredients were likely."
         ];
     }
-    if (dc <= 20) {
+    if (tier === "16-20") {
         return [
-            "Uncommon ingredients became more competitive.",
-            "Nearby-region ingredients became more competitive."
+            "Native Uncommon ingredients were possible.",
+            "Nearby Common ingredients were possible."
         ];
     }
     return [
-        "Uncommon ingredients became more competitive.",
-        "Nearby and farther-region ingredients became more competitive."
+        "Nearby Uncommon ingredients were possible.",
+        "Farther Common ingredients were possible."
     ];
 }
 
@@ -452,19 +457,20 @@ function getDosEffectLines(degreeOfSuccess, generatedCount) {
 
     if (degreeOfSuccess >= 10) {
         return [
-            `${tier}: generated ${generatedCount} ingredients.`,
-            "Less obvious ingredients had a better chance to appear."
+            `${tier}.`,
+            `${generatedCount} ingredients found.`,
+            "Less commonly encountered ingredients were possible."
         ];
     }
     if (degreeOfSuccess >= 5) {
         return [
-            `${tier}: generated ${generatedCount} ingredients.`,
-            "Less obvious ingredients had a moderate chance to appear."
+            `${tier}.`,
+            `${generatedCount} ingredients found.`
         ];
     }
     return [
-        `${tier}: generated ${generatedCount} ingredient${generatedCount === 1 ? "" : "s"}.`,
-        "Common and expected ingredients were favored."
+        `${tier}.`,
+        `${generatedCount} ingredient${generatedCount === 1 ? "" : "s"} found.`
     ];
 }
 
@@ -478,9 +484,8 @@ function getSearchAreaEffectLines(selected, searchArea) {
     const associatedCount = selected.filter(item => item.habitatRelationship.key !== "none").length;
     const profile = (foragingConfig.searchAreaProfiles || {})[searchArea] || { natural: 0.7, human: 0.3 };
     return [
-        `${associatedCount} of ${selected.length} generated ingredient${selected.length === 1 ? " was" : "s were"} associated with ${searchArea}.`,
-        `${searchArea} has ${describeOpportunityLevel(profile.natural)} natural opportunity and ${describeOpportunityLevel(profile.human)} human activity.`,
-        "Search Area is the strongest influence on the generated haul."
+        `${associatedCount} of ${selected.length} ingredients matched ${searchArea} or a related Search Area.`,
+        `${searchArea}: ${describeOpportunityLevel(profile.natural)} natural opportunity, ${describeOpportunityLevel(profile.human)} civil activity.`
     ];
 }
 
@@ -520,9 +525,9 @@ function renderPlainDebug({
     }).join("\n\n");
 
     const debugText = [
-        "GENERATION DETAILS",
+        "Generation Details",
         "",
-        "RESULT",
+        "Result",
         `Region: ${selectedRegion}`,
         `Search Area: ${searchArea}`,
         `DC: ${dc}`,
@@ -530,16 +535,16 @@ function renderPlainDebug({
         `Degree of Success: +${degreeOfSuccess}`,
         `Rarity Mix: ${getRaritySummaryLine(selected)}`,
         "",
-        "HOW DC AFFECTED THIS RESULT",
+        "DC",
         ...dcLines.map(line => `- ${line}`),
         "",
-        "HOW DEGREE OF SUCCESS AFFECTED THIS RESULT",
+        "Degree of Success",
         ...dosLines.map(line => `- ${line}`),
         "",
-        "HOW SEARCH AREA AFFECTED THIS RESULT",
+        "Search Area",
         ...areaLines.map(line => `- ${line}`),
         "",
-        "WHY THESE INGREDIENTS APPEARED",
+        "Ingredients",
         ingredientLines
     ].join("\n");
 
@@ -567,7 +572,7 @@ async function generateForagingFinds() {
     resultsDiv.innerHTML = "";
 
     if (degreeOfSuccess < 0) {
-        resultsDiv.innerHTML = `<div class="completion-card foraging-result-card"><h3>After an hour of foraging...</h3><p>The party does not return with any potion ingredients.</p></div>`;
+        resultsDiv.innerHTML = `<div class="completion-card foraging-result-card"><h3>Results</h3><p>No potion ingredients found.</p></div>`;
         resultsDiv.scrollIntoView({ behavior: "smooth" });
         return;
     }
@@ -582,7 +587,7 @@ async function generateForagingFinds() {
     const selected = selectForagingResults(candidates, targetFindCount, searchArea, selectedRegion, prioritizeNew);
 
     if (selected.length === 0) {
-        resultsDiv.innerHTML = `<div class="completion-card foraging-result-card"><h3>After an hour of foraging...</h3><p>The party does not return with any potion ingredients.</p></div>`;
+        resultsDiv.innerHTML = `<div class="completion-card foraging-result-card"><h3>Results</h3><p>No potion ingredients found.</p></div>`;
         resultsDiv.scrollIntoView({ behavior: "smooth" });
         return;
     }
@@ -605,9 +610,8 @@ async function generateForagingFinds() {
     }
 
     resultsDiv.innerHTML = `<div class="completion-card foraging-result-card">
-        <h3>After an hour of foraging...</h3>
-        <p>The party returns with:</p>
-        <ul class="completion-recipe-list">${list}</ul>
+        <h3>Results</h3>
+        <ul class="completion-recipe-list foraging-result-list">${list}</ul>
         <div class="button-group foraging-result-actions">
             <button type="button" onclick="addForagingResultsToInventory()">Add to Inventory</button>
             <button type="button" onclick="generateForagingFinds()">Generate Again</button>

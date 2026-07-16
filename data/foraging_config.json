@@ -268,26 +268,26 @@
     "none": 0.4
   },
   "dcModifiers": {
-    "15": {
+    "10-15": {
       "common": 1,
-      "uncommon": 0.55,
+      "uncommon": 0.45,
       "native": 1,
-      "nearby": 0.35,
-      "far": 0.08
+      "nearby": 0.3,
+      "far": 0.06
     },
-    "20": {
+    "16-20": {
       "common": 1,
       "uncommon": 0.95,
       "native": 1,
-      "nearby": 0.65,
-      "far": 0.18
+      "nearby": 0.75,
+      "far": 0.16
     },
-    "25": {
+    "21-25": {
       "common": 1,
       "uncommon": 1.25,
       "native": 1,
-      "nearby": 0.85,
-      "far": 0.35
+      "nearby": 1,
+      "far": 0.45
     }
   },
   "dosModifiers": {
@@ -601,5 +601,25 @@
     "Seashell": "natural",
     "Spirit Tea": "human",
     "Squid Ink": "natural"
-  }
+  },
+  "dcTiers": [
+    {
+      "min": 10,
+      "max": 15,
+      "key": "10-15",
+      "summary": "Common ingredients native to the area"
+    },
+    {
+      "min": 16,
+      "max": 20,
+      "key": "16-20",
+      "summary": "Uncommon native ingredients and Common non-native ingredients"
+    },
+    {
+      "min": 21,
+      "max": 25,
+      "key": "21-25",
+      "summary": "Uncommon non-native ingredients"
+    }
+  ]
 }

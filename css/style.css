@@ -3672,3 +3672,57 @@ body.high-contrast .foraging-debug-plain pre {
     color: #000000 !important;
     border-color: #000000 !important;
 }
+
+
+/* Foraging Aid result and debug refinements */
+.foraging-result-card h3 {
+    margin-bottom: 12px !important;
+}
+
+.foraging-result-list {
+    display: flex !important;
+    flex-wrap: wrap !important;
+    justify-content: center !important;
+    gap: 8px !important;
+    list-style: none !important;
+    padding: 0 !important;
+    margin: 12px auto 18px !important;
+}
+
+.foraging-result-list .ingredient {
+    display: inline-flex !important;
+    align-items: center !important;
+    min-height: 34px !important;
+    padding: 8px 12px !important;
+    margin: 0 !important;
+    border-radius: 6px !important;
+    font-size: 14px !important;
+    line-height: 1.2 !important;
+    box-sizing: border-box !important;
+}
+
+/* Plain-text Foraging Aid debug output */
+.foraging-debug-plain {
+    text-align: left !important;
+}
+
+.foraging-debug-plain pre {
+    white-space: pre-wrap !important;
+    word-break: break-word !important;
+    overflow-x: auto !important;
+    margin: 12px 0 0 !important;
+    padding: 12px 14px !important;
+    background: transparent !important;
+    border: 0 !important;
+    border-radius: 0 !important;
+    color: #2d2d2d !important;
+    font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, "Liberation Mono", monospace !important;
+    font-size: 13px !important;
+    line-height: 1.45 !important;
+}
+
+body.high-contrast .foraging-debug-plain pre {
+    background: transparent !important;
+    color: #000000 !important;
+    border: 0 !important;
+}
