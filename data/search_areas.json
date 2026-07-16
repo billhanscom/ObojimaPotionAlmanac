@@ -1,0 +1,194 @@
+[
+  {
+    "name": "Cave",
+    "civilization": 1.6,
+    "related_search_areas": [
+      "Geothermal",
+      "Mountain",
+      "Ruins"
+    ]
+  },
+  {
+    "name": "City Streets",
+    "civilization": 5,
+    "related_search_areas": [
+      "Settlement",
+      "Town",
+      "Village"
+    ]
+  },
+  {
+    "name": "Coast",
+    "civilization": 2.0,
+    "related_search_areas": [
+      "Coral Reef",
+      "Open Water",
+      "River",
+      "Wetland"
+    ]
+  },
+  {
+    "name": "Coral Reef",
+    "civilization": 1.32,
+    "related_search_areas": [
+      "Cave",
+      "Coast",
+      "Open Water"
+    ]
+  },
+  {
+    "name": "Forest",
+    "civilization": 1.32,
+    "related_search_areas": [
+      "Grassland",
+      "River",
+      "Settlement",
+      "Village"
+    ]
+  },
+  {
+    "name": "Geothermal",
+    "civilization": 1.48,
+    "related_search_areas": [
+      "Cave",
+      "Mountain",
+      "River"
+    ]
+  },
+  {
+    "name": "Grassland",
+    "civilization": 1.48,
+    "related_search_areas": [
+      "Forest",
+      "River",
+      "Settlement",
+      "Village"
+    ]
+  },
+  {
+    "name": "Lake",
+    "civilization": 1.72,
+    "related_search_areas": [
+      "Coast",
+      "River",
+      "Wetland"
+    ]
+  },
+  {
+    "name": "Market",
+    "civilization": 5,
+    "related_search_areas": [
+      "Settlement",
+      "Town",
+      "Village"
+    ]
+  },
+  {
+    "name": "Mountain",
+    "civilization": 1.32,
+    "related_search_areas": [
+      "Cave",
+      "Forest",
+      "Geothermal"
+    ]
+  },
+  {
+    "name": "Open Water",
+    "civilization": 1.32,
+    "related_search_areas": [
+      "Coast",
+      "Coral Reef"
+    ]
+  },
+  {
+    "name": "River",
+    "civilization": 1.88,
+    "related_search_areas": [
+      "Forest",
+      "Grassland",
+      "Lake",
+      "Settlement",
+      "Wetland"
+    ]
+  },
+  {
+    "name": "Ruins",
+    "civilization": 3.6,
+    "related_search_areas": [
+      "Cave",
+      "Forest",
+      "Settlement",
+      "Village"
+    ]
+  },
+  {
+    "name": "Settlement",
+    "civilization": 2.8,
+    "related_search_areas": [
+      "Forest",
+      "Grassland",
+      "Ruins",
+      "Town",
+      "Village"
+    ]
+  },
+  {
+    "name": "Shrine",
+    "civilization": 4.0,
+    "related_search_areas": [
+      "Forest",
+      "Ruins",
+      "Settlement",
+      "Village"
+    ]
+  },
+  {
+    "name": "Subway",
+    "civilization": 3.8,
+    "related_search_areas": [
+      "Cave",
+      "Ruins",
+      "Wetland"
+    ]
+  },
+  {
+    "name": "Town",
+    "civilization": 4.4,
+    "related_search_areas": [
+      "Ruins",
+      "Settlement",
+      "Village"
+    ]
+  },
+  {
+    "name": "Village",
+    "civilization": 3.4,
+    "related_search_areas": [
+      "Forest",
+      "Grassland",
+      "Ruins",
+      "Settlement",
+      "Town"
+    ]
+  },
+  {
+    "name": "Waterfront",
+    "civilization": 4.6,
+    "related_search_areas": [
+      "Coast",
+      "Lake",
+      "Open Water",
+      "River",
+      "Wetland"
+    ]
+  },
+  {
+    "name": "Wetland",
+    "civilization": 1.4,
+    "related_search_areas": [
+      "Coast",
+      "Lake",
+      "River"
+    ]
+  }
+]

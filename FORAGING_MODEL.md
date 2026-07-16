@@ -27,6 +27,14 @@ The engine then produces a foraging result that reflects those inputs.
 
 # Data Construction
 
+## JSON File Responsibilities
+
+- `ingredients.json` describes ingredients.
+- `regions.json` describes Regions, adjacency, available Search Areas, and Yatamon trade groups.
+- `search_areas.json` describes each Search Area's civilization value and related Search Areas.
+- `foraging_config.json` contains engine tuning values only.
+
+
 The JSON files describe the world. The engine interprets that world.
 
 The data should avoid weights, formulas, and math whenever possible. Those belong in the engine configuration. Ingredient, Region, and Search Area data should describe what is true in the setting.
@@ -38,6 +46,18 @@ An ingredient entry describes the ingredient itself.
 ```json
 {
   "name": "Raka Paste",
+  "values": {
+    "2014": {
+      "combat": 1,
+      "utility": 7,
+      "whimsy": 3
+    },
+    "2024": {
+      "combat": 1,
+      "utility": 7,
+      "whimsy": 3
+    }
+  },
   "rarity": "Common",
   "forageable": true,
   "regions": [
@@ -56,6 +76,26 @@ An ingredient entry describes the ingredient itself.
 
 **name**  
 The ingredient name.
+
+**values**  
+The Combat, Utility, and Whimsy values for each supported ruleset.
+
+Example:
+
+```json
+"values": {
+  "2014": {
+    "combat": 9,
+    "utility": 5,
+    "whimsy": 4
+  },
+  "2024": {
+    "combat": 9,
+    "utility": 5,
+    "whimsy": 4
+  }
+}
+```
 
 **rarity**  
 The rarity from the game data. The Foraging Aid currently uses Common and Uncommon ingredients. Rare ingredients are excluded unless the model is changed later.
@@ -448,6 +488,6 @@ Ingredient files now include foraging-specific descriptive fields:
 "civilization": 1
 ```
 
-The engine reads these fields first. The older `foraging_affinity.json` file remains as a fallback and reference file, but the preferred editable criteria now live on each ingredient entry.
+The engine reads these fields first. The older `ingredients.json` file remains as a fallback and reference file, but the preferred editable criteria now live on each ingredient entry.
 
 The `civilization` value accepts integers or decimals. The engine treats values below 1 as 1 and values above 5 as 5.

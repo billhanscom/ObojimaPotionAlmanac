@@ -3745,3 +3745,51 @@ body.high-contrast .container {
     outline: 3px solid #000000 !important;
     outline-offset: 0 !important;
 }
+
+
+/* Foraging result ingredient chips: match ingredient buttons */
+.foraging-result-list {
+    display: flex !important;
+    flex-wrap: wrap !important;
+    justify-content: center !important;
+    gap: 20px !important;
+    list-style: none !important;
+    padding: 0 !important;
+    margin: 22px auto 28px !important;
+}
+
+.foraging-result-list .ingredient {
+    display: inline-flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+    width: auto !important;
+    min-width: 260px !important;
+    max-width: 100% !important;
+    min-height: 56px !important;
+    padding: 16px 28px !important;
+    margin: 0 !important;
+    border-radius: 8px !important;
+    font-size: 22px !important;
+    font-weight: 600 !important;
+    line-height: 1.2 !important;
+    text-align: center !important;
+    box-sizing: border-box !important;
+}
+
+.foraging-result-card {
+    text-align: center !important;
+}
+
+.foraging-result-card .foraging-result-actions {
+    margin-top: 18px !important;
+}
+
+/* Persistent plain-text debug details */
+.foraging-debug-plain {
+    margin-top: 16px !important;
+}
+
+.foraging-debug-plain summary {
+    cursor: pointer !important;
+    user-select: none !important;
+}

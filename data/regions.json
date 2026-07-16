@@ -1,0 +1,170 @@
+[
+  {
+    "name": "Brackwater Wetlands",
+    "adjacent_regions": [
+      "Land of Hot Water",
+      "Mount Arbora",
+      "Coastal Highlands",
+      "Gale Fields",
+      "The Shallows"
+    ],
+    "search_areas": [
+      "Cave",
+      "Coast",
+      "Forest",
+      "Lake",
+      "River",
+      "Ruins",
+      "Settlement",
+      "Village",
+      "Wetland"
+    ]
+  },
+  {
+    "name": "Coastal Highlands",
+    "adjacent_regions": [
+      "Gale Fields",
+      "Gift of Shuritashi",
+      "Brackwater Wetlands",
+      "The Shallows"
+    ],
+    "search_areas": [
+      "Cave",
+      "Coast",
+      "Forest",
+      "Grassland",
+      "Lake",
+      "River",
+      "Ruins",
+      "Settlement",
+      "Town",
+      "Village",
+      "Wetland"
+    ]
+  },
+  {
+    "name": "Gale Fields",
+    "adjacent_regions": [
+      "Gift of Shuritashi",
+      "Brackwater Wetlands",
+      "Coastal Highlands",
+      "Mount Arbora"
+    ],
+    "search_areas": [
+      "Forest",
+      "Grassland",
+      "River",
+      "Ruins",
+      "Settlement",
+      "Town",
+      "Village"
+    ]
+  },
+  {
+    "name": "Gift of Shuritashi",
+    "adjacent_regions": [
+      "Land of Hot Water",
+      "Mount Arbora",
+      "Coastal Highlands",
+      "Gale Fields",
+      "The Shallows"
+    ],
+    "search_areas": [
+      "Cave",
+      "Coast",
+      "Forest",
+      "Grassland",
+      "Lake",
+      "River",
+      "Ruins",
+      "Settlement",
+      "Town",
+      "Village",
+      "Wetland"
+    ]
+  },
+  {
+    "name": "Land of Hot Water",
+    "adjacent_regions": [
+      "Gift of Shuritashi",
+      "Mount Arbora",
+      "Brackwater Wetlands",
+      "The Shallows"
+    ],
+    "search_areas": [
+      "Cave",
+      "Forest",
+      "Geothermal",
+      "Mountain",
+      "River",
+      "Ruins",
+      "Settlement",
+      "Town",
+      "Village"
+    ]
+  },
+  {
+    "name": "Mount Arbora",
+    "adjacent_regions": [
+      "Gift of Shuritashi",
+      "Gale Fields",
+      "Brackwater Wetlands",
+      "Land of Hot Water"
+    ],
+    "search_areas": [
+      "Cave",
+      "Forest",
+      "Geothermal",
+      "Mountain",
+      "River",
+      "Ruins",
+      "Settlement",
+      "Town",
+      "Village"
+    ]
+  },
+  {
+    "name": "The Shallows",
+    "adjacent_regions": [
+      "Land of Hot Water",
+      "Brackwater Wetlands",
+      "Coastal Highlands",
+      "Gift of Shuritashi"
+    ],
+    "search_areas": [
+      "Cave",
+      "Coast",
+      "Coral Reef",
+      "Open Water",
+      "Ruins",
+      "Settlement",
+      "Village"
+    ]
+  },
+  {
+    "name": "Yatamon",
+    "trade_regions": {
+      "local": [
+        "Gift of Shuritashi"
+      ],
+      "nearby": [
+        "Brackwater Wetlands",
+        "Coastal Highlands",
+        "Gale Fields",
+        "The Shallows"
+      ],
+      "distant": [
+        "Land of Hot Water",
+        "Mount Arbora"
+      ]
+    },
+    "search_areas": [
+      "City Streets",
+      "Market",
+      "Ruins",
+      "Shrine",
+      "Subway",
+      "Waterfront"
+    ]
+  }
+]

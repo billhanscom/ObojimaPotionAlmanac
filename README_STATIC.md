@@ -8,8 +8,8 @@ Pages:
 - ingredient-finder.html
 
 Data files:
-- data/ingredients_2014.json
-- data/ingredients_2024.json
+- data/ingredients.json
+- data/ingredients.json
 - data/potion_names.json
 
 Notes:

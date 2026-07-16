@@ -1,7 +1,9 @@
 let foragingInventory = Obojima.loadStoredInventory();
 let foragingConfig = null;
-let foragingAffinity = {};
+let foragingRegions = [];
+let foragingSearchAreas = [];
 const foragingJsonCache = {};
+const OBOJIMA_FORAGING_DEBUG_OPEN_KEY = "obojimaForagingDebugOpen";
 
 async function loadForagingJson(path) {
     if (!foragingJsonCache[path]) {
@@ -28,6 +30,19 @@ document.addEventListener("DOMContentLoaded", async () => {
     }
 });
 
+function isForagingDebugOpen() {
+    return localStorage.getItem(OBOJIMA_FORAGING_DEBUG_OPEN_KEY) === "true";
+}
+
+function bindForagingDebugDetails() {
+    const details = document.querySelector(".foraging-debug-plain");
+    if (!details) return;
+
+    details.addEventListener("toggle", () => {
+        localStorage.setItem(OBOJIMA_FORAGING_DEBUG_OPEN_KEY, details.open ? "true" : "false");
+    });
+}
+
 function setupForagingKeyboardShortcuts() {
     const controls = [
         document.getElementById("foraging-region"),
@@ -48,7 +63,9 @@ function setupForagingKeyboardShortcuts() {
 
 async function loadForagingData() {
     foragingConfig = await loadForagingJson("data/foraging_config.json");
-    foragingAffinity = await loadForagingJson("data/foraging_affinity.json");
+    foragingRegions = await loadForagingJson("data/regions.json");
+    foragingSearchAreas = await loadForagingJson("data/search_areas.json");
+    if (typeof Obojima.loadRegionData === "function") await Obojima.loadRegionData();
 }
 
 function toggleForagingValuesYear() {
@@ -76,7 +93,11 @@ function populateForagingRegionOptions() {
     const regionSelect = document.getElementById("foraging-region");
     regionSelect.innerHTML = "";
 
-    Obojima.REGION_LIST.forEach(region => {
+    const regionNames = foragingRegions.length
+        ? foragingRegions.map(region => region.name)
+        : Obojima.getRegionList();
+
+    regionNames.forEach(region => {
         const option = document.createElement("option");
         option.value = region;
         option.textContent = region;
@@ -87,12 +108,10 @@ function populateForagingRegionOptions() {
 }
 
 function populateSearchAreaOptions() {
-    const selectedRegion = document.getElementById("foraging-region").value || Obojima.REGION_LIST[0];
+    const selectedRegion = document.getElementById("foraging-region").value || Obojima.getRegionList()[0];
     const areaSelect = document.getElementById("foraging-search-area");
-    const regionAreas = (foragingConfig.regionSearchAreas || {})[selectedRegion];
-    const areas = regionAreas || (selectedRegion === "Yatamon"
-        ? (foragingConfig.yatamonSearchAreas || [])
-        : (foragingConfig.searchAreas || []));
+    const region = foragingRegions.find(entry => entry.name === selectedRegion);
+    const areas = region ? (region.search_areas || []) : [];
 
     areaSelect.innerHTML = "";
 
@@ -160,7 +179,7 @@ function getIngredientHabitats(ingredient) {
     }
 
     const ingredientName = typeof ingredient === "string" ? ingredient : ingredient.name;
-    const entries = foragingAffinity[ingredientName] || [];
+    const entries = foragingIngredientAssociations[ingredientName] || [];
     return Array.from(new Set(
         entries
             .map(entry => entry.searchArea)
@@ -168,14 +187,9 @@ function getIngredientHabitats(ingredient) {
     )).sort((a, b) => a.localeCompare(b));
 }
 
-function getYatamonRelatedSearchAreas(searchArea) {
-    const areaRule = (foragingConfig.yatamonAreaWeights || {})[searchArea] || {};
-    return areaRule.relatedSearchAreas || [];
-}
-
 function getRelatedSearchAreas(searchArea, selectedRegion) {
-    if (selectedRegion === "Yatamon") return getYatamonRelatedSearchAreas(searchArea);
-    return (foragingConfig.relatedSearchAreas || {})[searchArea] || [];
+    const area = foragingSearchAreas.find(entry => entry.name === searchArea);
+    return area ? (area.related_search_areas || []) : [];
 }
 
 function getHabitatRelationship(ingredient, searchArea, selectedRegion) {
@@ -210,6 +224,8 @@ function getHabitatRelationship(ingredient, searchArea, selectedRegion) {
 }
 
 function getRegionRelationship(ingredient, selectedRegion) {
+    const selectedRegionData = foragingRegions.find(entry => entry.name === selectedRegion);
+
     if (selectedRegion === "Yatamon") {
         const tier = getYatamonTradeTier(ingredient);
         if (tier === "local") return { key: "local", label: "Local trade source" };
@@ -224,7 +240,7 @@ function getRegionRelationship(ingredient, selectedRegion) {
         return { key: "native", label: "Native to this region" };
     }
 
-    const nearbyRegions = Obojima.REGION_ADJACENCIES[selectedRegion] || [];
+    const nearbyRegions = selectedRegionData ? (selectedRegionData.adjacent_regions || []) : Obojima.getRegionAdjacencies(selectedRegion);
     if (regions.some(region => nearbyRegions.includes(region))) {
         return { key: "nearby", label: "Native to a nearby region" };
     }
@@ -234,7 +250,8 @@ function getRegionRelationship(ingredient, selectedRegion) {
 
 function getYatamonTradeTier(ingredient) {
     const regions = ingredient.regions || [];
-    const tiers = foragingConfig.yatamonTradeTiers || {};
+    const yatamon = foragingRegions.find(entry => entry.name === "Yatamon") || {};
+    const tiers = yatamon.trade_regions || {};
 
     if (regions.some(region => (tiers.local || []).includes(region))) return "local";
     if (regions.some(region => (tiers.nearby || []).includes(region))) return "nearby";
@@ -244,18 +261,13 @@ function getYatamonTradeTier(ingredient) {
 
 function getYatamonTradeWeight(ingredient, searchArea) {
     const tier = getYatamonTradeTier(ingredient);
-    const tradeWeights = foragingConfig.yatamonTradeWeights || {};
-    const areaWeights = (foragingConfig.yatamonAreaWeights || {})[searchArea] || {};
-    const baseTradeWeight = Number(tradeWeights[tier]) || Number(tradeWeights.unknown) || 0.25;
-    const areaTierWeight = Number(areaWeights[tier]);
-    let weight = Number.isFinite(areaTierWeight) ? areaTierWeight : baseTradeWeight;
-
-    const boostRegions = areaWeights.boostRegions || {};
-    (ingredient.regions || []).forEach(region => {
-        if (Number(boostRegions[region])) weight *= Number(boostRegions[region]);
-    });
-
-    return weight;
+    const tradeWeights = foragingConfig.yatamonTradeWeights || {
+        local: 1,
+        nearby: 0.75,
+        distant: 0.45,
+        unknown: 0.25
+    };
+    return Number(tradeWeights[tier]) || Number(tradeWeights.unknown) || 0.25;
 }
 
 function getRegionWeight(ingredient, selectedRegion, searchArea) {
@@ -542,13 +554,13 @@ function describeOpportunityLevel(value) {
 function getSearchAreaEffectLines(selected, searchArea) {
     const associatedCount = selected.filter(item => item.habitatRelationship.key !== "none").length;
     const surpriseCount = selected.filter(item => item.surprise).length;
-    const profile = (foragingConfig.searchAreaProfiles || {})[searchArea] || { natural: 0.7, human: 0.3 };
+    const civilization = getSearchAreaCivilization(searchArea);
     const lines = [
         `${associatedCount} of ${selected.length} ingredients matched ${searchArea} or a related Search Area.`,
-        `${searchArea}: ${describeOpportunityLevel(profile.natural)} natural opportunity, ${describeOpportunityLevel(profile.human)} civil activity.`
+        `${searchArea}: civilization ${civilization}.`
     ];
     if (surpriseCount > 0) {
-        lines.push(`${surpriseCount} believable surprise included.`);
+        lines.push(`${surpriseCount} surprise included.`);
     }
     return lines;
 }
@@ -611,7 +623,9 @@ function renderPlainDebug({
         ingredientLines
     ].join("\n");
 
-    return `<details class="foraging-debug foraging-debug-plain" open>
+    const openAttribute = isForagingDebugOpen() ? " open" : "";
+
+    return `<details class="foraging-debug foraging-debug-plain"${openAttribute}>
         <summary>Generation Details</summary>
         <pre>${escapeHtml(debugText)}</pre>
     </details>`;
@@ -623,7 +637,6 @@ async function generateForagingFinds() {
     const dc = Number(document.getElementById("foraging-dc").value);
     const rollTotal = Number(document.getElementById("foraging-roll").value);
     const prioritizeNew = document.getElementById("foraging-prioritize-new").checked;
-    const showDebug = document.getElementById("foraging-debug").checked;
     const resultsDiv = document.getElementById("foraging-results");
 
     if (!dc || !rollTotal) {
@@ -660,17 +673,14 @@ async function generateForagingFinds() {
         return `<li class="ingredient ${rarityClass}">${Obojima.formatIngredientName(item.ingredient)}</li>`;
     }).join("");
 
-    let debug = "";
-    if (showDebug) {
-        debug = renderPlainDebug({
-            selectedRegion,
-            searchArea,
-            dc,
-            rollTotal,
-            degreeOfSuccess,
-            selected
-        });
-    }
+    const debug = renderPlainDebug({
+        selectedRegion,
+        searchArea,
+        dc,
+        rollTotal,
+        degreeOfSuccess,
+        selected
+    });
 
     resultsDiv.innerHTML = `<div class="completion-card foraging-result-card">
         <h3>Results</h3>
@@ -682,6 +692,7 @@ async function generateForagingFinds() {
     </div>${debug}`;
 
     window.latestForagingResults = selected.map(item => item.name);
+    bindForagingDebugDetails();
     resultsDiv.scrollIntoView({ behavior: "smooth" });
 }
 

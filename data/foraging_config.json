@@ -1,210 +1,48 @@
 {
-  "searchAreas": [
-    "Cave",
-    "Coast",
-    "Coral Reef",
-    "Forest",
-    "Geothermal",
-    "Grassland",
-    "Lake",
-    "Mountain",
-    "Open Water",
-    "River",
-    "Ruins",
-    "Settlement",
-    "Town",
-    "Village",
-    "Wetland"
-  ],
-  "degreeOfSuccessBudgets": [
-    {
-      "min": 0,
-      "max": 4,
-      "budget": 2
-    },
-    {
-      "min": 5,
-      "max": 9,
-      "budget": 4
-    },
+  "engineVersion": "2.2",
+  "dcTiers": [
     {
       "min": 10,
-      "max": 999,
-      "budget": 7
-    }
-  ],
-  "discoveryCosts": {
-    "native_common": 1,
-    "native_uncommon": 3,
-    "non_native_common": 3,
-    "non_native_uncommon": 5
-  },
-  "strengthWeights": {
-    "Primary": 8,
-    "Secondary": 4
-  },
-  "fallbackWeights": {
-    "native_common": 1,
-    "native_uncommon": 0.35,
-    "non_native_common": 0.25,
-    "non_native_uncommon": 0.1
-  },
-  "excludeRarity": [
-    "rare"
-  ],
-  "maxResults": 5,
-  "degreeOfSuccessFinds": [
-    {
-      "min": 0,
-      "max": 4,
-      "minFinds": 1,
-      "maxFinds": 2
+      "max": 15,
+      "key": "10-15",
+      "summary": "Common ingredients native to the area"
     },
     {
-      "min": 5,
-      "max": 9,
-      "minFinds": 2,
-      "maxFinds": 3
+      "min": 16,
+      "max": 20,
+      "key": "16-20",
+      "summary": "Uncommon native ingredients and Common non-native ingredients"
     },
     {
-      "min": 10,
-      "max": 999,
-      "minFinds": 3,
-      "maxFinds": 5
+      "min": 21,
+      "max": 25,
+      "key": "21-25",
+      "summary": "Uncommon non-native ingredients"
     }
   ],
-  "bucketWeightsByDc": {
-    "15": {
-      "native_common": 10,
-      "native_uncommon": 1,
-      "non_native_common": 1,
-      "non_native_uncommon": 0
+  "dcModifiers": {
+    "10-15": {
+      "common": 1,
+      "uncommon": 0.45,
+      "native": 1,
+      "nearby": 0.3,
+      "far": 0.06
     },
-    "20": {
-      "native_common": 8,
-      "native_uncommon": 4,
-      "non_native_common": 2,
-      "non_native_uncommon": 1
+    "16-20": {
+      "common": 1,
+      "uncommon": 0.95,
+      "native": 1,
+      "nearby": 0.75,
+      "far": 0.16
     },
-    "25": {
-      "native_common": 6,
-      "native_uncommon": 5,
-      "non_native_common": 2,
-      "non_native_uncommon": 2
+    "21-25": {
+      "common": 1,
+      "uncommon": 1.25,
+      "native": 1,
+      "nearby": 1,
+      "far": 0.45
     }
   },
-  "yatamonSearchAreas": [
-    "City Streets",
-    "Market",
-    "Ruins",
-    "Shrine",
-    "Subway",
-    "Waterfront"
-  ],
-  "yatamonTradeTiers": {
-    "local": [
-      "Gift of Shuritashi"
-    ],
-    "nearby": [
-      "Brackwater Wetlands",
-      "Coastal Highlands",
-      "Gale Fields",
-      "The Shallows"
-    ],
-    "distant": [
-      "Land of Hot Water",
-      "Mount Arbora"
-    ]
-  },
-  "yatamonTradeWeights": {
-    "local": 1,
-    "nearby": 0.75,
-    "distant": 0.45,
-    "unknown": 0.25
-  },
-  "yatamonAreaWeights": {
-    "City Streets": {
-      "local": 1,
-      "nearby": 0.35,
-      "distant": 0.15,
-      "relatedSearchAreas": [
-        "Town",
-        "Village",
-        "Settlement"
-      ]
-    },
-    "Market": {
-      "local": 0.9,
-      "nearby": 0.85,
-      "distant": 0.65,
-      "relatedSearchAreas": [
-        "Town",
-        "Village",
-        "Settlement"
-      ]
-    },
-    "Waterfront": {
-      "local": 0.85,
-      "nearby": 0.8,
-      "distant": 0.35,
-      "boostRegions": {
-        "The Shallows": 1.35,
-        "Coastal Highlands": 1.15,
-        "Brackwater Wetlands": 1.1
-      },
-      "relatedSearchAreas": [
-        "Coast",
-        "Open Water",
-        "River",
-        "Lake",
-        "Wetland"
-      ]
-    },
-    "Subway": {
-      "local": 0.7,
-      "nearby": 0.25,
-      "distant": 0.1,
-      "relatedSearchAreas": [
-        "Cave",
-        "Wetland",
-        "Ruins"
-      ]
-    },
-    "Ruins": {
-      "local": 0.75,
-      "nearby": 0.35,
-      "distant": 0.2,
-      "relatedSearchAreas": [
-        "Ruins",
-        "Cave",
-        "Settlement"
-      ]
-    },
-    "Shrine": {
-      "local": 0.8,
-      "nearby": 0.35,
-      "distant": 0.2,
-      "relatedSearchAreas": [
-        "Forest",
-        "Village",
-        "Ruins",
-        "Settlement"
-      ]
-    }
-  },
-  "debugLabels": {
-    "native_common": "native common",
-    "native_uncommon": "native uncommon",
-    "non_native_common": "non-native common",
-    "non_native_uncommon": "non-native uncommon"
-  },
-  "excludeIngredients": [
-    "Coal from the Spirit Train",
-    "Corrupted Seawater",
-    "Opu Opu Spring Water",
-    "Sea Water"
-  ],
-  "engineVersion": "2.1",
   "findCountByDos": [
     {
       "min": 0,
@@ -267,29 +105,6 @@
     "related": 5,
     "none": 0.4
   },
-  "dcModifiers": {
-    "10-15": {
-      "common": 1,
-      "uncommon": 0.45,
-      "native": 1,
-      "nearby": 0.3,
-      "far": 0.06
-    },
-    "16-20": {
-      "common": 1,
-      "uncommon": 0.95,
-      "native": 1,
-      "nearby": 0.75,
-      "far": 0.16
-    },
-    "21-25": {
-      "common": 1,
-      "uncommon": 1.25,
-      "native": 1,
-      "nearby": 1,
-      "far": 0.45
-    }
-  },
   "dosModifiers": {
     "modest": {
       "uncommon": 0.75,
@@ -310,92 +125,6 @@
       "nonHabitat": 1
     }
   },
-  "relatedSearchAreas": {
-    "Cave": [
-      "Mountain",
-      "Ruins",
-      "Geothermal"
-    ],
-    "Coast": [
-      "Open Water",
-      "Coral Reef",
-      "River",
-      "Wetland"
-    ],
-    "Forest": [
-      "Grassland",
-      "River",
-      "Village",
-      "Settlement"
-    ],
-    "Geothermal": [
-      "Cave",
-      "Mountain",
-      "River"
-    ],
-    "Grassland": [
-      "Forest",
-      "Village",
-      "Settlement",
-      "River"
-    ],
-    "Lake": [
-      "River",
-      "Wetland",
-      "Coast"
-    ],
-    "Mountain": [
-      "Cave",
-      "Geothermal",
-      "Forest"
-    ],
-    "River": [
-      "Wetland",
-      "Lake",
-      "Forest",
-      "Grassland",
-      "Settlement"
-    ],
-    "Ruins": [
-      "Cave",
-      "Settlement",
-      "Village",
-      "Forest"
-    ],
-    "Village": [
-      "Settlement",
-      "Town",
-      "Grassland",
-      "Forest",
-      "Ruins"
-    ],
-    "Wetland": [
-      "River",
-      "Lake",
-      "Coast"
-    ],
-    "Coral Reef": [
-      "Open Water",
-      "Coast",
-      "Cave"
-    ],
-    "Open Water": [
-      "Coral Reef",
-      "Coast"
-    ],
-    "Settlement": [
-      "Village",
-      "Town",
-      "Ruins",
-      "Forest",
-      "Grassland"
-    ],
-    "Town": [
-      "Village",
-      "Settlement",
-      "Ruins"
-    ]
-  },
   "habitatTargetByCount": {
     "1": 1,
     "2": 2,
@@ -403,226 +132,6 @@
     "4": 3,
     "5": 4
   },
-  "regionSearchAreas": {
-    "Brackwater Wetlands": [
-      "Cave",
-      "Coast",
-      "Forest",
-      "Lake",
-      "River",
-      "Ruins",
-      "Settlement",
-      "Village",
-      "Wetland"
-    ],
-    "Coastal Highlands": [
-      "Cave",
-      "Coast",
-      "Forest",
-      "Grassland",
-      "Lake",
-      "River",
-      "Ruins",
-      "Settlement",
-      "Town",
-      "Village",
-      "Wetland"
-    ],
-    "Gale Fields": [
-      "Forest",
-      "Grassland",
-      "River",
-      "Ruins",
-      "Settlement",
-      "Town",
-      "Village"
-    ],
-    "Gift of Shuritashi": [
-      "Cave",
-      "Coast",
-      "Forest",
-      "Grassland",
-      "Lake",
-      "River",
-      "Ruins",
-      "Settlement",
-      "Town",
-      "Village",
-      "Wetland"
-    ],
-    "Land of Hot Water": [
-      "Cave",
-      "Forest",
-      "Geothermal",
-      "Mountain",
-      "River",
-      "Ruins",
-      "Settlement",
-      "Town",
-      "Village"
-    ],
-    "Mount Arbora": [
-      "Cave",
-      "Forest",
-      "Geothermal",
-      "Mountain",
-      "River",
-      "Ruins",
-      "Settlement",
-      "Town",
-      "Village"
-    ],
-    "The Shallows": [
-      "Cave",
-      "Coast",
-      "Coral Reef",
-      "Open Water",
-      "Ruins",
-      "Settlement",
-      "Village"
-    ],
-    "Yatamon": [
-      "City Streets",
-      "Market",
-      "Ruins",
-      "Shrine",
-      "Subway",
-      "Waterfront"
-    ]
-  },
-  "searchAreaProfiles": {
-    "Cave": {
-      "natural": 0.85,
-      "human": 0.15
-    },
-    "Coast": {
-      "natural": 0.95,
-      "human": 0.25
-    },
-    "Coral Reef": {
-      "natural": 1.0,
-      "human": 0.08
-    },
-    "City Streets": {
-      "natural": 0.18,
-      "human": 1.0
-    },
-    "Forest": {
-      "natural": 1.0,
-      "human": 0.08
-    },
-    "Geothermal": {
-      "natural": 0.95,
-      "human": 0.12
-    },
-    "Grassland": {
-      "natural": 0.95,
-      "human": 0.12
-    },
-    "Lake": {
-      "natural": 0.95,
-      "human": 0.18
-    },
-    "Market": {
-      "natural": 0.12,
-      "human": 1.15
-    },
-    "Mountain": {
-      "natural": 0.95,
-      "human": 0.08
-    },
-    "Open Water": {
-      "natural": 1.0,
-      "human": 0.08
-    },
-    "River": {
-      "natural": 0.95,
-      "human": 0.22
-    },
-    "Ruins": {
-      "natural": 0.65,
-      "human": 0.65
-    },
-    "Settlement": {
-      "natural": 0.8,
-      "human": 0.45
-    },
-    "Shrine": {
-      "natural": 0.55,
-      "human": 0.75
-    },
-    "Subway": {
-      "natural": 0.35,
-      "human": 0.7
-    },
-    "Town": {
-      "natural": 0.45,
-      "human": 0.85
-    },
-    "Village": {
-      "natural": 0.65,
-      "human": 0.6
-    },
-    "Waterfront": {
-      "natural": 0.55,
-      "human": 0.9
-    },
-    "Wetland": {
-      "natural": 1.0,
-      "human": 0.1
-    }
-  },
-  "originWeights": {
-    "natural": {
-      "natural": 1.0,
-      "human": 0.2
-    },
-    "human": {
-      "natural": 0.15,
-      "human": 1.0
-    },
-    "mixed": {
-      "natural": 0.65,
-      "human": 0.65
-    }
-  },
-  "ingredientOriginOverrides": {
-    "Bashu Powder": "human",
-    "Chisuay's Heavenly Tea": "human",
-    "Crimson Octopus Ink": "natural",
-    "Flash Paper": "human",
-    "Gargoyle Powder": "human",
-    "Gohaku Rice": "human",
-    "Magic Monk's Rice Wine": "human",
-    "Nakudama Spice": "human",
-    "Oporion Glass": "human",
-    "Ota Lantern Oil": "human",
-    "Pink Candle Wax": "human",
-    "Seashell": "natural",
-    "Spirit Tea": "human",
-    "Squid Ink": "natural",
-    "Raka Paste": "human"
-  },
-  "dcTiers": [
-    {
-      "min": 10,
-      "max": 15,
-      "key": "10-15",
-      "summary": "Common ingredients native to the area"
-    },
-    {
-      "min": 16,
-      "max": 20,
-      "key": "16-20",
-      "summary": "Uncommon native ingredients and Common non-native ingredients"
-    },
-    {
-      "min": 21,
-      "max": 25,
-      "key": "21-25",
-      "summary": "Uncommon non-native ingredients"
-    }
-  ],
   "surpriseRules": {
     "enabled": true,
     "maxPerHaul": 1,
@@ -638,28 +147,10 @@
     ],
     "minimumWeightFraction": 0.03
   },
-  "searchAreaCivilization": {
-    "Cave": 1,
-    "Coast": 2,
-    "Coral Reef": 1,
-    "City Streets": 5,
-    "Forest": 1,
-    "Geothermal": 2,
-    "Grassland": 2,
-    "Lake": 2,
-    "Market": 5,
-    "Mountain": 1,
-    "Open Water": 2,
-    "River": 2,
-    "Ruins": 3,
-    "Settlement": 2,
-    "Shrine": 3,
-    "Subway": 3,
-    "Town": 4,
-    "Village": 3,
-    "Waterfront": 4,
-    "Wetland": 1
-  },
+  "maxResults": 5,
+  "excludeRarity": [
+    "rare"
+  ],
   "civilizationDistanceWeights": {
     "0": 1.0,
     "1": 0.8,

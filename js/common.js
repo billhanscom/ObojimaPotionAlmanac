@@ -8,12 +8,10 @@ const OBOJIMA_VALUES_YEAR_KEY = "obojimaValuesYear";
 const OBOJIMA_INVENTORY_DISPLAY_NAME_KEY = "obojimaInventoryDisplayName";
 const OBOJIMA_INVENTORY_QUANTITIES_KEY = "obojimaInventoryQuantities";
 
-const DATASET_FILES = {
-    "2014": "data/ingredients_2014.json",
-    "2024": "data/ingredients_2024.json"
-};
+const INGREDIENT_DATA_FILE = "data/ingredients.json";
+const VALID_VALUES_YEARS = new Set(["2014", "2024"]);
 
-const REGION_LIST = [
+const DEFAULT_REGION_LIST = [
     "Brackwater Wetlands",
     "Coastal Highlands",
     "Gale Fields",
@@ -24,15 +22,7 @@ const REGION_LIST = [
     "Yatamon"
 ];
 
-const REGION_ADJACENCIES = {
-    "Gift of Shuritashi": ["Land of Hot Water", "Mount Arbora", "Coastal Highlands", "Gale Fields", "The Shallows"],
-    "Land of Hot Water": ["Gift of Shuritashi", "Mount Arbora", "Brackwater Wetlands", "The Shallows"],
-    "Mount Arbora": ["Gift of Shuritashi", "Gale Fields", "Brackwater Wetlands", "Land of Hot Water"],
-    "Gale Fields": ["Gift of Shuritashi", "Brackwater Wetlands", "Coastal Highlands", "Mount Arbora"],
-    "Coastal Highlands": ["Gale Fields", "Gift of Shuritashi", "Brackwater Wetlands", "The Shallows"],
-    "Brackwater Wetlands": ["Land of Hot Water", "Mount Arbora", "Coastal Highlands", "Gale Fields", "The Shallows"],
-    "The Shallows": ["Land of Hot Water", "Brackwater Wetlands", "Coastal Highlands", "Gift of Shuritashi"]
-};
+let regionsCache = null;
 
 const Obojima = (() => {
     const ingredientCache = {};
@@ -43,7 +33,7 @@ const Obojima = (() => {
     }
 
     function setValuesYear(year) {
-        const normalized = DATASET_FILES[year] ? year : "2024";
+        const normalized = VALID_VALUES_YEARS.has(String(year)) ? String(year) : "2024";
         localStorage.setItem(OBOJIMA_VALUES_YEAR_KEY, normalized);
         return normalized;
     }
@@ -64,17 +54,57 @@ const Obojima = (() => {
         return String(ingredient.name || "").toLocaleLowerCase();
     }
 
+    async function loadRegionData() {
+        if (!regionsCache) {
+            const response = await fetch("data/regions.json");
+            if (!response.ok) throw new Error(`Failed to load region data: ${response.status}`);
+            regionsCache = await response.json();
+        }
+        return regionsCache;
+    }
+
+    function getRegionList() {
+        return regionsCache
+            ? regionsCache.map(region => region.name)
+            : DEFAULT_REGION_LIST;
+    }
+
+    function getRegionAdjacencies(regionName) {
+        if (!regionsCache) return [];
+        const region = regionsCache.find(entry => entry.name === regionName);
+        return region ? (region.adjacent_regions || []) : [];
+    }
+
+    function applyIngredientValues(ingredient, year = getValuesYear()) {
+        const selectedYear = VALID_VALUES_YEARS.has(String(year)) ? String(year) : "2024";
+        const values = ingredient.values || {};
+        const selectedValues = values[selectedYear] || values["2024"] || values["2014"] || ingredient;
+
+        return {
+            ...ingredient,
+            combat: Number(selectedValues.combat || 0),
+            utility: Number(selectedValues.utility || 0),
+            whimsy: Number(selectedValues.whimsy || 0),
+            active_values_year: selectedYear
+        };
+    }
+
     async function loadIngredientData(dataset = getValuesYear()) {
-        const key = DATASET_FILES[dataset] ? dataset : "2024";
-        if (!ingredientCache[key]) {
-            const response = await fetch(DATASET_FILES[key]);
+        const selectedYear = VALID_VALUES_YEARS.has(String(dataset)) ? String(dataset) : "2024";
+        if (!ingredientCache.base) {
+            const response = await fetch(INGREDIENT_DATA_FILE);
             if (!response.ok) throw new Error(`Failed to load ingredient data: ${response.status}`);
             const ingredients = await response.json();
-            ingredientCache[key] = ingredients
+            ingredientCache.base = ingredients
                 .slice()
                 .sort((a, b) => ingredientSortKey(a).localeCompare(ingredientSortKey(b)));
         }
-        return ingredientCache[key];
+
+        if (!ingredientCache[selectedYear]) {
+            ingredientCache[selectedYear] = ingredientCache.base.map(ingredient => applyIngredientValues(ingredient, selectedYear));
+        }
+
+        return ingredientCache[selectedYear];
     }
 
     async function loadPotionNames() {
@@ -827,8 +857,10 @@ const Obojima = (() => {
     }
 
     return {
-        REGION_LIST,
-        REGION_ADJACENCIES,
+        REGION_LIST: DEFAULT_REGION_LIST,
+        getRegionList,
+        getRegionAdjacencies,
+        loadRegionData,
         normalizeRarity,
         loadIngredientData,
         loadPotionNames,
