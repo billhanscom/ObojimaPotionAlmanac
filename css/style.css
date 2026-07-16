@@ -3726,3 +3726,10 @@ body.high-contrast .foraging-debug-plain pre {
     color: #000000 !important;
     border: 0 !important;
 }
+
+
+/* Foraging surprise/default update */
+.foraging-result-list .ingredient {
+    min-height: 34px !important;
+    padding: 8px 12px !important;
+}

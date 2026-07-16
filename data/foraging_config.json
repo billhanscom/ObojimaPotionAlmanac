@@ -405,6 +405,7 @@
   },
   "regionSearchAreas": {
     "Brackwater Wetlands": [
+      "Cave",
       "Coast",
       "Forest",
       "Lake",
@@ -597,10 +598,10 @@
     "Oporion Glass": "human",
     "Ota Lantern Oil": "human",
     "Pink Candle Wax": "human",
-    "Rake Paste": "human",
     "Seashell": "natural",
     "Spirit Tea": "human",
-    "Squid Ink": "natural"
+    "Squid Ink": "natural",
+    "Raka Paste": "human"
   },
   "dcTiers": [
     {
@@ -621,5 +622,20 @@
       "key": "21-25",
       "summary": "Uncommon non-native ingredients"
     }
-  ]
+  ],
+  "surpriseRules": {
+    "enabled": true,
+    "maxPerHaul": 1,
+    "minimumFindCount": 2,
+    "chanceByDos": {
+      "modest": 0.08,
+      "strong": 0.14,
+      "exceptional": 0.22
+    },
+    "allowedHabitatFits": [
+      "related",
+      "none"
+    ],
+    "minimumWeightFraction": 0.03
+  }
 }

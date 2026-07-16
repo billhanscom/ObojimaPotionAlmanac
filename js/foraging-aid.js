@@ -21,11 +21,30 @@ document.addEventListener("DOMContentLoaded", async () => {
         await loadForagingData();
         populateForagingRegionOptions();
         populateSearchAreaOptions();
+        setupForagingKeyboardShortcuts();
     } catch (error) {
         console.error(error);
         document.getElementById("foraging-results").innerHTML = `<p class="completer-empty">Foraging data could not be loaded.</p>`;
     }
 });
+
+function setupForagingKeyboardShortcuts() {
+    const controls = [
+        document.getElementById("foraging-region"),
+        document.getElementById("foraging-search-area"),
+        document.getElementById("foraging-dc"),
+        document.getElementById("foraging-roll")
+    ].filter(Boolean);
+
+    controls.forEach(control => {
+        control.addEventListener("keydown", event => {
+            if (event.key === "Enter") {
+                event.preventDefault();
+                generateForagingFinds();
+            }
+        });
+    });
+}
 
 async function loadForagingData() {
     foragingConfig = await loadForagingJson("data/foraging_config.json");
@@ -375,11 +394,36 @@ function getHabitatTarget(findCount) {
     return Number(targets[String(findCount)]) || Math.max(1, findCount - 1);
 }
 
-function selectForagingResults(candidates, targetFindCount, searchArea, selectedRegion, prioritizeNew) {
+function shouldUseSurpriseSlot(degreeOfSuccess, targetFindCount) {
+    const rules = foragingConfig.surpriseRules || {};
+    if (!rules.enabled) return false;
+    if (targetFindCount < (rules.minimumFindCount || 2)) return false;
+
+    const tier = getSuccessTierKey(degreeOfSuccess);
+    const chance = Number((rules.chanceByDos || {})[tier]) || 0;
+    return Math.random() < chance;
+}
+
+function getSurprisePool(candidates, used, bestWeight) {
+    const rules = foragingConfig.surpriseRules || {};
+    const allowedFits = new Set(rules.allowedHabitatFits || ["related", "none"]);
+    const minimumWeight = bestWeight * (Number(rules.minimumWeightFraction) || 0.03);
+
+    return candidates.filter(candidate =>
+        !used.has(candidate.name) &&
+        allowedFits.has(candidate.habitatRelationship.key) &&
+        candidate.weight >= minimumWeight
+    );
+}
+
+function selectForagingResults(candidates, targetFindCount, searchArea, selectedRegion, prioritizeNew, degreeOfSuccess) {
     const selected = [];
     const used = new Set();
     const inventorySet = new Set(foragingInventory);
     const habitatTarget = getHabitatTarget(targetFindCount);
+    const bestWeight = candidates.reduce((max, candidate) => Math.max(max, candidate.weight), 0);
+    const useSurpriseSlot = shouldUseSurpriseSlot(degreeOfSuccess, targetFindCount);
+    let surpriseUsed = false;
 
     function availablePool(requireHabitatMatch = false) {
         let pool = candidates.filter(candidate => !used.has(candidate.name));
@@ -403,7 +447,21 @@ function selectForagingResults(candidates, targetFindCount, searchArea, selected
         if (pool.length === 0 && needHabitatMatch) pool = availablePool(false);
         if (pool.length === 0) break;
 
-        const pick = weightedChoice(pool);
+        let pick = null;
+
+        const isLastSlot = selected.length === targetFindCount - 1;
+        if (useSurpriseSlot && !surpriseUsed && isLastSlot) {
+            const surprisePool = getSurprisePool(candidates, used, bestWeight);
+            if (surprisePool.length > 0) {
+                pick = weightedChoice(surprisePool);
+                if (pick) {
+                    pick = { ...pick, surprise: true };
+                    surpriseUsed = true;
+                }
+            }
+        }
+
+        if (!pick) pick = weightedChoice(pool);
         if (!pick) break;
 
         selected.push(pick);
@@ -482,11 +540,16 @@ function describeOpportunityLevel(value) {
 
 function getSearchAreaEffectLines(selected, searchArea) {
     const associatedCount = selected.filter(item => item.habitatRelationship.key !== "none").length;
+    const surpriseCount = selected.filter(item => item.surprise).length;
     const profile = (foragingConfig.searchAreaProfiles || {})[searchArea] || { natural: 0.7, human: 0.3 };
-    return [
+    const lines = [
         `${associatedCount} of ${selected.length} ingredients matched ${searchArea} or a related Search Area.`,
         `${searchArea}: ${describeOpportunityLevel(profile.natural)} natural opportunity, ${describeOpportunityLevel(profile.human)} civil activity.`
     ];
+    if (surpriseCount > 0) {
+        lines.push(`${surpriseCount} believable surprise included.`);
+    }
+    return lines;
 }
 
 function getRaritySummaryLine(selected) {
@@ -520,7 +583,8 @@ function renderPlainDebug({
             `- ${habitatLine}`,
             originTypeLine ? `- ${originTypeLine}` : "",
             originLine ? `- ${originLine}` : "",
-            `- ${rarityLine}`
+            `- ${rarityLine}`,
+            item.surprise ? "- Believable surprise" : ""
         ].filter(Boolean).join("\n");
     }).join("\n\n");
 
@@ -584,7 +648,7 @@ async function generateForagingFinds() {
         .map(ingredient => scoreIngredient(ingredient, selectedRegion, searchArea, dc, degreeOfSuccess))
         .filter(Boolean);
 
-    const selected = selectForagingResults(candidates, targetFindCount, searchArea, selectedRegion, prioritizeNew);
+    const selected = selectForagingResults(candidates, targetFindCount, searchArea, selectedRegion, prioritizeNew, degreeOfSuccess);
 
     if (selected.length === 0) {
         resultsDiv.innerHTML = `<div class="completion-card foraging-result-card"><h3>Results</h3><p>No potion ingredients found.</p></div>`;
