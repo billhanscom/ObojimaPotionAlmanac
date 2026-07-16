@@ -3645,3 +3645,30 @@ body.high-contrast .foraging-debug h4,
 body.high-contrast .foraging-debug-item h5 {
     color: #000000 !important;
 }
+
+
+/* Plain-text Foraging Aid debug output */
+.foraging-debug-plain {
+    text-align: left !important;
+}
+
+.foraging-debug-plain pre {
+    white-space: pre-wrap !important;
+    word-break: break-word !important;
+    overflow-x: auto !important;
+    margin: 12px 0 0 !important;
+    padding: 12px 14px !important;
+    background: rgba(255, 255, 255, 0.55) !important;
+    border: 1px solid rgba(87, 125, 161, 0.25) !important;
+    border-radius: 6px !important;
+    color: #2d2d2d !important;
+    font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, "Liberation Mono", monospace !important;
+    font-size: 13px !important;
+    line-height: 1.45 !important;
+}
+
+body.high-contrast .foraging-debug-plain pre {
+    background: #ffffff !important;
+    color: #000000 !important;
+    border-color: #000000 !important;
+}

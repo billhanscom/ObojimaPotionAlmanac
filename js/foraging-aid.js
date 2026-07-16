@@ -70,9 +70,10 @@ function populateForagingRegionOptions() {
 function populateSearchAreaOptions() {
     const selectedRegion = document.getElementById("foraging-region").value || Obojima.REGION_LIST[0];
     const areaSelect = document.getElementById("foraging-search-area");
-    const areas = selectedRegion === "Yatamon"
+    const regionAreas = (foragingConfig.regionSearchAreas || {})[selectedRegion];
+    const areas = regionAreas || (selectedRegion === "Yatamon"
         ? (foragingConfig.yatamonSearchAreas || [])
-        : (foragingConfig.searchAreas || []);
+        : (foragingConfig.searchAreas || []));
 
     areaSelect.innerHTML = "";
 
@@ -82,6 +83,14 @@ function populateSearchAreaOptions() {
         option.textContent = area;
         areaSelect.appendChild(option);
     });
+}
+
+function escapeHtml(value) {
+    return String(value)
+        .replace(/&/g, "&amp;")
+        .replace(/</g, "&lt;")
+        .replace(/>/g, "&gt;")
+        .replace(/"/g, "&quot;");
 }
 
 function getDcTier(dc) {
@@ -281,6 +290,50 @@ function getDosModifier(ingredient, selectedRegion, searchArea, degreeOfSuccess)
     return modifier;
 }
 
+function getIngredientOrigin(ingredient) {
+    const overrides = foragingConfig.ingredientOriginOverrides || {};
+    if (overrides[ingredient.name]) return overrides[ingredient.name];
+
+    const name = ingredient.name.toLowerCase();
+
+    if (/(paste|powder|paper|glass|wax|oil|tea|wine|spice|rice|ink|dye|cloth|thread|rope|candle|lantern|bread|flour|sugar|salt)/.test(name)) {
+        return "human";
+    }
+
+    return "natural";
+}
+
+function getOriginRelationship(ingredient, searchArea) {
+    const origin = getIngredientOrigin(ingredient);
+    const profile = (foragingConfig.searchAreaProfiles || {})[searchArea] || { natural: 0.7, human: 0.3 };
+    const originWeights = (foragingConfig.originWeights || {})[origin] || { natural: 1, human: 0.2 };
+
+    const naturalContribution = Number(profile.natural || 0) * Number(originWeights.natural || 0);
+    const humanContribution = Number(profile.human || 0) * Number(originWeights.human || 0);
+    const weight = Math.max(0.05, naturalContribution + humanContribution);
+
+    let label;
+    if (origin === "human") {
+        if ((profile.human || 0) >= 0.8) label = "Human activity makes this kind of usable material likely here";
+        else if ((profile.human || 0) >= 0.4) label = "Human activity makes this kind of usable material plausible here";
+        else label = "Human activity is limited here, so this is a less expected find";
+    } else if (origin === "mixed") {
+        label = "This can come from both natural conditions and human activity";
+    } else {
+        if ((profile.natural || 0) >= 0.8) label = "Natural conditions make this kind of ingredient likely here";
+        else if ((profile.natural || 0) >= 0.4) label = "Natural conditions make this kind of ingredient plausible here";
+        else label = "Natural growth is limited here, so this is a less expected find";
+    }
+
+    return { origin, weight, label, profile };
+}
+
+function getOriginLabel(origin) {
+    if (origin === "human") return "Human-made or processed material";
+    if (origin === "mixed") return "Mixed natural/human material";
+    return "Natural ingredient";
+}
+
 function scoreIngredient(ingredient, selectedRegion, searchArea, dc, degreeOfSuccess) {
     const rarity = Obojima.normalizeRarity(ingredient.rarity);
     const excludedRarity = new Set(foragingConfig.excludeRarity || []);
@@ -294,10 +347,11 @@ function scoreIngredient(ingredient, selectedRegion, searchArea, dc, degreeOfSuc
 
     const regionWeight = getRegionWeight(ingredient, selectedRegion, searchArea);
     const habitatWeight = getHabitatWeight(ingredient.name, searchArea, selectedRegion);
+    const originRelationship = getOriginRelationship(ingredient, searchArea);
     const dcModifier = getDcModifier(ingredient, selectedRegion, dc);
     const dosModifier = getDosModifier(ingredient, selectedRegion, searchArea, degreeOfSuccess);
 
-    const score = rarityWeight * regionWeight * habitatWeight * dcModifier * dosModifier;
+    const score = rarityWeight * regionWeight * habitatWeight * originRelationship.weight * dcModifier * dosModifier;
 
     if (!Number.isFinite(score) || score <= 0) return null;
 
@@ -307,7 +361,8 @@ function scoreIngredient(ingredient, selectedRegion, searchArea, dc, degreeOfSuc
         rarity,
         weight: score,
         regionRelationship: getRegionRelationship(ingredient, selectedRegion),
-        habitatRelationship: getHabitatRelationship(ingredient.name, searchArea, selectedRegion)
+        habitatRelationship: getHabitatRelationship(ingredient.name, searchArea, selectedRegion),
+        originRelationship
     };
 }
 
@@ -413,10 +468,18 @@ function getDosEffectLines(degreeOfSuccess, generatedCount) {
     ];
 }
 
+function describeOpportunityLevel(value) {
+    if (value >= 0.8) return "high";
+    if (value >= 0.4) return "moderate";
+    return "low";
+}
+
 function getSearchAreaEffectLines(selected, searchArea) {
     const associatedCount = selected.filter(item => item.habitatRelationship.key !== "none").length;
+    const profile = (foragingConfig.searchAreaProfiles || {})[searchArea] || { natural: 0.7, human: 0.3 };
     return [
         `${associatedCount} of ${selected.length} generated ingredient${selected.length === 1 ? " was" : "s were"} associated with ${searchArea}.`,
+        `${searchArea} has ${describeOpportunityLevel(profile.natural)} natural opportunity and ${describeOpportunityLevel(profile.human)} human activity.`,
         "Search Area is the strongest influence on the generated haul."
     ];
 }
@@ -435,59 +498,54 @@ function renderPlainDebug({
     degreeOfSuccess,
     selected
 }) {
-    const dcLines = getDcEffectLines(dc, selectedRegion).map(line => `<li>${line}</li>`).join("");
-    const dosLines = getDosEffectLines(degreeOfSuccess, selected.length).map(line => `<li>${line}</li>`).join("");
-    const areaLines = getSearchAreaEffectLines(selected, searchArea).map(line => `<li>${line}</li>`).join("");
+    const dcLines = getDcEffectLines(dc, selectedRegion);
+    const dosLines = getDosEffectLines(degreeOfSuccess, selected.length);
+    const areaLines = getSearchAreaEffectLines(selected, searchArea);
 
-    const ingredientCards = selected.map(item => {
+    const ingredientLines = selected.map(item => {
         const regionLine = item.regionRelationship.label;
         const habitatLine = item.habitatRelationship.label;
+        const originLine = item.originRelationship ? item.originRelationship.label : "";
+        const originTypeLine = item.originRelationship ? getOriginLabel(item.originRelationship.origin) : "";
         const rarityLine = item.rarity === "common" ? "Common ingredient" : "Uncommon ingredient";
 
-        return `<div class="foraging-debug-item">
-            <h5>${item.name}</h5>
-            <ul>
-                <li>${regionLine}</li>
-                <li>${habitatLine}</li>
-                <li>${rarityLine}</li>
-            </ul>
-        </div>`;
-    }).join("");
+        return [
+            item.name,
+            `- ${regionLine}`,
+            `- ${habitatLine}`,
+            originTypeLine ? `- ${originTypeLine}` : "",
+            originLine ? `- ${originLine}` : "",
+            `- ${rarityLine}`
+        ].filter(Boolean).join("\n");
+    }).join("\n\n");
 
-    return `<details class="foraging-debug" open>
+    const debugText = [
+        "GENERATION DETAILS",
+        "",
+        "RESULT",
+        `Region: ${selectedRegion}`,
+        `Search Area: ${searchArea}`,
+        `DC: ${dc}`,
+        `Roll: ${rollTotal}`,
+        `Degree of Success: +${degreeOfSuccess}`,
+        `Rarity Mix: ${getRaritySummaryLine(selected)}`,
+        "",
+        "HOW DC AFFECTED THIS RESULT",
+        ...dcLines.map(line => `- ${line}`),
+        "",
+        "HOW DEGREE OF SUCCESS AFFECTED THIS RESULT",
+        ...dosLines.map(line => `- ${line}`),
+        "",
+        "HOW SEARCH AREA AFFECTED THIS RESULT",
+        ...areaLines.map(line => `- ${line}`),
+        "",
+        "WHY THESE INGREDIENTS APPEARED",
+        ingredientLines
+    ].join("\n");
+
+    return `<details class="foraging-debug foraging-debug-plain" open>
         <summary>Generation Details</summary>
-
-        <div class="foraging-debug-section">
-            <h4>Result</h4>
-            <ul>
-                <li>Region: ${selectedRegion}</li>
-                <li>Search Area: ${searchArea}</li>
-                <li>DC: ${dc}</li>
-                <li>Roll: ${rollTotal}</li>
-                <li>Degree of Success: +${degreeOfSuccess}</li>
-                <li>Rarity mix: ${getRaritySummaryLine(selected)}</li>
-            </ul>
-        </div>
-
-        <div class="foraging-debug-section">
-            <h4>How DC affected this result</h4>
-            <ul>${dcLines}</ul>
-        </div>
-
-        <div class="foraging-debug-section">
-            <h4>How Degree of Success affected this result</h4>
-            <ul>${dosLines}</ul>
-        </div>
-
-        <div class="foraging-debug-section">
-            <h4>How Search Area affected this result</h4>
-            <ul>${areaLines}</ul>
-        </div>
-
-        <div class="foraging-debug-section">
-            <h4>Why these ingredients appeared</h4>
-            ${ingredientCards}
-        </div>
+        <pre>${escapeHtml(debugText)}</pre>
     </details>`;
 }
 

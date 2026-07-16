@@ -2,13 +2,17 @@
   "searchAreas": [
     "Cave",
     "Coast",
+    "Coral Reef",
     "Forest",
     "Geothermal",
     "Grassland",
     "Lake",
     "Mountain",
+    "Open Water",
     "River",
     "Ruins",
+    "Settlement",
+    "Town",
     "Village",
     "Wetland"
   ],
@@ -122,12 +126,22 @@
     "City Streets": {
       "local": 1,
       "nearby": 0.35,
-      "distant": 0.15
+      "distant": 0.15,
+      "relatedSearchAreas": [
+        "Town",
+        "Village",
+        "Settlement"
+      ]
     },
     "Market": {
       "local": 0.9,
       "nearby": 0.85,
-      "distant": 0.65
+      "distant": 0.65,
+      "relatedSearchAreas": [
+        "Town",
+        "Village",
+        "Settlement"
+      ]
     },
     "Waterfront": {
       "local": 0.85,
@@ -140,6 +154,7 @@
       },
       "relatedSearchAreas": [
         "Coast",
+        "Open Water",
         "River",
         "Lake",
         "Wetland"
@@ -162,7 +177,7 @@
       "relatedSearchAreas": [
         "Ruins",
         "Cave",
-        "Village"
+        "Settlement"
       ]
     },
     "Shrine": {
@@ -172,7 +187,8 @@
       "relatedSearchAreas": [
         "Forest",
         "Village",
-        "Ruins"
+        "Ruins",
+        "Settlement"
       ]
     }
   },
@@ -188,7 +204,7 @@
     "Opu Opu Spring Water",
     "Sea Water"
   ],
-  "engineVersion": "2.0",
+  "engineVersion": "2.1",
   "findCountByDos": [
     {
       "min": 0,
@@ -301,22 +317,26 @@
       "Geothermal"
     ],
     "Coast": [
+      "Open Water",
+      "Coral Reef",
       "River",
-      "Wetland",
-      "Lake"
+      "Wetland"
     ],
     "Forest": [
       "Grassland",
       "River",
-      "Village"
+      "Village",
+      "Settlement"
     ],
     "Geothermal": [
       "Cave",
-      "Mountain"
+      "Mountain",
+      "River"
     ],
     "Grassland": [
       "Forest",
       "Village",
+      "Settlement",
       "River"
     ],
     "Lake": [
@@ -333,14 +353,18 @@
       "Wetland",
       "Lake",
       "Forest",
-      "Grassland"
+      "Grassland",
+      "Settlement"
     ],
     "Ruins": [
       "Cave",
+      "Settlement",
       "Village",
       "Forest"
     ],
     "Village": [
+      "Settlement",
+      "Town",
       "Grassland",
       "Forest",
       "Ruins"
@@ -349,6 +373,27 @@
       "River",
       "Lake",
       "Coast"
+    ],
+    "Coral Reef": [
+      "Open Water",
+      "Coast",
+      "Cave"
+    ],
+    "Open Water": [
+      "Coral Reef",
+      "Coast"
+    ],
+    "Settlement": [
+      "Village",
+      "Town",
+      "Ruins",
+      "Forest",
+      "Grassland"
+    ],
+    "Town": [
+      "Village",
+      "Settlement",
+      "Ruins"
     ]
   },
   "habitatTargetByCount": {
@@ -357,5 +402,204 @@
     "3": 2,
     "4": 3,
     "5": 4
+  },
+  "regionSearchAreas": {
+    "Brackwater Wetlands": [
+      "Coast",
+      "Forest",
+      "Lake",
+      "River",
+      "Ruins",
+      "Settlement",
+      "Village",
+      "Wetland"
+    ],
+    "Coastal Highlands": [
+      "Cave",
+      "Coast",
+      "Forest",
+      "Grassland",
+      "Lake",
+      "River",
+      "Ruins",
+      "Settlement",
+      "Town",
+      "Village",
+      "Wetland"
+    ],
+    "Gale Fields": [
+      "Forest",
+      "Grassland",
+      "River",
+      "Ruins",
+      "Settlement",
+      "Town",
+      "Village"
+    ],
+    "Gift of Shuritashi": [
+      "Cave",
+      "Coast",
+      "Forest",
+      "Grassland",
+      "Lake",
+      "River",
+      "Ruins",
+      "Settlement",
+      "Town",
+      "Village",
+      "Wetland"
+    ],
+    "Land of Hot Water": [
+      "Cave",
+      "Forest",
+      "Geothermal",
+      "Mountain",
+      "River",
+      "Ruins",
+      "Settlement",
+      "Town",
+      "Village"
+    ],
+    "Mount Arbora": [
+      "Cave",
+      "Forest",
+      "Geothermal",
+      "Mountain",
+      "River",
+      "Ruins",
+      "Settlement",
+      "Town",
+      "Village"
+    ],
+    "The Shallows": [
+      "Cave",
+      "Coast",
+      "Coral Reef",
+      "Open Water",
+      "Ruins",
+      "Settlement",
+      "Village"
+    ],
+    "Yatamon": [
+      "City Streets",
+      "Market",
+      "Ruins",
+      "Shrine",
+      "Subway",
+      "Waterfront"
+    ]
+  },
+  "searchAreaProfiles": {
+    "Cave": {
+      "natural": 0.85,
+      "human": 0.15
+    },
+    "Coast": {
+      "natural": 0.95,
+      "human": 0.25
+    },
+    "Coral Reef": {
+      "natural": 1.0,
+      "human": 0.08
+    },
+    "City Streets": {
+      "natural": 0.18,
+      "human": 1.0
+    },
+    "Forest": {
+      "natural": 1.0,
+      "human": 0.08
+    },
+    "Geothermal": {
+      "natural": 0.95,
+      "human": 0.12
+    },
+    "Grassland": {
+      "natural": 0.95,
+      "human": 0.12
+    },
+    "Lake": {
+      "natural": 0.95,
+      "human": 0.18
+    },
+    "Market": {
+      "natural": 0.12,
+      "human": 1.15
+    },
+    "Mountain": {
+      "natural": 0.95,
+      "human": 0.08
+    },
+    "Open Water": {
+      "natural": 1.0,
+      "human": 0.08
+    },
+    "River": {
+      "natural": 0.95,
+      "human": 0.22
+    },
+    "Ruins": {
+      "natural": 0.65,
+      "human": 0.65
+    },
+    "Settlement": {
+      "natural": 0.8,
+      "human": 0.45
+    },
+    "Shrine": {
+      "natural": 0.55,
+      "human": 0.75
+    },
+    "Subway": {
+      "natural": 0.35,
+      "human": 0.7
+    },
+    "Town": {
+      "natural": 0.45,
+      "human": 0.85
+    },
+    "Village": {
+      "natural": 0.65,
+      "human": 0.6
+    },
+    "Waterfront": {
+      "natural": 0.55,
+      "human": 0.9
+    },
+    "Wetland": {
+      "natural": 1.0,
+      "human": 0.1
+    }
+  },
+  "originWeights": {
+    "natural": {
+      "natural": 1.0,
+      "human": 0.2
+    },
+    "human": {
+      "natural": 0.15,
+      "human": 1.0
+    },
+    "mixed": {
+      "natural": 0.65,
+      "human": 0.65
+    }
+  },
+  "ingredientOriginOverrides": {
+    "Bashu Powder": "human",
+    "Chisuay's Heavenly Tea": "human",
+    "Crimson Octopus Ink": "natural",
+    "Flash Paper": "human",
+    "Gargoyle Powder": "human",
+    "Gohaku Rice": "human",
+    "Magic Monk's Rice Wine": "human",
+    "Nakudama Spice": "human",
+    "Oporion Glass": "human",
+    "Ota Lantern Oil": "human",
+    "Pink Candle Wax": "human",
+    "Rake Paste": "human",
+    "Seashell": "natural",
+    "Spirit Tea": "human",
+    "Squid Ink": "natural"
   }
 }
