@@ -3759,3 +3759,26 @@ body.high-contrast .container {
 .foraging-result-card .foraging-result-actions {
     margin-top: 18px !important;
 }
+
+
+/* Foraging Add-to-Inventory completed state */
+.add-to-inventory-button.added,
+.add-to-inventory-button.added:disabled {
+    background: #7fbf6a !important;
+    border-color: #7fbf6a !important;
+    color: #ffffff !important;
+    opacity: 1 !important;
+    cursor: default !important;
+    transform: none !important;
+    box-shadow: none !important;
+}
+
+.add-to-inventory-button.added:hover,
+.add-to-inventory-button.added:disabled:hover {
+    background: #7fbf6a !important;
+    border-color: #7fbf6a !important;
+    color: #ffffff !important;
+    cursor: default !important;
+    transform: none !important;
+    box-shadow: none !important;
+}

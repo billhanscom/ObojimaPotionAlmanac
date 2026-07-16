@@ -733,6 +733,31 @@ function renderPlainDebug({
     </details>`;
 }
 
+function clearForagingSearch() {
+    const regionSelect = document.getElementById("foraging-region");
+    const dcInput = document.getElementById("foraging-dc");
+    const rollInput = document.getElementById("foraging-roll");
+    const prioritizeInput = document.getElementById("foraging-prioritize-new");
+    const resultsDiv = document.getElementById("foraging-results");
+
+    if (regionSelect) {
+        regionSelect.selectedIndex = 0;
+        populateSearchAreaOptions();
+    }
+
+    const areaSelect = document.getElementById("foraging-search-area");
+    if (areaSelect) areaSelect.selectedIndex = 0;
+    if (dcInput) dcInput.value = "10";
+    if (rollInput) rollInput.value = "";
+    if (prioritizeInput) prioritizeInput.checked = true;
+    if (resultsDiv) resultsDiv.innerHTML = "";
+
+    window.latestForagingResults = [];
+    clearStoredForagingResults();
+    sessionStorage.removeItem(OBOJIMA_FORAGING_PARAMS_KEY);
+    saveForagingSearchParams();
+}
+
 async function generateForagingFinds() {
     const selectedRegion = document.getElementById("foraging-region").value;
     const searchArea = document.getElementById("foraging-search-area").value;
@@ -792,7 +817,7 @@ async function generateForagingFinds() {
         <h3>Results</h3>
         <ul class="completion-recipe-list foraging-result-list">${list}</ul>
         <div class="button-group foraging-result-actions">
-            <button type="button" onclick="addForagingResultsToInventory()">Add to Inventory</button>
+            <button type="button" class="add-to-inventory-button" onclick="addForagingResultsToInventory()">Add to Inventory</button>
             <button type="button" onclick="generateForagingFinds()">Generate Again</button>
         </div>
     </div>${debug}`;
@@ -811,8 +836,12 @@ function addForagingResultsToInventory() {
     Obojima.saveStoredInventory(foragingInventory);
     Obojima.updateSaveInventoryButtons(foragingInventory);
 
-    const button = document.querySelector(".foraging-result-actions button");
-    if (button) button.textContent = "Added to Inventory";
+    const button = document.querySelector(".foraging-result-actions .add-to-inventory-button");
+    if (button) {
+        button.textContent = "Added to Inventory";
+        button.disabled = true;
+        button.classList.add("added");
+    }
     const resultsDiv = document.getElementById("foraging-results");
     if (resultsDiv) saveForagingResults(resultsDiv.innerHTML, window.latestForagingResults || []);
 }
