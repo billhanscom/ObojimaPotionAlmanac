@@ -8,7 +8,13 @@
     "regions": [
       "Land of Hot Water",
       "Mount Arbora"
-    ]
+    ],
+    "forageable": true,
+    "associated_search_areas": [
+      "Coast",
+      "Mountain"
+    ],
+    "civilization": 1
   },
   {
     "name": "Apper Carrot",
@@ -19,7 +25,13 @@
     "regions": [
       "Gale Fields",
       "Gift of Shuritashi"
-    ]
+    ],
+    "forageable": true,
+    "associated_search_areas": [
+      "Grassland",
+      "Settlement"
+    ],
+    "civilization": 2
   },
   {
     "name": "Bamboo",
@@ -31,7 +43,13 @@
       "Brackwater Wetlands",
       "Gift of Shuritashi",
       "Land of Hot Water"
-    ]
+    ],
+    "forageable": true,
+    "associated_search_areas": [
+      "Forest",
+      "Mountain"
+    ],
+    "civilization": 1
   },
   {
     "name": "Bashu Powder",
@@ -42,7 +60,15 @@
     "regions": [
       "Gift of Shuritashi",
       "Land of Hot Water"
-    ]
+    ],
+    "forageable": true,
+    "associated_search_areas": [
+      "Geothermal",
+      "Settlement",
+      "Town",
+      "Village"
+    ],
+    "civilization": 4
   },
   {
     "name": "Blue Back Salmon",
@@ -58,7 +84,14 @@
       "Land of Hot Water",
       "Mount Arbora",
       "The Shallows"
-    ]
+    ],
+    "forageable": true,
+    "associated_search_areas": [
+      "Coast",
+      "Open Water",
+      "River"
+    ],
+    "civilization": 1
   },
   {
     "name": "Boom Beri",
@@ -71,7 +104,13 @@
       "Gift of Shuritashi",
       "Land of Hot Water",
       "Mount Arbora"
-    ]
+    ],
+    "forageable": true,
+    "associated_search_areas": [
+      "Coast",
+      "Mountain"
+    ],
+    "civilization": 1
   },
   {
     "name": "Bora Bug",
@@ -85,7 +124,13 @@
       "Gale Fields",
       "Gift of Shuritashi",
       "Mount Arbora"
-    ]
+    ],
+    "forageable": true,
+    "associated_search_areas": [
+      "Forest",
+      "Settlement"
+    ],
+    "civilization": 2
   },
   {
     "name": "Brush Reed",
@@ -97,7 +142,13 @@
       "Brackwater Wetlands",
       "Land of Hot Water",
       "The Shallows"
-    ]
+    ],
+    "forageable": true,
+    "associated_search_areas": [
+      "Lake",
+      "Wetland"
+    ],
+    "civilization": 1
   },
   {
     "name": "Bundle of Driko Twigs",
@@ -112,7 +163,13 @@
       "Gift of Shuritashi",
       "Land of Hot Water",
       "Mount Arbora"
-    ]
+    ],
+    "forageable": true,
+    "associated_search_areas": [
+      "Forest",
+      "Settlement"
+    ],
+    "civilization": 2
   },
   {
     "name": "Camp Mite",
@@ -124,7 +181,14 @@
       "Brackwater Wetlands",
       "Gale Fields",
       "Gift of Shuritashi"
-    ]
+    ],
+    "forageable": true,
+    "associated_search_areas": [
+      "Forest",
+      "Grassland",
+      "Settlement"
+    ],
+    "civilization": 2
   },
   {
     "name": "Canned Cat",
@@ -135,7 +199,13 @@
     "regions": [
       "Gift of Shuritashi"
     ],
-    "source": "Obojima: Tales from Yatamon"
+    "source": "Obojima: Tales from Yatamon",
+    "forageable": true,
+    "associated_search_areas": [
+      "Ruins",
+      "Settlement"
+    ],
+    "civilization": 4
   },
   {
     "name": "Chicken Egg",
@@ -149,14 +219,27 @@
       "Gale Fields",
       "Gift of Shuritashi",
       "Land of Hot Water"
-    ]
+    ],
+    "forageable": true,
+    "associated_search_areas": [
+      "Grassland",
+      "Settlement"
+    ],
+    "civilization": 3
   },
   {
     "name": "Chisuay's Heavenly Tea",
     "combat": 2,
     "utility": 7,
     "whimsy": 5,
-    "rarity": "common"
+    "rarity": "common",
+    "forageable": true,
+    "associated_search_areas": [
+      "Town",
+      "Village",
+      "Market"
+    ],
+    "civilization": 4
   },
   {
     "name": "Clay Snake Tail",
@@ -169,7 +252,13 @@
       "Gale Fields",
       "Land of Hot Water",
       "Mount Arbora"
-    ]
+    ],
+    "forageable": true,
+    "associated_search_areas": [
+      "Lake",
+      "River"
+    ],
+    "civilization": 1
   },
   {
     "name": "Cloud Horn",
@@ -180,7 +269,12 @@
     "regions": [
       "Gale Fields",
       "Gift of Shuritashi"
-    ]
+    ],
+    "forageable": true,
+    "associated_search_areas": [
+      "Grassland"
+    ],
+    "civilization": 1
   },
   {
     "name": "Creeping Bolete",
@@ -192,7 +286,12 @@
       "Brackwater Wetlands",
       "Coastal Highlands",
       "Gift of Shuritashi"
-    ]
+    ],
+    "forageable": true,
+    "associated_search_areas": [
+      "Forest"
+    ],
+    "civilization": 1
   },
   {
     "name": "Dorrin Plate",
@@ -202,7 +301,15 @@
     "rarity": "common",
     "regions": [
       "Mount Arbora"
-    ]
+    ],
+    "forageable": true,
+    "associated_search_areas": [
+      "Mountain",
+      "Settlement",
+      "Town",
+      "Village"
+    ],
+    "civilization": 5
   },
   {
     "name": "Dried Fruit",
@@ -212,7 +319,13 @@
     "rarity": "common",
     "regions": [
       "Mount Arbora"
-    ]
+    ],
+    "forageable": true,
+    "associated_search_areas": [
+      "Mountain",
+      "Settlement"
+    ],
+    "civilization": 3
   },
   {
     "name": "Earwax",
@@ -227,7 +340,12 @@
       "Gift of Shuritashi",
       "Land of Hot Water",
       "Mount Arbora"
-    ]
+    ],
+    "forageable": true,
+    "associated_search_areas": [
+      "Settlement"
+    ],
+    "civilization": 2
   },
   {
     "name": "Fish Folk Tooth",
@@ -240,7 +358,14 @@
       "Gift of Shuritashi",
       "Land of Hot Water",
       "The Shallows"
-    ]
+    ],
+    "forageable": true,
+    "associated_search_areas": [
+      "Cave",
+      "Coast",
+      "Open Water"
+    ],
+    "civilization": 1
   },
   {
     "name": "Fish Head",
@@ -256,7 +381,14 @@
       "Land of Hot Water",
       "Mount Arbora",
       "The Shallows"
-    ]
+    ],
+    "forageable": true,
+    "associated_search_areas": [
+      "Coast",
+      "Open Water",
+      "River"
+    ],
+    "civilization": 1
   },
   {
     "name": "Flash Paper",
@@ -268,7 +400,14 @@
       "Coastal Highlands",
       "Gift of Shuritashi",
       "Land of Hot Water"
-    ]
+    ],
+    "forageable": true,
+    "associated_search_areas": [
+      "Settlement",
+      "Town",
+      "Village"
+    ],
+    "civilization": 5
   },
   {
     "name": "Gohaku Rice",
@@ -279,7 +418,15 @@
     "regions": [
       "Brackwater Wetlands",
       "Land of Hot Water"
-    ]
+    ],
+    "forageable": true,
+    "associated_search_areas": [
+      "Settlement",
+      "Town",
+      "Village",
+      "Wetland"
+    ],
+    "civilization": 4
   },
   {
     "name": "Green Slime",
@@ -292,7 +439,14 @@
       "Coastal Highlands",
       "Gale Fields",
       "Gift of Shuritashi"
-    ]
+    ],
+    "forageable": true,
+    "associated_search_areas": [
+      "Cave",
+      "Forest",
+      "Settlement"
+    ],
+    "civilization": 2
   },
   {
     "name": "Hair from a Yanari",
@@ -303,7 +457,12 @@
     "regions": [
       "Gift of Shuritashi"
     ],
-    "source": "Obojima: Tales from Yatamon"
+    "source": "Obojima: Tales from Yatamon",
+    "forageable": true,
+    "associated_search_areas": [
+      "Settlement"
+    ],
+    "civilization": 2
   },
   {
     "name": "Hakuma Sapwood",
@@ -315,7 +474,13 @@
       "Gale Fields",
       "Gift of Shuritashi",
       "Mount Arbora"
-    ]
+    ],
+    "forageable": true,
+    "associated_search_areas": [
+      "Forest",
+      "Settlement"
+    ],
+    "civilization": 2
   },
   {
     "name": "Hill Dragon Egg",
@@ -325,7 +490,12 @@
     "rarity": "common",
     "regions": [
       "Gale Fields"
-    ]
+    ],
+    "forageable": true,
+    "associated_search_areas": [
+      "Grassland"
+    ],
+    "civilization": 3
   },
   {
     "name": "Howler Fur",
@@ -337,7 +507,13 @@
       "Brackwater Wetlands",
       "Gale Fields",
       "Mount Arbora"
-    ]
+    ],
+    "forageable": true,
+    "associated_search_areas": [
+      "Cave",
+      "Forest"
+    ],
+    "civilization": 1
   },
   {
     "name": "Itchi Beri",
@@ -347,7 +523,12 @@
     "rarity": "common",
     "regions": [
       "Gale Fields"
-    ]
+    ],
+    "forageable": true,
+    "associated_search_areas": [
+      "River"
+    ],
+    "civilization": 1
   },
   {
     "name": "Jack-o-Lantern Bits",
@@ -359,7 +540,13 @@
       "Coastal Highlands",
       "Gale Fields",
       "Gift of Shuritashi"
-    ]
+    ],
+    "forageable": true,
+    "associated_search_areas": [
+      "Grassland",
+      "Settlement"
+    ],
+    "civilization": 5
   },
   {
     "name": "Jumping Bonfire",
@@ -372,7 +559,13 @@
       "Gale Fields",
       "Gift of Shuritashi",
       "Land of Hot Water"
-    ]
+    ],
+    "forageable": true,
+    "associated_search_areas": [
+      "Grassland",
+      "Settlement"
+    ],
+    "civilization": 2
   },
   {
     "name": "Kloth Leech",
@@ -382,7 +575,13 @@
     "rarity": "common",
     "regions": [
       "Brackwater Wetlands"
-    ]
+    ],
+    "forageable": true,
+    "associated_search_areas": [
+      "Grassland",
+      "Wetland"
+    ],
+    "civilization": 1
   },
   {
     "name": "Knobble Leaf Seaweed",
@@ -394,7 +593,14 @@
       "Brackwater Wetlands",
       "Gift of Shuritashi",
       "The Shallows"
-    ]
+    ],
+    "forageable": true,
+    "associated_search_areas": [
+      "Coast",
+      "Coral Reef",
+      "Open Water"
+    ],
+    "civilization": 1
   },
   {
     "name": "Kojo Root",
@@ -404,7 +610,12 @@
     "rarity": "common",
     "regions": [
       "Coastal Highlands"
-    ]
+    ],
+    "forageable": true,
+    "associated_search_areas": [
+      "Settlement"
+    ],
+    "civilization": 2
   },
   {
     "name": "Lovers Vine",
@@ -415,7 +626,13 @@
     "regions": [
       "Brackwater Wetlands",
       "Gift of Shuritashi"
-    ]
+    ],
+    "forageable": true,
+    "associated_search_areas": [
+      "Forest",
+      "Wetland"
+    ],
+    "civilization": 1
   },
   {
     "name": "Mandrake Root",
@@ -425,7 +642,12 @@
     "rarity": "common",
     "regions": [
       "Mount Arbora"
-    ]
+    ],
+    "forageable": true,
+    "associated_search_areas": [
+      "Forest"
+    ],
+    "civilization": 1
   },
   {
     "name": "Mellowort",
@@ -436,7 +658,13 @@
     "regions": [
       "Brackwater Wetlands",
       "Gift of Shuritashi"
-    ]
+    ],
+    "forageable": true,
+    "associated_search_areas": [
+      "Grassland",
+      "Settlement"
+    ],
+    "civilization": 2
   },
   {
     "name": "Monkey's Coil",
@@ -446,7 +674,13 @@
     "rarity": "common",
     "regions": [
       "Gale Fields"
-    ]
+    ],
+    "forageable": true,
+    "associated_search_areas": [
+      "Grassland",
+      "Settlement"
+    ],
+    "civilization": 4
   },
   {
     "name": "Mountain Ox Dung",
@@ -456,7 +690,13 @@
     "rarity": "common",
     "regions": [
       "Coastal Highlands"
-    ]
+    ],
+    "forageable": true,
+    "associated_search_areas": [
+      "Grassland",
+      "Mountain"
+    ],
+    "civilization": 2
   },
   {
     "name": "Mouse Tree Nut",
@@ -466,7 +706,13 @@
     "rarity": "common",
     "regions": [
       "Coastal Highlands"
-    ]
+    ],
+    "forageable": true,
+    "associated_search_areas": [
+      "Mountain",
+      "Ruins"
+    ],
+    "civilization": 1
   },
   {
     "name": "Narutomaki",
@@ -477,7 +723,12 @@
     "regions": [
       "Brackwater Wetlands",
       "Gift of Shuritashi"
-    ]
+    ],
+    "forageable": true,
+    "associated_search_areas": [
+      "Settlement"
+    ],
+    "civilization": 3
   },
   {
     "name": "Nobblewort",
@@ -489,7 +740,13 @@
       "Gale Fields",
       "Gift of Shuritashi",
       "Mount Arbora"
-    ]
+    ],
+    "forageable": true,
+    "associated_search_areas": [
+      "Forest",
+      "Settlement"
+    ],
+    "civilization": 2
   },
   {
     "name": "Oporion Glass",
@@ -501,7 +758,16 @@
       "Land of Hot Water",
       "Mount Arbora",
       "The Shallows"
-    ]
+    ],
+    "forageable": true,
+    "associated_search_areas": [
+      "Cave",
+      "Open Water",
+      "Settlement",
+      "Town",
+      "Village"
+    ],
+    "civilization": 5
   },
   {
     "name": "Origami Crane",
@@ -511,7 +777,14 @@
     "rarity": "common",
     "regions": [
       "Land of Hot Water"
-    ]
+    ],
+    "forageable": true,
+    "associated_search_areas": [
+      "Settlement",
+      "Town",
+      "Village"
+    ],
+    "civilization": 5
   },
   {
     "name": "Peeping Willow",
@@ -521,7 +794,12 @@
     "rarity": "common",
     "regions": [
       "Mount Arbora"
-    ]
+    ],
+    "forageable": true,
+    "associated_search_areas": [
+      "Mountain"
+    ],
+    "civilization": 1
   },
   {
     "name": "Pink Candle Wax",
@@ -533,7 +811,14 @@
       "Coastal Highlands",
       "Gift of Shuritashi",
       "Land of Hot Water"
-    ]
+    ],
+    "forageable": true,
+    "associated_search_areas": [
+      "Settlement",
+      "Town",
+      "Village"
+    ],
+    "civilization": 4
   },
   {
     "name": "Poison",
@@ -548,7 +833,14 @@
       "Gift of Shuritashi",
       "Land of Hot Water",
       "Mount Arbora"
-    ]
+    ],
+    "forageable": true,
+    "associated_search_areas": [
+      "Cave",
+      "Forest",
+      "Wetland"
+    ],
+    "civilization": 1
   },
   {
     "name": "Pungent Sea Foam",
@@ -558,7 +850,13 @@
     "rarity": "common",
     "regions": [
       "The Shallows"
-    ]
+    ],
+    "forageable": true,
+    "associated_search_areas": [
+      "Coast",
+      "Open Water"
+    ],
+    "civilization": 1
   },
   {
     "name": "Pyramid Melon",
@@ -568,7 +866,13 @@
     "rarity": "common",
     "regions": [
       "Gale Fields"
-    ]
+    ],
+    "forageable": true,
+    "associated_search_areas": [
+      "Grassland",
+      "Settlement"
+    ],
+    "civilization": 2
   },
   {
     "name": "Queen's Dilemma",
@@ -580,7 +884,13 @@
       "Brackwater Wetlands",
       "Gift of Shuritashi",
       "Mount Arbora"
-    ]
+    ],
+    "forageable": true,
+    "associated_search_areas": [
+      "Forest",
+      "Wetland"
+    ],
+    "civilization": 1
   },
   {
     "name": "Raka Paste",
@@ -592,7 +902,14 @@
       "Brackwater Wetlands",
       "Land of Hot Water",
       "Mount Arbora"
-    ]
+    ],
+    "forageable": true,
+    "associated_search_areas": [
+      "Settlement",
+      "Town",
+      "Village"
+    ],
+    "civilization": 5
   },
   {
     "name": "Rattle Shoot",
@@ -602,7 +919,12 @@
     "rarity": "common",
     "regions": [
       "Gale Fields"
-    ]
+    ],
+    "forageable": true,
+    "associated_search_areas": [
+      "Grassland"
+    ],
+    "civilization": 1
   },
   {
     "name": "Ribbon Rot",
@@ -612,7 +934,14 @@
     "rarity": "common",
     "regions": [
       "Brackwater Wetlands"
-    ]
+    ],
+    "forageable": true,
+    "associated_search_areas": [
+      "Forest",
+      "Ruins",
+      "Settlement"
+    ],
+    "civilization": 2
   },
   {
     "name": "Rust Crab",
@@ -622,7 +951,14 @@
     "rarity": "common",
     "regions": [
       "The Shallows"
-    ]
+    ],
+    "forageable": true,
+    "associated_search_areas": [
+      "Coast",
+      "Coral Reef",
+      "Open Water"
+    ],
+    "civilization": 1
   },
   {
     "name": "Scalefruit Rind",
@@ -633,7 +969,12 @@
     "regions": [
       "Brackwater Wetlands",
       "Gift of Shuritashi"
-    ]
+    ],
+    "forageable": true,
+    "associated_search_areas": [
+      "Coast"
+    ],
+    "civilization": 1
   },
   {
     "name": "Sea Water",
@@ -646,7 +987,13 @@
       "Gift of Shuritashi",
       "Land of Hot Water",
       "The Shallows"
-    ]
+    ],
+    "forageable": false,
+    "associated_search_areas": [
+      "Coast",
+      "Open Water"
+    ],
+    "civilization": 1
   },
   {
     "name": "Seashell",
@@ -659,7 +1006,13 @@
       "Gift of Shuritashi",
       "Land of Hot Water",
       "The Shallows"
-    ]
+    ],
+    "forageable": true,
+    "associated_search_areas": [
+      "Coast",
+      "Open Water"
+    ],
+    "civilization": 1
   },
   {
     "name": "Sheep Dragon Wool",
@@ -669,7 +1022,13 @@
     "rarity": "common",
     "regions": [
       "Coastal Highlands"
-    ]
+    ],
+    "forageable": true,
+    "associated_search_areas": [
+      "Grassland",
+      "Settlement"
+    ],
+    "civilization": 3
   },
   {
     "name": "Slice of Melon Bird",
@@ -680,7 +1039,14 @@
     "regions": [
       "Gift of Shuritashi"
     ],
-    "source": "Obojima: Tales from Yatamon"
+    "source": "Obojima: Tales from Yatamon",
+    "forageable": true,
+    "associated_search_areas": [
+      "Forest",
+      "Grassland",
+      "Settlement"
+    ],
+    "civilization": 2
   },
   {
     "name": "Snap Vine Sap",
@@ -690,7 +1056,12 @@
     "rarity": "common",
     "regions": [
       "Coastal Highlands"
-    ]
+    ],
+    "forageable": true,
+    "associated_search_areas": [
+      "Forest"
+    ],
+    "civilization": 1
   },
   {
     "name": "Spindle-Leg Spider Webs",
@@ -702,7 +1073,13 @@
       "Coastal Highlands",
       "Gale Fields",
       "Gift of Shuritashi"
-    ]
+    ],
+    "forageable": true,
+    "associated_search_areas": [
+      "Forest",
+      "Grassland"
+    ],
+    "civilization": 2
   },
   {
     "name": "Spirit Root",
@@ -712,7 +1089,12 @@
     "rarity": "common",
     "regions": [
       "Mount Arbora"
-    ]
+    ],
+    "forageable": true,
+    "associated_search_areas": [
+      "Mountain"
+    ],
+    "civilization": 1
   },
   {
     "name": "Squid Ink",
@@ -722,7 +1104,13 @@
     "rarity": "common",
     "regions": [
       "The Shallows"
-    ]
+    ],
+    "forageable": true,
+    "associated_search_areas": [
+      "Coast",
+      "Open Water"
+    ],
+    "civilization": 1
   },
   {
     "name": "Tangle Weed",
@@ -732,7 +1120,13 @@
     "rarity": "common",
     "regions": [
       "The Shallows"
-    ]
+    ],
+    "forageable": true,
+    "associated_search_areas": [
+      "Coast",
+      "Open Water"
+    ],
+    "civilization": 1
   },
   {
     "name": "Ube",
@@ -742,7 +1136,14 @@
     "rarity": "common",
     "regions": [
       "Gale Fields"
-    ]
+    ],
+    "forageable": true,
+    "associated_search_areas": [
+      "Grassland",
+      "Mountain",
+      "Settlement"
+    ],
+    "civilization": 2
   },
   {
     "name": "Varrow",
@@ -754,7 +1155,14 @@
       "Brackwater Wetlands",
       "Gift of Shuritashi",
       "Land of Hot Water"
-    ]
+    ],
+    "forageable": true,
+    "associated_search_areas": [
+      "Coast",
+      "Grassland",
+      "Settlement"
+    ],
+    "civilization": 2
   },
   {
     "name": "Venus Fly Rat",
@@ -764,7 +1172,12 @@
     "rarity": "common",
     "regions": [
       "Coastal Highlands"
-    ]
+    ],
+    "forageable": true,
+    "associated_search_areas": [
+      "Cave"
+    ],
+    "civilization": 1
   },
   {
     "name": "Windbloom",
@@ -776,7 +1189,14 @@
       "Gale Fields",
       "Land of Hot Water",
       "Mount Arbora"
-    ]
+    ],
+    "forageable": true,
+    "associated_search_areas": [
+      "Geothermal",
+      "Grassland",
+      "Mountain"
+    ],
+    "civilization": 1
   },
   {
     "name": "Witch's Broom",
@@ -786,7 +1206,13 @@
     "rarity": "common",
     "regions": [
       "Gale Fields"
-    ]
+    ],
+    "forageable": true,
+    "associated_search_areas": [
+      "Grassland",
+      "Settlement"
+    ],
+    "civilization": 2
   },
   {
     "name": "Witch's Eye Coral",
@@ -796,7 +1222,13 @@
     "rarity": "common",
     "regions": [
       "The Shallows"
-    ]
+    ],
+    "forageable": true,
+    "associated_search_areas": [
+      "Coral Reef",
+      "Open Water"
+    ],
+    "civilization": 1
   },
   {
     "name": "Yugi Sap",
@@ -808,7 +1240,12 @@
       "Gale Fields",
       "Gift of Shuritashi",
       "Mount Arbora"
-    ]
+    ],
+    "forageable": true,
+    "associated_search_areas": [
+      "Forest"
+    ],
+    "civilization": 1
   },
   {
     "name": "Yuma Shrub",
@@ -819,7 +1256,13 @@
     "regions": [
       "Coastal Highlands",
       "Mount Arbora"
-    ]
+    ],
+    "forageable": true,
+    "associated_search_areas": [
+      "Forest",
+      "Grassland"
+    ],
+    "civilization": 1
   },
   {
     "name": "Black Cinnamon",
@@ -829,7 +1272,13 @@
     "rarity": "uncommon",
     "regions": [
       "Mount Arbora"
-    ]
+    ],
+    "forageable": true,
+    "associated_search_areas": [
+      "Forest",
+      "Mountain"
+    ],
+    "civilization": 1
   },
   {
     "name": "Black Pearl",
@@ -839,7 +1288,13 @@
     "rarity": "uncommon",
     "regions": [
       "The Shallows"
-    ]
+    ],
+    "forageable": true,
+    "associated_search_areas": [
+      "Coral Reef",
+      "Open Water"
+    ],
+    "civilization": 1
   },
   {
     "name": "Bottle Cap (Supa-Fizz!)",
@@ -855,7 +1310,15 @@
       "Land of Hot Water",
       "Mount Arbora",
       "The Shallows"
-    ]
+    ],
+    "forageable": true,
+    "associated_search_areas": [
+      "Ruins",
+      "Settlement",
+      "Town",
+      "Village"
+    ],
+    "civilization": 5
   },
   {
     "name": "Corrupted Seawater",
@@ -865,7 +1328,13 @@
     "rarity": "uncommon",
     "regions": [
       "Brackwater Wetlands"
-    ]
+    ],
+    "forageable": false,
+    "associated_search_areas": [
+      "Coast",
+      "Open Water"
+    ],
+    "civilization": 1
   },
   {
     "name": "Corrupted Slime",
@@ -875,7 +1344,13 @@
     "rarity": "uncommon",
     "regions": [
       "Brackwater Wetlands"
-    ]
+    ],
+    "forageable": true,
+    "associated_search_areas": [
+      "Ruins",
+      "Wetland"
+    ],
+    "civilization": 1
   },
   {
     "name": "Cracking Jasper",
@@ -885,7 +1360,13 @@
     "rarity": "uncommon",
     "regions": [
       "Land of Hot Water"
-    ]
+    ],
+    "forageable": true,
+    "associated_search_areas": [
+      "Geothermal",
+      "Mountain"
+    ],
+    "civilization": 1
   },
   {
     "name": "Dawn Petal",
@@ -896,7 +1377,13 @@
     "regions": [
       "Gift of Shuritashi",
       "Mount Arbora"
-    ]
+    ],
+    "forageable": true,
+    "associated_search_areas": [
+      "Forest",
+      "Settlement"
+    ],
+    "civilization": 2
   },
   {
     "name": "Dragon Root",
@@ -906,7 +1393,14 @@
     "rarity": "uncommon",
     "regions": [
       "Gale Fields"
-    ]
+    ],
+    "forageable": true,
+    "associated_search_areas": [
+      "Forest",
+      "Grassland",
+      "Mountain"
+    ],
+    "civilization": 1
   },
   {
     "name": "Dried Pilot Leech",
@@ -917,7 +1411,12 @@
     "regions": [
       "Gift of Shuritashi"
     ],
-    "source": "Obojima: Tales from Yatamon"
+    "source": "Obojima: Tales from Yatamon",
+    "forageable": true,
+    "associated_search_areas": [
+      "Wetland"
+    ],
+    "civilization": 3
   },
   {
     "name": "Essence of Glumbug",
@@ -928,14 +1427,25 @@
     "regions": [
       "Coastal Highlands",
       "Mount Arbora"
-    ]
+    ],
+    "forageable": true,
+    "associated_search_areas": [
+      "Cave",
+      "Mountain"
+    ],
+    "civilization": 1
   },
   {
     "name": "Essence of Ill Omen",
     "combat": 16,
     "utility": 12,
     "whimsy": 11,
-    "rarity": "uncommon"
+    "rarity": "uncommon",
+    "forageable": true,
+    "associated_search_areas": [
+      "Settlement"
+    ],
+    "civilization": 2
   },
   {
     "name": "Feather Rock",
@@ -945,7 +1455,13 @@
     "rarity": "uncommon",
     "regions": [
       "Gale Fields"
-    ]
+    ],
+    "forageable": true,
+    "associated_search_areas": [
+      "Grassland",
+      "Mountain"
+    ],
+    "civilization": 1
   },
   {
     "name": "Fizzing Green",
@@ -955,7 +1471,12 @@
     "rarity": "uncommon",
     "regions": [
       "Gift of Shuritashi"
-    ]
+    ],
+    "forageable": true,
+    "associated_search_areas": [
+      "Forest"
+    ],
+    "civilization": 1
   },
   {
     "name": "Forge Slag",
@@ -965,7 +1486,13 @@
     "rarity": "uncommon",
     "regions": [
       "Mount Arbora"
-    ]
+    ],
+    "forageable": true,
+    "associated_search_areas": [
+      "Mountain",
+      "Settlement"
+    ],
+    "civilization": 2
   },
   {
     "name": "Gargoyle Powder",
@@ -976,7 +1503,16 @@
     "regions": [
       "Land of Hot Water",
       "Mount Arbora"
-    ]
+    ],
+    "forageable": true,
+    "associated_search_areas": [
+      "Geothermal",
+      "Mountain",
+      "Settlement",
+      "Town",
+      "Village"
+    ],
+    "civilization": 4
   },
   {
     "name": "Glow Worms of the Vale",
@@ -986,7 +1522,13 @@
     "rarity": "uncommon",
     "regions": [
       "Gale Fields"
-    ]
+    ],
+    "forageable": true,
+    "associated_search_areas": [
+      "Cave",
+      "Wetland"
+    ],
+    "civilization": 1
   },
   {
     "name": "Hakumon's Ramen Broth",
@@ -996,7 +1538,14 @@
     "rarity": "uncommon",
     "regions": [
       "Brackwater Wetlands"
-    ]
+    ],
+    "forageable": true,
+    "associated_search_areas": [
+      "Town",
+      "Village",
+      "Settlement"
+    ],
+    "civilization": 4
   },
   {
     "name": "Happy Joy Cake",
@@ -1006,7 +1555,12 @@
     "rarity": "uncommon",
     "regions": [
       "Gift of Shuritashi"
-    ]
+    ],
+    "forageable": true,
+    "associated_search_areas": [
+      "Settlement"
+    ],
+    "civilization": 4
   },
   {
     "name": "Kojobi Fruit",
@@ -1019,7 +1573,13 @@
       "Gale Fields",
       "Gift of Shuritashi",
       "Land of Hot Water"
-    ]
+    ],
+    "forageable": true,
+    "associated_search_areas": [
+      "Grassland",
+      "Settlement"
+    ],
+    "civilization": 2
   },
   {
     "name": "Laughing Moss",
@@ -1030,7 +1590,13 @@
     "regions": [
       "Brackwater Wetlands",
       "Gift of Shuritashi"
-    ]
+    ],
+    "forageable": true,
+    "associated_search_areas": [
+      "Forest",
+      "Settlement"
+    ],
+    "civilization": 2
   },
   {
     "name": "Lions Blume",
@@ -1040,7 +1606,13 @@
     "rarity": "uncommon",
     "regions": [
       "Coastal Highlands"
-    ]
+    ],
+    "forageable": true,
+    "associated_search_areas": [
+      "Grassland",
+      "Mountain"
+    ],
+    "civilization": 1
   },
   {
     "name": "Living Spud",
@@ -1050,14 +1622,27 @@
     "rarity": "uncommon",
     "regions": [
       "Gale Fields"
-    ]
+    ],
+    "forageable": true,
+    "associated_search_areas": [
+      "Grassland",
+      "Settlement"
+    ],
+    "civilization": 2
   },
   {
     "name": "Magic Monk's Rice Wine",
     "combat": 16,
     "utility": 12,
     "whimsy": 15,
-    "rarity": "uncommon"
+    "rarity": "uncommon",
+    "forageable": true,
+    "associated_search_areas": [
+      "Settlement",
+      "Town",
+      "Village"
+    ],
+    "civilization": 4
   },
   {
     "name": "Molted Lizard Skin",
@@ -1067,7 +1652,13 @@
     "rarity": "uncommon",
     "regions": [
       "Land of Hot Water"
-    ]
+    ],
+    "forageable": true,
+    "associated_search_areas": [
+      "Geothermal",
+      "Mountain"
+    ],
+    "civilization": 1
   },
   {
     "name": "Mountain Snail",
@@ -1077,7 +1668,13 @@
     "rarity": "uncommon",
     "regions": [
       "Mount Arbora"
-    ]
+    ],
+    "forageable": true,
+    "associated_search_areas": [
+      "Cave",
+      "Mountain"
+    ],
+    "civilization": 1
   },
   {
     "name": "Mournshade",
@@ -1087,7 +1684,12 @@
     "rarity": "uncommon",
     "regions": [
       "Brackwater Wetlands"
-    ]
+    ],
+    "forageable": true,
+    "associated_search_areas": [
+      "Wetland"
+    ],
+    "civilization": 1
   },
   {
     "name": "Munchanka Root",
@@ -1097,7 +1699,13 @@
     "rarity": "uncommon",
     "regions": [
       "Gift of Shuritashi"
-    ]
+    ],
+    "forageable": true,
+    "associated_search_areas": [
+      "Geothermal",
+      "Grassland"
+    ],
+    "civilization": 1
   },
   {
     "name": "Nakudama Spice",
@@ -1108,7 +1716,16 @@
     "regions": [
       "Coastal Highlands",
       "Gift of Shuritashi"
-    ]
+    ],
+    "forageable": true,
+    "associated_search_areas": [
+      "Lake",
+      "Settlement",
+      "Town",
+      "Village",
+      "Wetland"
+    ],
+    "civilization": 4
   },
   {
     "name": "Night Thistle",
@@ -1118,7 +1735,13 @@
     "rarity": "uncommon",
     "regions": [
       "Brackwater Wetlands"
-    ]
+    ],
+    "forageable": true,
+    "associated_search_areas": [
+      "Coast",
+      "Wetland"
+    ],
+    "civilization": 1
   },
   {
     "name": "Noodle Eel",
@@ -1131,7 +1754,12 @@
       "Coastal Highlands",
       "Gale Fields",
       "The Shallows"
-    ]
+    ],
+    "forageable": true,
+    "associated_search_areas": [
+      "Settlement"
+    ],
+    "civilization": 2
   },
   {
     "name": "Opu Opu Spring Water",
@@ -1141,7 +1769,13 @@
     "rarity": "uncommon",
     "regions": [
       "Mount Arbora"
-    ]
+    ],
+    "forageable": false,
+    "associated_search_areas": [
+      "Mountain",
+      "River"
+    ],
+    "civilization": 5
   },
   {
     "name": "Petrified Alligator",
@@ -1156,7 +1790,13 @@
       "Land of Hot Water",
       "Mount Arbora",
       "The Shallows"
-    ]
+    ],
+    "forageable": true,
+    "associated_search_areas": [
+      "Ruins",
+      "Wetland"
+    ],
+    "civilization": 1
   },
   {
     "name": "Pok Pok Flakes",
@@ -1166,14 +1806,27 @@
     "rarity": "uncommon",
     "regions": [
       "The Shallows"
-    ]
+    ],
+    "forageable": true,
+    "associated_search_areas": [
+      "Coast",
+      "Open Water",
+      "Settlement"
+    ],
+    "civilization": 3
   },
   {
     "name": "Rubble Golem's Rubble",
     "combat": 16,
     "utility": 11,
     "whimsy": 15,
-    "rarity": "uncommon"
+    "rarity": "uncommon",
+    "forageable": true,
+    "associated_search_areas": [
+      "Mountain",
+      "Ruins"
+    ],
+    "civilization": 1
   },
   {
     "name": "Scumweed",
@@ -1183,7 +1836,13 @@
     "rarity": "uncommon",
     "regions": [
       "Brackwater Wetlands"
-    ]
+    ],
+    "forageable": true,
+    "associated_search_areas": [
+      "Coast",
+      "Wetland"
+    ],
+    "civilization": 1
   },
   {
     "name": "Shadowroot",
@@ -1193,7 +1852,14 @@
     "rarity": "uncommon",
     "regions": [
       "Brackwater Wetlands"
-    ]
+    ],
+    "forageable": true,
+    "associated_search_areas": [
+      "Cave",
+      "Forest",
+      "Ruins"
+    ],
+    "civilization": 1
   },
   {
     "name": "Sleeping Merchant",
@@ -1207,7 +1873,13 @@
       "Gale Fields",
       "Land of Hot Water",
       "Mount Arbora"
-    ]
+    ],
+    "forageable": true,
+    "associated_search_areas": [
+      "Lake",
+      "Wetland"
+    ],
+    "civilization": 1
   },
   {
     "name": "Spark Plug",
@@ -1221,7 +1893,15 @@
       "Gale Fields",
       "Land of Hot Water",
       "Mount Arbora"
-    ]
+    ],
+    "forageable": true,
+    "associated_search_areas": [
+      "Ruins",
+      "Settlement",
+      "Town",
+      "Village"
+    ],
+    "civilization": 5
   },
   {
     "name": "Spirit Tea",
@@ -1231,7 +1911,14 @@
     "rarity": "uncommon",
     "regions": [
       "Land of Hot Water"
-    ]
+    ],
+    "forageable": true,
+    "associated_search_areas": [
+      "Settlement",
+      "Town",
+      "Village"
+    ],
+    "civilization": 4
   },
   {
     "name": "Spring",
@@ -1245,7 +1932,15 @@
       "Gale Fields",
       "Land of Hot Water",
       "Mount Arbora"
-    ]
+    ],
+    "forageable": true,
+    "associated_search_areas": [
+      "Ruins",
+      "Settlement",
+      "Town",
+      "Village"
+    ],
+    "civilization": 5
   },
   {
     "name": "Sun Shroom",
@@ -1255,7 +1950,12 @@
     "rarity": "uncommon",
     "regions": [
       "Gale Fields"
-    ]
+    ],
+    "forageable": true,
+    "associated_search_areas": [
+      "Forest"
+    ],
+    "civilization": 1
   },
   {
     "name": "Tamh Gon's Confetti",
@@ -1266,14 +1966,26 @@
     "regions": [
       "Gift of Shuritashi"
     ],
-    "source": "Obojima: Tales from Yatamon"
+    "source": "Obojima: Tales from Yatamon",
+    "forageable": true,
+    "associated_search_areas": [
+      "Settlement",
+      "Town",
+      "Village"
+    ],
+    "civilization": 5
   },
   {
     "name": "Toka Truffle",
     "combat": 15,
     "utility": 12,
     "whimsy": 14,
-    "rarity": "uncommon"
+    "rarity": "uncommon",
+    "forageable": true,
+    "associated_search_areas": [
+      "Forest"
+    ],
+    "civilization": 1
   },
   {
     "name": "Vinyl Record",
@@ -1287,7 +1999,15 @@
       "Gale Fields",
       "Land of Hot Water",
       "Mount Arbora"
-    ]
+    ],
+    "forageable": true,
+    "associated_search_areas": [
+      "Ruins",
+      "Settlement",
+      "Town",
+      "Village"
+    ],
+    "civilization": 5
   },
   {
     "name": "Wolfenite",
@@ -1299,14 +2019,25 @@
       "Brackwater Wetlands",
       "Gale Fields",
       "Mount Arbora"
-    ]
+    ],
+    "forageable": true,
+    "associated_search_areas": [
+      "Cave",
+      "Mountain"
+    ],
+    "civilization": 1
   },
   {
     "name": "Wychwood",
     "combat": 14,
     "utility": 13,
     "whimsy": 15,
-    "rarity": "uncommon"
+    "rarity": "uncommon",
+    "forageable": true,
+    "associated_search_areas": [
+      "Forest"
+    ],
+    "civilization": 1
   },
   {
     "name": "Yellow Slime",
@@ -1316,153 +2047,296 @@
     "rarity": "uncommon",
     "regions": [
       "Land of Hot Water"
-    ]
+    ],
+    "forageable": true,
+    "associated_search_areas": [
+      "Cave",
+      "Geothermal"
+    ],
+    "civilization": 1
   },
   {
     "name": "Blossom of Spirit Vine",
     "combat": 18,
     "utility": 18,
     "whimsy": 19,
-    "rarity": "rare"
+    "rarity": "rare",
+    "forageable": false,
+    "associated_search_areas": [
+      "Forest",
+      "Ruins"
+    ],
+    "civilization": 1
   },
   {
     "name": "Bottled Lightning",
     "combat": 20,
     "utility": 20,
     "whimsy": 18,
-    "rarity": "rare"
+    "rarity": "rare",
+    "forageable": false,
+    "associated_search_areas": [
+      "Geothermal",
+      "Ruins",
+      "Town"
+    ],
+    "civilization": 5
   },
   {
     "name": "Bubble Gum",
     "combat": 18,
     "utility": 19,
     "whimsy": 20,
-    "rarity": "rare"
+    "rarity": "rare",
+    "forageable": false,
+    "associated_search_areas": [
+      "Town",
+      "Market",
+      "Settlement"
+    ],
+    "civilization": 5
   },
   {
     "name": "Coal from the Spirit Train",
     "combat": 19,
     "utility": 19,
     "whimsy": 20,
-    "rarity": "rare"
+    "rarity": "rare",
+    "forageable": false,
+    "associated_search_areas": [
+      "Ruins",
+      "Settlement"
+    ],
+    "civilization": 5
   },
   {
     "name": "Crimson Octopus Ink",
     "combat": 19,
     "utility": 18,
     "whimsy": 19,
-    "rarity": "rare"
+    "rarity": "rare",
+    "forageable": false,
+    "associated_search_areas": [
+      "Open Water",
+      "Coral Reef",
+      "Coast"
+    ],
+    "civilization": 1
   },
   {
     "name": "Dragon Fang of Yutro",
     "combat": 20,
     "utility": 18,
     "whimsy": 19,
-    "rarity": "rare"
+    "rarity": "rare",
+    "forageable": false,
+    "associated_search_areas": [
+      "Mountain",
+      "Cave",
+      "Ruins"
+    ],
+    "civilization": 1
   },
   {
     "name": "Fairy Willow",
     "combat": 18,
     "utility": 18,
     "whimsy": 20,
-    "rarity": "rare"
+    "rarity": "rare",
+    "forageable": false,
+    "associated_search_areas": [
+      "Forest",
+      "Wetland"
+    ],
+    "civilization": 1
   },
   {
     "name": "Giant Koi Fish Scale",
     "combat": 18,
     "utility": 20,
     "whimsy": 18,
-    "rarity": "rare"
+    "rarity": "rare",
+    "forageable": false,
+    "associated_search_areas": [
+      "Lake",
+      "River"
+    ],
+    "civilization": 1
   },
   {
     "name": "Golden Root",
     "combat": 18,
     "utility": 18,
     "whimsy": 18,
-    "rarity": "rare"
+    "rarity": "rare",
+    "forageable": false,
+    "associated_search_areas": [
+      "Forest",
+      "Mountain",
+      "Ruins"
+    ],
+    "civilization": 1
   },
   {
     "name": "Hand of Eryo",
     "combat": 9,
     "utility": 5,
     "whimsy": 4,
-    "rarity": "rare"
+    "rarity": "rare",
+    "forageable": false,
+    "associated_search_areas": [
+      "Ruins",
+      "Settlement"
+    ],
+    "civilization": 2
   },
   {
     "name": "Irimbi Chrysalis",
     "combat": 9,
     "utility": 5,
     "whimsy": 4,
-    "rarity": "rare"
+    "rarity": "rare",
+    "forageable": false,
+    "associated_search_areas": [
+      "Forest",
+      "Grassland"
+    ],
+    "civilization": 1
   },
   {
     "name": "Lionfish Poison",
     "combat": 20,
     "utility": 0,
     "whimsy": 0,
-    "rarity": "rare"
+    "rarity": "rare",
+    "forageable": false,
+    "associated_search_areas": [
+      "Coral Reef",
+      "Open Water",
+      "Coast"
+    ],
+    "civilization": 1
   },
   {
     "name": "Nokumai's Frozen Breath",
     "combat": 0,
     "utility": 0,
     "whimsy": 20,
-    "rarity": "rare"
+    "rarity": "rare",
+    "forageable": false,
+    "associated_search_areas": [
+      "Mountain",
+      "Geothermal"
+    ],
+    "civilization": 1
   },
   {
     "name": "Orange Slime",
     "combat": 20,
     "utility": 20,
     "whimsy": 20,
-    "rarity": "rare"
+    "rarity": "rare",
+    "forageable": false,
+    "associated_search_areas": [
+      "Cave",
+      "Wetland",
+      "Ruins"
+    ],
+    "civilization": 1
   },
   {
     "name": "Ota Lantern Oil",
     "combat": 0,
     "utility": 20,
     "whimsy": 0,
-    "rarity": "rare"
+    "rarity": "rare",
+    "forageable": false,
+    "associated_search_areas": [
+      "Town",
+      "Village",
+      "Settlement"
+    ],
+    "civilization": 5
   },
   {
     "name": "Plumage of a Running Kirio",
     "combat": 18,
     "utility": 18,
     "whimsy": 19,
-    "rarity": "rare"
+    "rarity": "rare",
+    "forageable": false,
+    "associated_search_areas": [
+      "Grassland",
+      "Forest"
+    ],
+    "civilization": 1
   },
   {
     "name": "Ronin Neko Figurine",
     "combat": 0,
     "utility": 19,
     "whimsy": 18,
-    "rarity": "rare"
+    "rarity": "rare",
+    "forageable": false,
+    "associated_search_areas": [
+      "Town",
+      "Settlement",
+      "Ruins"
+    ],
+    "civilization": 5
   },
   {
     "name": "Sage Arol's Beetle",
     "combat": 18,
     "utility": 20,
     "whimsy": 0,
-    "rarity": "rare"
+    "rarity": "rare",
+    "forageable": false,
+    "associated_search_areas": [
+      "Forest",
+      "Village"
+    ],
+    "civilization": 2
   },
   {
     "name": "Starstone",
     "combat": 18,
     "utility": 0,
     "whimsy": 19,
-    "rarity": "rare"
+    "rarity": "rare",
+    "forageable": false,
+    "associated_search_areas": [
+      "Mountain",
+      "Ruins"
+    ],
+    "civilization": 1
   },
   {
     "name": "Tears of the Moon",
     "combat": 18,
     "utility": 18,
     "whimsy": 18,
-    "rarity": "rare"
+    "rarity": "rare",
+    "forageable": false,
+    "associated_search_areas": [
+      "Lake",
+      "Ruins",
+      "Shrine"
+    ],
+    "civilization": 4
   },
   {
     "name": "Wufu Whisky",
     "combat": 19,
     "utility": 19,
     "whimsy": 19,
-    "rarity": "rare"
+    "rarity": "rare",
+    "forageable": false,
+    "associated_search_areas": [
+      "Town",
+      "Village",
+      "Market"
+    ],
+    "civilization": 4
   }
 ]

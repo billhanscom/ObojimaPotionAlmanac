@@ -637,5 +637,34 @@
       "none"
     ],
     "minimumWeightFraction": 0.03
+  },
+  "searchAreaCivilization": {
+    "Cave": 1,
+    "Coast": 2,
+    "Coral Reef": 1,
+    "City Streets": 5,
+    "Forest": 1,
+    "Geothermal": 2,
+    "Grassland": 2,
+    "Lake": 2,
+    "Market": 5,
+    "Mountain": 1,
+    "Open Water": 2,
+    "River": 2,
+    "Ruins": 3,
+    "Settlement": 2,
+    "Shrine": 3,
+    "Subway": 3,
+    "Town": 4,
+    "Village": 3,
+    "Waterfront": 4,
+    "Wetland": 1
+  },
+  "civilizationDistanceWeights": {
+    "0": 1.0,
+    "1": 0.8,
+    "2": 0.5,
+    "3": 0.25,
+    "4": 0.1
   }
 }

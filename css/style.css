@@ -3733,3 +3733,15 @@ body.high-contrast .foraging-debug-plain pre {
     min-height: 34px !important;
     padding: 8px 12px !important;
 }
+
+
+/* Prevent high-contrast container border from changing layout */
+.container {
+    box-sizing: border-box !important;
+}
+
+body.high-contrast .container {
+    border-width: 1px !important;
+    outline: 3px solid #000000 !important;
+    outline-offset: 0 !important;
+}

@@ -45,6 +45,16 @@
       "searchArea": "Settlement",
       "strength": "Secondary",
       "confidence": "Medium"
+    },
+    {
+      "searchArea": "Village",
+      "strength": "Secondary",
+      "confidence": "Medium"
+    },
+    {
+      "searchArea": "Town",
+      "strength": "Primary",
+      "confidence": "Medium"
     }
   ],
   "Blue Back Salmon": [
@@ -54,7 +64,12 @@
       "confidence": "High"
     },
     {
-      "searchArea": "Ocean",
+      "searchArea": "Open Water",
+      "strength": "Secondary",
+      "confidence": "Medium"
+    },
+    {
+      "searchArea": "Coast",
       "strength": "Secondary",
       "confidence": "Medium"
     }
@@ -167,6 +182,21 @@
       "searchArea": "Mountain",
       "strength": "Primary",
       "confidence": "High"
+    },
+    {
+      "searchArea": "Settlement",
+      "strength": "Secondary",
+      "confidence": "Medium"
+    },
+    {
+      "searchArea": "Village",
+      "strength": "Secondary",
+      "confidence": "Medium"
+    },
+    {
+      "searchArea": "Town",
+      "strength": "Primary",
+      "confidence": "Medium"
     }
   ],
   "Dried Fruit": [
@@ -195,7 +225,7 @@
       "confidence": "High"
     },
     {
-      "searchArea": "Ocean",
+      "searchArea": "Open Water",
       "strength": "Secondary",
       "confidence": "Medium"
     },
@@ -217,7 +247,7 @@
       "confidence": "Medium"
     },
     {
-      "searchArea": "Ocean",
+      "searchArea": "Open Water",
       "strength": "Secondary",
       "confidence": "Medium"
     }
@@ -227,6 +257,16 @@
       "searchArea": "Settlement",
       "strength": "Primary",
       "confidence": "High"
+    },
+    {
+      "searchArea": "Village",
+      "strength": "Secondary",
+      "confidence": "Medium"
+    },
+    {
+      "searchArea": "Town",
+      "strength": "Primary",
+      "confidence": "Medium"
     }
   ],
   "Gohaku Rice": [
@@ -238,6 +278,16 @@
     {
       "searchArea": "Settlement",
       "strength": "Secondary",
+      "confidence": "Medium"
+    },
+    {
+      "searchArea": "Village",
+      "strength": "Secondary",
+      "confidence": "Medium"
+    },
+    {
+      "searchArea": "Town",
+      "strength": "Primary",
       "confidence": "Medium"
     }
   ],
@@ -296,7 +346,7 @@
       "confidence": "High"
     }
   ],
-  "Jack-o'-Lantern Bits": [
+  "Jack-o-Lantern Bits": [
     {
       "searchArea": "Settlement",
       "strength": "Primary",
@@ -334,12 +384,17 @@
   ],
   "Knobble Leaf Seaweed": [
     {
-      "searchArea": "Ocean",
+      "searchArea": "Open Water",
       "strength": "Primary",
       "confidence": "High"
     },
     {
       "searchArea": "Coast",
+      "strength": "Secondary",
+      "confidence": "Medium"
+    },
+    {
+      "searchArea": "Coral Reef",
       "strength": "Secondary",
       "confidence": "Medium"
     }
@@ -406,7 +461,7 @@
       "confidence": "Medium"
     }
   ],
-  "Mouse Tree": [
+  "Mouse Tree Nut": [
     {
       "searchArea": "Mountain",
       "strength": "Primary",
@@ -444,8 +499,23 @@
       "confidence": "High"
     },
     {
-      "searchArea": "Ocean",
+      "searchArea": "Open Water",
       "strength": "Secondary",
+      "confidence": "Medium"
+    },
+    {
+      "searchArea": "Settlement",
+      "strength": "Secondary",
+      "confidence": "Medium"
+    },
+    {
+      "searchArea": "Village",
+      "strength": "Secondary",
+      "confidence": "Medium"
+    },
+    {
+      "searchArea": "Town",
+      "strength": "Primary",
       "confidence": "Medium"
     }
   ],
@@ -454,6 +524,16 @@
       "searchArea": "Settlement",
       "strength": "Primary",
       "confidence": "High"
+    },
+    {
+      "searchArea": "Village",
+      "strength": "Secondary",
+      "confidence": "Medium"
+    },
+    {
+      "searchArea": "Town",
+      "strength": "Primary",
+      "confidence": "Medium"
     }
   ],
   "Peeping Willow": [
@@ -468,6 +548,16 @@
       "searchArea": "Settlement",
       "strength": "Primary",
       "confidence": "High"
+    },
+    {
+      "searchArea": "Village",
+      "strength": "Secondary",
+      "confidence": "Medium"
+    },
+    {
+      "searchArea": "Town",
+      "strength": "Primary",
+      "confidence": "Medium"
     }
   ],
   "Poison": [
@@ -494,7 +584,7 @@
       "confidence": "High"
     },
     {
-      "searchArea": "Ocean",
+      "searchArea": "Open Water",
       "strength": "Secondary",
       "confidence": "Medium"
     }
@@ -528,6 +618,16 @@
       "searchArea": "Settlement",
       "strength": "Primary",
       "confidence": "High"
+    },
+    {
+      "searchArea": "Village",
+      "strength": "Secondary",
+      "confidence": "Medium"
+    },
+    {
+      "searchArea": "Town",
+      "strength": "Primary",
+      "confidence": "Medium"
     }
   ],
   "Rattle Shoot": [
@@ -556,12 +656,17 @@
   ],
   "Rust Crab": [
     {
-      "searchArea": "Ocean",
+      "searchArea": "Open Water",
       "strength": "Primary",
       "confidence": "High"
     },
     {
       "searchArea": "Coast",
+      "strength": "Secondary",
+      "confidence": "Medium"
+    },
+    {
+      "searchArea": "Coral Reef",
       "strength": "Secondary",
       "confidence": "Medium"
     }
@@ -575,7 +680,7 @@
   ],
   "Sea Water": [
     {
-      "searchArea": "Ocean",
+      "searchArea": "Open Water",
       "strength": "Primary",
       "confidence": "High"
     },
@@ -592,7 +697,7 @@
       "confidence": "High"
     },
     {
-      "searchArea": "Ocean",
+      "searchArea": "Open Water",
       "strength": "Secondary",
       "confidence": "Medium"
     }
@@ -637,16 +742,26 @@
   ],
   "Squid Ink": [
     {
-      "searchArea": "Ocean",
+      "searchArea": "Open Water",
       "strength": "Primary",
       "confidence": "High"
+    },
+    {
+      "searchArea": "Coast",
+      "strength": "Secondary",
+      "confidence": "Medium"
     }
   ],
   "Tangle Weed": [
     {
-      "searchArea": "Ocean",
+      "searchArea": "Open Water",
       "strength": "Primary",
       "confidence": "High"
+    },
+    {
+      "searchArea": "Coast",
+      "strength": "Secondary",
+      "confidence": "Medium"
     }
   ],
   "Ube": [
@@ -721,9 +836,14 @@
   ],
   "Witch's Eye Coral": [
     {
-      "searchArea": "Ocean",
+      "searchArea": "Open Water",
       "strength": "Primary",
       "confidence": "High"
+    },
+    {
+      "searchArea": "Coral Reef",
+      "strength": "Primary",
+      "confidence": "Medium"
     }
   ],
   "Yugi Sap": [
@@ -731,11 +851,6 @@
       "searchArea": "Forest",
       "strength": "Primary",
       "confidence": "High"
-    },
-    {
-      "searchArea": "Spirit Realm",
-      "strength": "Secondary",
-      "confidence": "Medium"
     }
   ],
   "Yuma Shrub": [
@@ -764,12 +879,17 @@
   ],
   "Black Pearl": [
     {
-      "searchArea": "Ocean",
+      "searchArea": "Open Water",
       "strength": "Primary",
       "confidence": "High"
+    },
+    {
+      "searchArea": "Coral Reef",
+      "strength": "Secondary",
+      "confidence": "Medium"
     }
   ],
-  "Bottle Cap": [
+  "Bottle Cap (Supa-Fizz!)": [
     {
       "searchArea": "Settlement",
       "strength": "Primary",
@@ -779,11 +899,21 @@
       "searchArea": "Ruins",
       "strength": "Secondary",
       "confidence": "Medium"
+    },
+    {
+      "searchArea": "Village",
+      "strength": "Secondary",
+      "confidence": "Medium"
+    },
+    {
+      "searchArea": "Town",
+      "strength": "Primary",
+      "confidence": "Medium"
     }
   ],
   "Corrupted Seawater": [
     {
-      "searchArea": "Ocean",
+      "searchArea": "Open Water",
       "strength": "Primary",
       "confidence": "High"
     },
@@ -805,7 +935,7 @@
       "confidence": "Medium"
     }
   ],
-  "Crackling Jasper": [
+  "Cracking Jasper": [
     {
       "searchArea": "Geothermal",
       "strength": "Primary",
@@ -822,11 +952,6 @@
       "searchArea": "Forest",
       "strength": "Primary",
       "confidence": "High"
-    },
-    {
-      "searchArea": "Spirit Realm",
-      "strength": "Secondary",
-      "confidence": "Medium"
     },
     {
       "searchArea": "Settlement",
@@ -864,11 +989,6 @@
     }
   ],
   "Essence of Ill Omen": [
-    {
-      "searchArea": "Spirit Realm",
-      "strength": "Primary",
-      "confidence": "Medium"
-    },
     {
       "searchArea": "Settlement",
       "strength": "Secondary",
@@ -916,6 +1036,21 @@
       "searchArea": "Geothermal",
       "strength": "Secondary",
       "confidence": "Medium"
+    },
+    {
+      "searchArea": "Settlement",
+      "strength": "Secondary",
+      "confidence": "Medium"
+    },
+    {
+      "searchArea": "Village",
+      "strength": "Secondary",
+      "confidence": "Medium"
+    },
+    {
+      "searchArea": "Town",
+      "strength": "Primary",
+      "confidence": "Medium"
     }
   ],
   "Glow Worms of the Vale": [
@@ -961,7 +1096,7 @@
       "confidence": "Medium"
     }
   ],
-  "Lion's Blume": [
+  "Lions Blume": [
     {
       "searchArea": "Grassland",
       "strength": "Primary",
@@ -987,13 +1122,18 @@
   ],
   "Magic Monk's Rice Wine": [
     {
-      "searchArea": "Spirit Realm",
-      "strength": "Primary",
-      "confidence": "High"
-    },
-    {
       "searchArea": "Settlement",
       "strength": "Secondary",
+      "confidence": "Medium"
+    },
+    {
+      "searchArea": "Village",
+      "strength": "Secondary",
+      "confidence": "Medium"
+    },
+    {
+      "searchArea": "Town",
+      "strength": "Primary",
       "confidence": "Medium"
     }
   ],
@@ -1055,6 +1195,16 @@
       "searchArea": "Settlement",
       "strength": "Secondary",
       "confidence": "Medium"
+    },
+    {
+      "searchArea": "Village",
+      "strength": "Secondary",
+      "confidence": "Medium"
+    },
+    {
+      "searchArea": "Town",
+      "strength": "Primary",
+      "confidence": "Medium"
     }
   ],
   "Night Thistle": [
@@ -1102,7 +1252,7 @@
   ],
   "Pok Pok Flakes": [
     {
-      "searchArea": "Ocean",
+      "searchArea": "Open Water",
       "strength": "Primary",
       "confidence": "High"
     },
@@ -1110,9 +1260,14 @@
       "searchArea": "Settlement",
       "strength": "Secondary",
       "confidence": "Medium"
+    },
+    {
+      "searchArea": "Coast",
+      "strength": "Secondary",
+      "confidence": "Medium"
     }
   ],
-  "Rubble Golem Rubble": [
+  "Rubble Golem's Rubble": [
     {
       "searchArea": "Ruins",
       "strength": "Primary",
@@ -1175,6 +1330,16 @@
       "searchArea": "Settlement",
       "strength": "Secondary",
       "confidence": "Medium"
+    },
+    {
+      "searchArea": "Village",
+      "strength": "Secondary",
+      "confidence": "Medium"
+    },
+    {
+      "searchArea": "Town",
+      "strength": "Primary",
+      "confidence": "Medium"
     }
   ],
   "Spring": [
@@ -1187,17 +1352,32 @@
       "searchArea": "Settlement",
       "strength": "Secondary",
       "confidence": "Medium"
+    },
+    {
+      "searchArea": "Village",
+      "strength": "Secondary",
+      "confidence": "Medium"
+    },
+    {
+      "searchArea": "Town",
+      "strength": "Primary",
+      "confidence": "Medium"
     }
   ],
   "Spirit Tea": [
     {
-      "searchArea": "Spirit Realm",
-      "strength": "Primary",
-      "confidence": "High"
-    },
-    {
       "searchArea": "Settlement",
       "strength": "Secondary",
+      "confidence": "Medium"
+    },
+    {
+      "searchArea": "Village",
+      "strength": "Secondary",
+      "confidence": "Medium"
+    },
+    {
+      "searchArea": "Town",
+      "strength": "Primary",
       "confidence": "Medium"
     }
   ],
@@ -1206,11 +1386,6 @@
       "searchArea": "Forest",
       "strength": "Primary",
       "confidence": "High"
-    },
-    {
-      "searchArea": "Spirit Realm",
-      "strength": "Secondary",
-      "confidence": "Medium"
     }
   ],
   "Toka Truffle": [
@@ -1229,6 +1404,16 @@
     {
       "searchArea": "Settlement",
       "strength": "Secondary",
+      "confidence": "Medium"
+    },
+    {
+      "searchArea": "Village",
+      "strength": "Secondary",
+      "confidence": "Medium"
+    },
+    {
+      "searchArea": "Town",
+      "strength": "Primary",
       "confidence": "Medium"
     }
   ],
@@ -1249,11 +1434,6 @@
       "searchArea": "Forest",
       "strength": "Primary",
       "confidence": "High"
-    },
-    {
-      "searchArea": "Spirit Realm",
-      "strength": "Secondary",
-      "confidence": "Medium"
     }
   ],
   "Yellow Slime": [
@@ -1299,11 +1479,6 @@
   ],
   "Dried Pilot Leech": [
     {
-      "searchArea": "Spirit Realm",
-      "strength": "Primary",
-      "confidence": "Medium"
-    },
-    {
       "searchArea": "Wetland",
       "strength": "Secondary",
       "confidence": "Medium"
@@ -1316,8 +1491,13 @@
       "confidence": "High"
     },
     {
-      "searchArea": "Spirit Realm",
+      "searchArea": "Village",
       "strength": "Secondary",
+      "confidence": "Medium"
+    },
+    {
+      "searchArea": "Town",
+      "strength": "Primary",
       "confidence": "Medium"
     }
   ],
@@ -1326,11 +1506,6 @@
       "searchArea": "Settlement",
       "strength": "Primary",
       "confidence": "High"
-    },
-    {
-      "searchArea": "Spirit Realm",
-      "strength": "Secondary",
-      "confidence": "Medium"
     }
   ]
 }

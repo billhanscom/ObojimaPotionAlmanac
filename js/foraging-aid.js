@@ -154,7 +154,12 @@ function chooseWeightedCount(degreeOfSuccess) {
     return weightedChoice(options).count;
 }
 
-function getIngredientHabitats(ingredientName) {
+function getIngredientHabitats(ingredient) {
+    if (Array.isArray(ingredient.associated_search_areas)) {
+        return Array.from(new Set(ingredient.associated_search_areas.filter(Boolean))).sort((a, b) => a.localeCompare(b));
+    }
+
+    const ingredientName = typeof ingredient === "string" ? ingredient : ingredient.name;
     const entries = foragingAffinity[ingredientName] || [];
     return Array.from(new Set(
         entries
@@ -173,8 +178,8 @@ function getRelatedSearchAreas(searchArea, selectedRegion) {
     return (foragingConfig.relatedSearchAreas || {})[searchArea] || [];
 }
 
-function getHabitatRelationship(ingredientName, searchArea, selectedRegion) {
-    const habitats = getIngredientHabitats(ingredientName);
+function getHabitatRelationship(ingredient, searchArea, selectedRegion) {
+    const habitats = getIngredientHabitats(ingredient);
 
     if (habitats.includes(searchArea)) {
         return {
@@ -266,8 +271,8 @@ function getRarityWeight(ingredient) {
     return Number((foragingConfig.rarityWeights || {})[rarity]) || 0;
 }
 
-function getHabitatWeight(ingredientName, searchArea, selectedRegion) {
-    const relationship = getHabitatRelationship(ingredientName, searchArea, selectedRegion);
+function getHabitatWeight(ingredient, searchArea, selectedRegion) {
+    const relationship = getHabitatRelationship(ingredient, searchArea, selectedRegion);
     const weights = foragingConfig.habitatWeights || {};
     return Number(weights[relationship.key]) || 0;
 }
@@ -294,7 +299,7 @@ function getDosModifier(ingredient, selectedRegion, searchArea, degreeOfSuccess)
     const rule = (foragingConfig.dosModifiers || {})[tier] || {};
     const rarity = Obojima.normalizeRarity(ingredient.rarity);
     const regionRelationship = getRegionRelationship(ingredient, selectedRegion);
-    const habitatRelationship = getHabitatRelationship(ingredient.name, searchArea, selectedRegion);
+    const habitatRelationship = getHabitatRelationship(ingredient, searchArea, selectedRegion);
 
     let modifier = 1;
 
@@ -313,48 +318,43 @@ function getDosModifier(ingredient, selectedRegion, searchArea, degreeOfSuccess)
     return modifier;
 }
 
-function getIngredientOrigin(ingredient) {
-    const overrides = foragingConfig.ingredientOriginOverrides || {};
-    if (overrides[ingredient.name]) return overrides[ingredient.name];
-
-    const name = ingredient.name.toLowerCase();
-
-    if (/(paste|powder|paper|glass|wax|oil|tea|wine|spice|rice|ink|dye|cloth|thread|rope|candle|lantern|bread|flour|sugar|salt)/.test(name)) {
-        return "human";
-    }
-
-    return "natural";
+function clampCivilization(value, fallback = 1) {
+    const numeric = Number(value);
+    const safe = Number.isFinite(numeric) ? numeric : fallback;
+    return Math.min(5, Math.max(1, safe));
 }
 
-function getOriginRelationship(ingredient, searchArea) {
-    const origin = getIngredientOrigin(ingredient);
-    const profile = (foragingConfig.searchAreaProfiles || {})[searchArea] || { natural: 0.7, human: 0.3 };
-    const originWeights = (foragingConfig.originWeights || {})[origin] || { natural: 1, human: 0.2 };
+function getSearchAreaCivilization(searchArea) {
+    const configured = (foragingConfig.searchAreaCivilization || {})[searchArea];
+    if (configured !== undefined) return clampCivilization(configured, 1);
 
-    const naturalContribution = Number(profile.natural || 0) * Number(originWeights.natural || 0);
-    const humanContribution = Number(profile.human || 0) * Number(originWeights.human || 0);
-    const weight = Math.max(0.05, naturalContribution + humanContribution);
+    const profile = (foragingConfig.searchAreaProfiles || {})[searchArea];
+    if (profile) {
+        // Backward-compatible fallback from the older natural/human profile.
+        return clampCivilization(1 + (Number(profile.human || 0) * 4), 1);
+    }
+
+    return 1;
+}
+
+function getIngredientCivilization(ingredient) {
+    return clampCivilization(ingredient.civilization, 1);
+}
+
+function getCivilizationRelationship(ingredient, searchArea) {
+    const ingredientValue = getIngredientCivilization(ingredient);
+    const searchAreaValue = getSearchAreaCivilization(searchArea);
+    const difference = Math.abs(ingredientValue - searchAreaValue);
+    const roundedDifference = String(Math.min(4, Math.round(difference)));
+    const weights = foragingConfig.civilizationDistanceWeights || { "0": 1, "1": 0.8, "2": 0.5, "3": 0.25, "4": 0.1 };
+    const weight = Number(weights[roundedDifference]) || 0.1;
 
     let label;
-    if (origin === "human") {
-        if ((profile.human || 0) >= 0.8) label = "Human activity makes this kind of usable material likely here";
-        else if ((profile.human || 0) >= 0.4) label = "Human activity makes this kind of usable material plausible here";
-        else label = "Human activity is limited here, so this is a less expected find";
-    } else if (origin === "mixed") {
-        label = "This can come from both natural conditions and human activity";
-    } else {
-        if ((profile.natural || 0) >= 0.8) label = "Natural conditions make this kind of ingredient likely here";
-        else if ((profile.natural || 0) >= 0.4) label = "Natural conditions make this kind of ingredient plausible here";
-        else label = "Natural growth is limited here, so this is a less expected find";
-    }
+    if (difference < 0.75) label = `Civilization fit is close for ${searchArea}`;
+    else if (difference < 1.75) label = `Civilization fit is plausible for ${searchArea}`;
+    else label = `Civilization fit is unusual for ${searchArea}`;
 
-    return { origin, weight, label, profile };
-}
-
-function getOriginLabel(origin) {
-    if (origin === "human") return "Human-made or processed material";
-    if (origin === "mixed") return "Mixed natural/human material";
-    return "Natural ingredient";
+    return { ingredientValue, searchAreaValue, difference, weight, label };
 }
 
 function scoreIngredient(ingredient, selectedRegion, searchArea, dc, degreeOfSuccess) {
@@ -362,6 +362,7 @@ function scoreIngredient(ingredient, selectedRegion, searchArea, dc, degreeOfSuc
     const excludedRarity = new Set(foragingConfig.excludeRarity || []);
     const excludedIngredients = new Set(foragingConfig.excludeIngredients || []);
 
+    if (ingredient.forageable === false) return null;
     if (excludedIngredients.has(ingredient.name)) return null;
     if (excludedRarity.has(rarity)) return null;
 
@@ -369,12 +370,12 @@ function scoreIngredient(ingredient, selectedRegion, searchArea, dc, degreeOfSuc
     if (rarityWeight <= 0) return null;
 
     const regionWeight = getRegionWeight(ingredient, selectedRegion, searchArea);
-    const habitatWeight = getHabitatWeight(ingredient.name, searchArea, selectedRegion);
-    const originRelationship = getOriginRelationship(ingredient, searchArea);
+    const habitatWeight = getHabitatWeight(ingredient, searchArea, selectedRegion);
+    const civilizationRelationship = getCivilizationRelationship(ingredient, searchArea);
     const dcModifier = getDcModifier(ingredient, selectedRegion, dc);
     const dosModifier = getDosModifier(ingredient, selectedRegion, searchArea, degreeOfSuccess);
 
-    const score = rarityWeight * regionWeight * habitatWeight * originRelationship.weight * dcModifier * dosModifier;
+    const score = rarityWeight * regionWeight * habitatWeight * civilizationRelationship.weight * dcModifier * dosModifier;
 
     if (!Number.isFinite(score) || score <= 0) return null;
 
@@ -384,8 +385,8 @@ function scoreIngredient(ingredient, selectedRegion, searchArea, dc, degreeOfSuc
         rarity,
         weight: score,
         regionRelationship: getRegionRelationship(ingredient, selectedRegion),
-        habitatRelationship: getHabitatRelationship(ingredient.name, searchArea, selectedRegion),
-        originRelationship
+        habitatRelationship: getHabitatRelationship(ingredient, searchArea, selectedRegion),
+        civilizationRelationship
     };
 }
 
@@ -573,16 +574,14 @@ function renderPlainDebug({
     const ingredientLines = selected.map(item => {
         const regionLine = item.regionRelationship.label;
         const habitatLine = item.habitatRelationship.label;
-        const originLine = item.originRelationship ? item.originRelationship.label : "";
-        const originTypeLine = item.originRelationship ? getOriginLabel(item.originRelationship.origin) : "";
+        const civilizationLine = item.civilizationRelationship ? item.civilizationRelationship.label : "";
         const rarityLine = item.rarity === "common" ? "Common ingredient" : "Uncommon ingredient";
 
         return [
             item.name,
             `- ${regionLine}`,
             `- ${habitatLine}`,
-            originTypeLine ? `- ${originTypeLine}` : "",
-            originLine ? `- ${originLine}` : "",
+            civilizationLine ? `- ${civilizationLine}` : "",
             `- ${rarityLine}`,
             item.surprise ? "- Believable surprise" : ""
         ].filter(Boolean).join("\n");

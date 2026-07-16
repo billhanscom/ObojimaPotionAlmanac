@@ -436,3 +436,18 @@ It reports:
 - how Degree of Success affected the result
 - how Search Area affected the result
 - why each ingredient appeared
+
+
+## Data cleanup note
+
+Ingredient files now include foraging-specific descriptive fields:
+
+```json
+"forageable": true,
+"associated_search_areas": ["Forest", "River"],
+"civilization": 1
+```
+
+The engine reads these fields first. The older `foraging_affinity.json` file remains as a fallback and reference file, but the preferred editable criteria now live on each ingredient entry.
+
+The `civilization` value accepts integers or decimals. The engine treats values below 1 as 1 and values above 5 as 5.
