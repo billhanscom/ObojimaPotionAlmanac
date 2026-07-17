@@ -539,3 +539,15 @@ Civilization measures how strongly sapient activity shapes a Search Area. Ingred
 - `Market` is limited to Yatamon because that Region is modeled at a finer urban scale.
 - Yatamon uses `River`, not `Waterfront`.
 - Related Search Areas only count when they are also available in the selected Region.
+
+
+## Region Search Area Pairings
+
+- **Brackwater Wetlands:** Cave, Coast, Forest, Lake, River, Ruins, Settlement, Village, Wetland
+- **Coastal Highlands:** Cave, Cliffside, Coast, Forest, Grassland, Lake, River, Ruins, Settlement, Town, Village, Wetland
+- **Gale Fields:** Forest, Grassland, Lake, River, Ruins, Settlement, Town, Village
+- **Gift of Shuritashi:** Cave, Coast, Forest, Grassland, Lake, River, Ruins, Settlement, Town, Village, Wetland
+- **Land of Hot Water:** Cave, Cliffside, Coast, Forest, Geothermal, Grassland, River, Ruins, Settlement, Town, Underwater, Village
+- **Mount Arbora:** Cave, Cliffside, Forest, Geothermal, Grassland, Mine, River, Ruins, Settlement, Town, Village
+- **The Shallows:** Cave, Coast, Coral Reef, Open Water, Ruins, Settlement, Underwater, Village
+- **Yatamon:** City Streets, Market, River, Ruins, Shrine, Subway

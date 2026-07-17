@@ -101,6 +101,7 @@
       "Geothermal",
       "Grassland",
       "River",
+      "Ruins",
       "Settlement",
       "Town",
       "Underwater",
@@ -122,6 +123,8 @@
       "Geothermal",
       "Grassland",
       "Mine",
+      "River",
+      "Ruins",
       "Settlement",
       "Town",
       "Village"

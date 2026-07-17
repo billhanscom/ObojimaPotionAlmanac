@@ -2,6 +2,16 @@
 
 ## 2026-07-17
 
+### Region and Search Area Audit
+
+- Restored `River` and `Ruins` to Mount Arbora.
+- Restored `Ruins` to the Land of Hot Water; it had been dropped unintentionally during the Search Area restructuring.
+- Audited every Region against the last established regional Search Area lists.
+- Confirmed that all Region Search Area names exist in `search_areas.json`.
+- Removed duplicate root-level copies of `FORAGING_MODEL.md` and `README_STATIC.md`; documentation now lives only in `Documentation/`.
+
+## 2026-07-17
+
 ### Search Areas
 
 - Replaced `Mountain` with more specific Search Areas, including `Cliffside`, `Grassland`, `Geothermal`, and `Mine`.
