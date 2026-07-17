@@ -30,6 +30,7 @@
     ],
     "search_areas": [
       "Cave",
+      "Cliffside",
       "Coast",
       "Forest",
       "Grassland",
@@ -53,6 +54,7 @@
     "search_areas": [
       "Forest",
       "Grassland",
+      "Lake",
       "River",
       "Ruins",
       "Settlement",
@@ -93,13 +95,15 @@
     ],
     "search_areas": [
       "Cave",
+      "Cliffside",
+      "Coast",
       "Forest",
       "Geothermal",
-      "Mountain",
+      "Grassland",
       "River",
-      "Ruins",
       "Settlement",
       "Town",
+      "Underwater",
       "Village"
     ]
   },
@@ -113,11 +117,11 @@
     ],
     "search_areas": [
       "Cave",
+      "Cliffside",
       "Forest",
       "Geothermal",
-      "Mountain",
-      "River",
-      "Ruins",
+      "Grassland",
+      "Mine",
       "Settlement",
       "Town",
       "Village"
@@ -138,6 +142,7 @@
       "Open Water",
       "Ruins",
       "Settlement",
+      "Underwater",
       "Village"
     ]
   },
@@ -161,10 +166,10 @@
     "search_areas": [
       "City Streets",
       "Market",
+      "River",
       "Ruins",
       "Shrine",
-      "Subway",
-      "Waterfront"
+      "Subway"
     ]
   }
 ]

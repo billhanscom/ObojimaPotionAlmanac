@@ -21,7 +21,7 @@
     "forageable": true,
     "associated_search_areas": [
       "Coast",
-      "Mountain"
+      "Cliffside"
     ],
     "refinement": 1
   },
@@ -74,7 +74,7 @@
     "forageable": true,
     "associated_search_areas": [
       "Forest",
-      "Mountain"
+      "Grassland"
     ],
     "refinement": 1
   },
@@ -162,7 +162,8 @@
     "forageable": true,
     "associated_search_areas": [
       "Coast",
-      "Mountain"
+      "Cliffside",
+      "Grassland"
     ],
     "refinement": 1
   },
@@ -457,10 +458,11 @@
     ],
     "forageable": true,
     "associated_search_areas": [
-      "Mountain",
       "Settlement",
       "Town",
-      "Village"
+      "Village",
+      "Cliffside",
+      "Mine"
     ],
     "refinement": 5
   },
@@ -484,8 +486,9 @@
     ],
     "forageable": true,
     "associated_search_areas": [
-      "Mountain",
-      "Settlement"
+      "Settlement",
+      "Town",
+      "Village"
     ],
     "refinement": 3
   },
@@ -1043,8 +1046,7 @@
     ],
     "forageable": true,
     "associated_search_areas": [
-      "Grassland",
-      "Mountain"
+      "Grassland"
     ],
     "refinement": 2
   },
@@ -1068,8 +1070,8 @@
     ],
     "forageable": true,
     "associated_search_areas": [
-      "Mountain",
-      "Ruins"
+      "Ruins",
+      "Forest"
     ],
     "refinement": 1
   },
@@ -1201,7 +1203,8 @@
     ],
     "forageable": true,
     "associated_search_areas": [
-      "Mountain"
+      "Forest",
+      "Grassland"
     ],
     "refinement": 1
   },
@@ -1648,7 +1651,8 @@
     ],
     "forageable": true,
     "associated_search_areas": [
-      "Mountain"
+      "Forest",
+      "Grassland"
     ],
     "refinement": 1
   },
@@ -1723,7 +1727,6 @@
     "forageable": true,
     "associated_search_areas": [
       "Grassland",
-      "Mountain",
       "Settlement"
     ],
     "refinement": 2
@@ -1803,8 +1806,7 @@
     "forageable": true,
     "associated_search_areas": [
       "Geothermal",
-      "Grassland",
-      "Mountain"
+      "Grassland"
     ],
     "refinement": 1
   },
@@ -1930,8 +1932,7 @@
     ],
     "forageable": true,
     "associated_search_areas": [
-      "Forest",
-      "Mountain"
+      "Forest"
     ],
     "refinement": 1
   },
@@ -2064,7 +2065,8 @@
     "forageable": true,
     "associated_search_areas": [
       "Geothermal",
-      "Mountain"
+      "Cliffside",
+      "Mine"
     ],
     "refinement": 1
   },
@@ -2115,8 +2117,7 @@
     "forageable": true,
     "associated_search_areas": [
       "Forest",
-      "Grassland",
-      "Mountain"
+      "Grassland"
     ],
     "refinement": 1
   },
@@ -2166,7 +2167,7 @@
     "forageable": true,
     "associated_search_areas": [
       "Cave",
-      "Mountain"
+      "Cliffside"
     ],
     "refinement": 1
   },
@@ -2213,7 +2214,7 @@
     "forageable": true,
     "associated_search_areas": [
       "Grassland",
-      "Mountain"
+      "Cliffside"
     ],
     "refinement": 1
   },
@@ -2261,8 +2262,9 @@
     ],
     "forageable": true,
     "associated_search_areas": [
-      "Mountain",
-      "Settlement"
+      "Settlement",
+      "Mine",
+      "Town"
     ],
     "refinement": 2
   },
@@ -2288,10 +2290,10 @@
     "forageable": true,
     "associated_search_areas": [
       "Geothermal",
-      "Mountain",
       "Settlement",
       "Town",
-      "Village"
+      "Village",
+      "Cliffside"
     ],
     "refinement": 4
   },
@@ -2445,7 +2447,7 @@
     "forageable": true,
     "associated_search_areas": [
       "Grassland",
-      "Mountain"
+      "Cliffside"
     ],
     "refinement": 1
   },
@@ -2519,7 +2521,7 @@
     "forageable": true,
     "associated_search_areas": [
       "Geothermal",
-      "Mountain"
+      "Cliffside"
     ],
     "refinement": 1
   },
@@ -2544,7 +2546,7 @@
     "forageable": true,
     "associated_search_areas": [
       "Cave",
-      "Mountain"
+      "Cliffside"
     ],
     "refinement": 1
   },
@@ -2698,8 +2700,8 @@
     ],
     "forageable": false,
     "associated_search_areas": [
-      "Mountain",
-      "River"
+      "River",
+      "Geothermal"
     ],
     "refinement": 5
   },
@@ -2777,8 +2779,9 @@
     "regions": [],
     "forageable": true,
     "associated_search_areas": [
-      "Mountain",
-      "Ruins"
+      "Ruins",
+      "Cliffside",
+      "Mine"
     ],
     "refinement": 1
   },
@@ -3076,7 +3079,8 @@
     "forageable": true,
     "associated_search_areas": [
       "Cave",
-      "Mountain"
+      "Cliffside",
+      "Mine"
     ],
     "refinement": 1
   },
@@ -3263,9 +3267,9 @@
     "regions": [],
     "forageable": false,
     "associated_search_areas": [
-      "Mountain",
       "Cave",
-      "Ruins"
+      "Ruins",
+      "Cliffside"
     ],
     "refinement": 1
   },
@@ -3334,8 +3338,8 @@
     "forageable": false,
     "associated_search_areas": [
       "Forest",
-      "Mountain",
-      "Ruins"
+      "Ruins",
+      "Cliffside"
     ],
     "refinement": 1
   },
@@ -3427,8 +3431,8 @@
     "regions": [],
     "forageable": false,
     "associated_search_areas": [
-      "Mountain",
-      "Geothermal"
+      "Geothermal",
+      "Cliffside"
     ],
     "refinement": 1
   },
@@ -3568,8 +3572,8 @@
     "regions": [],
     "forageable": false,
     "associated_search_areas": [
-      "Mountain",
-      "Ruins"
+      "Ruins",
+      "Cliffside"
     ],
     "refinement": 1
   },
