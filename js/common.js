@@ -513,9 +513,11 @@ const Obojima = (() => {
         localStorage.removeItem(OBOJIMA_PLAYER_NAME_KEY);
         localStorage.removeItem(OBOJIMA_CHARACTER_NAME_KEY);
         localStorage.removeItem(OBOJIMA_LAST_EXPORT_HASH_KEY);
+        localStorage.removeItem(OBOJIMA_INVENTORY_DISPLAY_NAME_KEY);
         localStorage.removeItem(OBOJIMA_INVENTORY_QUANTITIES_KEY);
+        updateInventoryProfileDisplay();
+        updateSaveInventoryButtons([]);
     }
-
     function getCanonicalInventoryState(items) {
         const profile = loadInventoryProfile();
         return {

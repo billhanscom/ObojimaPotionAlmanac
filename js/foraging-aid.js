@@ -467,41 +467,48 @@ function getDosModifier(ingredient, selectedRegion, searchArea, degreeOfSuccess)
     return modifier;
 }
 
-function clampCivilization(value, fallback = 1) {
+function clampScaleValue(value, fallback = 1) {
     const numeric = Number(value);
     const safe = Number.isFinite(numeric) ? numeric : fallback;
     return Math.min(5, Math.max(1, safe));
 }
 
 function getSearchAreaCivilization(searchArea) {
-    const configured = (foragingConfig.searchAreaCivilization || {})[searchArea];
-    if (configured !== undefined) return clampCivilization(configured, 1);
+    const area = foragingSearchAreas.find(entry => entry.name === searchArea);
+    if (area && area.civilization !== undefined) return clampScaleValue(area.civilization, 1);
 
-    const profile = (foragingConfig.searchAreaProfiles || {})[searchArea];
-    if (profile) {
-        // Backward-compatible fallback from the older natural/human profile.
-        return clampCivilization(1 + (Number(profile.human || 0) * 4), 1);
-    }
+    const configured = (foragingConfig.searchAreaCivilization || {})[searchArea];
+    if (configured !== undefined) return clampScaleValue(configured, 1);
 
     return 1;
 }
 
-function getIngredientCivilization(ingredient) {
-    return clampCivilization(ingredient.civilization, 1);
+function getIngredientRefinement(ingredient) {
+    return clampScaleValue(ingredient.refinement, 1);
 }
 
-function getCivilizationRelationship(ingredient, searchArea) {
-    const ingredientValue = getIngredientCivilization(ingredient);
+function getRefinementRelationship(ingredient, searchArea) {
+    const ingredientValue = getIngredientRefinement(ingredient);
     const searchAreaValue = getSearchAreaCivilization(searchArea);
     const difference = Math.abs(ingredientValue - searchAreaValue);
-    const roundedDifference = String(Math.min(4, Math.round(difference)));
-    const weights = foragingConfig.civilizationDistanceWeights || { "0": 1, "1": 0.8, "2": 0.5, "3": 0.25, "4": 0.1 };
-    const weight = Number(weights[roundedDifference]) || 0.1;
+    const roundedDifference = String(Math.min(4, Math.round(difference * 2) / 2));
+    const weights = foragingConfig.refinementCompatibility || {
+        "0": 1,
+        "0.5": 0.95,
+        "1": 0.8,
+        "1.5": 0.65,
+        "2": 0.45,
+        "2.5": 0.3,
+        "3": 0.18,
+        "3.5": 0.1,
+        "4": 0.05
+    };
+    const weight = Number(weights[roundedDifference]) || 0.05;
 
     let label;
-    if (difference < 0.75) label = `Civilization fit is close for ${searchArea}`;
-    else if (difference < 1.75) label = `Civilization fit is plausible for ${searchArea}`;
-    else label = `Civilization fit is unusual for ${searchArea}`;
+    if (difference <= 0.5) label = `Refinement fits ${searchArea}`;
+    else if (difference <= 1.5) label = `Refinement mostly fits ${searchArea}`;
+    else label = `Refinement is unusual for ${searchArea}`;
 
     return { ingredientValue, searchAreaValue, difference, weight, label };
 }
@@ -520,11 +527,11 @@ function scoreIngredient(ingredient, selectedRegion, searchArea, dc, degreeOfSuc
 
     const regionWeight = getRegionWeight(ingredient, selectedRegion, searchArea);
     const habitatWeight = getHabitatWeight(ingredient, searchArea, selectedRegion);
-    const civilizationRelationship = getCivilizationRelationship(ingredient, searchArea);
+    const refinementRelationship = getRefinementRelationship(ingredient, searchArea);
     const dcModifier = getDcModifier(ingredient, selectedRegion, dc);
     const dosModifier = getDosModifier(ingredient, selectedRegion, searchArea, degreeOfSuccess);
 
-    const score = rarityWeight * regionWeight * habitatWeight * civilizationRelationship.weight * dcModifier * dosModifier;
+    const score = rarityWeight * regionWeight * habitatWeight * refinementRelationship.weight * dcModifier * dosModifier;
 
     if (!Number.isFinite(score) || score <= 0) return null;
 
@@ -535,13 +542,33 @@ function scoreIngredient(ingredient, selectedRegion, searchArea, dc, degreeOfSuc
         weight: score,
         regionRelationship: getRegionRelationship(ingredient, selectedRegion),
         habitatRelationship: getHabitatRelationship(ingredient, searchArea, selectedRegion),
-        civilizationRelationship
+        refinementRelationship
     };
 }
 
 function getHabitatTarget(findCount) {
     const targets = foragingConfig.habitatTargetByCount || {};
     return Number(targets[String(findCount)]) || Math.max(1, findCount - 1);
+}
+
+
+function getRarityCompositionRule(dc, degreeOfSuccess) {
+    const tier = getDcTier(dc);
+    const successTier = getSuccessTierKey(degreeOfSuccess);
+    const rules = foragingConfig.rarityCompositionRules || {};
+    return (rules[tier] && rules[tier][successTier]) || { allowUncommon: true, maxUncommon: 1, chance: 0.25 };
+}
+
+function decideTargetUncommonCount(dc, degreeOfSuccess, targetFindCount, candidates) {
+    const rule = getRarityCompositionRule(dc, degreeOfSuccess);
+    if (!rule.allowUncommon || targetFindCount <= 0) return 0;
+    if (!candidates.some(candidate => candidate.rarity === "uncommon")) return 0;
+
+    const maxUncommon = Math.min(Number(rule.maxUncommon || 0), targetFindCount);
+    if (maxUncommon <= 0) return 0;
+    if (Math.random() >= Number(rule.chance || 0)) return 0;
+    if (maxUncommon === 1) return 1;
+    return Math.random() < 0.25 ? maxUncommon : 1;
 }
 
 function shouldUseSurpriseSlot(degreeOfSuccess, targetFindCount) {
@@ -566,7 +593,7 @@ function getSurprisePool(candidates, used, bestWeight) {
     );
 }
 
-function selectForagingResults(candidates, targetFindCount, searchArea, selectedRegion, prioritizeNew, degreeOfSuccess) {
+function selectForagingResults(candidates, targetFindCount, searchArea, selectedRegion, prioritizeNew, degreeOfSuccess, targetUncommonCount = null) {
     const selected = [];
     const used = new Set();
     const inventorySet = new Set(foragingInventory);
@@ -577,6 +604,19 @@ function selectForagingResults(candidates, targetFindCount, searchArea, selected
 
     function availablePool(requireHabitatMatch = false) {
         let pool = candidates.filter(candidate => !used.has(candidate.name));
+
+        if (targetUncommonCount !== null) {
+            const uncommonSelected = selected.filter(item => item.rarity === "uncommon").length;
+            const remainingSlots = targetFindCount - selected.length;
+            const remainingUncommonNeeded = Math.max(0, targetUncommonCount - uncommonSelected);
+
+            if (remainingUncommonNeeded > 0 && remainingSlots === remainingUncommonNeeded) {
+                pool = pool.filter(candidate => candidate.rarity === "uncommon");
+            } else if (uncommonSelected >= targetUncommonCount) {
+                pool = pool.filter(candidate => candidate.rarity !== "uncommon");
+            }
+        }
+
         if (requireHabitatMatch) {
             pool = pool.filter(candidate => candidate.habitatRelationship.key !== "none");
         }
@@ -601,7 +641,13 @@ function selectForagingResults(candidates, targetFindCount, searchArea, selected
 
         const isLastSlot = selected.length === targetFindCount - 1;
         if (useSurpriseSlot && !surpriseUsed && isLastSlot) {
-            const surprisePool = getSurprisePool(candidates, used, bestWeight);
+            let surprisePool = getSurprisePool(candidates, used, bestWeight);
+            if (targetUncommonCount !== null) {
+                const uncommonSelected = selected.filter(item => item.rarity === "uncommon").length;
+                if (uncommonSelected >= targetUncommonCount) {
+                    surprisePool = surprisePool.filter(candidate => candidate.rarity !== "uncommon");
+                }
+            }
             if (surprisePool.length > 0) {
                 pick = weightedChoice(surprisePool);
                 if (pick) {
@@ -625,61 +671,23 @@ function getDcEffectLines(dc, selectedRegion) {
     const tier = getDcTier(dc);
 
     if (selectedRegion === "Yatamon") {
-        if (tier === "10-15") {
-            return [
-                "Local Common ingredients were likely.",
-                "Nearby Common ingredients were possible."
-            ];
-        }
-        if (tier === "16-20") {
-            return [
-                "Local Uncommon ingredients were possible.",
-                "Nearby Common ingredients were possible."
-            ];
-        }
-        return [
-            "Nearby Uncommon ingredients were possible.",
-            "Distant ingredients were possible."
-        ];
+        if (tier === "10-15") return ["This search focused on familiar Common ingredients from local trade."];
+        if (tier === "16-20") return ["This search allowed local Uncommon ingredients and Common ingredients from beyond the city."];
+        return ["This search allowed Uncommon ingredients from beyond the city."];
     }
 
-    if (tier === "10-15") {
-        return [
-            "Native Common ingredients were likely."
-        ];
-    }
-    if (tier === "16-20") {
-        return [
-            "Native Uncommon ingredients were possible.",
-            "Nearby Common ingredients were possible."
-        ];
-    }
-    return [
-        "Nearby Uncommon ingredients were possible.",
-        "Farther Common ingredients were possible."
-    ];
+    if (tier === "10-15") return ["This search focused on familiar Common ingredients native to the Region."];
+    if (tier === "16-20") return ["This search allowed native Uncommon ingredients and Common ingredients from outside the Region."];
+    return ["This search allowed Uncommon ingredients from outside the Region."];
 }
 
 function getDosEffectLines(degreeOfSuccess, generatedCount) {
     const tier = getSuccessTierLabel(degreeOfSuccess);
-
     if (degreeOfSuccess >= 10) {
-        return [
-            `${tier}.`,
-            `${generatedCount} ingredients found.`,
-            "Less commonly encountered ingredients were possible."
-        ];
+        return [`${tier}.`, `${generatedCount} ingredients recognized.`, "The result could include a broader range of familiar-but-less-expected ingredients."];
     }
-    if (degreeOfSuccess >= 5) {
-        return [
-            `${tier}.`,
-            `${generatedCount} ingredients found.`
-        ];
-    }
-    return [
-        `${tier}.`,
-        `${generatedCount} ingredient${generatedCount === 1 ? "" : "s"} found.`
-    ];
+    if (degreeOfSuccess >= 5) return [`${tier}.`, `${generatedCount} ingredients recognized.`];
+    return [`${tier}.`, `${generatedCount} ingredient${generatedCount === 1 ? "" : "s"} recognized.`];
 }
 
 function describeOpportunityLevel(value) {
@@ -723,14 +731,15 @@ function renderPlainDebug({
     const ingredientLines = selected.map(item => {
         const regionLine = item.regionRelationship.label;
         const habitatLine = item.habitatRelationship.label;
-        const civilizationLine = item.civilizationRelationship ? item.civilizationRelationship.label : "";
+        const refinementLine = item.refinementRelationship ? item.refinementRelationship.label : "";
         const rarityLine = item.rarity === "common" ? "Common ingredient" : "Uncommon ingredient";
 
         return [
             item.name,
             `- ${regionLine}`,
             `- ${habitatLine}`,
-            civilizationLine ? `- ${civilizationLine}` : "",
+            item.refinementRelationship ? `- Refinement ${item.refinementRelationship.ingredientValue} / Search Area Civilization ${item.refinementRelationship.searchAreaValue}` : "",
+            refinementLine ? `- ${refinementLine}` : "",
             `- ${rarityLine}`,
             item.surprise ? "- Believable surprise" : ""
         ].filter(Boolean).join("\n");
@@ -841,7 +850,7 @@ function selectBookStyleRandomResults(ingredients, selectedRegion, dc, targetFin
         rarity: Obojima.normalizeRarity(ingredient.rarity),
         regionRelationship: getRegionRelationship(ingredient, selectedRegion),
         habitatRelationship: { key: "none", label: "Search Area not used for random comparison" },
-        civilizationRelationship: { label: "Civilization not used for random comparison" }
+        refinementRelationship: { label: "Refinement not used for random comparison" }
     }));
 }
 
@@ -885,7 +894,8 @@ async function generateForagingFinds() {
         .map(ingredient => scoreIngredient(ingredient, selectedRegion, searchArea, dc, degreeOfSuccess))
         .filter(Boolean);
 
-    const selected = selectForagingResults(candidates, targetFindCount, searchArea, selectedRegion, prioritizeNew, degreeOfSuccess);
+    const targetUncommonCount = decideTargetUncommonCount(dc, degreeOfSuccess, targetFindCount, candidates);
+    const selected = selectForagingResults(candidates, targetFindCount, searchArea, selectedRegion, prioritizeNew, degreeOfSuccess, targetUncommonCount);
 
     if (selected.length === 0) {
         resultsDiv.innerHTML = `<div class="completion-card foraging-result-card"><h3>Results</h3><p>No potion ingredients found.</p></div>`;

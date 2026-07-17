@@ -23,7 +23,7 @@
       "Coast",
       "Mountain"
     ],
-    "civilization": 1
+    "refinement": 1
   },
   {
     "name": "Apper Carrot",
@@ -49,7 +49,7 @@
       "Grassland",
       "Settlement"
     ],
-    "civilization": 2
+    "refinement": 2
   },
   {
     "name": "Bamboo",
@@ -76,7 +76,7 @@
       "Forest",
       "Mountain"
     ],
-    "civilization": 1
+    "refinement": 1
   },
   {
     "name": "Bashu Powder",
@@ -104,7 +104,7 @@
       "Town",
       "Village"
     ],
-    "civilization": 4
+    "refinement": 4
   },
   {
     "name": "Blue Back Salmon",
@@ -136,7 +136,7 @@
       "Open Water",
       "River"
     ],
-    "civilization": 1
+    "refinement": 1
   },
   {
     "name": "Boom Beri",
@@ -164,7 +164,7 @@
       "Coast",
       "Mountain"
     ],
-    "civilization": 1
+    "refinement": 1
   },
   {
     "name": "Bora Bug",
@@ -193,7 +193,7 @@
       "Forest",
       "Settlement"
     ],
-    "civilization": 2
+    "refinement": 2
   },
   {
     "name": "Brush Reed",
@@ -220,7 +220,7 @@
       "Lake",
       "Wetland"
     ],
-    "civilization": 1
+    "refinement": 1
   },
   {
     "name": "Bundle of Driko Twigs",
@@ -250,7 +250,7 @@
       "Forest",
       "Settlement"
     ],
-    "civilization": 2
+    "refinement": 2
   },
   {
     "name": "Camp Mite",
@@ -278,7 +278,7 @@
       "Grassland",
       "Settlement"
     ],
-    "civilization": 2
+    "refinement": 2
   },
   {
     "name": "Canned Cat",
@@ -303,7 +303,7 @@
       "Ruins",
       "Settlement"
     ],
-    "civilization": 4
+    "refinement": 4
   },
   {
     "name": "Chicken Egg",
@@ -332,7 +332,7 @@
       "Grassland",
       "Settlement"
     ],
-    "civilization": 3
+    "refinement": 3
   },
   {
     "name": "Chisuay's Heavenly Tea",
@@ -356,7 +356,7 @@
       "Village",
       "Market"
     ],
-    "civilization": 4
+    "refinement": 4
   },
   {
     "name": "Clay Snake Tail",
@@ -384,7 +384,7 @@
       "Lake",
       "River"
     ],
-    "civilization": 1
+    "refinement": 1
   },
   {
     "name": "Cloud Horn",
@@ -409,7 +409,7 @@
     "associated_search_areas": [
       "Grassland"
     ],
-    "civilization": 1
+    "refinement": 1
   },
   {
     "name": "Creeping Bolete",
@@ -435,7 +435,7 @@
     "associated_search_areas": [
       "Forest"
     ],
-    "civilization": 1
+    "refinement": 1
   },
   {
     "name": "Dorrin Plate",
@@ -462,7 +462,7 @@
       "Town",
       "Village"
     ],
-    "civilization": 5
+    "refinement": 5
   },
   {
     "name": "Dried Fruit",
@@ -487,7 +487,7 @@
       "Mountain",
       "Settlement"
     ],
-    "civilization": 3
+    "refinement": 3
   },
   {
     "name": "Earwax",
@@ -516,7 +516,7 @@
     "associated_search_areas": [
       "Settlement"
     ],
-    "civilization": 2
+    "refinement": 2
   },
   {
     "name": "Fish Folk Tooth",
@@ -545,7 +545,7 @@
       "Coast",
       "Open Water"
     ],
-    "civilization": 1
+    "refinement": 1
   },
   {
     "name": "Fish Head",
@@ -577,7 +577,7 @@
       "Open Water",
       "River"
     ],
-    "civilization": 1
+    "refinement": 1
   },
   {
     "name": "Flash Paper",
@@ -605,7 +605,7 @@
       "Town",
       "Village"
     ],
-    "civilization": 5
+    "refinement": 5
   },
   {
     "name": "Gohaku Rice",
@@ -633,7 +633,7 @@
       "Village",
       "Wetland"
     ],
-    "civilization": 4
+    "refinement": 4
   },
   {
     "name": "Green Slime",
@@ -662,7 +662,7 @@
       "Forest",
       "Settlement"
     ],
-    "civilization": 2
+    "refinement": 2
   },
   {
     "name": "Hair from a Yanari",
@@ -686,7 +686,7 @@
     "associated_search_areas": [
       "Settlement"
     ],
-    "civilization": 2
+    "refinement": 2
   },
   {
     "name": "Hakuma Sapwood",
@@ -713,7 +713,7 @@
       "Forest",
       "Settlement"
     ],
-    "civilization": 2
+    "refinement": 2
   },
   {
     "name": "Hill Dragon Egg",
@@ -737,7 +737,7 @@
     "associated_search_areas": [
       "Grassland"
     ],
-    "civilization": 3
+    "refinement": 3
   },
   {
     "name": "Howler Fur",
@@ -764,7 +764,7 @@
       "Cave",
       "Forest"
     ],
-    "civilization": 1
+    "refinement": 1
   },
   {
     "name": "Itchi Beri",
@@ -788,7 +788,7 @@
     "associated_search_areas": [
       "River"
     ],
-    "civilization": 1
+    "refinement": 1
   },
   {
     "name": "Jack-o-Lantern Bits",
@@ -815,7 +815,7 @@
       "Grassland",
       "Settlement"
     ],
-    "civilization": 5
+    "refinement": 5
   },
   {
     "name": "Jumping Bonfire",
@@ -843,7 +843,7 @@
       "Grassland",
       "Settlement"
     ],
-    "civilization": 2
+    "refinement": 2
   },
   {
     "name": "Kloth Leech",
@@ -868,7 +868,7 @@
       "Grassland",
       "Wetland"
     ],
-    "civilization": 1
+    "refinement": 1
   },
   {
     "name": "Knobble Leaf Seaweed",
@@ -896,7 +896,7 @@
       "Coral Reef",
       "Open Water"
     ],
-    "civilization": 1
+    "refinement": 1
   },
   {
     "name": "Kojo Root",
@@ -920,7 +920,7 @@
     "associated_search_areas": [
       "Settlement"
     ],
-    "civilization": 2
+    "refinement": 2
   },
   {
     "name": "Lovers Vine",
@@ -946,7 +946,7 @@
       "Forest",
       "Wetland"
     ],
-    "civilization": 1
+    "refinement": 1
   },
   {
     "name": "Mandrake Root",
@@ -970,7 +970,7 @@
     "associated_search_areas": [
       "Forest"
     ],
-    "civilization": 1
+    "refinement": 1
   },
   {
     "name": "Mellowort",
@@ -996,7 +996,7 @@
       "Grassland",
       "Settlement"
     ],
-    "civilization": 2
+    "refinement": 2
   },
   {
     "name": "Monkey's Coil",
@@ -1021,7 +1021,7 @@
       "Grassland",
       "Settlement"
     ],
-    "civilization": 4
+    "refinement": 4
   },
   {
     "name": "Mountain Ox Dung",
@@ -1046,7 +1046,7 @@
       "Grassland",
       "Mountain"
     ],
-    "civilization": 2
+    "refinement": 2
   },
   {
     "name": "Mouse Tree Nut",
@@ -1071,7 +1071,7 @@
       "Mountain",
       "Ruins"
     ],
-    "civilization": 1
+    "refinement": 1
   },
   {
     "name": "Narutomaki",
@@ -1096,7 +1096,7 @@
     "associated_search_areas": [
       "Settlement"
     ],
-    "civilization": 3
+    "refinement": 3
   },
   {
     "name": "Nobblewort",
@@ -1123,7 +1123,7 @@
       "Forest",
       "Settlement"
     ],
-    "civilization": 2
+    "refinement": 2
   },
   {
     "name": "Oporion Glass",
@@ -1153,7 +1153,7 @@
       "Town",
       "Village"
     ],
-    "civilization": 5
+    "refinement": 5
   },
   {
     "name": "Origami Crane",
@@ -1179,7 +1179,7 @@
       "Town",
       "Village"
     ],
-    "civilization": 5
+    "refinement": 5
   },
   {
     "name": "Peeping Willow",
@@ -1203,7 +1203,7 @@
     "associated_search_areas": [
       "Mountain"
     ],
-    "civilization": 1
+    "refinement": 1
   },
   {
     "name": "Pink Candle Wax",
@@ -1231,7 +1231,7 @@
       "Town",
       "Village"
     ],
-    "civilization": 4
+    "refinement": 4
   },
   {
     "name": "Poison",
@@ -1262,7 +1262,7 @@
       "Forest",
       "Wetland"
     ],
-    "civilization": 1
+    "refinement": 1
   },
   {
     "name": "Pungent Sea Foam",
@@ -1287,7 +1287,7 @@
       "Coast",
       "Open Water"
     ],
-    "civilization": 1
+    "refinement": 1
   },
   {
     "name": "Pyramid Melon",
@@ -1312,7 +1312,7 @@
       "Grassland",
       "Settlement"
     ],
-    "civilization": 2
+    "refinement": 2
   },
   {
     "name": "Queen's Dilemma",
@@ -1339,7 +1339,7 @@
       "Forest",
       "Wetland"
     ],
-    "civilization": 1
+    "refinement": 1
   },
   {
     "name": "Raka Paste",
@@ -1367,7 +1367,7 @@
       "Town",
       "Village"
     ],
-    "civilization": 5
+    "refinement": 5
   },
   {
     "name": "Rattle Shoot",
@@ -1391,7 +1391,7 @@
     "associated_search_areas": [
       "Grassland"
     ],
-    "civilization": 1
+    "refinement": 1
   },
   {
     "name": "Ribbon Rot",
@@ -1417,7 +1417,7 @@
       "Ruins",
       "Settlement"
     ],
-    "civilization": 2
+    "refinement": 2
   },
   {
     "name": "Rust Crab",
@@ -1443,7 +1443,7 @@
       "Coral Reef",
       "Open Water"
     ],
-    "civilization": 1
+    "refinement": 1
   },
   {
     "name": "Scalefruit Rind",
@@ -1468,7 +1468,7 @@
     "associated_search_areas": [
       "Coast"
     ],
-    "civilization": 1
+    "refinement": 1
   },
   {
     "name": "Sea Water",
@@ -1496,7 +1496,7 @@
       "Coast",
       "Open Water"
     ],
-    "civilization": 1
+    "refinement": 1
   },
   {
     "name": "Seashell",
@@ -1524,7 +1524,7 @@
       "Coast",
       "Open Water"
     ],
-    "civilization": 1
+    "refinement": 1
   },
   {
     "name": "Sheep Dragon Wool",
@@ -1549,7 +1549,7 @@
       "Grassland",
       "Settlement"
     ],
-    "civilization": 3
+    "refinement": 3
   },
   {
     "name": "Slice of Melon Bird",
@@ -1575,7 +1575,7 @@
       "Grassland",
       "Settlement"
     ],
-    "civilization": 2
+    "refinement": 2
   },
   {
     "name": "Snap Vine Sap",
@@ -1599,7 +1599,7 @@
     "associated_search_areas": [
       "Forest"
     ],
-    "civilization": 1
+    "refinement": 1
   },
   {
     "name": "Spindle-Leg Spider Webs",
@@ -1626,7 +1626,7 @@
       "Forest",
       "Grassland"
     ],
-    "civilization": 2
+    "refinement": 2
   },
   {
     "name": "Spirit Root",
@@ -1650,7 +1650,7 @@
     "associated_search_areas": [
       "Mountain"
     ],
-    "civilization": 1
+    "refinement": 1
   },
   {
     "name": "Squid Ink",
@@ -1675,7 +1675,7 @@
       "Coast",
       "Open Water"
     ],
-    "civilization": 1
+    "refinement": 1
   },
   {
     "name": "Tangle Weed",
@@ -1700,7 +1700,7 @@
       "Coast",
       "Open Water"
     ],
-    "civilization": 1
+    "refinement": 1
   },
   {
     "name": "Ube",
@@ -1726,7 +1726,7 @@
       "Mountain",
       "Settlement"
     ],
-    "civilization": 2
+    "refinement": 2
   },
   {
     "name": "Varrow",
@@ -1754,7 +1754,7 @@
       "Grassland",
       "Settlement"
     ],
-    "civilization": 2
+    "refinement": 2
   },
   {
     "name": "Venus Fly Rat",
@@ -1778,7 +1778,7 @@
     "associated_search_areas": [
       "Cave"
     ],
-    "civilization": 1
+    "refinement": 1
   },
   {
     "name": "Windbloom",
@@ -1806,7 +1806,7 @@
       "Grassland",
       "Mountain"
     ],
-    "civilization": 1
+    "refinement": 1
   },
   {
     "name": "Witch's Broom",
@@ -1831,7 +1831,7 @@
       "Grassland",
       "Settlement"
     ],
-    "civilization": 2
+    "refinement": 2
   },
   {
     "name": "Witch's Eye Coral",
@@ -1856,7 +1856,7 @@
       "Coral Reef",
       "Open Water"
     ],
-    "civilization": 1
+    "refinement": 1
   },
   {
     "name": "Yugi Sap",
@@ -1882,7 +1882,7 @@
     "associated_search_areas": [
       "Forest"
     ],
-    "civilization": 1
+    "refinement": 1
   },
   {
     "name": "Yuma Shrub",
@@ -1908,7 +1908,7 @@
       "Forest",
       "Grassland"
     ],
-    "civilization": 1
+    "refinement": 1
   },
   {
     "name": "Black Cinnamon",
@@ -1933,7 +1933,7 @@
       "Forest",
       "Mountain"
     ],
-    "civilization": 1
+    "refinement": 1
   },
   {
     "name": "Black Pearl",
@@ -1958,7 +1958,7 @@
       "Coral Reef",
       "Open Water"
     ],
-    "civilization": 1
+    "refinement": 1
   },
   {
     "name": "Bottle Cap (Supa-Fizz!)",
@@ -1991,7 +1991,7 @@
       "Town",
       "Village"
     ],
-    "civilization": 5
+    "refinement": 5
   },
   {
     "name": "Corrupted Seawater",
@@ -2016,7 +2016,7 @@
       "Coast",
       "Open Water"
     ],
-    "civilization": 1
+    "refinement": 1
   },
   {
     "name": "Corrupted Slime",
@@ -2041,7 +2041,7 @@
       "Ruins",
       "Wetland"
     ],
-    "civilization": 1
+    "refinement": 1
   },
   {
     "name": "Cracking Jasper",
@@ -2066,7 +2066,7 @@
       "Geothermal",
       "Mountain"
     ],
-    "civilization": 1
+    "refinement": 1
   },
   {
     "name": "Dawn Petal",
@@ -2092,7 +2092,7 @@
       "Forest",
       "Settlement"
     ],
-    "civilization": 2
+    "refinement": 2
   },
   {
     "name": "Dragon Root",
@@ -2118,7 +2118,7 @@
       "Grassland",
       "Mountain"
     ],
-    "civilization": 1
+    "refinement": 1
   },
   {
     "name": "Dried Pilot Leech",
@@ -2142,7 +2142,7 @@
     "associated_search_areas": [
       "Wetland"
     ],
-    "civilization": 3
+    "refinement": 3
   },
   {
     "name": "Essence of Glumbug",
@@ -2168,7 +2168,7 @@
       "Cave",
       "Mountain"
     ],
-    "civilization": 1
+    "refinement": 1
   },
   {
     "name": "Essence of Ill Omen",
@@ -2190,7 +2190,7 @@
     "associated_search_areas": [
       "Settlement"
     ],
-    "civilization": 2
+    "refinement": 2
   },
   {
     "name": "Feather Rock",
@@ -2215,7 +2215,7 @@
       "Grassland",
       "Mountain"
     ],
-    "civilization": 1
+    "refinement": 1
   },
   {
     "name": "Fizzing Green",
@@ -2239,7 +2239,7 @@
     "associated_search_areas": [
       "Forest"
     ],
-    "civilization": 1
+    "refinement": 1
   },
   {
     "name": "Forge Slag",
@@ -2264,7 +2264,7 @@
       "Mountain",
       "Settlement"
     ],
-    "civilization": 2
+    "refinement": 2
   },
   {
     "name": "Gargoyle Powder",
@@ -2293,7 +2293,7 @@
       "Town",
       "Village"
     ],
-    "civilization": 4
+    "refinement": 4
   },
   {
     "name": "Glow Worms of the Vale",
@@ -2318,7 +2318,7 @@
       "Cave",
       "Wetland"
     ],
-    "civilization": 1
+    "refinement": 1
   },
   {
     "name": "Hakumon's Ramen Broth",
@@ -2344,7 +2344,7 @@
       "Village",
       "Settlement"
     ],
-    "civilization": 4
+    "refinement": 4
   },
   {
     "name": "Happy Joy Cake",
@@ -2368,7 +2368,7 @@
     "associated_search_areas": [
       "Settlement"
     ],
-    "civilization": 4
+    "refinement": 4
   },
   {
     "name": "Kojobi Fruit",
@@ -2396,7 +2396,7 @@
       "Grassland",
       "Settlement"
     ],
-    "civilization": 2
+    "refinement": 2
   },
   {
     "name": "Laughing Moss",
@@ -2422,7 +2422,7 @@
       "Forest",
       "Settlement"
     ],
-    "civilization": 2
+    "refinement": 2
   },
   {
     "name": "Lions Blume",
@@ -2447,7 +2447,7 @@
       "Grassland",
       "Mountain"
     ],
-    "civilization": 1
+    "refinement": 1
   },
   {
     "name": "Living Spud",
@@ -2472,7 +2472,7 @@
       "Grassland",
       "Settlement"
     ],
-    "civilization": 2
+    "refinement": 2
   },
   {
     "name": "Magic Monk's Rice Wine",
@@ -2496,7 +2496,7 @@
       "Town",
       "Village"
     ],
-    "civilization": 4
+    "refinement": 4
   },
   {
     "name": "Molted Lizard Skin",
@@ -2521,7 +2521,7 @@
       "Geothermal",
       "Mountain"
     ],
-    "civilization": 1
+    "refinement": 1
   },
   {
     "name": "Mountain Snail",
@@ -2546,7 +2546,7 @@
       "Cave",
       "Mountain"
     ],
-    "civilization": 1
+    "refinement": 1
   },
   {
     "name": "Mournshade",
@@ -2570,7 +2570,7 @@
     "associated_search_areas": [
       "Wetland"
     ],
-    "civilization": 1
+    "refinement": 1
   },
   {
     "name": "Munchanka Root",
@@ -2595,7 +2595,7 @@
       "Geothermal",
       "Grassland"
     ],
-    "civilization": 1
+    "refinement": 1
   },
   {
     "name": "Nakudama Spice",
@@ -2624,7 +2624,7 @@
       "Village",
       "Wetland"
     ],
-    "civilization": 4
+    "refinement": 4
   },
   {
     "name": "Night Thistle",
@@ -2649,7 +2649,7 @@
       "Coast",
       "Wetland"
     ],
-    "civilization": 1
+    "refinement": 1
   },
   {
     "name": "Noodle Eel",
@@ -2676,7 +2676,7 @@
     "associated_search_areas": [
       "Settlement"
     ],
-    "civilization": 2
+    "refinement": 2
   },
   {
     "name": "Opu Opu Spring Water",
@@ -2701,7 +2701,7 @@
       "Mountain",
       "River"
     ],
-    "civilization": 5
+    "refinement": 5
   },
   {
     "name": "Petrified Alligator",
@@ -2731,7 +2731,7 @@
       "Ruins",
       "Wetland"
     ],
-    "civilization": 1
+    "refinement": 1
   },
   {
     "name": "Pok Pok Flakes",
@@ -2757,7 +2757,7 @@
       "Open Water",
       "Settlement"
     ],
-    "civilization": 3
+    "refinement": 3
   },
   {
     "name": "Rubble Golem's Rubble",
@@ -2780,7 +2780,7 @@
       "Mountain",
       "Ruins"
     ],
-    "civilization": 1
+    "refinement": 1
   },
   {
     "name": "Scumweed",
@@ -2805,7 +2805,7 @@
       "Coast",
       "Wetland"
     ],
-    "civilization": 1
+    "refinement": 1
   },
   {
     "name": "Shadowroot",
@@ -2831,7 +2831,7 @@
       "Forest",
       "Ruins"
     ],
-    "civilization": 1
+    "refinement": 1
   },
   {
     "name": "Sleeping Merchant",
@@ -2860,7 +2860,7 @@
       "Lake",
       "Wetland"
     ],
-    "civilization": 1
+    "refinement": 1
   },
   {
     "name": "Spark Plug",
@@ -2891,7 +2891,7 @@
       "Town",
       "Village"
     ],
-    "civilization": 5
+    "refinement": 5
   },
   {
     "name": "Spirit Tea",
@@ -2917,7 +2917,7 @@
       "Town",
       "Village"
     ],
-    "civilization": 4
+    "refinement": 4
   },
   {
     "name": "Spring",
@@ -2948,7 +2948,7 @@
       "Town",
       "Village"
     ],
-    "civilization": 5
+    "refinement": 5
   },
   {
     "name": "Sun Shroom",
@@ -2972,7 +2972,7 @@
     "associated_search_areas": [
       "Forest"
     ],
-    "civilization": 1
+    "refinement": 1
   },
   {
     "name": "Tamh Gon's Confetti",
@@ -2998,7 +2998,7 @@
       "Town",
       "Village"
     ],
-    "civilization": 5
+    "refinement": 5
   },
   {
     "name": "Toka Truffle",
@@ -3020,7 +3020,7 @@
     "associated_search_areas": [
       "Forest"
     ],
-    "civilization": 1
+    "refinement": 1
   },
   {
     "name": "Vinyl Record",
@@ -3051,7 +3051,7 @@
       "Town",
       "Village"
     ],
-    "civilization": 5
+    "refinement": 5
   },
   {
     "name": "Wolfenite",
@@ -3078,7 +3078,7 @@
       "Cave",
       "Mountain"
     ],
-    "civilization": 1
+    "refinement": 1
   },
   {
     "name": "Wychwood",
@@ -3100,7 +3100,7 @@
     "associated_search_areas": [
       "Forest"
     ],
-    "civilization": 1
+    "refinement": 1
   },
   {
     "name": "Yellow Slime",
@@ -3125,7 +3125,7 @@
       "Cave",
       "Geothermal"
     ],
-    "civilization": 1
+    "refinement": 1
   },
   {
     "name": "Blossom of Spirit Vine",
@@ -3148,7 +3148,7 @@
       "Forest",
       "Ruins"
     ],
-    "civilization": 1
+    "refinement": 1
   },
   {
     "name": "Bottled Lightning",
@@ -3172,7 +3172,7 @@
       "Ruins",
       "Town"
     ],
-    "civilization": 5
+    "refinement": 5
   },
   {
     "name": "Bubble Gum",
@@ -3196,7 +3196,7 @@
       "Market",
       "Settlement"
     ],
-    "civilization": 5
+    "refinement": 5
   },
   {
     "name": "Coal from the Spirit Train",
@@ -3219,7 +3219,7 @@
       "Ruins",
       "Settlement"
     ],
-    "civilization": 5
+    "refinement": 5
   },
   {
     "name": "Crimson Octopus Ink",
@@ -3243,7 +3243,7 @@
       "Coral Reef",
       "Coast"
     ],
-    "civilization": 1
+    "refinement": 1
   },
   {
     "name": "Dragon Fang of Yutro",
@@ -3267,7 +3267,7 @@
       "Cave",
       "Ruins"
     ],
-    "civilization": 1
+    "refinement": 1
   },
   {
     "name": "Fairy Willow",
@@ -3290,7 +3290,7 @@
       "Forest",
       "Wetland"
     ],
-    "civilization": 1
+    "refinement": 1
   },
   {
     "name": "Giant Koi Fish Scale",
@@ -3313,7 +3313,7 @@
       "Lake",
       "River"
     ],
-    "civilization": 1
+    "refinement": 1
   },
   {
     "name": "Golden Root",
@@ -3337,7 +3337,7 @@
       "Mountain",
       "Ruins"
     ],
-    "civilization": 1
+    "refinement": 1
   },
   {
     "name": "Hand of Eryo",
@@ -3360,7 +3360,7 @@
       "Ruins",
       "Settlement"
     ],
-    "civilization": 2
+    "refinement": 2
   },
   {
     "name": "Irimbi Chrysalis",
@@ -3383,7 +3383,7 @@
       "Forest",
       "Grassland"
     ],
-    "civilization": 1
+    "refinement": 1
   },
   {
     "name": "Lionfish Poison",
@@ -3407,7 +3407,7 @@
       "Open Water",
       "Coast"
     ],
-    "civilization": 1
+    "refinement": 1
   },
   {
     "name": "Nokumai's Frozen Breath",
@@ -3430,7 +3430,7 @@
       "Mountain",
       "Geothermal"
     ],
-    "civilization": 1
+    "refinement": 1
   },
   {
     "name": "Orange Slime",
@@ -3454,7 +3454,7 @@
       "Wetland",
       "Ruins"
     ],
-    "civilization": 1
+    "refinement": 1
   },
   {
     "name": "Ota Lantern Oil",
@@ -3478,7 +3478,7 @@
       "Village",
       "Settlement"
     ],
-    "civilization": 5
+    "refinement": 5
   },
   {
     "name": "Plumage of a Running Kirio",
@@ -3501,7 +3501,7 @@
       "Grassland",
       "Forest"
     ],
-    "civilization": 1
+    "refinement": 1
   },
   {
     "name": "Ronin Neko Figurine",
@@ -3525,7 +3525,7 @@
       "Settlement",
       "Ruins"
     ],
-    "civilization": 5
+    "refinement": 5
   },
   {
     "name": "Sage Arol's Beetle",
@@ -3548,7 +3548,7 @@
       "Forest",
       "Village"
     ],
-    "civilization": 2
+    "refinement": 2
   },
   {
     "name": "Starstone",
@@ -3571,7 +3571,7 @@
       "Mountain",
       "Ruins"
     ],
-    "civilization": 1
+    "refinement": 1
   },
   {
     "name": "Tears of the Moon",
@@ -3595,7 +3595,7 @@
       "Ruins",
       "Shrine"
     ],
-    "civilization": 4
+    "refinement": 4
   },
   {
     "name": "Wufu Whisky",
@@ -3619,6 +3619,6 @@
       "Village",
       "Market"
     ],
-    "civilization": 4
+    "refinement": 4
   }
 ]

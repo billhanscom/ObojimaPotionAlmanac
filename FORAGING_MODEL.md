@@ -68,7 +68,7 @@ An ingredient entry describes the ingredient itself.
     "Village",
     "Town"
   ],
-  "civilization": 5
+  "refinement": 5
 }
 ```
 
@@ -121,7 +121,7 @@ Example:
     "Coast",
     "Open Water"
   ],
-  "civilization": 1
+  "refinement": 1
 }
 ```
 
@@ -158,7 +158,7 @@ Examples:
   "associated_search_areas": [
     "Forest"
   ],
-  "civilization": 1
+  "refinement": 1
 }
 ```
 
@@ -485,9 +485,14 @@ Ingredient files now include foraging-specific descriptive fields:
 ```json
 "forageable": true,
 "associated_search_areas": ["Forest", "River"],
-"civilization": 1
+"refinement": 1
 ```
 
 The engine reads these fields first. The older `ingredients.json` file remains as a fallback and reference file, but the preferred editable criteria now live on each ingredient entry.
 
 The `civilization` value accepts integers or decimals. The engine treats values below 1 as 1 and values above 5 as 5.
+
+
+## Refinement
+
+Ingredients use `refinement` to describe how much sapient preparation, processing, or manufacture has occurred before the ingredient is found. Search Areas keep `civilization` to describe how much sapient activity characterizes that place. The engine compares these values with a smooth taper rather than a hard cutoff.

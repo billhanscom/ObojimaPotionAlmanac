@@ -1,5 +1,5 @@
 {
-  "engineVersion": "2.2",
+  "engineVersion": "2.3",
   "dcTiers": [
     {
       "min": 10,
@@ -22,25 +22,25 @@
   ],
   "dcModifiers": {
     "10-15": {
-      "common": 1,
-      "uncommon": 0.45,
-      "native": 1,
-      "nearby": 0.3,
-      "far": 0.06
+      "common": 1.0,
+      "uncommon": 0.0,
+      "native": 1.0,
+      "nearby": 0.0,
+      "far": 0.0
     },
     "16-20": {
-      "common": 1,
-      "uncommon": 0.95,
-      "native": 1,
-      "nearby": 0.75,
-      "far": 0.16
+      "common": 1.0,
+      "uncommon": 0.2,
+      "native": 1.0,
+      "nearby": 0.55,
+      "far": 0.05
     },
     "21-25": {
-      "common": 1,
-      "uncommon": 1.25,
-      "native": 1,
-      "nearby": 1,
-      "far": 0.45
+      "common": 1.0,
+      "uncommon": 0.55,
+      "native": 1.0,
+      "nearby": 0.85,
+      "far": 0.25
     }
   },
   "findCountByDos": [
@@ -107,22 +107,22 @@
   },
   "dosModifiers": {
     "modest": {
-      "uncommon": 0.75,
-      "nearby": 0.75,
-      "far": 0.6,
-      "nonHabitat": 0.5
+      "uncommon": 1.0,
+      "nearby": 0.25,
+      "far": 0.05,
+      "nonHabitat": 0.45
     },
     "strong": {
-      "uncommon": 1,
-      "nearby": 1,
-      "far": 0.85,
-      "nonHabitat": 0.75
+      "uncommon": 1.0,
+      "nearby": 0.65,
+      "far": 0.12,
+      "nonHabitat": 0.65
     },
     "exceptional": {
-      "uncommon": 1.35,
-      "nearby": 1.1,
-      "far": 1,
-      "nonHabitat": 1
+      "uncommon": 1.0,
+      "nearby": 1.0,
+      "far": 0.35,
+      "nonHabitat": 0.85
     }
   },
   "habitatTargetByCount": {
@@ -151,11 +151,66 @@
   "excludeRarity": [
     "rare"
   ],
-  "civilizationDistanceWeights": {
+  "refinementCompatibility": {
     "0": 1.0,
+    "0.5": 0.95,
     "1": 0.8,
-    "2": 0.5,
-    "3": 0.25,
-    "4": 0.1
+    "1.5": 0.65,
+    "2": 0.45,
+    "2.5": 0.3,
+    "3": 0.18,
+    "3.5": 0.1,
+    "4": 0.05
+  },
+  "rarityCompositionRules": {
+    "10-15": {
+      "modest": {
+        "allowUncommon": false,
+        "maxUncommon": 0
+      },
+      "strong": {
+        "allowUncommon": false,
+        "maxUncommon": 0
+      },
+      "exceptional": {
+        "allowUncommon": true,
+        "maxUncommon": 1,
+        "chance": 0.18
+      }
+    },
+    "16-20": {
+      "modest": {
+        "allowUncommon": true,
+        "maxUncommon": 1,
+        "chance": 0.25
+      },
+      "strong": {
+        "allowUncommon": true,
+        "maxUncommon": 1,
+        "chance": 0.42
+      },
+      "exceptional": {
+        "allowUncommon": true,
+        "maxUncommon": 1,
+        "chance": 0.55
+      }
+    },
+    "21-25": {
+      "modest": {
+        "allowUncommon": true,
+        "maxUncommon": 1,
+        "chance": 0.5
+      },
+      "strong": {
+        "allowUncommon": true,
+        "maxUncommon": 2,
+        "chance": 0.65
+      },
+      "exceptional": {
+        "allowUncommon": true,
+        "maxUncommon": 2,
+        "chance": 0.75
+      }
+    }
   }
 }
