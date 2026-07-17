@@ -324,9 +324,17 @@ function getIngredientHabitats(ingredient) {
     )).sort((a, b) => a.localeCompare(b));
 }
 
+function getRegionSearchAreas(selectedRegion) {
+    const region = foragingRegions.find(entry => entry.name === selectedRegion);
+    return region ? (region.search_areas || []) : [];
+}
+
 function getRelatedSearchAreas(searchArea, selectedRegion) {
     const area = foragingSearchAreas.find(entry => entry.name === searchArea);
-    return area ? (area.related_search_areas || []) : [];
+    const related = area ? (area.related_search_areas || []) : [];
+    const regionAreas = new Set(getRegionSearchAreas(selectedRegion));
+
+    return related.filter(relatedArea => regionAreas.has(relatedArea));
 }
 
 function getHabitatRelationship(ingredient, searchArea, selectedRegion) {
@@ -351,10 +359,15 @@ function getHabitatRelationship(ingredient, searchArea, selectedRegion) {
         };
     }
 
+    const regionAreas = new Set(getRegionSearchAreas(selectedRegion));
+    const outsideRegionHabitats = habitats.filter(habitat => !regionAreas.has(habitat));
+
     return {
         key: "none",
         label: habitats.length
-            ? `Usually associated with ${habitats.join(", ")}`
+            ? outsideRegionHabitats.length === habitats.length
+                ? "No associated Search Area in this Region"
+                : `Usually associated with ${habitats.join(", ")}`
             : "No listed search-area association",
         habitats
     };
