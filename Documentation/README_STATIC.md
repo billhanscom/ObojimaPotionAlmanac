@@ -1,39 +1,49 @@
-# Obojima Potion Toolkit - Static Build
+# Obojima Potion Almanac — Static Site
 
-This version removes the Flask/Python backend. It is designed for static hosting
-(Cloudflare Pages, GitHub Pages, Netlify, Vercel static hosting, etc.).
+The project is a static HTML, CSS, JavaScript, and JSON application. It does not require Python, Flask, a database, or another server-side runtime.
 
-Pages:
-- index.html
-- ingredient-finder.html
+## Pages
 
-Data files:
-- data/ingredients.json
-- data/ingredients.json
-- data/potion_names.json
+- `index.html` — Potion Almanac
+- `ingredient-finder.html` — Ingredient Finder
+- `foraging-aid.html` — Foraging Aid
 
-Notes:
-- The browser fetches JSON files directly.
-- Inventory remains local to the browser via localStorage.
-- Save/Load Inventory is handled entirely in JavaScript.
-- Opening the files directly from disk may block fetch() in some browsers; run from a static server or host.
+## Running locally
 
+The pages fetch JSON files from the `data` directory. Many browsers block those requests when an HTML file is opened directly from disk, so serve the project directory with a local static server.
 
-## Refactored JavaScript structure
+For example:
 
-- `js/common.js` contains shared data loading, inventory/profile/backup handling, modal dialogs, recipe helpers, and ingredient button rendering.
-- `js/almanac.js` contains Potion Almanac-specific recipe display logic.
-- `js/ingredient-finder.js` contains Ingredient Finder-specific completion logic.
+```bash
+python3 -m http.server 8000
+```
+
+Then open `http://localhost:8000/`.
+
+## Static hosting
+
+The project can be deployed directly to any static host, including GitHub Pages, Cloudflare Pages, Netlify, or Vercel. Upload the project contents without changing the directory structure.
+
+## Data storage
+
+Inventory, profile, accessibility, and tool settings are stored in the browser with `localStorage`. No information is sent to an application server.
+
+## JavaScript organization
+
+- `js/common.js` contains shared data loading, inventory and profile storage, backup handling, modal dialogs, recipe helpers, and ingredient controls.
+- `js/almanac.js` contains Potion Almanac recipe-display logic.
+- `js/ingredient-finder.js` contains Ingredient Finder completion logic.
+- `js/foraging-aid.js` contains Foraging Aid eligibility, weighting, selection, comparison, and result-display logic.
 - `js/accessibility.js` contains high-contrast and accessibility behavior.
 
-This structure is intended to support the future Forager's Aid and inventory-centered rebuild without duplicating shared logic across tools.
+## Data files
 
+- `data/ingredients.json`
+- `data/potion_names.json`
+- `data/regions.json`
+- `data/search_areas.json`
+- `data/foraging_config.json`
 
-## Search Areas
+`ingredients.json` is the canonical ingredient dataset. Each ingredient can include potion values for both rulesets, rarity, native Regions, associated Search Areas, refinement, and a boolean `forageable` field.
 
-The Foraging Aid uses Region-specific Search Areas. Search Areas represent ecological or cultural environments players would naturally expect to search. The available list varies by Region.
-
-
-## Foraging data model
-
-The finalized Foraging Aid uses Region, Search Area, rarity, ingredient refinement, and the boolean `forageable` rules filter. Rare ingredients are quest-only and do not appear in ordinary foraging results. See `FORAGING_MODEL.md` for the complete model and canonical Search Areas.
+See `FORAGING_MODEL.md` for the complete definition of the foraging system.

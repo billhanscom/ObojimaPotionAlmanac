@@ -1,12 +1,19 @@
 # Obojima Foraging Model
 
-This document describes the finalized data model and selection logic used by the Foraging Aid.
+The Foraging Aid models what a knowledgeable character could reasonably identify while searching a particular environment. The player chooses a **Region** and **Search Area**; the system evaluates which brewing ingredients plausibly occur there.
 
-## Core principle
+## Ingredient identity
 
-The player chooses **where** to search. The model determines which ingredients could reasonably turn up in that environment. It does not attempt to model the player's intention or a separate degree of “forageability.”
+Ingredient names describe the brewing component placed in the character's inventory. Descriptions clarify what the named ingredient is, where it occurs, whether it is cultivated or processed, and how it is used.
 
-A bottle cap in a town is environmentally equivalent to seaweed on a coast: each is an ordinary finding in the appropriate setting. The interaction between an ingredient's **refinement** and a Search Area's **civilization** value handles that distinction.
+The model scores the ingredient **in its listed form**:
+
+- Kojo Root is the root itself. A description saying that it can later be dried or pulverized does not make the listed ingredient a powder.
+- Bashu Powder is already a prepared powder because that state is part of its name and description.
+- Scalefruit Rind can be separated from the fruit during collection and is not treated as a heavily processed product.
+- Hakuma Sapwood requires deliberate separation from the bark and heartwood and is treated as a prepared ingredient.
+
+Optional uses or later preparation do not change the identity of the listed ingredient.
 
 ## Ingredient fields
 
@@ -14,61 +21,59 @@ A bottle cap in a town is environmentally equivalent to seaweed on a coast: each
 
 The published rarity tier: `common`, `uncommon`, or `rare`.
 
-Rare ingredients are not available through ordinary foraging. They require a multipart quest or similarly exceptional acquisition, so every Rare ingredient has `"forageable": false`.
+Rare ingredients require exceptional acquisition, such as a multipart quest, and are excluded from ordinary Foraging Aid results.
 
 ### `forageable`
 
-A boolean rules filter.
+A boolean rules filter:
 
-- `true`: the ingredient may appear in ordinary Foraging Aid results.
-- `false`: the ingredient is excluded from ordinary foraging, regardless of Region or Search Area.
+- `true` — the ingredient may appear in ordinary Foraging Aid results.
+- `false` — the ingredient is excluded regardless of Region, Search Area, or check result.
 
-This is not a graduated score. It does not describe how natural, easy to find, or likely an ingredient is.
+This field does not measure naturalness, refinement, visibility, or abundance. A manufactured object can be forageable when it is a plausible finding in the selected environment.
 
-Non-Rare exclusions currently include environmental media or prepared servings that are not sensible discrete foraging finds:
+All Rare ingredients are `false`. Non-Rare ingredients are also excluded when they are not sensible discrete results of a foraging activity, such as a prepared serving or an environmental medium.
 
-- Sea Water
-- Corrupted Seawater
-- Opu Opu Spring Water
-- Hakumon's Ramen Broth
-- Happy Joy Cake
-- Spirit Tea
+Squid Ink and Poison are `true`. They are treated as recognized brewing-ingredient categories that can plausibly be found as usable products in suitable environments. A forager identifies that the substance fulfills the potion ingredient requirement; the name does not necessarily imply an assassin's weapon or freshly harvested animal secretion.
 
 ### `refinement`
 
-A 1–5 scale measuring how many phases of sapient intervention are required to produce the ingredient in the form in which it is found.
+Refinement measures how many phases of sapient intervention separate raw natural material from the ingredient in its listed form. It does not measure rarity, monetary value, or difficulty of acquisition.
 
-| Score | Meaning |
-|---:|---|
-| 1 | Wild or naturally occurring; no sapient production required. |
-| 2 | One simple intervention, such as cutting, drying, bundling, or basic extraction. |
-| 3 | Several straightforward preparation stages, such as gathering, drying, grinding, or combining. |
-| 4 | Substantial skilled processing with multiple deliberate stages. |
-| 5 | Completely manufactured through a complex, multiphase process, often involving several methods or materials. |
-
-Refinement is based on the actual ingredient description, not assumptions drawn from its name. The ingredient is scored in its encountered form: Bashu Powder is processed even though the bashu tree is wild; Oporion Glass is unrefined even though its name sounds manufactured.
-
-### `regions`
-
-Regions where the ingredient is native. Degree of Success can broaden results from native to adjacent and then distant Regions according to the configured thresholds.
-
-### `associated_search_areas`
-
-Ecological or cultural environments where the ingredient would reasonably occur or accumulate. These describe the finished ingredient, not merely the habitat of its raw source material.
+| Score | Category | Definition |
+|---:|---|---|
+| 1 | Wild | Exists in nature with essentially no meaningful sapient intervention and is gathered as nature produces it. |
+| 2 | Cultivated | Remains essentially natural, but its availability results from cultivation, husbandry, stewardship, or environmental management. Simple field collection can also fall here when it only isolates an immediately accessible part, such as peeling a fruit for its rind. |
+| 3 | Prepared | Requires direct extraction, separation, preservation, drying, grinding, or another simple transformation beyond ordinary collection. |
+| 4 | Crafted | Requires multiple deliberate preparation stages or substantial skilled refinement. |
+| 5 | Manufactured | Results from complex manufacture involving multiple operations, specialized techniques, multiple materials, precision production, or comparable magical complexity. |
 
 Examples:
 
-- Blue Back Salmon: River, Coral Reef, Open Water
-- Bashu Powder: Settlement, Village, Town, Market
-- Flash Paper: Town, Market, City Streets
-- Oporion Glass: Cave, Cliffside, Geothermal
-- Vinyl Record: Ruins, Subway, Town, Market
+- Apper Carrot — 1: grows wild and is harvested directly.
+- Chicken Egg — 2: a natural product made readily available through husbandry.
+- Scalefruit Rind — 2: peeled from the fruit during collection.
+- Bashu Powder — 3: seed pods are prepared and ground into powder.
+- Hakuma Sapwood — 3: the sapwood is deliberately separated from other layers of the tree.
+- Squid Ink — 3: the ink is extracted and placed in a usable container.
+- Poison — 4: toxic material is prepared or concentrated and packaged as a usable brewing ingredient.
+- Spark Plug — 5: a precision component produced from multiple processed materials.
 
-Related Search Areas contribute only when the related area exists in the selected Region.
+### `regions`
+
+The Regions where the ingredient is native or ordinarily available. Degree of Success can broaden eligible results from the selected Region to nearby and then distant Regions according to `foraging_config.json`.
+
+### `associated_search_areas`
+
+The ecological or cultural environments where the listed ingredient would reasonably occur, be used, traded, stored, lost, or accumulate.
+
+These associations describe the ingredient itself, not only the habitat of its source material. Bashu Powder therefore belongs in settlements and markets rather than only near bashu trees. A bottle cap in a town is as environmentally ordinary as seaweed on a coast.
+
+Squid Ink is associated with marine environments and inhabited places in the Shallows where a prepared container could be used or traded. Poison includes both naturally sourced toxic materials and usable prepared substances found in settlements, villages, towns, and ruins.
 
 ## Search Area civilization
 
-Search Areas retain a 1–5 `civilization` value measuring how strongly sapient activity defines the environment.
+Each Search Area has a `civilization` value measuring how strongly sapient activity defines the environment. The value is compared with ingredient refinement using a smooth compatibility taper.
 
 | Search Area | Civilization |
 |---|---:|
@@ -94,31 +99,33 @@ Search Areas retain a 1–5 `civilization` value measuring how strongly sapient 
 | Market | 4.7 |
 | City Streets | 5.0 |
 
-The engine compares ingredient refinement with Search Area civilization using a smooth compatibility taper. Highly refined findings become more plausible as the environment becomes more strongly shaped by sapient activity.
+A higher civilization value makes highly refined ingredients more plausible. It does not make natural ingredients impossible: plants, animals, and minerals can still occur in inhabited environments when their Search Area associations support them.
 
-## Canonical Search Areas
+## Search Areas
 
 Natural environments:
 
 Cave, Cliffside, Coast, Coral Reef, Forest, Geothermal, Grassland, Lake, Open Water, River, Underwater, Wetland.
 
-Civilized or cultural environments:
+Cultural environments:
 
 City Streets, Market, Mine, Ruins, Settlement, Shrine, Subway, Town, Village.
 
-`Mountain`, `Highland Meadow`, `Swamp`, and `Waterfront` are retired. Mountain terrain is represented by specific environments such as Cliffside, Cave, Grassland, Geothermal, and Mine. Swamps are included under Wetland. Yatamon uses River rather than Waterfront.
+Mountain terrain is represented by specific environments such as Cliffside, Cave, Grassland, Geothermal, and Mine. Marshes and swamps are represented by Wetland. Yatamon's inhabited waterfront is represented by River.
+
+Related Search Areas contribute only when the related area exists in the selected Region.
 
 ## Selection sequence
 
 1. Exclude ingredients with `forageable: false`.
-2. Apply the DC tier's rarity and geographic eligibility.
-3. Determine Region relationship: native, adjacent/nearby, or distant.
-4. Evaluate direct and related Search Area compatibility, limited to areas present in the selected Region.
+2. Apply the check tier's rarity and geographic eligibility.
+3. Determine whether each ingredient is native, nearby, or distant.
+4. Evaluate direct and related Search Area compatibility, limited to Search Areas present in the selected Region.
 5. Compare ingredient refinement with Search Area civilization.
-6. Apply rarity, Region, habitat, refinement, DC, and Degree-of-Success weights.
+6. Apply rarity, geography, Search Area, refinement, check, and Degree-of-Success weights.
 7. Select the number of findings determined by Degree of Success.
 
-Rarity remains the primary source of scarcity. Degree of Success mainly increases haul size and geographic breadth rather than promoting Rare ingredients into the ordinary foraging pool.
+Rarity remains the primary source of scarcity. Degree of Success mainly increases the size of the haul and the geographic breadth of eligible ingredients.
 
 ## Region Search Areas
 

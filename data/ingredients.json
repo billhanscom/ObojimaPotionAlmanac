@@ -251,7 +251,7 @@
       "Forest",
       "Settlement"
     ],
-    "refinement": 2
+    "refinement": 3
   },
   {
     "name": "Camp Mite",
@@ -579,7 +579,7 @@
       "Village",
       "Market"
     ],
-    "refinement": 2
+    "refinement": 3
   },
   {
     "name": "Flash Paper",
@@ -715,7 +715,7 @@
       "Forest",
       "Settlement"
     ],
-    "refinement": 2
+    "refinement": 3
   },
   {
     "name": "Hill Dragon Egg",
@@ -922,7 +922,7 @@
     "associated_search_areas": [
       "Settlement"
     ],
-    "refinement": 3
+    "refinement": 1
   },
   {
     "name": "Lovers Vine",
@@ -1261,9 +1261,12 @@
       "Cave",
       "Forest",
       "Wetland",
-      "Settlement"
+      "Settlement",
+      "Village",
+      "Town",
+      "Ruins"
     ],
-    "refinement": 3
+    "refinement": 4
   },
   {
     "name": "Pungent Sea Foam",
@@ -1576,7 +1579,7 @@
       "Grassland",
       "Settlement"
     ],
-    "refinement": 2
+    "refinement": 3
   },
   {
     "name": "Snap Vine Sap",
@@ -1677,9 +1680,11 @@
       "Coast",
       "Coral Reef",
       "Open Water",
-      "Underwater"
+      "Underwater",
+      "Settlement",
+      "Village"
     ],
-    "refinement": 2
+    "refinement": 3
   },
   {
     "name": "Tangle Weed",
@@ -2143,7 +2148,7 @@
     "associated_search_areas": [
       "Wetland"
     ],
-    "refinement": 2
+    "refinement": 3
   },
   {
     "name": "Essence of Glumbug",
@@ -2169,7 +2174,7 @@
       "Cave",
       "Cliffside"
     ],
-    "refinement": 2
+    "refinement": 3
   },
   {
     "name": "Essence of Ill Omen",
@@ -2191,7 +2196,7 @@
     "associated_search_areas": [
       "Settlement"
     ],
-    "refinement": 2
+    "refinement": 3
   },
   {
     "name": "Feather Rock",
@@ -2240,7 +2245,7 @@
     "associated_search_areas": [
       "Forest"
     ],
-    "refinement": 2
+    "refinement": 3
   },
   {
     "name": "Forge Slag",
@@ -2295,7 +2300,7 @@
       "Village",
       "Cliffside"
     ],
-    "refinement": 2
+    "refinement": 3
   },
   {
     "name": "Glow Worms of the Vale",
