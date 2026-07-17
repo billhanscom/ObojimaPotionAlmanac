@@ -71,10 +71,12 @@ function saveForagingSearchParams() {
         searchArea: document.getElementById("foraging-search-area")?.value || "",
         dc: document.getElementById("foraging-dc")?.value || "",
         roll: document.getElementById("foraging-roll")?.value || "",
-        prioritizeNew: Boolean(document.getElementById("foraging-prioritize-new")?.checked)
+        prioritizeNew: Boolean(document.getElementById("foraging-prioritize-new")?.checked),
+        compareRandom: Boolean(document.getElementById("foraging-compare-random")?.checked)
     };
     sessionStorage.setItem(OBOJIMA_FORAGING_PARAMS_KEY, JSON.stringify(params));
 }
+
 
 function restoreForagingSearchParams() {
     if (wasPageReloaded()) {
@@ -95,6 +97,7 @@ function restoreForagingSearchParams() {
     const dcInput = document.getElementById("foraging-dc");
     const rollInput = document.getElementById("foraging-roll");
     const prioritizeInput = document.getElementById("foraging-prioritize-new");
+    const compareInput = document.getElementById("foraging-compare-random");
 
     if (regionSelect && params.region) {
         regionSelect.value = params.region;
@@ -105,7 +108,9 @@ function restoreForagingSearchParams() {
     if (dcInput && params.dc !== undefined) dcInput.value = params.dc;
     if (rollInput && params.roll !== undefined) rollInput.value = params.roll;
     if (prioritizeInput) prioritizeInput.checked = Boolean(params.prioritizeNew);
+    if (compareInput) compareInput.checked = Boolean(params.compareRandom);
 }
+
 
 function bindForagingParamPersistence() {
     [
@@ -113,7 +118,8 @@ function bindForagingParamPersistence() {
         "foraging-search-area",
         "foraging-dc",
         "foraging-roll",
-        "foraging-prioritize-new"
+        "foraging-prioritize-new",
+        "foraging-compare-random"
     ].forEach(id => {
         const el = document.getElementById(id);
         if (!el) return;
@@ -121,6 +127,7 @@ function bindForagingParamPersistence() {
         el.addEventListener("input", saveForagingSearchParams);
     });
 }
+
 
 function restoreForagingResults() {
     if (wasPageReloaded()) {
@@ -738,6 +745,7 @@ function clearForagingSearch() {
     const dcInput = document.getElementById("foraging-dc");
     const rollInput = document.getElementById("foraging-roll");
     const prioritizeInput = document.getElementById("foraging-prioritize-new");
+    const compareInput = document.getElementById("foraging-compare-random");
     const resultsDiv = document.getElementById("foraging-results");
 
     if (regionSelect) {
@@ -750,6 +758,7 @@ function clearForagingSearch() {
     if (dcInput) dcInput.value = "10";
     if (rollInput) rollInput.value = "";
     if (prioritizeInput) prioritizeInput.checked = true;
+    if (compareInput) compareInput.checked = false;
     if (resultsDiv) resultsDiv.innerHTML = "";
 
     window.latestForagingResults = [];
@@ -758,12 +767,70 @@ function clearForagingSearch() {
     saveForagingSearchParams();
 }
 
+
+function shuffleCopy(items) {
+    const copy = items.slice();
+    for (let i = copy.length - 1; i > 0; i--) {
+        const j = Math.floor(Math.random() * (i + 1));
+        [copy[i], copy[j]] = [copy[j], copy[i]];
+    }
+    return copy;
+}
+
+function getBookStyleRandomCandidates(ingredients, selectedRegion, dc) {
+    const tier = getDcTier(dc);
+    const excludedRarity = new Set(foragingConfig.excludeRarity || []);
+
+    return ingredients.filter(ingredient => {
+        if (ingredient.forageable === false) return false;
+
+        const rarity = Obojima.normalizeRarity(ingredient.rarity);
+        if (excludedRarity.has(rarity)) return false;
+
+        const regionRelationship = getRegionRelationship(ingredient, selectedRegion);
+        const native = selectedRegion === "Yatamon"
+            ? regionRelationship.key === "local"
+            : regionRelationship.key === "native";
+        const nonNative = !native;
+
+        if (tier === "10-15") {
+            return rarity === "common" && native;
+        }
+
+        if (tier === "16-20") {
+            return (rarity === "uncommon" && native) || (rarity === "common" && nonNative);
+        }
+
+        return rarity === "uncommon" && nonNative;
+    });
+}
+
+function selectBookStyleRandomResults(ingredients, selectedRegion, dc, targetFindCount) {
+    const candidates = getBookStyleRandomCandidates(ingredients, selectedRegion, dc);
+    return shuffleCopy(candidates).slice(0, targetFindCount).map(ingredient => ({
+        name: ingredient.name,
+        ingredient,
+        rarity: Obojima.normalizeRarity(ingredient.rarity),
+        regionRelationship: getRegionRelationship(ingredient, selectedRegion),
+        habitatRelationship: { key: "none", label: "Search Area not used for random comparison" },
+        civilizationRelationship: { label: "Civilization not used for random comparison" }
+    }));
+}
+
+function renderResultList(items) {
+    return items.map(item => {
+        const rarityClass = item.rarity.toLowerCase();
+        return `<li class="ingredient ${rarityClass}">${Obojima.formatIngredientName(item.ingredient)}</li>`;
+    }).join("");
+}
+
 async function generateForagingFinds() {
     const selectedRegion = document.getElementById("foraging-region").value;
     const searchArea = document.getElementById("foraging-search-area").value;
     const dc = Number(document.getElementById("foraging-dc").value);
     const rollTotal = Number(document.getElementById("foraging-roll").value);
     const prioritizeNew = document.getElementById("foraging-prioritize-new").checked;
+    const compareRandom = document.getElementById("foraging-compare-random")?.checked || false;
     const resultsDiv = document.getElementById("foraging-results");
 
     if (!dc || !rollTotal) {
@@ -799,10 +866,11 @@ async function generateForagingFinds() {
         return;
     }
 
-    const list = selected.map(item => {
-        const rarityClass = item.rarity.toLowerCase();
-        return `<li class="ingredient ${rarityClass}">${Obojima.formatIngredientName(item.ingredient)}</li>`;
-    }).join("");
+    const list = renderResultList(selected);
+    const randomSelected = compareRandom
+        ? selectBookStyleRandomResults(ingredients, selectedRegion, dc, selected.length)
+        : [];
+    const randomList = compareRandom ? renderResultList(randomSelected) : "";
 
     const debug = renderPlainDebug({
         selectedRegion,
@@ -813,9 +881,22 @@ async function generateForagingFinds() {
         selected
     });
 
+    const resultsMarkup = compareRandom
+        ? `<div class="foraging-comparison">
+            <div class="foraging-comparison-column">
+                <h4>Weighted Results</h4>
+                <ul class="completion-recipe-list foraging-result-list">${list}</ul>
+            </div>
+            <div class="foraging-comparison-column">
+                <h4>Random Results</h4>
+                <ul class="completion-recipe-list foraging-result-list">${randomList}</ul>
+            </div>
+        </div>`
+        : `<ul class="completion-recipe-list foraging-result-list">${list}</ul>`;
+
     resultsDiv.innerHTML = `<div class="completion-card foraging-result-card">
         <h3>Results</h3>
-        <ul class="completion-recipe-list foraging-result-list">${list}</ul>
+        ${resultsMarkup}
         <div class="button-group foraging-result-actions">
             <button type="button" class="add-to-inventory-button" onclick="addForagingResultsToInventory()">Add to Inventory</button>
             <button type="button" onclick="generateForagingFinds()">Generate Again</button>

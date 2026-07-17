@@ -3782,3 +3782,31 @@ body.high-contrast .container {
     transform: none !important;
     box-shadow: none !important;
 }
+
+
+/* Foraging Compare Random */
+.foraging-comparison {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 24px;
+    align-items: start;
+    margin: 18px auto 22px;
+}
+
+.foraging-comparison-column h4 {
+    margin: 0 0 12px;
+    color: #577da1;
+    font-size: 16px;
+    font-weight: 700;
+    text-align: center;
+}
+
+.foraging-comparison-column .foraging-result-list {
+    margin-top: 0 !important;
+}
+
+@media (max-width: 760px) {
+    .foraging-comparison {
+        grid-template-columns: 1fr;
+    }
+}
