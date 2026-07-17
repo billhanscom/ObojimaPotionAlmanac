@@ -1,547 +1,126 @@
-# Foraging Aid Model
+# Obojima Foraging Model
 
-## What the Foraging Aid Does
+This document describes the finalized data model and selection logic used by the Foraging Aid.
 
-The Foraging Aid helps a DM resolve a foraging attempt in Obojima.
+## Core principle
 
-The user-facing site asks for:
+The player chooses **where** to search. The model determines which ingredients could reasonably turn up in that environment. It does not attempt to model the player's intention or a separate degree of “forageability.”
 
-- Region
-- Search Area
-- DC
-- Roll Total
+A bottle cap in a town is environmentally equivalent to seaweed on a coast: each is an ordinary finding in the appropriate setting. The interaction between an ingredient's **refinement** and a Search Area's **civilization** value handles that distinction.
 
-The engine uses those choices to generate potion ingredients that feel believable for that search.
+## Ingredient fields
 
-The Foraging Aid does not try to model every plant, object, creature, or scrap in the world. It models the useful potion ingredients that a character successfully recognizes and collects from a much larger ecological and social environment.
+### `rarity`
 
-## Core Idea
+The published rarity tier: `common`, `uncommon`, or `rare`.
 
-The engine follows three story inputs:
+Rare ingredients are not available through ordinary foraging. They require a multipart quest or similarly exceptional acquisition, so every Rare ingredient has `"forageable": false`.
 
-1. The player chooses where to search.
-2. The DM sets the difficulty of the search.
-3. The character's roll determines how successful the search was.
+### `forageable`
 
-The engine then produces a foraging result that reflects those inputs.
+A boolean rules filter.
 
-# Data Construction
+- `true`: the ingredient may appear in ordinary Foraging Aid results.
+- `false`: the ingredient is excluded from ordinary foraging, regardless of Region or Search Area.
 
-## JSON File Responsibilities
+This is not a graduated score. It does not describe how natural, easy to find, or likely an ingredient is.
 
-- `ingredients.json` describes ingredients.
-- `regions.json` describes Regions, adjacency, available Search Areas, and Yatamon trade groups.
-- `search_areas.json` describes each Search Area's civilization value and related Search Areas.
-- `foraging_config.json` contains engine tuning values only.
+Non-Rare exclusions currently include environmental media or prepared servings that are not sensible discrete foraging finds:
 
+- Sea Water
+- Corrupted Seawater
+- Opu Opu Spring Water
+- Hakumon's Ramen Broth
+- Happy Joy Cake
+- Spirit Tea
 
-The JSON files describe the world. The engine interprets that world.
+### `refinement`
 
-The data should avoid weights, formulas, and math whenever possible. Those belong in the engine configuration. Ingredient, Region, and Search Area data should describe what is true in the setting.
+A 1–5 scale measuring how many phases of sapient intervention are required to produce the ingredient in the form in which it is found.
 
-## Ingredient Entry
+| Score | Meaning |
+|---:|---|
+| 1 | Wild or naturally occurring; no sapient production required. |
+| 2 | One simple intervention, such as cutting, drying, bundling, or basic extraction. |
+| 3 | Several straightforward preparation stages, such as gathering, drying, grinding, or combining. |
+| 4 | Substantial skilled processing with multiple deliberate stages. |
+| 5 | Completely manufactured through a complex, multiphase process, often involving several methods or materials. |
 
-An ingredient entry describes the ingredient itself.
+Refinement is based on the actual ingredient description, not assumptions drawn from its name. The ingredient is scored in its encountered form: Bashu Powder is processed even though the bashu tree is wild; Oporion Glass is unrefined even though its name sounds manufactured.
 
-```json
-{
-  "name": "Raka Paste",
-  "values": {
-    "2014": {
-      "combat": 1,
-      "utility": 7,
-      "whimsy": 3
-    },
-    "2024": {
-      "combat": 1,
-      "utility": 7,
-      "whimsy": 3
-    }
-  },
-  "rarity": "Common",
-  "forageable": true,
-  "regions": [
-    "Gift of Shuritashi"
-  ],
-  "associated_search_areas": [
-    "Settlement",
-    "Village",
-    "Town"
-  ],
-  "refinement": 5
-}
-```
+### `regions`
 
-### Ingredient fields
+Regions where the ingredient is native. Degree of Success can broaden results from native to adjacent and then distant Regions according to the configured thresholds.
 
-**name**  
-The ingredient name.
+### `associated_search_areas`
 
-**values**  
-The Combat, Utility, and Whimsy values for each supported ruleset.
-
-Example:
-
-```json
-"values": {
-  "2014": {
-    "combat": 9,
-    "utility": 5,
-    "whimsy": 4
-  },
-  "2024": {
-    "combat": 9,
-    "utility": 5,
-    "whimsy": 4
-  }
-}
-```
-
-**rarity**  
-The rarity from the game data. The Foraging Aid currently uses Common and Uncommon ingredients. Rare ingredients are excluded unless the model is changed later.
-
-**forageable**  
-Whether this ingredient can appear as a free foraging result.
-
-Use `"forageable": true` for ingredients that can reasonably be found, gathered, salvaged, or collected during a foraging attempt.
-
-Use `"forageable": false` for ingredients that should not appear in Foraging Aid results.
-
-Example:
-
-```json
-{
-  "name": "Sea Water",
-  "rarity": "Common",
-  "forageable": false,
-  "regions": [
-    "The Shallows"
-  ],
-  "associated_search_areas": [
-    "Coast",
-    "Open Water"
-  ],
-  "refinement": 1
-}
-```
-
-**regions**  
-The Regions where the ingredient is naturally or normally associated.
-
-The engine uses this to decide whether the ingredient is native, nearby, or far from the selected Region.
-
-**associated_search_areas**  
-The Search Areas most strongly associated with finding this ingredient.
-
-This does not mean the ingredient can only appear there. It means those are the places where the engine should treat it as a strong fit.
-
-**civilization**  
-A 1-5 scale describing how strongly the ingredient is associated with civilization, processing, trade, craft, or sapient activity.
-
-- 1 = almost entirely associated with the natural world
-- 2 = mostly natural, but often encountered around civilization
-- 3 = equally associated with nature and civilization
-- 4 = mostly associated with civilization
-- 5 = strongly associated with civilization, processing, or manufacture
+Ecological or cultural environments where the ingredient would reasonably occur or accumulate. These describe the finished ingredient, not merely the habitat of its raw source material.
 
 Examples:
 
-```json
-{
-  "name": "Forest Mint",
-  "rarity": "Common",
-  "forageable": true,
-  "regions": [
-    "Gift of Shuritashi",
-    "Mount Arbora"
-  ],
-  "associated_search_areas": [
-    "Forest"
-  ],
-  "refinement": 1
-}
-```
-
-```json
-{
-  "name": "Spider Silk",
-  "rarity": "Common",
-  "forageable": true,
-  "regions": [
-    "Gift of Shuritashi",
-    "Coastal Highlands",
-    "Mount Arbora"
-  ],
-  "associated_search_areas": [
-    "Forest",
-    "Cave",
-    "Ruins",
-    "Settlement"
-  ],
-  "civilization": 2
-}
-```
-
-## Region Entry
-
-A Region entry describes the geography and available Search Areas for a Region.
-
-```json
-{
-  "name": "Gift of Shuritashi",
-  "adjacent_regions": [
-    "Coastal Highlands",
-    "Gale Fields",
-    "Land of Hot Water",
-    "Mount Arbora",
-    "The Shallows"
-  ],
-  "search_areas": [
-    "Cave",
-    "Coast",
-    "Forest",
-    "Grassland",
-    "Lake",
-    "River",
-    "Ruins",
-    "Settlement",
-    "Town",
-    "Village",
-    "Wetland"
-  ]
-}
-```
-
-### Region fields
-
-**name**  
-The Region name.
-
-**adjacent_regions**  
-Regions considered nearby for foraging purposes.
-
-**search_areas**  
-The Search Areas available in that Region.
-
-These should be broad environments that meaningfully change the foraging results. They are not meant to list every named location in the book.
-
-Example for The Shallows:
-
-```json
-{
-  "name": "The Shallows",
-  "adjacent_regions": [
-    "Gift of Shuritashi",
-    "Coastal Highlands",
-    "Land of Hot Water",
-    "Brackwater Wetlands"
-  ],
-  "search_areas": [
-    "Cave",
-    "Coast",
-    "Coral Reef",
-    "Open Water",
-    "Ruins",
-    "Settlement",
-    "Village"
-  ]
-}
-```
-
-Example for Yatamon:
-
-```json
-{
-  "name": "Yatamon",
-  "trade_regions": {
-    "local": [
-      "Gift of Shuritashi"
-    ],
-    "nearby": [
-      "Brackwater Wetlands",
-      "Coastal Highlands",
-      "Gale Fields",
-      "The Shallows"
-    ],
-    "distant": [
-      "Land of Hot Water",
-      "Mount Arbora"
-    ]
-  },
-  "search_areas": [
-    "City Streets",
-    "Market",
-    "Ruins",
-    "Shrine",
-    "Subway",
-    "Waterfront"
-  ]
-}
-```
-
-Yatamon uses trade logic rather than ordinary regional ecology.
-
-## Search Area Entry
-
-A Search Area entry describes the type of place being searched.
-
-```json
-{
-  "name": "River",
-  "civilization": 2,
-  "related_search_areas": [
-    "Wetland",
-    "Lake",
-    "Forest",
-    "Settlement"
-  ]
-}
-```
-
-### Search Area fields
-
-**name**  
-The Search Area name.
-
-**civilization**  
-A 1-5 scale describing the average level of civil activity in that kind of place.
-
-This includes travel, gathering, fishing, trade, extraction, ritual use, crafting, and other sapient activity.
-
-- 1 = very little civil activity
-- 2 = some civil activity
-- 3 = moderate civil activity
-- 4 = high civil activity
-- 5 = very high civil activity
-
-**related_search_areas**  
-Search Areas close enough in meaning that an ingredient associated with one might still plausibly appear in the other.
-
-Example: River is related to Wetland and Lake. Forest is related to Grassland and River.
-
-# Engine Rules
-
-## Step 1: Read the user selections
-
-The user provides Region, Search Area, DC, and Roll Total.
-
-The engine calculates:
-
-```text
-Degree of Success = Roll Total - DC
-```
-
-If the result is below 0, the search fails and no ingredients are generated.
-
-## Step 2: Remove anything that cannot be foraged
-
-The engine skips any ingredient where `"forageable": false`.
-
-The engine also skips Rare ingredients for now.
-
-## Step 3: Determine regional fit
-
-For ordinary Regions, each ingredient is labeled as:
-
-- Native: found in the selected Region
-- Nearby: found in an adjacent Region
-- Far: found elsewhere
-
-For Yatamon, the engine uses trade logic instead:
-
-- Local trade source
-- Nearby trade source
-- Distant trade source
-
-## Step 4: Determine Search Area fit
-
-The engine checks the ingredient's `associated_search_areas`.
-
-It labels the fit as:
-
-- Direct fit: associated with the selected Search Area
-- Related fit: associated with a related Search Area
-- Poor fit: no direct or related association
-
-Search Area fit is the strongest influence on the result.
-
-## Step 5: Determine civilization fit
-
-The engine compares:
-
-- the ingredient's `civilization` value
-- the Search Area's `civilization` value
-
-Both use a 1-5 scale. The closer the values are, the stronger the fit.
-
-Example:
-
-```text
-Forest Mint civilization: 1
-Forest civilization: 1
-Result: strong fit
-```
-
-```text
-Raka Paste civilization: 5
-Forest civilization: 1
-Result: poor fit
-```
-
-```text
-Raka Paste civilization: 5
-Town civilization: 4
-Result: strong fit
-```
-
-## Step 6: Apply rarity
-
-Common ingredients are more likely than Uncommon ingredients.
-
-Baseline:
-
-```text
-Common : Uncommon = 5 : 1
-```
-
-Rare ingredients are currently excluded.
-
-## Step 7: Apply DC
-
-DC affects what kinds of ingredients are more likely within the selected environment.
-
-- DC 10-15 favors Common ingredients native to the selected area.
-- DC 16-20 increases the chance of native Uncommon ingredients and non-native Common ingredients.
-- DC 21-25 increases the chance of non-native Uncommon ingredients.
-
-DC does not override the Search Area. A high-DC River search should still feel like a River search.
-
-## Step 8: Apply Degree of Success
-
-Degree of Success affects:
-
-- how many ingredients are found
-- how likely the character is to identify less commonly encountered ingredients
-
-Current haul size guidance:
-
-- DoS 0-4: 1-2 ingredients
-- DoS 5-9: 2-3 ingredients
-- DoS 10+: 3-5 ingredients
-
-## Step 9: Build the weighted pool
-
-Each ingredient receives a score based on:
-
-```text
-regional fit
-x search-area fit
-x civilization fit
-x rarity
-x DC effect
-x DoS effect
-```
-
-A higher score means the ingredient is more likely to appear.
-
-Think of this like adding slips of paper to a bowl. Ingredients with higher scores get more slips. Ingredients with lower scores get fewer slips.
-
-## Step 10: Draw the haul
-
-The engine draws ingredients from the weighted pool.
-
-The goal is:
-
-- mostly expected finds
-- some interesting finds
-- occasional believable surprises
-
-The Search Area should still strongly shape the result.
-
-## Step 11: Explain the result in Debug Mode
-
-If Debug Mode is enabled, the engine explains the result in plain language.
-
-The debug output should be easy to copy and paste.
-
-It reports:
-
-- Region
-- Search Area
-- DC
-- Roll Total
-- Degree of Success
-- rarity mix
-- how DC affected the result
-- how Degree of Success affected the result
-- how Search Area affected the result
-- why each ingredient appeared
-
-
-## Data cleanup note
-
-Ingredient files now include foraging-specific descriptive fields:
-
-```json
-"forageable": true,
-"associated_search_areas": ["Forest", "River"],
-"refinement": 1
-```
-
-The engine reads these fields first. The older `ingredients.json` file remains as a fallback and reference file, but the preferred editable criteria now live on each ingredient entry.
-
-The `civilization` value accepts integers or decimals. The engine treats values below 1 as 1 and values above 5 as 5.
-
-
-## Refinement
-
-Ingredients use `refinement` to describe how much sapient preparation, processing, or manufacture has occurred before the ingredient is found. Search Areas keep `civilization` to describe how much sapient activity characterizes that place. The engine compares these values with a smooth taper rather than a hard cutoff.
-
-## Region-Limited Related Search Areas
-
-Related Search Areas are only considered if they are available in the selected Region. For example, if Settlement is related to Grassland globally, but Grassland is not a Search Area in Mount Arbora, a Mount Arbora / Settlement search will not treat Grassland-associated ingredients as related matches.
-
-## Search Area Civilization Scale
-
-Civilization measures how strongly sapient activity shapes a Search Area. Ingredient refinement remains a separate property.
-
-| Search Area | Civilization | Rationale |
-|---|---:|---|
-| Cliffside | 1.0 | Remote, exposed terrain with essentially no persistent sapient influence. |
-| Geothermal | 1.1 | Primarily a natural geothermal environment; occasional use by people does not define it. |
-| Underwater | 1.2 | Wild aquatic environment with very limited sapient presence. |
-| Coral Reef | 1.3 | Natural marine ecosystem with only occasional fishing or diving activity. |
-| Cave | 1.5 | Mostly natural, though sometimes explored, sheltered in, or inhabited temporarily. |
-| Open Water | 1.7 | Shipping and fishing occur, but the environment remains overwhelmingly natural. |
-| Wetland | 1.9 | Harvested and traversed, but still largely governed by natural ecological processes. |
-| Forest | 2.1 | Logging, hunting, trails, and foraging occur, but nature still dominates. |
-| Grassland | 2.3 | Grazing, travel, and occasional cultivation influence the landscape without replacing it. |
-| Coast | 2.5 | Fishing, beaches, and small ports create regular sapient presence while natural forces remain equally important. |
-| Settlement | 2.7 | Inns, camps, bathhouses, refuges, and small habitations establish a recognizable sapient footprint while remaining embedded within nature. |
-| Lake | 2.8 | Frequently used for fishing, transport, and nearby habitation, though still primarily a natural environment. |
-| River | 3.0 | Major travel corridor with bridges, ferries, mills, and fishing that noticeably increases sapient activity. |
-| Ruins | 3.1 | Former civilization reclaimed by nature; evidence of both is equally present. |
-| Shrine | 3.2 | Maintained sacred space intentionally integrated into the surrounding landscape. |
-| Village | 3.5 | Permanent community with farming, roads, and managed land, yet still closely intertwined with nature. |
-| Mine | 3.8 | Landscape fundamentally altered by extraction and industry, though occupied by relatively few people. |
-| Subway | 3.8 | Built transit infrastructure, often abandoned or partially reclaimed but still strongly shaped by civilization. |
-| Town | 4.3 | Significant infrastructure and commerce; nature is largely managed or confined to the margins. |
-| Market | 4.7 | Dense concentration of trade, processed goods, and discarded materials; commerce defines the environment. |
-| City Streets | 5.0 | Fully urban environment where civilization overwhelmingly dominates. |
-
-## Canonical Search Area Decisions
-
-- `Mountain` has been retired because it repeated regional geography rather than describing a specific searchable environment.
-- Mountain-like terrain is represented by `Cliffside`, `Grassland`, `Cave`, `Geothermal`, and `Mine` where appropriate.
-- `Grassland` includes mountain meadows and other open grassy environments.
-- `Lake` remains available because it is a distinct and player-expected place to forage.
-- `Wetland` includes swamps, marshes, bogs, fens, and other saturated freshwater environments.
-- `Market` is limited to Yatamon because that Region is modeled at a finer urban scale.
-- Yatamon uses `River`, not `Waterfront`.
-- Related Search Areas only count when they are also available in the selected Region.
-
-
-## Region Search Area Pairings
+- Blue Back Salmon: River, Coral Reef, Open Water
+- Bashu Powder: Settlement, Village, Town, Market
+- Flash Paper: Town, Market, City Streets
+- Oporion Glass: Cave, Cliffside, Geothermal
+- Vinyl Record: Ruins, Subway, Town, Market
+
+Related Search Areas contribute only when the related area exists in the selected Region.
+
+## Search Area civilization
+
+Search Areas retain a 1–5 `civilization` value measuring how strongly sapient activity defines the environment.
+
+| Search Area | Civilization |
+|---|---:|
+| Cliffside | 1.0 |
+| Geothermal | 1.1 |
+| Underwater | 1.2 |
+| Coral Reef | 1.3 |
+| Cave | 1.5 |
+| Open Water | 1.7 |
+| Wetland | 1.9 |
+| Forest | 2.1 |
+| Grassland | 2.3 |
+| Coast | 2.5 |
+| Settlement | 2.7 |
+| Lake | 2.8 |
+| River | 3.0 |
+| Ruins | 3.1 |
+| Shrine | 3.2 |
+| Village | 3.5 |
+| Mine | 3.8 |
+| Subway | 3.8 |
+| Town | 4.3 |
+| Market | 4.7 |
+| City Streets | 5.0 |
+
+The engine compares ingredient refinement with Search Area civilization using a smooth compatibility taper. Highly refined findings become more plausible as the environment becomes more strongly shaped by sapient activity.
+
+## Canonical Search Areas
+
+Natural environments:
+
+Cave, Cliffside, Coast, Coral Reef, Forest, Geothermal, Grassland, Lake, Open Water, River, Underwater, Wetland.
+
+Civilized or cultural environments:
+
+City Streets, Market, Mine, Ruins, Settlement, Shrine, Subway, Town, Village.
+
+`Mountain`, `Highland Meadow`, `Swamp`, and `Waterfront` are retired. Mountain terrain is represented by specific environments such as Cliffside, Cave, Grassland, Geothermal, and Mine. Swamps are included under Wetland. Yatamon uses River rather than Waterfront.
+
+## Selection sequence
+
+1. Exclude ingredients with `forageable: false`.
+2. Apply the DC tier's rarity and geographic eligibility.
+3. Determine Region relationship: native, adjacent/nearby, or distant.
+4. Evaluate direct and related Search Area compatibility, limited to areas present in the selected Region.
+5. Compare ingredient refinement with Search Area civilization.
+6. Apply rarity, Region, habitat, refinement, DC, and Degree-of-Success weights.
+7. Select the number of findings determined by Degree of Success.
+
+Rarity remains the primary source of scarcity. Degree of Success mainly increases haul size and geographic breadth rather than promoting Rare ingredients into the ordinary foraging pool.
+
+## Region Search Areas
 
 - **Brackwater Wetlands:** Cave, Coast, Forest, Lake, River, Ruins, Settlement, Village, Wetland
 - **Coastal Highlands:** Cave, Cliffside, Coast, Forest, Grassland, Lake, River, Ruins, Settlement, Town, Village, Wetland

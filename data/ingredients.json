@@ -47,9 +47,10 @@
     "forageable": true,
     "associated_search_areas": [
       "Grassland",
-      "Settlement"
+      "Settlement",
+      "Village"
     ],
-    "refinement": 2
+    "refinement": 1
   },
   {
     "name": "Bamboo",
@@ -99,12 +100,12 @@
     ],
     "forageable": true,
     "associated_search_areas": [
-      "Geothermal",
       "Settlement",
       "Town",
-      "Village"
+      "Village",
+      "Market"
     ],
-    "refinement": 4
+    "refinement": 3
   },
   {
     "name": "Blue Back Salmon",
@@ -132,9 +133,9 @@
     ],
     "forageable": true,
     "associated_search_areas": [
-      "Coast",
-      "Open Water",
-      "River"
+      "River",
+      "Coral Reef",
+      "Open Water"
     ],
     "refinement": 1
   },
@@ -161,7 +162,6 @@
     ],
     "forageable": true,
     "associated_search_areas": [
-      "Coast",
       "Cliffside",
       "Grassland"
     ],
@@ -194,7 +194,7 @@
       "Forest",
       "Settlement"
     ],
-    "refinement": 2
+    "refinement": 1
   },
   {
     "name": "Brush Reed",
@@ -279,7 +279,7 @@
       "Grassland",
       "Settlement"
     ],
-    "refinement": 2
+    "refinement": 1
   },
   {
     "name": "Canned Cat",
@@ -304,7 +304,7 @@
       "Ruins",
       "Settlement"
     ],
-    "refinement": 4
+    "refinement": 5
   },
   {
     "name": "Chicken Egg",
@@ -333,7 +333,7 @@
       "Grassland",
       "Settlement"
     ],
-    "refinement": 3
+    "refinement": 2
   },
   {
     "name": "Chisuay's Heavenly Tea",
@@ -458,13 +458,10 @@
     ],
     "forageable": true,
     "associated_search_areas": [
-      "Settlement",
-      "Town",
-      "Village",
       "Cliffside",
       "Mine"
     ],
-    "refinement": 5
+    "refinement": 1
   },
   {
     "name": "Dried Fruit",
@@ -519,7 +516,7 @@
     "associated_search_areas": [
       "Settlement"
     ],
-    "refinement": 2
+    "refinement": 1
   },
   {
     "name": "Fish Folk Tooth",
@@ -577,10 +574,12 @@
     "forageable": true,
     "associated_search_areas": [
       "Coast",
-      "Open Water",
-      "River"
+      "River",
+      "Settlement",
+      "Village",
+      "Market"
     ],
-    "refinement": 1
+    "refinement": 2
   },
   {
     "name": "Flash Paper",
@@ -604,9 +603,9 @@
     ],
     "forageable": true,
     "associated_search_areas": [
-      "Settlement",
       "Town",
-      "Village"
+      "Market",
+      "City Streets"
     ],
     "refinement": 5
   },
@@ -636,7 +635,7 @@
       "Village",
       "Wetland"
     ],
-    "refinement": 4
+    "refinement": 2
   },
   {
     "name": "Green Slime",
@@ -689,7 +688,7 @@
     "associated_search_areas": [
       "Settlement"
     ],
-    "refinement": 2
+    "refinement": 1
   },
   {
     "name": "Hakuma Sapwood",
@@ -740,7 +739,7 @@
     "associated_search_areas": [
       "Grassland"
     ],
-    "refinement": 3
+    "refinement": 1
   },
   {
     "name": "Howler Fur",
@@ -818,7 +817,7 @@
       "Grassland",
       "Settlement"
     ],
-    "refinement": 5
+    "refinement": 4
   },
   {
     "name": "Jumping Bonfire",
@@ -846,7 +845,7 @@
       "Grassland",
       "Settlement"
     ],
-    "refinement": 2
+    "refinement": 1
   },
   {
     "name": "Kloth Leech",
@@ -923,7 +922,7 @@
     "associated_search_areas": [
       "Settlement"
     ],
-    "refinement": 2
+    "refinement": 3
   },
   {
     "name": "Lovers Vine",
@@ -999,7 +998,7 @@
       "Grassland",
       "Settlement"
     ],
-    "refinement": 2
+    "refinement": 1
   },
   {
     "name": "Monkey's Coil",
@@ -1024,7 +1023,7 @@
       "Grassland",
       "Settlement"
     ],
-    "refinement": 4
+    "refinement": 2
   },
   {
     "name": "Mountain Ox Dung",
@@ -1048,7 +1047,7 @@
     "associated_search_areas": [
       "Grassland"
     ],
-    "refinement": 2
+    "refinement": 1
   },
   {
     "name": "Mouse Tree Nut",
@@ -1098,7 +1097,7 @@
     "associated_search_areas": [
       "Settlement"
     ],
-    "refinement": 3
+    "refinement": 5
   },
   {
     "name": "Nobblewort",
@@ -1125,7 +1124,7 @@
       "Forest",
       "Settlement"
     ],
-    "refinement": 2
+    "refinement": 1
   },
   {
     "name": "Oporion Glass",
@@ -1150,12 +1149,10 @@
     "forageable": true,
     "associated_search_areas": [
       "Cave",
-      "Open Water",
-      "Settlement",
-      "Town",
-      "Village"
+      "Cliffside",
+      "Geothermal"
     ],
-    "refinement": 5
+    "refinement": 1
   },
   {
     "name": "Origami Crane",
@@ -1181,7 +1178,7 @@
       "Town",
       "Village"
     ],
-    "refinement": 5
+    "refinement": 4
   },
   {
     "name": "Peeping Willow",
@@ -1234,7 +1231,7 @@
       "Town",
       "Village"
     ],
-    "refinement": 4
+    "refinement": 5
   },
   {
     "name": "Poison",
@@ -1263,9 +1260,10 @@
     "associated_search_areas": [
       "Cave",
       "Forest",
-      "Wetland"
+      "Wetland",
+      "Settlement"
     ],
-    "refinement": 1
+    "refinement": 3
   },
   {
     "name": "Pungent Sea Foam",
@@ -1315,7 +1313,7 @@
       "Grassland",
       "Settlement"
     ],
-    "refinement": 2
+    "refinement": 1
   },
   {
     "name": "Queen's Dilemma",
@@ -1420,7 +1418,7 @@
       "Ruins",
       "Settlement"
     ],
-    "refinement": 2
+    "refinement": 1
   },
   {
     "name": "Rust Crab",
@@ -1471,7 +1469,7 @@
     "associated_search_areas": [
       "Coast"
     ],
-    "refinement": 1
+    "refinement": 2
   },
   {
     "name": "Sea Water",
@@ -1552,7 +1550,7 @@
       "Grassland",
       "Settlement"
     ],
-    "refinement": 3
+    "refinement": 2
   },
   {
     "name": "Slice of Melon Bird",
@@ -1629,7 +1627,7 @@
       "Forest",
       "Grassland"
     ],
-    "refinement": 2
+    "refinement": 1
   },
   {
     "name": "Spirit Root",
@@ -1677,9 +1675,11 @@
     "forageable": true,
     "associated_search_areas": [
       "Coast",
-      "Open Water"
+      "Coral Reef",
+      "Open Water",
+      "Underwater"
     ],
-    "refinement": 1
+    "refinement": 2
   },
   {
     "name": "Tangle Weed",
@@ -1757,7 +1757,7 @@
       "Grassland",
       "Settlement"
     ],
-    "refinement": 2
+    "refinement": 1
   },
   {
     "name": "Venus Fly Rat",
@@ -1833,7 +1833,7 @@
       "Grassland",
       "Settlement"
     ],
-    "refinement": 2
+    "refinement": 1
   },
   {
     "name": "Witch's Eye Coral",
@@ -2042,7 +2042,7 @@
       "Ruins",
       "Wetland"
     ],
-    "refinement": 1
+    "refinement": 2
   },
   {
     "name": "Cracking Jasper",
@@ -2143,7 +2143,7 @@
     "associated_search_areas": [
       "Wetland"
     ],
-    "refinement": 3
+    "refinement": 2
   },
   {
     "name": "Essence of Glumbug",
@@ -2169,7 +2169,7 @@
       "Cave",
       "Cliffside"
     ],
-    "refinement": 1
+    "refinement": 2
   },
   {
     "name": "Essence of Ill Omen",
@@ -2240,7 +2240,7 @@
     "associated_search_areas": [
       "Forest"
     ],
-    "refinement": 1
+    "refinement": 2
   },
   {
     "name": "Forge Slag",
@@ -2266,7 +2266,7 @@
       "Mine",
       "Town"
     ],
-    "refinement": 2
+    "refinement": 3
   },
   {
     "name": "Gargoyle Powder",
@@ -2295,7 +2295,7 @@
       "Village",
       "Cliffside"
     ],
-    "refinement": 4
+    "refinement": 2
   },
   {
     "name": "Glow Worms of the Vale",
@@ -2340,13 +2340,13 @@
     "regions": [
       "Brackwater Wetlands"
     ],
-    "forageable": true,
+    "forageable": false,
     "associated_search_areas": [
       "Town",
       "Village",
       "Settlement"
     ],
-    "refinement": 4
+    "refinement": 5
   },
   {
     "name": "Happy Joy Cake",
@@ -2366,11 +2366,11 @@
     "regions": [
       "Gift of Shuritashi"
     ],
-    "forageable": true,
+    "forageable": false,
     "associated_search_areas": [
       "Settlement"
     ],
-    "refinement": 4
+    "refinement": 5
   },
   {
     "name": "Kojobi Fruit",
@@ -2424,7 +2424,7 @@
       "Forest",
       "Settlement"
     ],
-    "refinement": 2
+    "refinement": 1
   },
   {
     "name": "Lions Blume",
@@ -2474,7 +2474,7 @@
       "Grassland",
       "Settlement"
     ],
-    "refinement": 2
+    "refinement": 1
   },
   {
     "name": "Magic Monk's Rice Wine",
@@ -2498,7 +2498,7 @@
       "Town",
       "Village"
     ],
-    "refinement": 4
+    "refinement": 5
   },
   {
     "name": "Molted Lizard Skin",
@@ -2626,7 +2626,7 @@
       "Village",
       "Wetland"
     ],
-    "refinement": 4
+    "refinement": 5
   },
   {
     "name": "Night Thistle",
@@ -2678,7 +2678,7 @@
     "associated_search_areas": [
       "Settlement"
     ],
-    "refinement": 2
+    "refinement": 1
   },
   {
     "name": "Opu Opu Spring Water",
@@ -2703,7 +2703,7 @@
       "River",
       "Geothermal"
     ],
-    "refinement": 5
+    "refinement": 1
   },
   {
     "name": "Petrified Alligator",
@@ -2733,7 +2733,7 @@
       "Ruins",
       "Wetland"
     ],
-    "refinement": 1
+    "refinement": 3
   },
   {
     "name": "Pok Pok Flakes",
@@ -2783,7 +2783,7 @@
       "Cliffside",
       "Mine"
     ],
-    "refinement": 1
+    "refinement": 4
   },
   {
     "name": "Scumweed",
@@ -2914,13 +2914,13 @@
     "regions": [
       "Land of Hot Water"
     ],
-    "forageable": true,
+    "forageable": false,
     "associated_search_areas": [
       "Settlement",
       "Town",
       "Village"
     ],
-    "refinement": 4
+    "refinement": 5
   },
   {
     "name": "Spring",
@@ -3050,9 +3050,9 @@
     "forageable": true,
     "associated_search_areas": [
       "Ruins",
-      "Settlement",
+      "Subway",
       "Town",
-      "Village"
+      "Market"
     ],
     "refinement": 5
   },
@@ -3129,7 +3129,7 @@
       "Cave",
       "Geothermal"
     ],
-    "refinement": 1
+    "refinement": 2
   },
   {
     "name": "Blossom of Spirit Vine",
@@ -3243,9 +3243,10 @@
     "regions": [],
     "forageable": false,
     "associated_search_areas": [
-      "Open Water",
+      "Coast",
       "Coral Reef",
-      "Coast"
+      "Open Water",
+      "Underwater"
     ],
     "refinement": 1
   },

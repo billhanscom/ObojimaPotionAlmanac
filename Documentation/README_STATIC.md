@@ -32,3 +32,8 @@ This structure is intended to support the future Forager's Aid and inventory-cen
 ## Search Areas
 
 The Foraging Aid uses Region-specific Search Areas. Search Areas represent ecological or cultural environments players would naturally expect to search. The available list varies by Region.
+
+
+## Foraging data model
+
+The finalized Foraging Aid uses Region, Search Area, rarity, ingredient refinement, and the boolean `forageable` rules filter. Rare ingredients are quest-only and do not appear in ordinary foraging results. See `FORAGING_MODEL.md` for the complete model and canonical Search Areas.

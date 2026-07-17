@@ -1,5 +1,14 @@
 # Changelog
 
+## 2026-07-17 — Description-based ingredient model finalization
+
+- Removed the abandoned numeric forageability concept; `forageable` remains a boolean rules filter.
+- Confirmed all Rare ingredients as `forageable: false` because the published rules reserve them for multipart quests or exceptional acquisition.
+- Excluded Sea Water, Corrupted Seawater, Opu Opu Spring Water, Hakumon's Ramen Broth, Happy Joy Cake, and Spirit Tea from ordinary foraging.
+- Replaced Common and Uncommon ingredient refinement values with the description-based 1–5 scores from `Ingredient_Refinement_Review_Scored.xlsx`.
+- Corrected description-driven Search Area associations for Amber, Apper Carrot, Bamboo, Bashu Powder, Blue Back Salmon, Boom Beri, Dorrin Plate, Fish Head, Flash Paper, Oporion Glass, Poison, Squid Ink, Crimson Octopus Ink, and Vinyl Record.
+- Rewrote `FORAGING_MODEL.md` to distinguish ingredient refinement from Search Area civilization and document the finalized selection model.
+
 ## 2026-07-17
 
 ### Region and Search Area Audit
