@@ -7,6 +7,7 @@ const OBOJIMA_FORAGING_DEBUG_OPEN_KEY = "obojimaForagingDebugOpen";
 const OBOJIMA_FORAGING_RESULTS_KEY = "obojimaForagingLastResultsHtml";
 const OBOJIMA_FORAGING_RESULTS_ITEMS_KEY = "obojimaForagingLastResultItems";
 const OBOJIMA_FORAGING_PARAMS_KEY = "obojimaForagingSearchParams";
+const OBOJIMA_FORAGING_COMPARE_VISIBLE_KEY = "obojimaForagingCompareRandomVisible";
 
 async function loadForagingJson(path) {
     if (!foragingJsonCache[path]) {
@@ -30,6 +31,7 @@ document.addEventListener("DOMContentLoaded", async () => {
         setupForagingKeyboardShortcuts();
         bindForagingParamPersistence();
         restoreForagingResults();
+        restoreRandomComparisonVisibility();
     } catch (error) {
         console.error(error);
         document.getElementById("foraging-results").innerHTML = `<p class="completer-empty">Foraging data could not be loaded.</p>`;
@@ -81,6 +83,7 @@ function saveForagingSearchParams() {
 function restoreForagingSearchParams() {
     if (wasPageReloaded()) {
         sessionStorage.removeItem(OBOJIMA_FORAGING_PARAMS_KEY);
+    localStorage.removeItem(OBOJIMA_FORAGING_COMPARE_VISIBLE_KEY);
         return;
     }
 
@@ -108,7 +111,7 @@ function restoreForagingSearchParams() {
     if (dcInput && params.dc !== undefined) dcInput.value = params.dc;
     if (rollInput && params.roll !== undefined) rollInput.value = params.roll;
     if (prioritizeInput) prioritizeInput.checked = Boolean(params.prioritizeNew);
-    if (compareInput) compareInput.checked = Boolean(params.compareRandom);
+    if (compareInput && params.compareRandom !== undefined) compareInput.checked = Boolean(params.compareRandom);
 }
 
 
@@ -150,6 +153,31 @@ function restoreForagingResults() {
     }
 
     bindForagingDebugDetails();
+}
+
+function updateRandomComparisonVisibility() {
+    const checkbox = document.getElementById("foraging-compare-random");
+    const comparison = document.querySelector(".foraging-comparison-random-column");
+    const visible = Boolean(checkbox && checkbox.checked);
+
+    localStorage.setItem(OBOJIMA_FORAGING_COMPARE_VISIBLE_KEY, visible ? "true" : "false");
+
+    if (comparison) comparison.hidden = !visible;
+
+    const comparisonWrap = document.querySelector(".foraging-comparison");
+    if (comparisonWrap) comparisonWrap.classList.toggle("show-random", visible);
+}
+
+function restoreRandomComparisonVisibility() {
+    const checkbox = document.getElementById("foraging-compare-random");
+    if (!checkbox) return;
+
+    checkbox.checked = localStorage.getItem(OBOJIMA_FORAGING_COMPARE_VISIBLE_KEY) === "true";
+    checkbox.addEventListener("change", () => {
+        updateRandomComparisonVisibility();
+        if (typeof saveForagingSearchParams === "function") saveForagingSearchParams();
+    });
+    updateRandomComparisonVisibility();
 }
 
 function setupForagingKeyboardShortcuts() {
@@ -830,7 +858,7 @@ async function generateForagingFinds() {
     const dc = Number(document.getElementById("foraging-dc").value);
     const rollTotal = Number(document.getElementById("foraging-roll").value);
     const prioritizeNew = document.getElementById("foraging-prioritize-new").checked;
-    const compareRandom = document.getElementById("foraging-compare-random")?.checked || false;
+    const compareRandomVisible = document.getElementById("foraging-compare-random")?.checked || false;
     const resultsDiv = document.getElementById("foraging-results");
 
     if (!dc || !rollTotal) {
@@ -867,10 +895,8 @@ async function generateForagingFinds() {
     }
 
     const list = renderResultList(selected);
-    const randomSelected = compareRandom
-        ? selectBookStyleRandomResults(ingredients, selectedRegion, dc, selected.length)
-        : [];
-    const randomList = compareRandom ? renderResultList(randomSelected) : "";
+    const randomSelected = selectBookStyleRandomResults(ingredients, selectedRegion, dc, selected.length);
+    const randomList = renderResultList(randomSelected);
 
     const debug = renderPlainDebug({
         selectedRegion,
@@ -881,18 +907,17 @@ async function generateForagingFinds() {
         selected
     });
 
-    const resultsMarkup = compareRandom
-        ? `<div class="foraging-comparison">
-            <div class="foraging-comparison-column">
-                <h4>Weighted Results</h4>
-                <ul class="completion-recipe-list foraging-result-list">${list}</ul>
-            </div>
-            <div class="foraging-comparison-column">
-                <h4>Random Results</h4>
-                <ul class="completion-recipe-list foraging-result-list">${randomList}</ul>
-            </div>
-        </div>`
-        : `<ul class="completion-recipe-list foraging-result-list">${list}</ul>`;
+    const randomHidden = compareRandomVisible ? "" : " hidden";
+    const resultsMarkup = `<div class="foraging-comparison${compareRandomVisible ? " show-random" : ""}">
+        <div class="foraging-comparison-column">
+            <h4>Weighted Results</h4>
+            <ul class="completion-recipe-list foraging-result-list">${list}</ul>
+        </div>
+        <div class="foraging-comparison-column foraging-comparison-random-column"${randomHidden}>
+            <h4>Random Results</h4>
+            <ul class="completion-recipe-list foraging-result-list">${randomList}</ul>
+        </div>
+    </div>`;
 
     resultsDiv.innerHTML = `<div class="completion-card foraging-result-card">
         <h3>Results</h3>
@@ -906,6 +931,7 @@ async function generateForagingFinds() {
     window.latestForagingResults = selected.map(item => item.name);
     saveForagingResults(resultsDiv.innerHTML, window.latestForagingResults);
     bindForagingDebugDetails();
+    updateRandomComparisonVisibility();
     resultsDiv.scrollIntoView({ behavior: "smooth" });
 }
 
