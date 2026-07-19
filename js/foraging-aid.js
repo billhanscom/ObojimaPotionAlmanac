@@ -103,11 +103,28 @@ function restoreForagingSearchParams() {
     const compareInput = document.getElementById("foraging-compare-random");
 
     if (regionSelect && params.region) {
-        regionSelect.value = params.region;
+        const legacyRegionNames = {
+            "Brackwater Wetlands": "The Brackwater Wetlands",
+            "Coastal Highlands": "The Coastal Highlands",
+            "Gale Fields": "The Gale Fields",
+            "Gift of Shuritashi": "The Gift of Shuritashi",
+            "Land of Hot Water": "The Land of Hot Water"
+        };
+        const restoredRegion = legacyRegionNames[params.region] || params.region;
+        const validRegion = Array.from(regionSelect.options).some(option => option.value === restoredRegion);
+        if (validRegion) regionSelect.value = restoredRegion;
         populateSearchAreaOptions();
     }
 
-    if (areaSelect && params.searchArea) areaSelect.value = params.searchArea;
+    if (areaSelect && params.searchArea) {
+        const legacyAreaNames = {
+            "Shrine": "Sacred Site",
+            "Cliffside": "Rocky Terrain"
+        };
+        const restoredArea = legacyAreaNames[params.searchArea] || params.searchArea;
+        const validArea = Array.from(areaSelect.options).some(option => option.value === restoredArea);
+        if (validArea) areaSelect.value = restoredArea;
+    }
     if (dcInput && params.dc !== undefined) dcInput.value = params.dc;
     if (rollInput && params.roll !== undefined) rollInput.value = params.roll;
     if (prioritizeInput) prioritizeInput.checked = Boolean(params.prioritizeNew);
@@ -245,11 +262,23 @@ function populateForagingRegionOptions() {
 }
 
 function populateSearchAreaOptions() {
-    const selectedRegion = document.getElementById("foraging-region").value || Obojima.getRegionList()[0];
+    const regionSelect = document.getElementById("foraging-region");
     const areaSelect = document.getElementById("foraging-search-area");
-    const region = foragingRegions.find(entry => entry.name === selectedRegion);
-    const areas = region ? (region.search_areas || []) : [];
+    if (!regionSelect || !areaSelect) return;
 
+    let selectedRegion = regionSelect.value;
+    let region = foragingRegions.find(entry => entry.name === selectedRegion);
+
+    // Guard against stale saved values from earlier data versions. If the
+    // selected value is no longer valid, use the first current Region rather
+    // than leaving the Search Area dropdown empty.
+    if (!region && foragingRegions.length) {
+        region = foragingRegions[0];
+        selectedRegion = region.name;
+        regionSelect.value = selectedRegion;
+    }
+
+    const areas = region ? (region.search_areas || []) : [];
     areaSelect.innerHTML = "";
 
     areas.slice().sort((a, b) => displaySortKey(a).localeCompare(displaySortKey(b))).forEach(area => {
