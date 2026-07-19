@@ -243,6 +243,13 @@ function updateForagingValuesToggleButton() {
     });
 }
 
+function displaySortKey(value) {
+    return String(value || "")
+        .replace(/^The\s+/i, "")
+        .trim()
+        .toLocaleLowerCase();
+}
+
 function populateForagingRegionOptions() {
     const regionSelect = document.getElementById("foraging-region");
     regionSelect.innerHTML = "";
