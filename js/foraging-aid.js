@@ -181,6 +181,9 @@ function updateRandomComparisonVisibility() {
 
     if (comparison) comparison.hidden = !visible;
 
+    const weightedHeading = document.querySelector(".foraging-weighted-results-heading");
+    if (weightedHeading) weightedHeading.hidden = !visible;
+
     const comparisonWrap = document.querySelector(".foraging-comparison");
     if (comparisonWrap) comparisonWrap.classList.toggle("show-random", visible);
 }
@@ -241,13 +244,6 @@ function updateForagingValuesToggleButton() {
         choice.classList.toggle("active", isActive);
         choice.setAttribute("aria-current", isActive ? "true" : "false");
     });
-}
-
-function displaySortKey(value) {
-    return String(value || "")
-        .replace(/^The\s+/i, "")
-        .trim()
-        .toLocaleLowerCase();
 }
 
 function populateForagingRegionOptions() {
@@ -969,7 +965,7 @@ async function generateForagingFinds() {
     const randomHidden = compareRandomVisible ? "" : " hidden";
     const resultsMarkup = `<div class="foraging-comparison${compareRandomVisible ? " show-random" : ""}">
         <div class="foraging-comparison-column">
-            <h4>Weighted Results</h4>
+            <h4 class="foraging-weighted-results-heading"${compareRandomVisible ? "" : " hidden"}>Weighted Results</h4>
             <ul class="completion-recipe-list foraging-result-list">${list}</ul>
         </div>
         <div class="foraging-comparison-column foraging-comparison-random-column"${randomHidden}>
