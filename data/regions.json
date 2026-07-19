@@ -1,11 +1,11 @@
 [
   {
-    "name": "Brackwater Wetlands",
+    "name": "The Brackwater Wetlands",
     "adjacent_regions": [
-      "Land of Hot Water",
+      "The Coastal Highlands",
+      "The Gale Fields",
+      "The Land of Hot Water",
       "Mount Arbora",
-      "Coastal Highlands",
-      "Gale Fields",
       "The Shallows"
     ],
     "search_areas": [
@@ -15,28 +15,30 @@
       "Lake",
       "River",
       "Ruins",
+      "Sacred Site",
       "Settlement",
       "Village",
       "Wetland"
     ]
   },
   {
-    "name": "Coastal Highlands",
+    "name": "The Coastal Highlands",
     "adjacent_regions": [
-      "Gale Fields",
-      "Gift of Shuritashi",
-      "Brackwater Wetlands",
+      "The Brackwater Wetlands",
+      "The Gale Fields",
+      "The Gift of Shuritashi",
       "The Shallows"
     ],
     "search_areas": [
       "Cave",
-      "Cliffside",
       "Coast",
       "Forest",
       "Grassland",
       "Lake",
       "River",
+      "Rocky Terrain",
       "Ruins",
+      "Sacred Site",
       "Settlement",
       "Town",
       "Village",
@@ -44,11 +46,11 @@
     ]
   },
   {
-    "name": "Gale Fields",
+    "name": "The Gale Fields",
     "adjacent_regions": [
-      "Gift of Shuritashi",
-      "Brackwater Wetlands",
-      "Coastal Highlands",
+      "The Brackwater Wetlands",
+      "The Coastal Highlands",
+      "The Gift of Shuritashi",
       "Mount Arbora"
     ],
     "search_areas": [
@@ -57,18 +59,19 @@
       "Lake",
       "River",
       "Ruins",
+      "Sacred Site",
       "Settlement",
       "Town",
       "Village"
     ]
   },
   {
-    "name": "Gift of Shuritashi",
+    "name": "The Gift of Shuritashi",
     "adjacent_regions": [
-      "Land of Hot Water",
+      "The Coastal Highlands",
+      "The Gale Fields",
+      "The Land of Hot Water",
       "Mount Arbora",
-      "Coastal Highlands",
-      "Gale Fields",
       "The Shallows"
     ],
     "search_areas": [
@@ -79,6 +82,7 @@
       "Lake",
       "River",
       "Ruins",
+      "Sacred Site",
       "Settlement",
       "Town",
       "Village",
@@ -86,22 +90,23 @@
     ]
   },
   {
-    "name": "Land of Hot Water",
+    "name": "The Land of Hot Water",
     "adjacent_regions": [
-      "Gift of Shuritashi",
+      "The Brackwater Wetlands",
+      "The Gift of Shuritashi",
       "Mount Arbora",
-      "Brackwater Wetlands",
       "The Shallows"
     ],
     "search_areas": [
       "Cave",
-      "Cliffside",
       "Coast",
       "Forest",
       "Geothermal",
       "Grassland",
       "River",
+      "Rocky Terrain",
       "Ruins",
+      "Sacred Site",
       "Settlement",
       "Town",
       "Underwater",
@@ -111,20 +116,21 @@
   {
     "name": "Mount Arbora",
     "adjacent_regions": [
-      "Gift of Shuritashi",
-      "Gale Fields",
-      "Brackwater Wetlands",
-      "Land of Hot Water"
+      "The Brackwater Wetlands",
+      "The Gale Fields",
+      "The Gift of Shuritashi",
+      "The Land of Hot Water"
     ],
     "search_areas": [
       "Cave",
-      "Cliffside",
       "Forest",
       "Geothermal",
       "Grassland",
       "Mine",
       "River",
+      "Rocky Terrain",
       "Ruins",
+      "Sacred Site",
       "Settlement",
       "Town",
       "Village"
@@ -133,10 +139,10 @@
   {
     "name": "The Shallows",
     "adjacent_regions": [
-      "Land of Hot Water",
-      "Brackwater Wetlands",
-      "Coastal Highlands",
-      "Gift of Shuritashi"
+      "The Brackwater Wetlands",
+      "The Coastal Highlands",
+      "The Gift of Shuritashi",
+      "The Land of Hot Water"
     ],
     "search_areas": [
       "Cave",
@@ -144,6 +150,7 @@
       "Coral Reef",
       "Open Water",
       "Ruins",
+      "Sacred Site",
       "Settlement",
       "Underwater",
       "Village"
@@ -153,16 +160,16 @@
     "name": "Yatamon",
     "trade_regions": {
       "local": [
-        "Gift of Shuritashi"
+        "The Gift of Shuritashi"
       ],
       "nearby": [
-        "Brackwater Wetlands",
-        "Coastal Highlands",
-        "Gale Fields",
+        "The Brackwater Wetlands",
+        "The Coastal Highlands",
+        "The Gale Fields",
         "The Shallows"
       ],
       "distant": [
-        "Land of Hot Water",
+        "The Land of Hot Water",
         "Mount Arbora"
       ]
     },
@@ -171,7 +178,7 @@
       "Market",
       "River",
       "Ruins",
-      "Shrine",
+      "Sacred Site",
       "Subway"
     ]
   }

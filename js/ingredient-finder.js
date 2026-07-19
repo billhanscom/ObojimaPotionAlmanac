@@ -123,7 +123,7 @@ async function completeRecipe() {
     }
 
     const ingredients = await Obojima.loadIngredientData(Obojima.getValuesYear());
-    const currentRegion = document.getElementById("current-region").value || "Gift of Shuritashi";
+    const currentRegion = document.getElementById("current-region").value || "The Gift of Shuritashi";
     const targetType = document.getElementById("target-potion-type").value;
     const targetValue = Number(document.getElementById("target-potion").value);
     const selectedSet = new Set(selectedInventory);

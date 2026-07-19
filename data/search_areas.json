@@ -1,6 +1,6 @@
 [
   {
-    "name": "Cliffside",
+    "name": "Rocky Terrain",
     "civilization": 1.0,
     "related_search_areas": [
       "Cave",
@@ -14,8 +14,8 @@
     "civilization": 1.1,
     "related_search_areas": [
       "Cave",
-      "Cliffside",
       "River",
+      "Rocky Terrain",
       "Underwater"
     ]
   },
@@ -23,8 +23,8 @@
     "name": "Underwater",
     "civilization": 1.2,
     "related_search_areas": [
-      "Coral Reef",
       "Coast",
+      "Coral Reef",
       "Lake",
       "Open Water",
       "River"
@@ -44,9 +44,9 @@
     "name": "Cave",
     "civilization": 1.5,
     "related_search_areas": [
-      "Cliffside",
       "Geothermal",
       "Mine",
+      "Rocky Terrain",
       "Ruins"
     ]
   },
@@ -84,9 +84,9 @@
     "name": "Grassland",
     "civilization": 2.3,
     "related_search_areas": [
-      "Cliffside",
       "Forest",
       "River",
+      "Rocky Terrain",
       "Settlement",
       "Village"
     ]
@@ -139,24 +139,33 @@
   },
   {
     "name": "Ruins",
-    "civilization": 3.1,
+    "civilization": 3.0,
     "related_search_areas": [
       "Cave",
       "Forest",
       "Mine",
+      "Sacred Site",
       "Settlement",
-      "Shrine",
       "Village"
     ]
   },
   {
-    "name": "Shrine",
-    "civilization": 3.2,
+    "name": "Sacred Site",
+    "civilization": 3.0,
     "related_search_areas": [
+      "Cave",
+      "City Streets",
+      "Coast",
       "Forest",
+      "Grassland",
+      "Lake",
+      "River",
+      "Rocky Terrain",
       "Ruins",
       "Settlement",
-      "Village"
+      "Town",
+      "Village",
+      "Wetland"
     ]
   },
   {
@@ -175,7 +184,7 @@
     "civilization": 3.8,
     "related_search_areas": [
       "Cave",
-      "Cliffside",
+      "Rocky Terrain",
       "Ruins",
       "Settlement",
       "Town"
@@ -195,7 +204,6 @@
     "name": "Town",
     "civilization": 4.3,
     "related_search_areas": [
-      "Market",
       "Mine",
       "Ruins",
       "Settlement",
@@ -207,7 +215,7 @@
     "civilization": 4.7,
     "related_search_areas": [
       "City Streets",
-      "Town"
+      "Subway"
     ]
   },
   {
@@ -215,7 +223,7 @@
     "civilization": 5.0,
     "related_search_areas": [
       "Market",
-      "Shrine",
+      "Sacred Site",
       "Subway"
     ]
   }

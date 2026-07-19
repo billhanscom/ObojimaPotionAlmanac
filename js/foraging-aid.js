@@ -252,7 +252,7 @@ function populateSearchAreaOptions() {
 
     areaSelect.innerHTML = "";
 
-    areas.slice().sort((a, b) => a.localeCompare(b)).forEach(area => {
+    areas.slice().sort((a, b) => displaySortKey(a).localeCompare(displaySortKey(b))).forEach(area => {
         const option = document.createElement("option");
         option.value = area;
         option.textContent = area;

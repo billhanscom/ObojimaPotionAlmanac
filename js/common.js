@@ -12,11 +12,11 @@ const INGREDIENT_DATA_FILE = "data/ingredients.json";
 const VALID_VALUES_YEARS = new Set(["2014", "2024"]);
 
 const DEFAULT_REGION_LIST = [
-    "Brackwater Wetlands",
-    "Coastal Highlands",
-    "Gale Fields",
-    "Gift of Shuritashi",
-    "Land of Hot Water",
+    "The Brackwater Wetlands",
+    "The Coastal Highlands",
+    "The Gale Fields",
+    "The Gift of Shuritashi",
+    "The Land of Hot Water",
     "Mount Arbora",
     "The Shallows",
     "Yatamon"

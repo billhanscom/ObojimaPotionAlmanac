@@ -77,7 +77,7 @@ Each Search Area has a `civilization` value measuring how strongly sapient activ
 
 | Search Area | Civilization |
 |---|---:|
-| Cliffside | 1.0 |
+| Rocky Terrain | 1.0 |
 | Geothermal | 1.1 |
 | Underwater | 1.2 |
 | Coral Reef | 1.3 |
@@ -91,7 +91,7 @@ Each Search Area has a `civilization` value measuring how strongly sapient activ
 | Lake | 2.8 |
 | River | 3.0 |
 | Ruins | 3.1 |
-| Shrine | 3.2 |
+| Sacred Site | 3.2 |
 | Village | 3.5 |
 | Mine | 3.8 |
 | Subway | 3.8 |
@@ -105,13 +105,13 @@ A higher civilization value makes highly refined ingredients more plausible. It 
 
 Natural environments:
 
-Cave, Cliffside, Coast, Coral Reef, Forest, Geothermal, Grassland, Lake, Open Water, River, Underwater, Wetland.
+Cave, Rocky Terrain, Coast, Coral Reef, Forest, Geothermal, Grassland, Lake, Open Water, River, Underwater, Wetland.
 
 Cultural environments:
 
-City Streets, Market, Mine, Ruins, Settlement, Shrine, Subway, Town, Village.
+City Streets, Market, Mine, Ruins, Settlement, Sacred Site, Subway, Town, Village.
 
-Mountain terrain is represented by specific environments such as Cliffside, Cave, Grassland, Geothermal, and Mine. Marshes and swamps are represented by Wetland. Yatamon's inhabited waterfront is represented by River.
+Mountain terrain is represented by specific environments such as Rocky Terrain, Cave, Grassland, Geothermal, and Mine. Marshes and swamps are represented by Wetland. Yatamon's inhabited waterfront is represented by River.
 
 Related Search Areas contribute only when the related area exists in the selected Region.
 
@@ -129,11 +129,11 @@ Rarity remains the primary source of scarcity. Degree of Success mainly increase
 
 ## Region Search Areas
 
-- **Brackwater Wetlands:** Cave, Coast, Forest, Lake, River, Ruins, Settlement, Village, Wetland
-- **Coastal Highlands:** Cave, Cliffside, Coast, Forest, Grassland, Lake, River, Ruins, Settlement, Town, Village, Wetland
-- **Gale Fields:** Forest, Grassland, Lake, River, Ruins, Settlement, Town, Village
-- **Gift of Shuritashi:** Cave, Coast, Forest, Grassland, Lake, River, Ruins, Settlement, Town, Village, Wetland
-- **Land of Hot Water:** Cave, Cliffside, Coast, Forest, Geothermal, Grassland, River, Ruins, Settlement, Town, Underwater, Village
-- **Mount Arbora:** Cave, Cliffside, Forest, Geothermal, Grassland, Mine, River, Ruins, Settlement, Town, Village
+- **The Brackwater Wetlands:** Cave, Coast, Forest, Lake, River, Ruins, Settlement, Village, Wetland
+- **The Coastal Highlands:** Cave, Rocky Terrain, Coast, Forest, Grassland, Lake, River, Ruins, Settlement, Town, Village, Wetland
+- **The Gale Fields:** Forest, Grassland, Lake, River, Ruins, Settlement, Town, Village
+- **The Gift of Shuritashi:** Cave, Coast, Forest, Grassland, Lake, River, Ruins, Settlement, Town, Village, Wetland
+- **The Land of Hot Water:** Cave, Rocky Terrain, Coast, Forest, Geothermal, Grassland, River, Ruins, Settlement, Town, Underwater, Village
+- **Mount Arbora:** Cave, Rocky Terrain, Forest, Geothermal, Grassland, Mine, River, Ruins, Settlement, Town, Village
 - **The Shallows:** Cave, Coast, Coral Reef, Open Water, Ruins, Settlement, Underwater, Village
-- **Yatamon:** City Streets, Market, River, Ruins, Shrine, Subway
+- **Yatamon:** City Streets, Market, River, Ruins, Sacred Site, Subway
