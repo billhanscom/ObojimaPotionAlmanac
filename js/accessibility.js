@@ -67,7 +67,3 @@ document.addEventListener("DOMContentLoaded", () => {
     syncBinaryHoverUnderline(".toolkit-nav", ".toolkit-nav-link");
 });
 
-
-document.addEventListener("DOMContentLoaded", () => {
-    syncBinaryHoverUnderline(".toolkit-nav", ".toolkit-nav-link");
-});

@@ -18,25 +18,46 @@ async function loadForagingJson(path) {
     return foragingJsonCache[path];
 }
 
-document.addEventListener("DOMContentLoaded", async () => {
+document.addEventListener("DOMContentLoaded", initializeForagingAid);
+
+async function initializeForagingAid() {
     updateForagingValuesToggleButton();
     Obojima.updateInventoryProfileDisplay();
     Obojima.updateSaveInventoryButtons(foragingInventory);
 
-    try {
-        await loadForagingData();
-        populateForagingRegionOptions();
-        populateSearchAreaOptions();
-        restoreForagingSearchParams();
-        setupForagingKeyboardShortcuts();
-        bindForagingParamPersistence();
-        restoreForagingResults();
-        restoreRandomComparisonVisibility();
-    } catch (error) {
-        console.error(error);
-        document.getElementById("foraging-results").innerHTML = `<p class="completer-empty">Foraging data could not be loaded.</p>`;
+    const initializationSteps = [
+        ["load data", loadForagingData],
+        ["populate Regions", populateForagingRegionOptions],
+        ["populate Search Areas", populateSearchAreaOptions],
+        ["restore search settings", restoreForagingSearchParams],
+        ["bind keyboard shortcuts", setupForagingKeyboardShortcuts],
+        ["bind setting persistence", bindForagingParamPersistence],
+        ["restore results", restoreForagingResults],
+        ["restore comparison display", restoreRandomComparisonVisibility]
+    ];
+
+    for (const [stepName, step] of initializationSteps) {
+        try {
+            await step();
+        } catch (error) {
+            reportForagingInitializationError(stepName, error);
+            return;
+        }
     }
-});
+}
+
+function reportForagingInitializationError(stepName, error) {
+    console.error(`Foraging Aid initialization failed during: ${stepName}`, error);
+    window.analytics?.track("foraging_initialization_failed", {
+        step: stepName,
+        message: String(error?.message || error || "Unknown error").slice(0, 200)
+    });
+
+    const results = document.getElementById("foraging-results");
+    if (results) {
+        results.innerHTML = `<p class="completer-empty">The Foraging Aid could not be initialized. Please reload the page.</p>`;
+    }
+}
 
 function isForagingDebugOpen() {
     return localStorage.getItem(OBOJIMA_FORAGING_DEBUG_OPEN_KEY) === "true";
@@ -83,7 +104,7 @@ function saveForagingSearchParams() {
 function restoreForagingSearchParams() {
     if (wasPageReloaded()) {
         sessionStorage.removeItem(OBOJIMA_FORAGING_PARAMS_KEY);
-    localStorage.removeItem(OBOJIMA_FORAGING_COMPARE_VISIBLE_KEY);
+        localStorage.removeItem(OBOJIMA_FORAGING_COMPARE_VISIBLE_KEY);
         return;
     }
 
@@ -248,6 +269,7 @@ function updateForagingValuesToggleButton() {
 
 function populateForagingRegionOptions() {
     const regionSelect = document.getElementById("foraging-region");
+    if (!regionSelect) return;
     regionSelect.innerHTML = "";
 
     const regionNames = foragingRegions.length
@@ -262,6 +284,11 @@ function populateForagingRegionOptions() {
     });
 
     regionSelect.addEventListener("change", populateSearchAreaOptions);
+}
+
+
+function displaySortKey(value) {
+    return String(value || "").replace(/^The\s+/i, "").trim().toLocaleLowerCase();
 }
 
 function populateSearchAreaOptions() {
@@ -839,16 +866,17 @@ function clearForagingSearch() {
     if (areaSelect) areaSelect.selectedIndex = 0;
     if (dcInput) dcInput.value = "10";
     if (rollInput) rollInput.value = "";
-    if (prioritizeInput) prioritizeInput.checked = true;
+    if (prioritizeInput) prioritizeInput.checked = false;
     if (compareInput) compareInput.checked = false;
     if (resultsDiv) resultsDiv.innerHTML = "";
 
     window.latestForagingResults = [];
     clearStoredForagingResults();
     sessionStorage.removeItem(OBOJIMA_FORAGING_PARAMS_KEY);
+    localStorage.removeItem(OBOJIMA_FORAGING_COMPARE_VISIBLE_KEY);
+    updateRandomComparisonVisibility();
     saveForagingSearchParams();
 }
-
 
 function shuffleCopy(items) {
     const copy = items.slice();

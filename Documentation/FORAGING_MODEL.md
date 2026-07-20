@@ -90,8 +90,8 @@ Each Search Area has a `civilization` value measuring how strongly sapient activ
 | Settlement | 2.7 |
 | Lake | 2.8 |
 | River | 3.0 |
-| Ruins | 3.1 |
-| Sacred Site | 3.2 |
+| Ruins | 3.0 |
+| Sacred Site | 3.0 |
 | Village | 3.5 |
 | Mine | 3.8 |
 | Subway | 3.8 |
