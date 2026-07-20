@@ -3844,3 +3844,31 @@ body.high-contrast .container {
         grid-template-columns: minmax(0, 272px);
     }
 }
+
+/* Developer mode: toggle with Control + Option/Alt + Shift + O. */
+.developer-only-control,
+.developer-only-output,
+.developer-mode-badge {
+    display: none !important;
+}
+
+body.developer-mode .developer-only-control {
+    display: flex !important;
+}
+
+body.developer-mode .developer-only-output {
+    display: block !important;
+}
+
+body.developer-mode .developer-mode-badge {
+    display: block !important;
+    width: fit-content;
+    margin: 12px auto 0;
+    padding: 4px 9px;
+    border: 1px solid currentColor;
+    border-radius: 999px;
+    font-size: 12px;
+    font-weight: 700;
+    letter-spacing: 0.04em;
+    text-transform: uppercase;
+}

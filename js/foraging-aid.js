@@ -8,6 +8,7 @@ const OBOJIMA_FORAGING_RESULTS_KEY = "obojimaForagingLastResultsHtml";
 const OBOJIMA_FORAGING_RESULTS_ITEMS_KEY = "obojimaForagingLastResultItems";
 const OBOJIMA_FORAGING_PARAMS_KEY = "obojimaForagingSearchParams";
 const OBOJIMA_FORAGING_COMPARE_VISIBLE_KEY = "obojimaForagingCompareRandomVisible";
+const OBOJIMA_DEVELOPER_MODE_KEY = "obojimaDeveloperMode";
 
 async function loadForagingJson(path) {
     if (!foragingJsonCache[path]) {
@@ -33,7 +34,8 @@ async function initializeForagingAid() {
         ["bind keyboard shortcuts", setupForagingKeyboardShortcuts],
         ["bind setting persistence", bindForagingParamPersistence],
         ["restore results", restoreForagingResults],
-        ["restore comparison display", restoreRandomComparisonVisibility]
+        ["restore comparison display", restoreRandomComparisonVisibility],
+        ["apply developer mode", applyDeveloperMode]
     ];
 
     for (const [stepName, step] of initializationSteps) {
@@ -57,6 +59,33 @@ function reportForagingInitializationError(stepName, error) {
     if (results) {
         results.innerHTML = `<p class="completer-empty">The Foraging Aid could not be initialized. Please reload the page.</p>`;
     }
+}
+
+
+function isDeveloperModeEnabled() {
+    return localStorage.getItem(OBOJIMA_DEVELOPER_MODE_KEY) === "true";
+}
+
+function applyDeveloperMode() {
+    const enabled = isDeveloperModeEnabled();
+    document.body.classList.toggle("developer-mode", enabled);
+
+    const badge = document.getElementById("developer-mode-badge");
+    if (badge) badge.hidden = !enabled;
+
+    const compareInput = document.getElementById("foraging-compare-random");
+    if (!enabled && compareInput) {
+        compareInput.checked = false;
+        localStorage.removeItem(OBOJIMA_FORAGING_COMPARE_VISIBLE_KEY);
+    }
+
+    updateRandomComparisonVisibility();
+}
+
+function toggleDeveloperMode() {
+    const enabled = !isDeveloperModeEnabled();
+    localStorage.setItem(OBOJIMA_DEVELOPER_MODE_KEY, enabled ? "true" : "false");
+    applyDeveloperMode();
 }
 
 function isForagingDebugOpen() {
@@ -196,7 +225,7 @@ function restoreForagingResults() {
 function updateRandomComparisonVisibility() {
     const checkbox = document.getElementById("foraging-compare-random");
     const comparison = document.querySelector(".foraging-comparison-random-column");
-    const visible = Boolean(checkbox && checkbox.checked);
+    const visible = isDeveloperModeEnabled() && Boolean(checkbox && checkbox.checked);
 
     localStorage.setItem(OBOJIMA_FORAGING_COMPARE_VISIBLE_KEY, visible ? "true" : "false");
 
@@ -213,7 +242,7 @@ function restoreRandomComparisonVisibility() {
     const checkbox = document.getElementById("foraging-compare-random");
     if (!checkbox) return;
 
-    checkbox.checked = localStorage.getItem(OBOJIMA_FORAGING_COMPARE_VISIBLE_KEY) === "true";
+    checkbox.checked = isDeveloperModeEnabled() && localStorage.getItem(OBOJIMA_FORAGING_COMPARE_VISIBLE_KEY) === "true";
     checkbox.addEventListener("change", () => {
         updateRandomComparisonVisibility();
         if (typeof saveForagingSearchParams === "function") saveForagingSearchParams();
@@ -236,6 +265,14 @@ function setupForagingKeyboardShortcuts() {
                 generateForagingFinds();
             }
         });
+    });
+
+    document.addEventListener("keydown", event => {
+        const developerShortcut = event.ctrlKey && event.altKey && event.shiftKey && event.key.toLowerCase() === "o";
+        if (!developerShortcut) return;
+
+        event.preventDefault();
+        toggleDeveloperMode();
     });
 }
 
@@ -843,7 +880,7 @@ function renderPlainDebug({
 
     const openAttribute = isForagingDebugOpen() ? " open" : "";
 
-    return `<details class="foraging-debug foraging-debug-plain"${openAttribute}>
+    return `<details class="foraging-debug foraging-debug-plain developer-only-output"${openAttribute}>
         <summary>Generation Details</summary>
         <pre>${escapeHtml(debugText)}</pre>
     </details>`;
@@ -940,7 +977,7 @@ async function generateForagingFinds() {
     const dc = Number(document.getElementById("foraging-dc").value);
     const rollTotal = Number(document.getElementById("foraging-roll").value);
     const prioritizeNew = document.getElementById("foraging-prioritize-new").checked;
-    const compareRandomVisible = document.getElementById("foraging-compare-random")?.checked || false;
+    const compareRandomVisible = isDeveloperModeEnabled() && (document.getElementById("foraging-compare-random")?.checked || false);
     const resultsDiv = document.getElementById("foraging-results");
 
     if (!dc || !rollTotal) {
