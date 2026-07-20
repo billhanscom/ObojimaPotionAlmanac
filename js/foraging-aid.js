@@ -236,6 +236,9 @@ function updateRandomComparisonVisibility() {
 
     const comparisonWrap = document.querySelector(".foraging-comparison");
     if (comparisonWrap) comparisonWrap.classList.toggle("show-random", visible);
+
+    const resultCard = document.querySelector("#foraging-results .foraging-result-card");
+    if (resultCard) resultCard.classList.toggle("compare-random-active", visible);
 }
 
 function restoreRandomComparisonVisibility() {
