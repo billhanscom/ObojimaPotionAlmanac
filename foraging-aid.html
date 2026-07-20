@@ -1,106 +1,99 @@
 <!DOCTYPE html>
+
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Obojima Potion Almanac</title>
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link rel="stylesheet" href="https://use.typekit.net/rke0sfx.css">
-    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Atkinson+Hyperlegible:ital,wght@0,400;0,700;1,400;1,700&display=swap">
-    <link rel="stylesheet" href="css/style.css">
-    <script src="js/analytics.js"></script>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Obojima Potion Almanac</title>
+<link href="https://fonts.googleapis.com" rel="preconnect"/>
+<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
+<link href="https://use.typekit.net/rke0sfx.css" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Atkinson+Hyperlegible:ital,wght@0,400;0,700;1,400;1,700&amp;display=swap" rel="stylesheet"/>
+<link href="css/style.css" rel="stylesheet"/>
+<script src="js/analytics.js"></script>
+<script src="js/version.js"></script>
 </head>
 <body>
-    <a class="skip-link" href="#foraging-results">Skip to results</a>
-    <div class="container">
-        <header class="app-header">
-            <div class="app-utility-bar" aria-label="Application utilities">
-                <div class="inventory-strip">
-                    <div class="utility-line">
-                        <span class="utility-heading">Inventory</span>
-                        <a class="utility-link" href="#" onclick="clearForagingInventory(); return false;">Clear</a>
-                        <a class="utility-link save-inventory-button" href="#" onclick="exportInventory(); return false;">Save</a>
-                        <a class="utility-link" href="#" onclick="importInventory(); return false;">Load</a>
-                    </div>
-                    <div class="current-inventory-line">
-                        <span class="utility-heading small">Current</span>
-                        <span id="inventory-profile" class="inventory-profile" aria-live="polite"></span>
-                    </div>
-                </div>
-
-                <div class="preference-strip">
-                    <div class="values-control">
-                        <span class="utility-heading">Values</span>
-                        <a class="utility-link value-choice value-2024" href="#" data-year="2024" onclick="setValuesYearChoice('2024'); return false;">2024</a>
-                        <a class="utility-link value-choice value-2014" href="#" data-year="2014" onclick="setValuesYearChoice('2014'); return false;">2014</a>
-                    </div>
-                    <div class="contrast-control">
-                        <span class="contrast-icon" aria-hidden="true">◐</span>
-                        <a class="utility-link hc-toggle-link hc-on" href="#" onclick="setHighContrastChoice(true); return false;">ON</a>
-                        <a class="utility-link hc-toggle-link hc-off active" href="#" onclick="setHighContrastChoice(false); return false;">OFF</a>
-                    </div>
-                </div>
-            </div>
-
-            <h1>Obojima Potion Almanac</h1>
-            <nav class="toolkit-nav" aria-label="Toolkit navigation">
-                <a class="toolkit-nav-link" href="index.html">Recipe Generator</a>
-                <a class="toolkit-nav-link" href="ingredient-finder.html">Ingredient Finder</a>
-                <a class="toolkit-nav-link active" href="foraging-aid.html">Foraging Aid</a>
-            </nav>
-            <p class="tool-description">Generate ingredient finds after a foraging check</p>
-        </header>
-
-        <div class="primary-action-wrap">
-            <button type="button" class="primary-action-button" onclick="generateForagingFinds()">Generate Finds</button>
-            <button type="button" class="primary-action-button" onclick="clearForagingSearch()">Clear Search</button>
-        </div>
-
-        <section class="foraging-controls" aria-label="Foraging inputs">
-            <div class="control-group">
-                <label for="foraging-region">Region</label>
-                <select id="foraging-region"></select>
-            </div>
-            <div class="control-group">
-                <label for="foraging-search-area">Search Area</label>
-                <select id="foraging-search-area"></select>
-            </div>
-            <div class="control-group">
-                <label for="foraging-dc">DC</label>
-                <input id="foraging-dc" type="number" min="1" max="30" value="10">
-            </div>
-            <div class="control-group">
-                <label for="foraging-roll">Roll Total</label>
-                <input id="foraging-roll" type="number" min="1" max="40">
-            </div>
-        </section>
-
-        <section class="foraging-options" aria-label="Foraging options">
-            <label class="checkbox-option">
-                <input id="foraging-prioritize-new" type="checkbox">
+<a class="skip-link" href="#foraging-results">Skip to results</a>
+<div class="container">
+<header class="app-header">
+<div aria-label="Application utilities" class="app-utility-bar">
+<div class="inventory-strip">
+<div class="utility-line">
+<span class="utility-heading">Inventory</span>
+<a class="utility-link" href="#" onclick="clearForagingInventory(); return false;">Clear</a>
+<a class="utility-link save-inventory-button" href="#" onclick="exportInventory(); return false;">Save</a>
+<a class="utility-link" href="#" onclick="importInventory(); return false;">Load</a>
+</div>
+<div class="current-inventory-line">
+<span class="utility-heading small">Current</span>
+<span aria-live="polite" class="inventory-profile" id="inventory-profile"></span>
+</div>
+</div>
+<div class="preference-strip">
+<div class="values-control">
+<span class="utility-heading">Values</span>
+<a class="utility-link value-choice value-2024" data-year="2024" href="#" onclick="setValuesYearChoice('2024'); return false;">2024</a>
+<a class="utility-link value-choice value-2014" data-year="2014" href="#" onclick="setValuesYearChoice('2014'); return false;">2014</a>
+</div>
+<div class="contrast-control">
+<span aria-hidden="true" class="contrast-icon">◐</span>
+<a class="utility-link hc-toggle-link hc-on" href="#" onclick="setHighContrastChoice(true); return false;">ON</a>
+<a class="utility-link hc-toggle-link hc-off active" href="#" onclick="setHighContrastChoice(false); return false;">OFF</a>
+</div>
+</div>
+</div>
+<h1>Obojima Potion Almanac</h1>
+<nav aria-label="Toolkit navigation" class="toolkit-nav">
+<a class="toolkit-nav-link" href="index.html">Recipe Generator</a>
+<a class="toolkit-nav-link" href="ingredient-finder.html">Ingredient Finder</a>
+<a class="toolkit-nav-link active" href="foraging-aid.html">Foraging Aid</a>
+</nav>
+<p class="tool-description">Generate ingredient finds after a foraging check</p>
+</header>
+<div class="primary-action-wrap">
+<button class="primary-action-button" onclick="generateForagingFinds()" type="button">Generate Finds</button>
+<button class="primary-action-button" onclick="clearForagingSearch()" type="button">Clear Search</button>
+</div>
+<section aria-label="Foraging inputs" class="foraging-controls">
+<div class="control-group">
+<label for="foraging-region">Region</label>
+<select id="foraging-region"></select>
+</div>
+<div class="control-group">
+<label for="foraging-search-area">Search Area</label>
+<select id="foraging-search-area"></select>
+</div>
+<div class="control-group">
+<label for="foraging-dc">DC</label>
+<input id="foraging-dc" max="30" min="1" type="number" value="10"/>
+</div>
+<div class="control-group">
+<label for="foraging-roll">Roll Total</label>
+<input id="foraging-roll" max="40" min="1" type="number"/>
+</div>
+</section>
+<section aria-label="Foraging options" class="foraging-options">
+<label class="checkbox-option">
+<input id="foraging-prioritize-new" type="checkbox"/>
                 Prioritize undiscovered ingredients
             </label>
-            <label class="checkbox-option developer-only-control">
-                <input id="foraging-compare-random" type="checkbox">
+<label class="checkbox-option developer-only-control">
+<input id="foraging-compare-random" type="checkbox"/>
                 Compare to Random
             </label>
-        </section>
-
-        <p id="developer-mode-badge" class="developer-mode-badge" hidden>Developer Mode</p>
-
-        <h2 class="sr-only">Foraging Results</h2>
-        <section id="foraging-results" aria-live="polite" role="region" aria-label="Foraging results"></section>
-
-        <footer class="site-footer">
-            <p>Obojima Potion Almanac is an unofficial companion tool for the Obojima potion brewing rules.</p>
-            <p>Developed by Urameshiya 👻</p>
-            <p><a href="mailto:urameshiya.ghost@gmail.com?subject=Obojima%20Potion%20Almanac%20Error&amp;body=Page:%20%0AWhat%20happened:%20%0AExpected%20behavior:%20%0ABrowser:%20">Report an Error</a></p>
-        </footer>
-    </div>
-
-    <script src="js/common.js"></script>
-    <script src="js/accessibility.js"></script>
-    <script src="js/foraging-aid.js"></script>
+</section>
+<p class="developer-mode-badge" hidden="" id="developer-mode-badge">Developer Mode</p>
+<h2 class="sr-only">Foraging Results</h2>
+<section aria-label="Foraging results" aria-live="polite" id="foraging-results" role="region"></section>
+<footer class="site-footer"><p>Version 0.9.0 • Last Updated: 20 July 2026</p>
+<p>Obojima Potion Almanac is an unofficial companion tool for the Obojima potion brewing rules.</p>
+<p>Developed by Urameshiya 👻</p>
+<p><a href="mailto:urameshiya.ghost@gmail.com?subject=Obojima%20Potion%20Almanac%20Error&amp;body=Page:%20%0AWhat%20happened:%20%0AExpected%20behavior:%20%0ABrowser:%20">Report an Error</a></p>
+</footer>
+</div>
+<script src="js/common.js"></script>
+<script src="js/accessibility.js"></script>
+<script src="js/foraging-aid.js"></script>
 </body>
 </html>

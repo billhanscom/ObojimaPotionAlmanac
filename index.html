@@ -1,99 +1,90 @@
 <!DOCTYPE html>
+
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Obojima Potion Almanac</title>
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link rel="stylesheet" href="https://use.typekit.net/rke0sfx.css">
-    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Atkinson+Hyperlegible:ital,wght@0,400;0,700;1,400;1,700&display=swap">
-    <link rel="stylesheet" href="css/style.css">
-    <script src="js/analytics.js"></script>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Obojima Potion Almanac</title>
+<link href="https://fonts.googleapis.com" rel="preconnect"/>
+<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
+<link href="https://use.typekit.net/rke0sfx.css" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Atkinson+Hyperlegible:ital,wght@0,400;0,700;1,400;1,700&amp;display=swap" rel="stylesheet"/>
+<link href="css/style.css" rel="stylesheet"/>
+<script src="js/analytics.js"></script>
+<script src="js/version.js"></script>
 </head>
 <body>
-    <a class="skip-link" href="#results">Skip to results</a>
-    <div class="container">
-        <header class="app-header">
-            <div class="app-utility-bar" aria-label="Application utilities">
-                <div class="inventory-strip">
-                    <div class="utility-line">
-                        <span class="utility-heading">Inventory</span>
-                        <a class="utility-link" href="#" onclick="clearSelection(); return false;">Clear</a>
-                        <a class="utility-link save-inventory-button" href="#" onclick="exportInventory(); return false;">Save</a>
-                        <a class="utility-link" href="#" onclick="importInventory(); return false;">Load</a>
-                    </div>
-                    <div class="current-inventory-line">
-                        <span class="utility-heading small">Current</span>
-                        <span id="inventory-profile" class="inventory-profile" aria-live="polite"></span>
-                    </div>
-                </div>
-
-                <div class="preference-strip">
-                    <div class="values-control">
-                        <span class="utility-heading">Values</span>
-                        <a class="utility-link value-choice value-2024" href="#" data-year="2024" onclick="setValuesYearChoice('2024'); return false;">2024</a>
-                        <a class="utility-link value-choice value-2014" href="#" data-year="2014" onclick="setValuesYearChoice('2014'); return false;">2014</a>
-                    </div>
-                    <div class="contrast-control">
-                        <span class="contrast-icon" aria-hidden="true">◐</span>
-                        <a class="utility-link hc-toggle-link hc-on" href="#" onclick="setHighContrastChoice(true); return false;">ON</a>
-                        <a class="utility-link hc-toggle-link hc-off active" href="#" onclick="setHighContrastChoice(false); return false;">OFF</a>
-                    </div>
-                </div>
-            </div>
-
-            <h1>Obojima Potion Almanac</h1>
-            <nav class="toolkit-nav" aria-label="Toolkit navigation">
-                <a class="toolkit-nav-link active" href="index.html">Recipe Generator</a>
-                <a class="toolkit-nav-link" href="ingredient-finder.html">Ingredient Finder</a>
-                <a class="toolkit-nav-link" href="foraging-aid.html">Foraging Aid</a>
-            </nav>
-            <p class="tool-description">Select three or more ingredients to discover potion recipes</p>
-        </header>
-
-        <div class="primary-action-wrap">
-            <button type="button" class="primary-action-button" onclick="findRecipes()">Generate Recipes</button>
-        </div>
-
-        <!-- Ingredient selection form -->
-        <h2 class="sr-only">Ingredient Selection</h2>
-        <form id="ingredientForm" class="form-section">
-            <div class="ingredient-columns">
-                <!-- Common Ingredients Column -->
-                <div class="column" id="common-ingredients">
-                    <h3>Common Ingredients</h3>
-                </div>
-
-                <!-- Uncommon Ingredients Column -->
-                <div class="column" id="uncommon-ingredients">
-                    <h3>Uncommon Ingredients</h3>
-                </div>
-
-                <!-- Rare Ingredients Column -->
-                <div class="column" id="rare-ingredients">
-                    <h3>Rare Ingredients</h3>
-                </div>
-            </div>
-        </form>
-
-        <h2 class="sr-only">Results</h2>
-        <div id="results" aria-live="polite" class="recipe-columns" role="region" aria-label="Potion recipe results">
-            <!-- Results will be displayed in this section -->
-        </div>
-        
-         <p class="ingredient-source-note">* Ingredient from <cite>Obojima: Tales from Yatamon</cite>.</p>
-
-        <footer class="site-footer">
-            <p>Obojima Potion Almanac is an unofficial companion tool for the Obojima potion brewing rules.</p>
-            <p>Developed by Urameshiya 👻</p>
-            <p><a href="mailto:urameshiya.ghost@gmail.com?subject=Obojima%20Potion%20Almanac%20Error&amp;body=Page:%20%0AWhat%20happened:%20%0AExpected%20behavior:%20%0ABrowser:%20">Report an Error</a></p>
-        </footer>
-        
-    </div>
-
-    <script src="js/accessibility.js"></script>
-    <script src="js/common.js"></script>
-    <script src="js/almanac.js"></script>
+<a class="skip-link" href="#results">Skip to results</a>
+<div class="container">
+<header class="app-header">
+<div aria-label="Application utilities" class="app-utility-bar">
+<div class="inventory-strip">
+<div class="utility-line">
+<span class="utility-heading">Inventory</span>
+<a class="utility-link" href="#" onclick="clearSelection(); return false;">Clear</a>
+<a class="utility-link save-inventory-button" href="#" onclick="exportInventory(); return false;">Save</a>
+<a class="utility-link" href="#" onclick="importInventory(); return false;">Load</a>
+</div>
+<div class="current-inventory-line">
+<span class="utility-heading small">Current</span>
+<span aria-live="polite" class="inventory-profile" id="inventory-profile"></span>
+</div>
+</div>
+<div class="preference-strip">
+<div class="values-control">
+<span class="utility-heading">Values</span>
+<a class="utility-link value-choice value-2024" data-year="2024" href="#" onclick="setValuesYearChoice('2024'); return false;">2024</a>
+<a class="utility-link value-choice value-2014" data-year="2014" href="#" onclick="setValuesYearChoice('2014'); return false;">2014</a>
+</div>
+<div class="contrast-control">
+<span aria-hidden="true" class="contrast-icon">◐</span>
+<a class="utility-link hc-toggle-link hc-on" href="#" onclick="setHighContrastChoice(true); return false;">ON</a>
+<a class="utility-link hc-toggle-link hc-off active" href="#" onclick="setHighContrastChoice(false); return false;">OFF</a>
+</div>
+</div>
+</div>
+<h1>Obojima Potion Almanac</h1>
+<nav aria-label="Toolkit navigation" class="toolkit-nav">
+<a class="toolkit-nav-link active" href="index.html">Recipe Generator</a>
+<a class="toolkit-nav-link" href="ingredient-finder.html">Ingredient Finder</a>
+<a class="toolkit-nav-link" href="foraging-aid.html">Foraging Aid</a>
+</nav>
+<p class="tool-description">Select three or more ingredients to discover potion recipes</p>
+</header>
+<div class="primary-action-wrap">
+<button class="primary-action-button" onclick="findRecipes()" type="button">Generate Recipes</button>
+</div>
+<!-- Ingredient selection form -->
+<h2 class="sr-only">Ingredient Selection</h2>
+<form class="form-section" id="ingredientForm">
+<div class="ingredient-columns">
+<!-- Common Ingredients Column -->
+<div class="column" id="common-ingredients">
+<h3>Common Ingredients</h3>
+</div>
+<!-- Uncommon Ingredients Column -->
+<div class="column" id="uncommon-ingredients">
+<h3>Uncommon Ingredients</h3>
+</div>
+<!-- Rare Ingredients Column -->
+<div class="column" id="rare-ingredients">
+<h3>Rare Ingredients</h3>
+</div>
+</div>
+</form>
+<h2 class="sr-only">Results</h2>
+<div aria-label="Potion recipe results" aria-live="polite" class="recipe-columns" id="results" role="region">
+<!-- Results will be displayed in this section -->
+</div>
+<p class="ingredient-source-note">* Ingredient from <cite>Obojima: Tales from Yatamon</cite>.</p>
+<footer class="site-footer"><p>Version 0.9.0 • Last Updated: 20 July 2026</p>
+<p>Obojima Potion Almanac is an unofficial companion tool for the Obojima potion brewing rules.</p>
+<p>Developed by Urameshiya 👻</p>
+<p><a href="mailto:urameshiya.ghost@gmail.com?subject=Obojima%20Potion%20Almanac%20Error&amp;body=Page:%20%0AWhat%20happened:%20%0AExpected%20behavior:%20%0ABrowser:%20">Report an Error</a></p>
+</footer>
+</div>
+<script src="js/accessibility.js"></script>
+<script src="js/common.js"></script>
+<script src="js/almanac.js"></script>
 </body>
 </html>
