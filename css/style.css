@@ -3981,3 +3981,54 @@ body.developer-mode .developer-mode-badge {
         grid-template-columns: minmax(0, 1fr) !important;
     }
 }
+
+
+/* ==========================================================
+   0.9.2 utility-bar alignment and footer attribution
+   ========================================================== */
+
+/* Center the Developer Mode badge within the full container,
+   independent of the widths of the left and right utility groups. */
+.app-utility-bar.developer-utility-bar {
+    display: grid !important;
+    grid-template-columns: minmax(0, 1fr) auto minmax(0, 1fr);
+    align-items: start;
+    width: 100%;
+}
+
+.app-utility-bar.developer-utility-bar .inventory-strip {
+    justify-self: start;
+}
+
+.app-utility-bar.developer-utility-bar .developer-mode-badge {
+    justify-self: center;
+    align-self: start;
+}
+
+.app-utility-bar.developer-utility-bar .preference-strip {
+    justify-self: end;
+}
+
+@media (max-width: 760px) {
+    .app-utility-bar.developer-utility-bar {
+        grid-template-columns: 1fr auto;
+        row-gap: 8px;
+    }
+
+    .app-utility-bar.developer-utility-bar .inventory-strip {
+        grid-column: 1;
+        grid-row: 1;
+    }
+
+    .app-utility-bar.developer-utility-bar .preference-strip {
+        grid-column: 2;
+        grid-row: 1;
+    }
+
+    .app-utility-bar.developer-utility-bar .developer-mode-badge {
+        grid-column: 1 / -1;
+        grid-row: 2;
+        justify-self: center;
+        width: fit-content;
+    }
+}
