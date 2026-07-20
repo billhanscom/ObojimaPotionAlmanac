@@ -4032,3 +4032,22 @@ body.developer-mode .developer-mode-badge {
         width: fit-content;
     }
 }
+
+
+/* ==========================================================
+   0.9.3 stable developer utility layout
+   ========================================================== */
+/* Keep the center grid item present at all times so the right-side
+   preferences do not move when Developer Mode is toggled. */
+.app-utility-bar.developer-utility-bar .developer-mode-badge {
+    display: block !important;
+    visibility: hidden;
+    margin: 0 auto !important;
+    width: fit-content;
+    pointer-events: none;
+}
+
+body.developer-mode .app-utility-bar.developer-utility-bar .developer-mode-badge {
+    display: block !important;
+    visibility: visible;
+}
