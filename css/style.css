@@ -220,6 +220,7 @@ h3 {
 
 .site-footer {
     margin-top: 50px;
+    font-family: var(--body-font);
     text-align: center;
     font-size: 11px;
     color: #777;

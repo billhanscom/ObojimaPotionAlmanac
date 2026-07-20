@@ -268,8 +268,12 @@ function setupForagingKeyboardShortcuts() {
     });
 
     document.addEventListener("keydown", event => {
-        const developerShortcut = event.ctrlKey && event.altKey && event.shiftKey && event.key.toLowerCase() === "o";
-        if (!developerShortcut) return;
+        // Use the physical key code rather than event.key. On macOS,
+        // holding Option can change the produced character (for example,
+        // Option+O produces "ø"), which prevented the shortcut from firing.
+        const isOKey = event.code === "KeyO" || event.key.toLowerCase() === "o";
+        const developerShortcut = event.ctrlKey && event.altKey && event.shiftKey && isOKey;
+        if (!developerShortcut || event.repeat) return;
 
         event.preventDefault();
         toggleDeveloperMode();
